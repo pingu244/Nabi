@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/tab1"
+        android:enabled="true"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Home"
+        android:iconTint="@color/material_on_surface_stroke"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/tab2"
+        android:enabled="true"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Healing"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/tab3"
+        android:enabled="true"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Diary"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/tab4"
+        android:enabled="true"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="통계"
+        app:showAsAction="ifRoom"/>
+
+</menu>
