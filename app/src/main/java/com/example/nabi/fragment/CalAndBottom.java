@@ -26,11 +26,13 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import java.util.Calendar;
 import java.util.Date;
 
+// 세번째 탭 안에서 달력부분과 밑에 일기내역 나오는 부분
+// (이부분만 동적이어서 따로 fragment로 만듦) --> 다른 의견있으면 말해주세요
 
 public class CalAndBottom extends Fragment {
 
 
-    MaterialCalendarView materialCalendarView;
+    MaterialCalendarView materialCalendarView;  // 캘린더
 
 
 
@@ -39,6 +41,7 @@ public class CalAndBottom extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // 달력 만들기
         materialCalendarView = (MaterialCalendarView) getView().findViewById(R.id.calendarView);
         materialCalendarView.state().edit()
                 .setFirstDayOfWeek(Calendar.SUNDAY)
@@ -46,11 +49,13 @@ public class CalAndBottom extends Fragment {
                 .setMaximumDate(CalendarDay.from(2030, 11, 31))
                 .setCalendarDisplayMode(CalendarMode.MONTHS)
                 .commit();
+
+
         materialCalendarView.setDateSelected(CalendarDay.today(), true);    // 오늘 선택되어있게
 
         materialCalendarView.addDecorators(
-                new MySelectorDecorator(this),
-                new OneDayDecorator()
+                new MySelectorDecorator(this),  // 선택된 애 어떻게 꾸밀지
+                new OneDayDecorator()                   // 오늘꺼 어떻게 꾸밀지
         );
 
 
@@ -64,7 +69,7 @@ public class CalAndBottom extends Fragment {
         return inflater.inflate(R.layout.fragment_cal_and_bottom, container, false);
     }
 
-    // 오늘 표시
+    // 오늘 표시 어떻게 할지
     public class OneDayDecorator implements DayViewDecorator {
         private CalendarDay date;
 

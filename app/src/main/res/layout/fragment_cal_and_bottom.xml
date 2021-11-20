@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--세번째 탭 눌렀을때 맨 위에 아이콘5개 빼고 그 밑에 부분-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.CalAndBottom"
     android:orientation="vertical">
 
+<!--    달력-->
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:mcv_selectionColor="@color/white"
         app:mcv_showOtherDates="defaults" />
 
+<!--    달력 밑에-->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

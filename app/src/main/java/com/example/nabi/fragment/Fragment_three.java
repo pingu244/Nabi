@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.nabi.R;
 
+// 세번째 탭 눌렀을 때 나오는 fragment
 public class Fragment_three extends Fragment {
 
 

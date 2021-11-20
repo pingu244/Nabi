@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--달력에서 날짜 선택하면 나오는 효과-->
 <selector
 
     xmlns:android="http://schemas.android.com/apk/res/android">
