@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/tab1"
+        android:id="@+id/home"
         android:enabled="true"
         android:icon="@drawable/ic_launcher_foreground"
         android:title="Home"
@@ -11,24 +11,24 @@
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/tab2"
+        android:id="@+id/healing"
         android:enabled="true"
         android:icon="@drawable/ic_launcher_foreground"
         android:title="Healing"
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/tab3"
+        android:id="@+id/diary"
         android:enabled="true"
         android:icon="@drawable/ic_launcher_foreground"
         android:title="Diary"
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/tab4"
+        android:id="@+id/remind"
         android:enabled="true"
-        android:icon="@drawable/ic_launcher_background"
-        android:title="통계"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Remind"
         app:showAsAction="ifRoom"/>
 
 </menu>
