@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--일기 목록-->
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/todoCardView"
+    android:layout_width="308dp"
+    android:layout_height="51dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="2dp"
+    android:layout_gravity="center"
+    android:layout_marginBottom="20dp">
+
+    <LinearLayout
+        android:id="@+id/layoutDiaryList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/diaryDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="13dp"
+            android:layout_weight="8"
+            android:text="날짜"
+            android:textSize="14sp"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/diaryTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="13dp"
+            android:layout_weight="8"
+            android:text="제목"
+            android:textSize="14sp"/>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

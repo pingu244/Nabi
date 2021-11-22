@@ -46,4 +46,7 @@ dependencies {
     implementation 'com.prolificinteractive:material-calendarview:1.4.3'    // 캘린더
     implementation platform('com.google.firebase:firebase-bom:29.0.0')
     implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+
+
 }
