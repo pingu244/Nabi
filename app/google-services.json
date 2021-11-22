@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "576715755900",
+    "project_id": "nabi-4d948",
+    "storage_bucket": "nabi-4d948.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:576715755900:android:651a3eac1d8f85b36d14f9",
+        "android_client_info": {
+          "package_name": "com.example.nabi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "576715755900-s6boj2apkv7f35brab5j1asvioao3esg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nabi",
+            "certificate_hash": "8bae590a2d57660b1cb788531f8630e6a9bfed4f"
+          }
+        },
+        {
+          "client_id": "576715755900-9aub3h8ck3k8r6n391gvbmpbfqk9ft72.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAApMR9d5zLVKVDrOmWEaZbce48eOrutc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "576715755900-9aub3h8ck3k8r6n391gvbmpbfqk9ft72.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
