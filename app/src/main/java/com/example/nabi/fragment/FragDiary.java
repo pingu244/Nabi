@@ -1,5 +1,6 @@
 package com.example.nabi.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.nabi.R;
+import com.example.nabi.WritingDiary;
 
 // Diary 탭 fragment
 public class FragDiary extends Fragment {
@@ -21,6 +23,7 @@ public class FragDiary extends Fragment {
     @Nullable
     View view;
     ImageButton btnCloudy;
+    Button goWriting;
     Fragment cloudyDiary;
 
     @Override
@@ -36,6 +39,16 @@ public class FragDiary extends Fragment {
             @Override
             public void onClick(View view) {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, cloudyDiary).commitAllowingStateLoss();
+            }
+        });
+
+        goWriting = view.findViewById(R.id.go_writing);
+        // 달력 밑에 일기쓰는 버튼 누르면 일기쓰는 액티비티인 WritingDiary를 보여줌
+        goWriting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), WritingDiary.class);
+                startActivity(intent);
             }
         });
 

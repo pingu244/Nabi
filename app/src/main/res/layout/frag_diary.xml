@@ -56,7 +56,7 @@
 
 
             <Button
-                android:id="@+id/diary_write"
+                android:id="@+id/go_writing"
                 android:layout_width="324dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="17dp"

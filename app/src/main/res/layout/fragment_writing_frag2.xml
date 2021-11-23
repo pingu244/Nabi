@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.WritingFrag2"
+    android:orientation="vertical">
+
+    <TextView
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="그때 느낀 감정을 선택해볼까요?" />
+
+    <FrameLayout
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <!--        라운드 사각형-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/roundrectangle"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!--            버튼 선택하면 여기 보여짐-->
+<!--            flexboxLayout은 자기가 자동으로 크기 넘치면 줄바꿈 해주는 애-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/mood_word_selectbox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:flexWrap="wrap"
+                    app:alignItems="stretch"
+                    app:alignContent="stretch">
+
+
+                </com.google.android.flexbox.FlexboxLayout>
+
+
+
+
+            </LinearLayout>
+
+            <!--            감정 단어들 목록-->
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <!--                    기쁨-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <!--                        기쁨 글자-->
+                        <TextView
+                            android:layout_marginLeft="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="25dp"
+                            android:text="기쁨"/>
+                        <!--                    선-->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#83000000"/>
+                        <!--                    기쁨 감정버튼들-->
+                        <com.google.android.flexbox.FlexboxLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:flexWrap="wrap"
+                            app:alignItems="stretch"
+                            app:alignContent="stretch">
+                            <Button
+                                android:id="@+id/joyful1"
+                                android:layout_margin="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#31000000"
+                                android:text="신난"/>
+                            <Button
+                                android:id="@+id/joyful2"
+                                android:layout_margin="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#31000000"
+                                android:text="매력적인"/>
+                            <Button
+                                android:id="@+id/joyful3"
+                                android:layout_margin="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#31000000"
+                                android:text="활기찬"/>
+                            <Button
+                                android:id="@+id/joyful4"
+                                android:layout_margin="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#31000000"
+                                android:text="장난기 많은"/>
+                            <Button
+                                android:id="@+id/joyful5"
+                                android:layout_margin="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#31000000"
+                                android:text="창의적인"/>
+                            <Button
+                                android:id="@+id/joyful6"
+                                android:layout_margin="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#31000000"
+                                android:text="기쁜"/>
+
+                        </com.google.android.flexbox.FlexboxLayout>
+
+                        <!--                    선-->
+                        <View
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#83000000"/>
+
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </ScrollView>
+
+
+        </LinearLayout>
+
+
+
+    </FrameLayout>
+
+<!--이전/다음버튼과 페이지 보여주는 부분-->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/second_prior"
+            android:layout_gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이전"/>
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:text="2/4"/>
+        <Button
+            android:id="@+id/second_next"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="다음"/>
+
+    </FrameLayout>
+
+</LinearLayout>
