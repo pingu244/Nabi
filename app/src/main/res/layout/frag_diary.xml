@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="20">
+    android:weightSum="20"
+    android:background="@drawable/diary_bg">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -21,13 +22,17 @@
                 android:orientation="horizontal"
                 android:layout_weight="3">
 
+
+
                 <ImageButton
                     android:id="@+id/btnCloudy"
                     android:width="30dp"
                     android:height="30dp"
-                    android:background="@drawable/img"
+                    android:layout_marginTop="65dp"
+                    android:layout_marginLeft="28dp"
+                    android:background="@drawable/w_cloudy"
                     android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"/>
+                    android:layout_width="wrap_content"  />
 
 
             </LinearLayout>
@@ -43,10 +48,26 @@
             <fragment
                 android:layout_weight="17"
                 android:id="@+id/diary_bottom"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:name="com.example.nabi.fragment.CalAndBottom"/>
+                android:layout_gravity="center"
+                android:layout_marginTop="26dp"
+                android:name="com.example.nabi.fragment.CalAndBottom" />
+
+
+            <Button
+                android:id="@+id/diary_write"
+                android:layout_width="324dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="17dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/btn_write"
+                />
+
+
+
         </LinearLayout>
+
 
     </ScrollView>
 
