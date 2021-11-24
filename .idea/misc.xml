@@ -3,19 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/GURU2/nabii/app/src/main/res/drawable/calender_frame_rectangle.xml" value="0.38229166666666664" />
         <entry key="..\:/GURU2/nabii/app/src/main/res/drawable/myselector.xml" value="0.38229166666666664" />
         <entry key="..\:/GURU2/nabii/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/GURU2/nabii/app/src/main/res/layout/diary_cloud.xml" value="0.36614583333333334" />
+        <entry key="..\:/GURU2/nabii/app/src/main/res/layout/diarylist_adapter.xml" value="0.36614583333333334" />
         <entry key="..\:/GURU2/nabii/app/src/main/res/layout/diarylist_cloud.xml" value="0.36614583333333334" />
         <entry key="..\:/GURU2/nabii/app/src/main/res/layout/frag_diary.xml" value="0.22" />
         <entry key="..\:/GURU2/nabii/app/src/main/res/layout/frag_healing.xml" value="0.14629629629629629" />
         <entry key="..\:/GURU2/nabii/app/src/main/res/layout/fragment_cal_and_bottom.xml" value="0.36614583333333334" />
         <entry key="..\:/GURU2/nabii/app/src/main/res/layout/fragment_three.xml" value="0.1" />
+        <entry key="..\:/GURU2/nabii/app/src/main/res/layout/fragment_writing_frag1.xml" value="0.17806484295845998" />
         <entry key="..\:/GURU2/nabii/app/src/main/res/menu/menu_bottom.xml" value="0.36614583333333334" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="13" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_13" default="true" project-jdk-name="13" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
