@@ -74,9 +74,9 @@ public class WritingFrag2 extends Fragment {
 
 
                         // 선택 버튼 삭제 : 작업중..
-//                        findequalone(joyful[index]);
+                        findequalone(joyful[index]);
 
-                        deleteBtn(selectbtn_ids[selected_count-1]);
+//                        deleteBtn(selectbtn_ids[selected_count-1]);
 
                         // 선택버튼 저장하는 동적배열에서 빼기
                         selectbtn.remove(Integer.valueOf(joyful_id[index]));
@@ -171,15 +171,15 @@ public class WritingFrag2 extends Fragment {
         int j = 0;
         while(j<6)
         {
-            Button temp = getActivity().findViewById(selectbtn_ids[j]);
-            if(temp == null)
-                continue;
-            find = temp.getText().equals(what.getText());
-            if(find)
-            {
-                deleteBtn(selectbtn_ids[j]);
-                break;
+            try {
+                Button temp = getActivity().findViewById(selectbtn_ids[j]);
+                find = temp.getText().equals(what.getText());
+                if(find) {
+                    deleteBtn(selectbtn_ids[j]);
+                    break;
+                }
             }
+            catch (NullPointerException e){}
             j++;
         }
     }
