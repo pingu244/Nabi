@@ -26,7 +26,7 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import java.util.Calendar;
 import java.util.Date;
 
-// 세번째 탭 안에서 달력부분과 밑에 일기내역 나오는 부분
+// 세번째 탭 안에서 달력부분
 // (이부분만 동적이어서 따로 fragment로 만듦) --> 다른 의견있으면 말해주세요
 
 public class CalAndBottom extends Fragment {

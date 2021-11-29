@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.text.method.CharacterPickerDialog;
 import android.view.LayoutInflater;
@@ -22,33 +24,33 @@ public class FragDiary extends Fragment {
 
     @Nullable
     View view;
-    ImageButton btnCloudy;
-    Button goWriting;
-    Fragment cloudyDiary;
+
+    Fragment fragdiary = new FragDiary_cal();
+    Fragment fraglist = new FragDiary_list();
+
+    Button goToCal, goToList;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.frag_diary, container,false);
 
-        btnCloudy = view.findViewById(R.id.btnCloudy);
-        cloudyDiary = new DiaryList_Cloud();
+        goToCal = view.findViewById(R.id.goCal);
+        goToList = view.findViewById(R.id.goList);
 
-        //흐린 날 아이콘 클릭 시 흐린 날 날씨 목록 화면으로 이동
-        btnCloudy.setOnClickListener(new View.OnClickListener() {
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Diary_frag, fragdiary).commit();
+
+
+        goToCal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, cloudyDiary).commitAllowingStateLoss();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Diary_frag, fragdiary).commit();
             }
         });
-
-        goWriting = view.findViewById(R.id.go_writing);
-        // 달력 밑에 일기쓰는 버튼 누르면 일기쓰는 액티비티인 WritingDiary를 보여줌
-        goWriting.setOnClickListener(new View.OnClickListener() {
+        goToList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), WritingDiary.class);
-                startActivity(intent);
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Diary_frag, fraglist).commit();
             }
         });
 

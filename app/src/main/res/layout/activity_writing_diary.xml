@@ -9,12 +9,12 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/back"
+        android:id="@+id/WritingDiary_back"
         android:layout_width="50dp"
         android:layout_height="50dp"/>
 
     <TextView
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center_horizontal"
         android:id="@+id/today_date"
         android:layout_width="match_parent"
@@ -23,20 +23,20 @@
         android:text="0000년 00월 00일"/>
 
     <FrameLayout
-        android:layout_margin="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="100dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="@drawable/roundrectangle">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="600dp"
-            android:background="@drawable/roundrectangle"/>
+
 
         <FrameLayout
             android:layout_margin="10dp"
             android:id="@+id/writingdiaryfrag"
             android:layout_width="match_parent"
-            android:layout_height="550dp"/>
+            android:layout_height="match_parent"/>
 
 
     </FrameLayout>

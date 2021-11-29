@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DiaryResult"
+    android:orientation="vertical"
+    android:background="@drawable/diary_bg">
+
+    <Button
+        android:id="@+id/DiaryResult_Back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
+
+    <TextView
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal"
+        android:id="@+id/DiaryResult_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:text="0000년 00월 00일"/>
+
+
+
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/calender_frame_rectangle">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_gravity="right"/>
+        </FrameLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:text="오늘의 기분만큼 색칠해 주세요."/>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!--        기분 정도 표현-->
+                    <ProgressBar
+                        android:id="@+id/DiaryResult_progressbar"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="100dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:max="5"
+                        android:progressDrawable="@drawable/seekbar_seekbar"/>
+
+                    <TextView
+                        android:id="@+id/DiaryResult_percent"
+                        android:layout_gravity="center|right"
+                        android:layout_marginRight="50dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="00%"
+                        android:textSize="20dp" />
+
+                </FrameLayout>
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:text="오늘 무슨 일이 있었나요?" />
+                <TextView
+                    android:id="@+id/DiaryResult_q1"
+                    android:padding="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="여기에 일기내용1"
+                    android:background="@drawable/roundrectangle"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:text="그때 느낀 감정을 선택해볼까요?"/>
+                <!--           선택한 감정-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:id="@+id/DiaryResult_selctMood"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:flexWrap="wrap"
+                        app:alignItems="stretch"
+                        app:alignContent="stretch"
+                        android:background="@drawable/roundrectangle">
+
+
+
+                    </com.google.android.flexbox.FlexboxLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:text="왜 그런 감정이 들었을까요?"/>
+                <TextView
+                    android:id="@+id/DiaryResult_q3"
+                    android:padding="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="여기에 일기내용2"
+                    android:background="@drawable/roundrectangle"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:text="오늘 하루를 다시 살아본다면, 어떨 것 같나요?"/>
+                <TextView
+                    android:id="@+id/DiaryResult_q4"
+                    android:padding="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="여기에 일기내용3"
+                    android:background="@drawable/roundrectangle"/>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"/>
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>

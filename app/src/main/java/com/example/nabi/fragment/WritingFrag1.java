@@ -5,11 +5,16 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.example.nabi.R;
 import com.example.nabi.WritingDiary;
@@ -18,10 +23,14 @@ import com.example.nabi.WritingDiary;
 
 public class WritingFrag1 extends Fragment {
 
+    WritingFrag2 frag2 = new WritingFrag2();
+
     // fragment에서 fragment로 이동하기 위한 장치
     public static WritingFrag1 newInstance() {
         return new WritingFrag1();
     }
+
+
 
 
     @Override
@@ -34,10 +43,48 @@ public class WritingFrag1 extends Fragment {
         first_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((WritingDiary)getActivity()).replaceFragment(WritingFrag2.newInstance());
-
+                ((WritingDiary)getActivity()).replaceFragment("page2", WritingFrag2.newInstance());
             }
         });
+
+        // 질문1: 기분 색칠
+        SeekBar seekbar = getActivity().findViewById(R.id.seekbar);
+        TextView seekbar_per = getActivity().findViewById(R.id.seekbar_percent);
+        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                // 시크바 조작중
+                switch (seekbar.getProgress())
+                {
+                    case 0:
+                        seekbar_per.setText("0%");  break;
+                    case 1:
+                        seekbar_per.setText("20%");  break;
+                    case 2:
+                        seekbar_per.setText("40%");  break;
+                    case 3:
+                        seekbar_per.setText("60%");  break;
+                    case 4:
+                        seekbar_per.setText("80%");  break;
+                    case 5:
+                        seekbar_per.setText("100%");  break;
+
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // 시크바 처음 터치
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // 시크바 터치 끝났을때
+            }
+        });
+
+
     }
 
 

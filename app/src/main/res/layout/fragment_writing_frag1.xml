@@ -14,78 +14,51 @@
         android:textSize="20dp"
         android:text="오늘의 기분만큼 색칠해 주세요." />
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-<!--        마이너스 버튼-->
-        <ImageButton
-            android:id="@+id/minus"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="10dp"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_launcher_foreground" />
+<!--        기분 정도 표현-->
+        <SeekBar
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="100dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/seekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="5"
+            android:progress="3"
+            android:progressDrawable="@drawable/seekbar_seekbar"
+            android:thumb="@drawable/seekbar_thumb"/>
 
-        <Button
-            android:id="@+id/one"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="5dp"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/q1_button_normal"/>
-        <Button
-            android:id="@+id/two"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/q1_button_normal"/>
-        <Button
-            android:id="@+id/three"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/q1_button_normal"/>
-        <Button
-            android:id="@+id/four"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/q1_button_normal"/>
-        <Button
-            android:id="@+id/five"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/q1_button_normal"/>
+        <TextView
+            android:id="@+id/seekbar_percent"
+            android:layout_gravity="center|right"
+            android:layout_marginRight="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="60%"
+            android:textSize="20dp" />
 
-<!--        플러스 버튼-->
-        <ImageButton
-            android:id="@+id/plus"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="30dp"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_launcher_foreground" />
-    </LinearLayout>
+    </FrameLayout>
 
     <TextView
-        android:padding="20dp"
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:text="오늘 무슨 일이 있었나요?" />
 
-<!--    일기 입력창인데 일단 대충 edit사용 나중에 바꿀지도 모름-->
+<!--    일기 입력창-->
     <EditText
+        android:id="@+id/page1_edittext"
+        android:gravity="top"
         android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="0dp"/>
+        android:layout_height="0dp"
+        android:background="@drawable/edittext_rounded_corner_rectangle"/>
 
     <FrameLayout
         android:layout_width="match_parent"
