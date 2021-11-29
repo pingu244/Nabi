@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--FragDiary.java와 연동 = 세번째 탭 눌렀을 때 나오는 화면-->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:weightSum="20"
     android:background="@drawable/diary_bg">
@@ -11,25 +11,44 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:gravity="center"
         android:layout_marginTop="20dp">
-        <Button
-            android:id="@+id/goCal"
-            android:layout_width="wrap_content"
+
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/Diary_tab_layout"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_margin="8dp"
+            app:tabMode="fixed"
+            app:tabGravity="center"
+            app:tabIndicatorGravity="stretch"
+            app:tabSelectedTextColor="@color/white"
+            app:tabIndicatorAnimationMode="elastic"
+            app:tabIndicator="@drawable/tab_indicator"/>
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="캘린더"/>
-        <Button
-            android:id="@+id/goList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="리스트"/>
+            android:theme="@style/Theme.AppCompat">
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:id="@+id/Diary_toolbar"
+                android:background="@android:color/transparent"
+                app:popupTheme="@style/Theme.AppCompat"/>
+        </com.google.android.material.appbar.AppBarLayout>
+        <include layout= "@layout/diary_contain_main"/>
+
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/Diary_frag"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/Diary_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"/>
+
 
 
 

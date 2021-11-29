@@ -2,6 +2,8 @@ package com.example.nabi.fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -23,6 +25,29 @@ public class FragDiary_list extends Fragment {
     Fragment cloudyDiary;
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        Spinner monthSpinner = getActivity().findViewById(R.id.spinner_month);
+
+        ArrayAdapter monthAdapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.spinner_date_month, android.R.layout.simple_spinner_item);
+        monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        monthSpinner.setAdapter(monthAdapter);
+        monthSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                // 선택되면
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // 아무것도 선택되지 않은 상태일 때
+            }
+        });
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_frag_diary_list, container, false);
@@ -40,23 +65,7 @@ public class FragDiary_list extends Fragment {
             }
         });
 
-//        Spinner monthSpinner = getActivity().findViewById(R.id.spinner_month);
-//
-//        ArrayAdapter monthAdapter = ArrayAdapter.createFromResource(getActivity(),
-//                R.array.spinner_date_month, android.R.layout.simple_spinner_item);
-//        monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-////        monthSpinner.setAdapter(monthAdapter);
-//        monthSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//                // 선택되면
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> adapterView) {
-//                // 아무것도 선택되지 않은 상태일 때
-//            }
-//        });
+
 
         return view;
     }
