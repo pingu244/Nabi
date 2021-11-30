@@ -27,7 +27,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // 다이어리 테이블
         db.execSQL("CREATE TABLE diary_post (post_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id TEXT, content_1 TEXT, content_2 TEXT, " +
-                "content_3 TEXT, content_4 TEXT, diary_mood INTEGER, diary_keyword TEXT, reporting_date CHAR(20) NOT NULL" +
+                "content_3 TEXT, content_4 TEXT, diary_mood INTEGER, diary_keyword TEXT, diary_weather INTEGER, reporting_date CHAR(20) NOT NULL" +
                 ",FOREIGN KEY (user_id) REFERENCES user_inform (user_id) on DELETE CASCADE )");
 
         // 산책 테이블
