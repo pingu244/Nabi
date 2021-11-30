@@ -1,5 +1,6 @@
 package com.example.nabi.fragment;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,17 +14,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.example.nabi.DBHelper;
 import com.example.nabi.R;
 import com.example.nabi.WritingDiary;
+
+import java.util.Calendar;
 
 // 일기 맨 처음 페이지
 
 public class WritingFrag1 extends Fragment {
 
     WritingFrag2 frag2 = new WritingFrag2();
+    EditText content_1;
+    private SQLiteDatabase db;
+    DBHelper dbHelper;
 
     // fragment에서 fragment로 이동하기 위한 장치
     public static WritingFrag1 newInstance() {
@@ -37,6 +45,18 @@ public class WritingFrag1 extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        dbHelper = new DBHelper(getContext());
+        db = dbHelper.getWritableDatabase();
+
+        content_1 = view.findViewById(R.id.diary_content_1);
+
+        Calendar cal = Calendar.getInstance();
+        int cYEAR = cal.get(Calendar.YEAR);
+        int cMonth = cal.get(Calendar.MONTH);
+        int cDay = cal.get(Calendar.YEAR);
+
+        String YMD = (cYEAR+"년 "+(cMonth+1)+"월 "+cDay+"일").toString();
+
         // 첫번째 페이지에 있는 '다음'버튼이어서 이름을 이렇게 지음 (페이지번째_next)
         // '다음'버튼을 누르면 다음 fragment로 넘어감
         Button first_next = getActivity().findViewById(R.id.first_next);
@@ -44,6 +64,7 @@ public class WritingFrag1 extends Fragment {
             @Override
             public void onClick(View view) {
                 ((WritingDiary)getActivity()).replaceFragment("page2", WritingFrag2.newInstance());
+                db.execSQL("insert into diary_post (post_id, user_id, content_1, reporting_date)values (?, 'jungin-2', '"+content_1.getText().toString()+"','"+YMD+"')");
             }
         });
 
