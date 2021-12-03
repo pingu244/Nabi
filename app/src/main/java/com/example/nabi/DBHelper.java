@@ -26,7 +26,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "user_name TEXT NOT NULL, user_bdi TEXT NOT NULL, user_sad TEXT, user_weather TEXT)");
 
         // 다이어리 테이블
-        db.execSQL("CREATE TABLE diary_post (post_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id TEXT, content_1 TEXT, content_2 TEXT, " +
+        db.execSQL("CREATE TABLE diary_post (post_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id TEXT, diary_title TEXT NOT NULL, content_1 TEXT, content_2 TEXT, " +
                 "content_3 TEXT, content_4 TEXT, diary_mood INTEGER, diary_keyword TEXT, diary_weather INTEGER, reporting_date CHAR(20) NOT NULL" +
                 ",FOREIGN KEY (user_id) REFERENCES user_inform (user_id) on DELETE CASCADE )");
 

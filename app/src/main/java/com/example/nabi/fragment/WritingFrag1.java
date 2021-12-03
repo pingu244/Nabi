@@ -45,7 +45,7 @@ public class WritingFrag1 extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        dbHelper = new DBHelper(getContext());
+        dbHelper = new DBHelper(requireContext());
         db = dbHelper.getWritableDatabase();
 
         content_1 = view.findViewById(R.id.diary_content_1);
@@ -53,7 +53,7 @@ public class WritingFrag1 extends Fragment {
         Calendar cal = Calendar.getInstance();
         int cYEAR = cal.get(Calendar.YEAR);
         int cMonth = cal.get(Calendar.MONTH);
-        int cDay = cal.get(Calendar.YEAR);
+        int cDay = cal.get(Calendar.DATE);
 
         String YMD = (cYEAR+"년 "+(cMonth+1)+"월 "+cDay+"일").toString();
 
@@ -64,7 +64,7 @@ public class WritingFrag1 extends Fragment {
             @Override
             public void onClick(View view) {
                 ((WritingDiary)getActivity()).replaceFragment("page2", WritingFrag2.newInstance());
-                db.execSQL("insert into diary_post (post_id, user_id, content_1, reporting_date)values (?, 'jungin-2', '"+content_1.getText().toString()+"','"+YMD+"')");
+                db.execSQL("insert into diary_post (post_id, user_id, diary_title, content_1, diary_weather,reporting_date) values (?, 'jungin-2','11월 30일의 일기','"+content_1.getText().toString()+"',0,'"+YMD+"')");
             }
         });
 

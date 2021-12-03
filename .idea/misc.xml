@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/GURU2/Nabii/app/src/main/res/layout/diarylist.xml" value="0.1638888888888889" />
+        <entry key="..\:/GURU2/Nabii/app/src/main/res/layout/diarylist_adapter.xml" value="0.21614583333333334" />
         <entry key="..\:/GURU2/Nabii/app/src/main/res/layout/fragment_writing_frag1.xml" value="0.36614583333333334" />
+        <entry key="..\:/GURU2/Nabii/app/src/main/res/layout/fragment_writing_frag4.xml" value="0.36614583333333334" />
         <entry key="..\:/GURU2/nabii/app/src/main/res/drawable/calender_frame_rectangle.xml" value="0.38229166666666664" />
         <entry key="..\:/GURU2/nabii/app/src/main/res/drawable/myselector.xml" value="0.38229166666666664" />
         <entry key="..\:/GURU2/nabii/app/src/main/res/layout/activity_main.xml" value="0.33" />

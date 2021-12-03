@@ -1,10 +1,14 @@
 package com.example.nabi;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -24,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigation;
 
-
+    public static DiaryDataBase diaryDataBase = null;
+    private long mBackWait = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         frag_healing = new FragHealing();
         frag_diary = new FragDiary();
         frag_remind = new FragRemind();
+
+        openDatabase();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container, frag_home).commitAllowingStateLoss();
 
@@ -66,4 +73,40 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void openDatabase() {
+        // open database
+        if (diaryDataBase != null) {
+            diaryDataBase.close();
+            diaryDataBase = null;
+        }
+
+        diaryDataBase = diaryDataBase.getInstance(this);
+        boolean isOpen = diaryDataBase.open();
+        if (isOpen) {
+            Log.d(TAG, "Note database is open.");
+        } else {
+            Log.d(TAG, "Note database is not open.");
+        }
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (diaryDataBase != null) {
+            diaryDataBase.close();
+            diaryDataBase = null;
+        }
+    }
+
+    // 뒤로가기 두 번 누르면 종료
+    @Override
+    public void onBackPressed(){
+        if(System.currentTimeMillis() - mBackWait > 2000){
+            mBackWait = System.currentTimeMillis();
+            Toast.makeText(this, "한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
+        } else{
+            ActivityCompat.finishAffinity(this);
+            System.exit(0);
+        }
+    }
 }
