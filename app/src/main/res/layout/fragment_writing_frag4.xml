@@ -21,7 +21,7 @@
 
         <!--    일기 입력창-->
         <EditText
-            android:id="@+id/page4_edittext"
+            android:id="@+id/diary_content_4"
             android:gravity="top"
             android:layout_weight="1"
             android:layout_width="match_parent"

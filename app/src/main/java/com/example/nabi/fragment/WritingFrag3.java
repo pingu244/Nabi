@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.example.nabi.R;
@@ -28,7 +29,8 @@ import java.util.ArrayList;
 public class WritingFrag3 extends Fragment {
 
     View view;
-
+    EditText content_3;
+    String keywords = "";
     // 선택시 선택된 id들이 저장되는 동적 배열
     ArrayList<Integer> page3_selectbtn = new ArrayList<>();
 
@@ -43,12 +45,13 @@ public class WritingFrag3 extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        content_3 = getActivity().findViewById(R.id.diary_content_3);
+
         // 이전 버튼 작동 : 두번째 페이지로 이동
         Button third_prior = getActivity().findViewById(R.id.third_prior);
         third_prior.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 ((WritingDiary)getActivity()).replaceFragment("page2",WritingFrag2.newInstance());
             }
         });
@@ -58,6 +61,10 @@ public class WritingFrag3 extends Fragment {
             @Override
             public void onClick(View view) {
                 ((WritingDiary)getActivity()).replaceFragment("page4", WritingFrag4.newInstance());
+                ((WritingDiary)getActivity()).q4_why = content_3.getText().toString();
+                Log.v("frag3",((WritingDiary)getActivity()).q4_why);
+                ((WritingDiary)getActivity()).q3_todayKeyword = keywords;
+                Log.v("frag2&3", ((WritingDiary)getActivity()).q3_todayKeyword);
             }
         });
     }
@@ -66,12 +73,6 @@ public class WritingFrag3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_writing_frag3, container, false);
-
-
-
-
-
-
 
         return view;
     }
@@ -98,6 +99,7 @@ public class WritingFrag3 extends Fragment {
             pm.setMargins(5,5,5,5);
 
             mButton.setText(temp.getText()); //버튼에 들어갈 텍스트를 지정(String)
+            keywords = keywords  + temp.getText()+ ",";
             mButton.setBackgroundResource(R.drawable.q3_moodword_normal);
 
             mButton.setLayoutParams(pm); //앞서 설정한 레이아웃파라미터를 버튼에 적용

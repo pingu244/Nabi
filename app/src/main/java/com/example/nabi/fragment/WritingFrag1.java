@@ -32,6 +32,7 @@ public class WritingFrag1 extends Fragment {
     EditText content_1;
     private SQLiteDatabase db;
     DBHelper dbHelper;
+    Integer seekbarValue = 3;
 
     // fragment에서 fragment로 이동하기 위한 장치
     public static WritingFrag1 newInstance() {
@@ -55,7 +56,7 @@ public class WritingFrag1 extends Fragment {
         int cMonth = cal.get(Calendar.MONTH);
         int cDay = cal.get(Calendar.DATE);
 
-        String YMD = (cYEAR+"년 "+(cMonth+1)+"월 "+cDay+"일").toString();
+        String YMD = (cYEAR+"년 "+(cMonth+1)+"월 "+cDay+"일");
 
         // 첫번째 페이지에 있는 '다음'버튼이어서 이름을 이렇게 지음 (페이지번째_next)
         // '다음'버튼을 누르면 다음 fragment로 넘어감
@@ -64,7 +65,13 @@ public class WritingFrag1 extends Fragment {
             @Override
             public void onClick(View view) {
                 ((WritingDiary)getActivity()).replaceFragment("page2", WritingFrag2.newInstance());
-                db.execSQL("insert into diary_post (post_id, user_id, diary_title, content_1, diary_weather,reporting_date) values (?, 'jungin-2','11월 30일의 일기','"+content_1.getText().toString()+"',0,'"+YMD+"')");
+                ((WritingDiary)getActivity()).q1_mood = seekbarValue;
+                ((WritingDiary)getActivity()).q2_whatHappen = content_1.getText().toString();
+                // db에 넣는 과정
+//                db.execSQL("insert into diary_post (post_id, user_id, diary_title, content_1, diary_weather,reporting_date) " +
+//                        "values (?, 'jungin-2','11월 30일의 일기','"+content_1.getText().toString()+"',0,'"+YMD+"')");
+                Log.v("frag1",((WritingDiary)getActivity()).q1_mood.toString());
+                Log.v("frag11",((WritingDiary)getActivity()).q2_whatHappen);
             }
         });
 
@@ -79,17 +86,23 @@ public class WritingFrag1 extends Fragment {
                 switch (seekbar.getProgress())
                 {
                     case 0:
-                        seekbar_per.setText("0%");  break;
+                        seekbar_per.setText("0%");
+                        seekbarValue = 0;   break;
                     case 1:
-                        seekbar_per.setText("20%");  break;
+                        seekbar_per.setText("20%");
+                        seekbarValue = 1;   break;
                     case 2:
-                        seekbar_per.setText("40%");  break;
+                        seekbar_per.setText("40%");
+                        seekbarValue = 2;   break;
                     case 3:
-                        seekbar_per.setText("60%");  break;
+                        seekbar_per.setText("60%");
+                        seekbarValue = 3;   break;
                     case 4:
-                        seekbar_per.setText("80%");  break;
+                        seekbar_per.setText("80%");
+                        seekbarValue = 4;   break;
                     case 5:
-                        seekbar_per.setText("100%");  break;
+                        seekbar_per.setText("100%");
+                        seekbarValue = 5;   break;
 
                 }
             }

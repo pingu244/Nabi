@@ -35,6 +35,8 @@ import java.util.Iterator;
 public class WritingFrag2 extends Fragment {
 
     View view;
+    String keywords = "";
+
 
     // 몇개 선택되었는지 count하는 변수
     int selected_count = 0;
@@ -44,6 +46,7 @@ public class WritingFrag2 extends Fragment {
     Boolean isSelectbtnExist[] = {false,false,false,false,false,false};
     // 선택시 선택된 id들이 저장되는 동적 배열
     ArrayList<Integer> selectbtn = new ArrayList<>();
+
 
     // 감정 버튼 6개
     Button mood[][] = new Button[6][6];
@@ -97,10 +100,6 @@ public class WritingFrag2 extends Fragment {
                             // 선택 버튼 삭제
                             findequalone(mood[index1][index2]);
 
-                            // 선택버튼 저장하는 동적배열에서 빼기
-//                            selectbtn.remove(selectbtn.indexOf(Integer.valueOf(mood_ids[index1][index2])));
-
-
                             // 선택버튼 개수 조정
                             selected_count--;
                             // 선택여부 조정
@@ -113,7 +112,6 @@ public class WritingFrag2 extends Fragment {
                             mood[index1][index2].setTextColor(Color.parseColor("#ffffff"));
                             // 선택버튼 생성
                             createBtn(mood[index1][index2].getText().toString());
-
                             // 선택버튼 개수 조정
                             selected_count++;
                             // 선택여부 조정
@@ -143,15 +141,17 @@ public class WritingFrag2 extends Fragment {
         second_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                keywords = "";
 
-
+                // fragment 처음 작동할때만 bundle로 넘기기 <-- 해결방안이 없을까..?
                 Bundle result = new Bundle();
                 result.putIntegerArrayList("selectbtns",selectbtn);//번들에 넘길 값 저장
                 getParentFragmentManager().setFragmentResult("selectbtns", result);
 
-
+                // 세번째 페이지가 이미 있는 경우
                 if(getActivity().getSupportFragmentManager().findFragmentByTag("page3") != null)
                 {
+                    // 세번째 페이지의 단어 보여주는 곳을 삭제 후 다시 만들기
                     FlexboxLayout originalView = getActivity().findViewById(R.id.page3_selectbox);
                     LinearLayout View = getActivity().findViewById(R.id.page3_selectbox_linear);
                     View.removeView(originalView);
@@ -177,6 +177,9 @@ public class WritingFrag2 extends Fragment {
                         pm.setMargins(5,5,5,5);
 
                         mButton.setText(temp.getText()); //버튼에 들어갈 텍스트를 지정(String)
+
+                        keywords = keywords  + temp.getText()+ ",";
+
                         mButton.setBackgroundResource(R.drawable.q3_moodword_normal);
 
                         mButton.setLayoutParams(pm); //앞서 설정한 레이아웃파라미터를 버튼에 적용
@@ -194,6 +197,8 @@ public class WritingFrag2 extends Fragment {
                 Log.v("mylog", selectbtn.toString());
                 Log.v("mylog", " ");
                 ((WritingDiary)getActivity()).replaceFragment("page3",WritingFrag3.newInstance());
+                ((WritingDiary)getActivity()).q3_todayKeyword = keywords;
+                Log.v("frag2", ((WritingDiary)getActivity()).q3_todayKeyword);
             }
         });
 
@@ -225,6 +230,7 @@ public class WritingFrag2 extends Fragment {
         pm.setMargins(5,5,5,5);
 
         mButton.setText(text); //버튼에 들어갈 텍스트를 지정(String)
+
         mButton.setBackgroundResource(R.drawable.q3_moodword_normal);
 
         mButton.setLayoutParams(pm); //앞서 설정한 레이아웃파라미터를 버튼에 적용

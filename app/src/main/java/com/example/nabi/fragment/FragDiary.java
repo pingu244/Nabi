@@ -63,7 +63,7 @@ public class FragDiary extends Fragment {
 
 
 //        Toolbar toolbar = getActivity().findViewById(R.id.Diary_toolbar);
-////        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+//        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 //
 //        item1 = getActivity().findViewById(R.id.Diary_select_item1);
 //        item2 = getActivity().findViewById(R.id.Diary_select_item2);
@@ -82,9 +82,6 @@ public class FragDiary extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.frag_diary, container,false);
-
-
-
         return view;
     }
 

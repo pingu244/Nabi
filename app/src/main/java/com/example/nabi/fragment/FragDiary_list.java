@@ -57,7 +57,8 @@ public class FragDiary_list extends Fragment {
 
 
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.list_container, cloudyDiary).commitAllowingStateLoss();
-//        흐린 날 아이콘 클릭 시 흐린 날 날씨 목록 화면으로 이동
+
+        //        흐린 날 아이콘 클릭 시 흐린 날 날씨 목록 화면으로 이동
         btnCloudy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

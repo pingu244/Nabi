@@ -6,6 +6,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModel;
 
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +20,7 @@ import com.example.nabi.fragment.WritingFrag4;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 //일기 쓰는 부분 activity
@@ -34,9 +37,23 @@ public class WritingDiary extends AppCompatActivity {
 
     Date todaydate;
     TextView today_date;
-    Button backbtn;
+    Button backbtn, complete;
 
-    ArrayList<Integer> selectbtns = new ArrayList<>();
+    // db에 넣는 과정
+    //db.execSQL("insert into diary_post (post_id, user_id, diary_title, content_1, diary_weather,reporting_date) " +
+    //        "values (?, 'jungin-2','11월 30일의 일기','"+content_1.getText().toString()+"',0,'"+YMD+"')");
+
+    DBHelper dbHelper = new DBHelper(WritingDiary.this);
+    private SQLiteDatabase db;
+    String YMD;
+
+    // fragment들에서 받아올 데이터들을 받을 변수
+    public Integer q1_mood;
+    public String q2_whatHappen;
+    public String q3_todayKeyword;
+    public String q4_why;
+    public String q5_again;
+
 
 
     @Override
@@ -57,6 +74,29 @@ public class WritingDiary extends AppCompatActivity {
                 finish();
             }
         });
+        Calendar cal = Calendar.getInstance();
+        int cYEAR = cal.get(Calendar.YEAR);
+        int cMonth = cal.get(Calendar.MONTH);
+        int cDay = cal.get(Calendar.DATE);
+        YMD = (cYEAR+"년 "+(cMonth+1)+"월 "+cDay+"일");
+
+
+//        complete = findViewById(R.id.fourth_complete);
+//        complete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                db = dbHelper.getWritableDatabase();
+//                Intent intent = new Intent(view.getContext(), DiaryResult.class);
+//
+//                db.execSQL("insert into diary_post (post_id, user_id, diary_title, " +
+//                        "diary_mood, content_1, diary_keyword, content_2, content_3, diary_weather, reporting_date) " +
+//                        "values (?, 'jungin-2','희애의 일기',q1_mood,'"+q2_whatHappen+"'," +
+//                        "'"+q3_todayKeyword+"','"+q4_why+"','"+q5_again+"',0,'"+YMD+"')");
+//                intent.putExtra("date", YMD);
+//                startActivity(intent);
+//                finish();
+//            }
+//        });
 
     }
 
@@ -103,6 +143,25 @@ public class WritingDiary extends AppCompatActivity {
         }
 
         fragmentTransaction.commit();      // commit로 실행
+    }
+
+    // 마지막 페이지에서 '완료'버튼 누르면 결과화면으로 넘어가는 함수
+    public void goToResult()
+    {
+//        db = dbHelper.getWritableDatabase();
+        Intent intent = new Intent(this, DiaryResult.class);
+
+//        db.execSQL("insert into diary_post (post_id, user_id, diary_title, " +
+//                "diary_mood, content_1, diary_keyword, content_2, content_3, diary_weather, reporting_date) " +
+//                "values (?, 'jungin-2','희애의 일기',q1_mood,'"+q2_whatHappen+"'," +
+//                "'"+q3_todayKeyword+"','"+q4_why+"','"+q5_again+"',0,'"+YMD+"')");
+
+//        db.execSQL("insert into diary_post (post_id, user_id, diary_title, content_1, diary_weather,reporting_date) " +
+//                        "values (?, 'jungin-2','11월 30일의 일기','"+q2_whatHappen+"',0,'"+YMD+"')");
+
+        intent.putExtra("date", YMD);
+        startActivity(intent);
+        finish();
     }
 }
 

@@ -93,7 +93,7 @@
                     android:textSize="20dp"
                     android:text="오늘 무슨 일이 있었나요?" />
                 <TextView
-                    android:id="@+id/DiaryResult_q1"
+                    android:id="@+id/DiaryResult_1"
                     android:padding="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
@@ -133,7 +133,7 @@
                     android:textSize="20dp"
                     android:text="왜 그런 감정이 들었을까요?"/>
                 <TextView
-                    android:id="@+id/DiaryResult_q3"
+                    android:id="@+id/DiaryResult_2"
                     android:padding="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
@@ -148,7 +148,7 @@
                     android:textSize="20dp"
                     android:text="오늘 하루를 다시 살아본다면, 어떨 것 같나요?"/>
                 <TextView
-                    android:id="@+id/DiaryResult_q4"
+                    android:id="@+id/DiaryResult_3"
                     android:padding="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"

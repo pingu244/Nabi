@@ -2,7 +2,7 @@
 <!--FragDiary.java와 연동 = 세번째 탭 눌렀을 때 나오는 화면-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:weightSum="20"
@@ -19,28 +19,32 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/Diary_tab_layout"
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="8dp"
             app:tabMode="fixed"
             app:tabGravity="center"
             app:tabIndicatorGravity="stretch"
             app:tabSelectedTextColor="@color/white"
-            app:tabIndicatorAnimationMode="elastic"
-            app:tabIndicator="@drawable/tab_indicator"/>
+            app:tabIndicatorAnimationMode="linear"
+            app:tabIndicator="@drawable/tab_indicator"
+            app:tabBackground="@drawable/calender_frame_rectangle"
+            app:tabMaxWidth="200dp"/>
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/Theme.AppCompat">
-            <androidx.appcompat.widget.Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:id="@+id/Diary_toolbar"
-                android:background="@android:color/transparent"
-                app:popupTheme="@style/Theme.AppCompat"/>
-        </com.google.android.material.appbar.AppBarLayout>
-        <include layout= "@layout/diary_contain_main"/>
+<!--        <com.google.android.material.appbar.AppBarLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:theme="@style/Theme.AppCompat"-->
+<!--            android:background="@android:color/transparent">-->
+
+<!--            <androidx.appcompat.widget.Toolbar-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="?attr/actionBarSize"-->
+<!--                android:id="@+id/Diary_toolbar"-->
+<!--                android:background="@android:color/transparent"-->
+<!--                app:popupTheme="@style/Theme.AppCompat"/>-->
+<!--        </com.google.android.material.appbar.AppBarLayout>-->
+<!--        <include layout= "@layout/diary_contain_main"/>-->
 
     </LinearLayout>
 
