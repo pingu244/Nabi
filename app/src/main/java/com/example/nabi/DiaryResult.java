@@ -62,12 +62,25 @@ public class DiaryResult extends AppCompatActivity {
 
         // WritingDiary 에서 여기로 intent
         Intent receive_intent = getIntent();
-        String select_date = receive_intent.getStringExtra("date");
+        String diary_writing_date = receive_intent.getStringExtra("Diary_WritingResult");
+        String selected_date = receive_intent.getStringExtra("SelectedDate");
+        String finalDate = "";
+
+        // intent한 값으로 날짜 설정
+        if(diary_writing_date != null)
+            finalDate = diary_writing_date;
+        else
+            finalDate = selected_date;
+        String[] date_array = finalDate.split("/");
+        date.setText(date_array[0]+"년 "+date_array[1]+"월 "+date_array[2]+"일");
+
+
+
 
 
         // db로 변수에 값 받아오기
         String sql = "select diary_mood, content_1, diary_keyword, content_2, content_3, diary_weather, reporting_date " +
-                "from diary_post where reporting_date='"+select_date+"'";
+                "from diary_post where reporting_date='"+finalDate+"'";
 
         if (db != null){
             // cursor에 rawQuery문 저장
@@ -94,14 +107,9 @@ public class DiaryResult extends AppCompatActivity {
 
 
 
-        // intent한 값으로 날짜 설정
-        if(select_date != null)
-            date.setText(select_date);
-        else
-            date.setText(reporting_date);
+
 
         // 1. 기분 어느정도인지 나타내기
-//        diary_mood = 0;
         mood.setProgress(diary_mood);
         switch (diary_mood)
         {
@@ -119,11 +127,11 @@ public class DiaryResult extends AppCompatActivity {
                 mood_per.setText("100%");    break;
         }
 
+
         // 2. 오늘 무슨 일이 있었나요?
         whatHappen.setText(content_1);
 
         // 3. 그때 느낀 감정단어
-//        diary_keyword = "안희애,안녕,좀,제대로,안녕";
         String[] array = diary_keyword.split(",");
         for(int i = 0; i<array.length; i++)
             Log.v("Result", array[i]);
@@ -131,21 +139,24 @@ public class DiaryResult extends AppCompatActivity {
         for(int i = 0; i<array.length; i++)
         {
             Button mButton = new Button(this); //버튼을 선언
+            TextView txt = new TextView(this);
 
             FlexboxLayout.LayoutParams pm = new FlexboxLayout.LayoutParams
                     (FlexboxLayout.LayoutParams.WRAP_CONTENT, FlexboxLayout.LayoutParams.WRAP_CONTENT);
-            pm.setMargins(5,5,5,5);
+            pm.setMargins(5,10,5,10);
+            txt.setPadding(35,20,35,20);
 
-            mButton.setText(array[i]); //버튼에 들어갈 텍스트를 지정(String)
+            txt.setText(array[i]); //버튼에 들어갈 텍스트를 지정(String)
+            txt.setTextSize(20);
 
-            mButton.setBackgroundResource(R.drawable.q3_moodword_normal);
+            txt.setBackgroundResource(R.drawable.q3_moodword_normal);
 
-            mButton.setLayoutParams(pm); //앞서 설정한 레이아웃파라미터를 버튼에 적용
-            ViewCompat.setBackgroundTintList(mButton, ColorStateList.valueOf(Color.parseColor("#000000"))); // 배경 색 지정
-            mButton.setTextColor(Color.parseColor("#ffffff"));  // 글씨 색 지정
+            txt.setLayoutParams(pm); //앞서 설정한 레이아웃파라미터를 버튼에 적용
+            ViewCompat.setBackgroundTintList(txt, ColorStateList.valueOf(Color.parseColor("#000000"))); // 배경 색 지정
+            txt.setTextColor(Color.parseColor("#ffffff"));  // 글씨 색 지정
 
             FlexboxLayout mView = selected_keywords;
-            mView.addView(mButton); //지정된 뷰에 셋팅완료된 mButton을 추가
+            mView.addView(txt); //지정된 뷰에 셋팅완료된 mButton을 추가
         }
 
 

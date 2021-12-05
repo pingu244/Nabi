@@ -1,5 +1,6 @@
 package com.example.nabi.fragment;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import com.example.nabi.DBHelper;
 import com.example.nabi.DiaryDataBase;
 import com.example.nabi.DiaryListItem;
 import com.example.nabi.DiaryListViewAdapter;
+import com.example.nabi.DiaryResult;
 import com.example.nabi.R;
 
 import java.util.ArrayList;
@@ -36,18 +38,11 @@ public class DiaryList_Cloud extends Fragment {
         view = inflater.inflate(R.layout.diarylist_adapter, container,false);
         initUI(view);
 
-        Calendar cal = Calendar.getInstance();
-        int cYear = cal.get(Calendar.YEAR);
-        int cMonth = cal.get(Calendar.MONTH);
-        int cDay = cal.get(Calendar.DAY_OF_MONTH);
 
-        //String YMD = (cYear+"년 "+(cMonth+1)+"월 "+cDay+"일").toString();
 
         loadNoteListData();
 
 
-
-        //diaryListItems.add(new DiaryListItem("3","일기"));
 
         return view;
     }
@@ -64,7 +59,7 @@ public class DiaryList_Cloud extends Fragment {
     }
 
     public int loadNoteListData(){
-        String sql = "select reporting_date, content_1 from diary_post where diary_weather = 0"; //흐린 날 일기 선택
+        String sql = "select reporting_date, diary_keyword, diary_mood from diary_post where diary_weather = 0"; //흐린 날 일기 선택
 
         int recordCount = 0;
 
@@ -85,10 +80,30 @@ public class DiaryList_Cloud extends Fragment {
                     outCursor.moveToNext();
 
                     String diaryDate = outCursor.getString(0);
-                    String title = outCursor.getString(1);
-                    items.add(new DiaryListItem(diaryDate, title));
+                    String keyword = outCursor.getString(1);
+                    Integer mood = outCursor.getInt(2);
+
+                    String[] date_array = diaryDate.split("/");
+                    String date_day = "";
+                    if(date_array.length>1)
+                        date_day = date_array[1];
+                    items.add(new DiaryListItem(date_day, keyword, mood));
+
+
+                    diaryListViewAdapter.setOnItemClickListener(new DiaryListViewAdapter.OnItemClickListener()
+                    {
+                        public void onItemClick(View v, int pos)
+                        {
+                            // 실행 내용
+                            Intent intent = new Intent(getActivity(), DiaryResult.class);
+                            intent.putExtra("SelectedDate", diaryDate);
+                            startActivity(intent);
+                        }
+                    });
                 }
                 outCursor.close();
+
+
 
                 //어댑터 연걸, 데이터셋 변경
                 diaryListViewAdapter.setItems(items);

@@ -60,7 +60,7 @@ public class WritingFrag4 extends Fragment {
         int cYEAR = cal.get(Calendar.YEAR);
         int cMonth = cal.get(Calendar.MONTH);
         int cDay = cal.get(Calendar.DATE);
-        String YMD = (cYEAR+"년 "+(cMonth+1)+"월 "+cDay+"일");
+        String YMD = (cYEAR+"/"+(cMonth+1)+"/"+cDay);
 
         // '완료'버튼 눌렀을 때
         btnComplete.setOnClickListener(new View.OnClickListener() {
@@ -79,18 +79,13 @@ public class WritingFrag4 extends Fragment {
                 Log.v("variable",three);
                 Log.v("variable",four);
                 Log.v("variable",five);
+                Log.v("daterrr", YMD);
 
 
                 db.execSQL("insert into diary_post (post_id, user_id, diary_title, content_1, content_2, content_3, diary_mood, diary_keyword, diary_weather,reporting_date) " +
                         "values (?, 'jungin-2','희애의 일기','"+two+"','"+four+"','"+five+"',"+one+",'"+three+"',0,'"+YMD+"')");
 
-//                                db.execSQL("insert into diary_post (post_id, user_id, diary_title, content_1, content_2, content_3, diary_keyword, diary_weather,reporting_date) " +
-//                        "values (?, 'jungin-2','희애의 일기','"+two+"','"+four+"','"+five+"','"+three+"',0,'"+YMD+"')");
 
-//                db.execSQL("insert into diary_post (post_id, user_id, diary_title, " +
-//                        "diary_mood, content_1, diary_keyword, content_2, content_3, diary_weather, reporting_date) " +
-//                        "values (?, 'jungin-2','희애의 일기',one,'"+two+"'," +
-//                        "'"+three+"','"+four+"','"+five+"',0,'"+YMD+"')");
 
                 ((WritingDiary)getActivity()).goToResult();
             }

@@ -64,8 +64,8 @@ public class WritingDiary extends AppCompatActivity {
         fragmentTransaction.add(R.id.writingdiaryfrag, frag1, "page1").commit(); // 첫번째 페이지 보여주기
 
         today_date = findViewById(R.id.today_date);
-        todaydate = new Date(System.currentTimeMillis());
-        today_date.setText(new SimpleDateFormat("yyyy년 MM월 dd일").format(todaydate));    // 오늘 날짜 띄우기
+//        todaydate = new Date(System.currentTimeMillis());
+//        today_date.setText(new SimpleDateFormat("yyyy년 MM월 d일").format(todaydate));    // 오늘 날짜 띄우기
 
         backbtn = findViewById(R.id.WritingDiary_back);
         backbtn.setOnClickListener(new View.OnClickListener() {
@@ -76,27 +76,12 @@ public class WritingDiary extends AppCompatActivity {
         });
         Calendar cal = Calendar.getInstance();
         int cYEAR = cal.get(Calendar.YEAR);
-        int cMonth = cal.get(Calendar.MONTH);
+        int cMonth = cal.get(Calendar.MONTH)+1;
         int cDay = cal.get(Calendar.DATE);
-        YMD = (cYEAR+"년 "+(cMonth+1)+"월 "+cDay+"일");
+        today_date.setText(cYEAR+"년 "+cMonth+"월 "+cDay+"일");
+        YMD = (cYEAR+"/"+cMonth+"/"+cDay);
 
 
-//        complete = findViewById(R.id.fourth_complete);
-//        complete.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                db = dbHelper.getWritableDatabase();
-//                Intent intent = new Intent(view.getContext(), DiaryResult.class);
-//
-//                db.execSQL("insert into diary_post (post_id, user_id, diary_title, " +
-//                        "diary_mood, content_1, diary_keyword, content_2, content_3, diary_weather, reporting_date) " +
-//                        "values (?, 'jungin-2','희애의 일기',q1_mood,'"+q2_whatHappen+"'," +
-//                        "'"+q3_todayKeyword+"','"+q4_why+"','"+q5_again+"',0,'"+YMD+"')");
-//                intent.putExtra("date", YMD);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
 
     }
 
@@ -153,13 +138,11 @@ public class WritingDiary extends AppCompatActivity {
 
 //        db.execSQL("insert into diary_post (post_id, user_id, diary_title, " +
 //                "diary_mood, content_1, diary_keyword, content_2, content_3, diary_weather, reporting_date) " +
-//                "values (?, 'jungin-2','희애의 일기',q1_mood,'"+q2_whatHappen+"'," +
+//                "values (?, 'jungin-2','희애의 일기',"+q1_mood+",'"+q2_whatHappen+"'," +
 //                "'"+q3_todayKeyword+"','"+q4_why+"','"+q5_again+"',0,'"+YMD+"')");
 
-//        db.execSQL("insert into diary_post (post_id, user_id, diary_title, content_1, diary_weather,reporting_date) " +
-//                        "values (?, 'jungin-2','11월 30일의 일기','"+q2_whatHappen+"',0,'"+YMD+"')");
 
-        intent.putExtra("date", YMD);
+        intent.putExtra("Diary_WritingResult", YMD);
         startActivity(intent);
         finish();
     }

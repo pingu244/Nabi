@@ -4,42 +4,123 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/diaryCardView"
-    android:layout_width="308dp"
-    android:layout_height="51dp"
+    android:layout_width="match_parent"
+    android:layout_height="75dp"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="10dp"
     app:cardElevation="2dp"
     android:layout_gravity="center"
-    android:layout_marginBottom="20dp">
+    android:layout_marginBottom="5dp">
 
     <LinearLayout
+        android:layout_gravity="center"
+        android:layout_margin="4dp"
         android:id="@+id/layoutDiaryList"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="10">
 
         <TextView
+            android:gravity="center"
             android:id="@+id/diaryDate"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="14dp"
-            android:layout_marginBottom="13dp"
-            android:layout_weight="8"
-            android:text="날짜"
-            android:textSize="14sp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:text="00"
+            android:textSize="20dp"
             android:visibility="visible" />
 
-        <TextView
-            android:id="@+id/diaryTodayMoods"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="14dp"
-            android:layout_marginBottom="13dp"
-            android:layout_weight="8"
-            android:text="제목"
-            android:textSize="14sp"/>
+            android:layout_gravity="center"
+            android:layout_marginRight="5dp"
+            android:layout_weight="7"
+            android:orientation="horizontal">
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/DiaryList_selectMoods"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:flexWrap="wrap"
+                app:alignItems="stretch"
+                app:alignContent="stretch">
+
+<!--                <TextView-->
+<!--                    android:paddingHorizontal="12dp"-->
+<!--                    android:layout_margin="3dp"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="사람을 믿는"-->
+<!--                    android:textSize="15dp"-->
+<!--                    android:background="@drawable/q3_moodword_normal"-->
+<!--                    android:backgroundTint="@color/purple_200"/>-->
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+        </LinearLayout>
+
+<!--        감정 정도 표현하는 점점이들-->
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <ImageView
+                android:id="@+id/DiaryList_one"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/mood_circle2"/>
+            <ImageView
+                android:id="@+id/DiaryList_two"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/mood_circle2"/>
+            <ImageView
+                android:id="@+id/DiaryList_three"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/mood_circle2"/>
+            <ImageView
+                android:id="@+id/DiaryList_four"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/mood_circle2"/>
+            <ImageView
+                android:id="@+id/DiaryList_five"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/mood_circle2"/>
+
+
+        </LinearLayout>
 
 
 

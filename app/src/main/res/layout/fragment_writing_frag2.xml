@@ -81,6 +81,7 @@
                         app:alignItems="stretch"
                         app:alignContent="stretch">
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/joyful1"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -89,6 +90,7 @@
                             android:backgroundTint="#31000000"
                             android:text="신난"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/joyful2"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -97,6 +99,7 @@
                             android:backgroundTint="#31000000"
                             android:text="매력적인"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/joyful3"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -105,6 +108,7 @@
                             android:backgroundTint="#31000000"
                             android:text="활기찬"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/joyful4"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -113,6 +117,7 @@
                             android:backgroundTint="#31000000"
                             android:text="장난기 많은"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/joyful5"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -121,6 +126,7 @@
                             android:backgroundTint="#31000000"
                             android:text="창의적인"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/joyful6"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -167,6 +173,7 @@
                         app:alignItems="stretch"
                         app:alignContent="stretch">
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/peaceful1"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -175,6 +182,7 @@
                             android:backgroundTint="#31000000"
                             android:text="만족스러운"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/peaceful2"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -183,6 +191,7 @@
                             android:backgroundTint="#31000000"
                             android:text="사려깊은"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/peaceful3"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -191,6 +200,7 @@
                             android:backgroundTint="#31000000"
                             android:text="친한"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/peaceful4"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -199,6 +209,7 @@
                             android:backgroundTint="#31000000"
                             android:text="사랑스러운"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/peaceful5"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -207,6 +218,7 @@
                             android:backgroundTint="#31000000"
                             android:text="사람을 믿는"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/peaceful6"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -253,6 +265,7 @@
                         app:alignItems="stretch"
                         app:alignContent="stretch">
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/powerful1"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -261,6 +274,7 @@
                             android:backgroundTint="#31000000"
                             android:text="심념있는"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/powerful2"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -269,6 +283,7 @@
                             android:backgroundTint="#31000000"
                             android:text="희망찬"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/powerful3"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -277,6 +292,7 @@
                             android:backgroundTint="#31000000"
                             android:text="감사한"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/powerful4"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -285,6 +301,7 @@
                             android:backgroundTint="#31000000"
                             android:text="존경하는"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/powerful5"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -293,6 +310,7 @@
                             android:backgroundTint="#31000000"
                             android:text="자랑스러운"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/powerful6"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -339,6 +357,7 @@
                         app:alignItems="stretch"
                         app:alignContent="stretch">
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/sad1"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -347,6 +366,7 @@
                             android:backgroundTint="#31000000"
                             android:text="죄책감있는"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/sad2"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -355,6 +375,7 @@
                             android:backgroundTint="#31000000"
                             android:text="부끄러운"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/sad3"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -363,6 +384,7 @@
                             android:backgroundTint="#31000000"
                             android:text="우울한"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/sad4"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -371,6 +393,7 @@
                             android:backgroundTint="#31000000"
                             android:text="외로운"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/sad5"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -379,6 +402,7 @@
                             android:backgroundTint="#31000000"
                             android:text="지루한"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/sad6"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -425,6 +449,7 @@
                         app:alignItems="stretch"
                         app:alignContent="stretch">
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/mad1"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -433,6 +458,7 @@
                             android:backgroundTint="#31000000"
                             android:text="질투나는"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/mad2"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -441,6 +467,7 @@
                             android:backgroundTint="#31000000"
                             android:text="이기적인"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/mad3"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -449,6 +476,7 @@
                             android:backgroundTint="#31000000"
                             android:text="화난"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/mad4"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -457,6 +485,7 @@
                             android:backgroundTint="#31000000"
                             android:text="적대적인"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/mad5"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -465,6 +494,7 @@
                             android:backgroundTint="#31000000"
                             android:text="짜증나는"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/mad6"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -511,6 +541,7 @@
                         app:alignItems="stretch"
                         app:alignContent="stretch">
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/scared1"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -519,6 +550,7 @@
                             android:backgroundTint="#31000000"
                             android:text="당혹스러운"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/scared2"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -527,6 +559,7 @@
                             android:backgroundTint="#31000000"
                             android:text="혼란스러운"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/scared3"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -535,6 +568,7 @@
                             android:backgroundTint="#31000000"
                             android:text="무력한"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/scared4"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -543,6 +577,7 @@
                             android:backgroundTint="#31000000"
                             android:text="순종적인"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/scared5"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
@@ -551,6 +586,7 @@
                             android:backgroundTint="#31000000"
                             android:text="어리석은"/>
                         <Button
+                            android:paddingHorizontal="20dp"
                             android:id="@+id/scared6"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"

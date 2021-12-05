@@ -1,20 +1,22 @@
 package com.example.nabi;
 // 일기 목록 리사이클러뷰 구현에 사용됨. 데이터 모델 생성
 public class DiaryListItem {
-    private String title;
+    private String keyword;
     private String date;
+    private Integer mood;
 
-    public DiaryListItem(String date, String title){
+    public DiaryListItem(String date, String keyword, Integer mood){
         this.date = date;
-        this.title = title;
+        this.keyword = keyword;
+        this.mood = mood;
     }
 
-    public String getTitle() {
-        return title;
+    public String getKeyword() {
+        return keyword;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 
     public String getDate() {
@@ -24,4 +26,7 @@ public class DiaryListItem {
     public void setDate(String date) {
         this.date = date;
     }
+
+    public Integer getMood(){ return mood; }
+    public void setMood(Integer mood){ this.mood = mood; }
 }
