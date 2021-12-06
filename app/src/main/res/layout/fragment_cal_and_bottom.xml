@@ -15,7 +15,7 @@
     <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/calendarView"
         android:layout_width="338dp"
-        android:layout_height="362dp"
+        android:layout_height="387dp"
 
         app:mcv_selectionColor="@color/white"
         app:mcv_showOtherDates="defaults" />

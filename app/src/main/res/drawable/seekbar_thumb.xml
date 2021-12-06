@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 원모양의 시크바 컨트롤러 -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="oval"
+    android:shape="rectangle"
     android:useLevel="false"  >
     <!-- 배경 -->
     <solid
-        android:color="#D9E5FF"/>
-    <!-- 테두리 -->
+        android:color="#FFFFFF" />
+    <!-- 테두리-->
     <stroke
         android:width="2dp"
-        android:color="#0054FF" />
+        android:color="#A5D2D9" />
     <!-- 크기 -->
     <size
-        android:width="13dp"
-        android:height="13dp"/>
+        android:width="25dp"
+        android:height="19dp"/>
+    <corners
+        android:radius="26dp"/>
+
 </shape>
 
