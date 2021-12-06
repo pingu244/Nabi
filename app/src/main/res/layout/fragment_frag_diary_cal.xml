@@ -5,25 +5,57 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".fragment.FragDiary_cal"
-    android:orientation="vertical"
-    android:weightSum="20">
+    android:orientation="vertical">
 
-    <fragment
-        android:layout_weight="17"
-        android:id="@+id/diary_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
         android:layout_gravity="center"
         android:layout_marginTop="26dp"
-        android:name="com.example.nabi.fragment.CalAndBottom" />
-
-
-    <Button
-        android:layout_gravity="center"
-        android:id="@+id/go_writing"
-        android:layout_width="324dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="338dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/btn_write" />
+        android:background="@drawable/calender_frame_rectangle"
+        tools:context=".fragment.CalAndBottom"
+        android:orientation="vertical"
+        android:elevation="3dp">
+
+        <!--    달력-->
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+            android:padding="5dp"
+            android:id="@+id/calendarView"
+            android:layout_width="338dp"
+            android:layout_height="387dp"
+            app:mcv_selectionColor="@color/white"
+            app:mcv_showOtherDates="defaults" />
+
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_gravity="center"
+                android:id="@+id/go_writing"
+                android:layout_width="324dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_write" />
+        </LinearLayout>
+
+
+<!--        일기 내역-->
+        <FrameLayout
+            android:id="@+id/Diary_cal_bottom_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </FrameLayout>
+
 
 </LinearLayout>
