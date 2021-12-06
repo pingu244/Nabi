@@ -86,21 +86,25 @@ public class DiaryList_Cloud extends Fragment {
                     String[] date_array = diaryDate.split("/");
                     String date_day = "";
                     if(date_array.length>1)
-                        date_day = date_array[1];
+                        date_day = date_array[2];
                     items.add(new DiaryListItem(date_day, keyword, mood));
 
-
-                    diaryListViewAdapter.setOnItemClickListener(new DiaryListViewAdapter.OnItemClickListener()
-                    {
-                        public void onItemClick(View v, int pos)
-                        {
-                            // 실행 내용
-                            Intent intent = new Intent(getActivity(), DiaryResult.class);
-                            intent.putExtra("SelectedDate", diaryDate);
-                            startActivity(intent);
-                        }
-                    });
                 }
+
+                // 리스트 클릭하면 그 결과화면 나오는 것
+                diaryListViewAdapter.setOnItemClickListener(new DiaryListViewAdapter.OnItemClickListener()
+                {
+                    public void onItemClick(View v, int pos)
+                    {
+                        Cursor cursor = db.rawQuery("select reporting_date from diary_post where diary_weather = 0");
+                        cursor.moveToPosition(pos);
+                        String diaryDate = cursor.getString(0);
+                        Intent intent = new Intent(getActivity(), DiaryResult.class);
+                        intent.putExtra("SelectedDate", diaryDate);
+                        startActivity(intent);
+                        cursor.close();
+                    }
+                });
                 outCursor.close();
 
 

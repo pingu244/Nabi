@@ -85,6 +85,13 @@ public class FragDiary extends Fragment {
         return view;
     }
 
+
+
+
+
+
+
+    // viewpager 관련 클래스
     private class MainAdapter extends FragmentPagerAdapter{
         // arrayList 초기화
         ArrayList<Fragment> fragmentArrayList = new ArrayList<>();

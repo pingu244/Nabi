@@ -143,11 +143,6 @@ public class WritingFrag2 extends Fragment {
             public void onClick(View view) {
                 keywords = "";
 
-                // fragment 처음 작동할때만 bundle로 넘기기 <-- 해결방안이 없을까..?
-                Bundle result = new Bundle();
-                result.putIntegerArrayList("selectbtns",selectbtn);//번들에 넘길 값 저장
-                getParentFragmentManager().setFragmentResult("selectbtns", result);
-
                 // 세번째 페이지가 이미 있는 경우
                 if(getActivity().getSupportFragmentManager().findFragmentByTag("page3") != null)
                 {
@@ -190,12 +185,21 @@ public class WritingFrag2 extends Fragment {
                         mView.addView(mButton); //지정된 뷰에 셋팅완료된 mButton을 추가
                     }
                 }
+                else{
+                    for (int i = 0; i<selectbtn.size(); i++)
+                    {
+                        // fragment 처음 작동할때만 bundle로 넘기기 <-- 해결방안이 없을까..?
+                        Bundle result = new Bundle();
+                        result.putIntegerArrayList("selectbtns",selectbtn);//번들에 넘길 값 저장
+                        getParentFragmentManager().setFragmentResult("selectbtns", result);
+
+                        Button temp = getActivity().findViewById(selectbtn.get(i));
+                        keywords = keywords  + temp.getText()+ ",";
+                    }
+                }
 
 
 
-
-                Log.v("mylog", selectbtn.toString());
-                Log.v("mylog", " ");
                 ((WritingDiary)getActivity()).replaceFragment("page3",WritingFrag3.newInstance());
                 ((WritingDiary)getActivity()).q3_todayKeyword = keywords;
                 Log.v("frag2", ((WritingDiary)getActivity()).q3_todayKeyword);

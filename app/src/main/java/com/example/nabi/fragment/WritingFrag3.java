@@ -63,7 +63,7 @@ public class WritingFrag3 extends Fragment {
                 ((WritingDiary)getActivity()).replaceFragment("page4", WritingFrag4.newInstance());
                 ((WritingDiary)getActivity()).q4_why = content_3.getText().toString();
                 Log.v("frag3",((WritingDiary)getActivity()).q4_why);
-                ((WritingDiary)getActivity()).q3_todayKeyword = keywords;
+//                ((WritingDiary)getActivity()).q3_todayKeyword = keywords;
                 Log.v("frag2&3", ((WritingDiary)getActivity()).q3_todayKeyword);
             }
         });
