@@ -52,7 +52,7 @@ public class FragDiary extends Fragment {
         viewPager = getActivity().findViewById(R.id.Diary_view_pager);
 
         // adapter 초기화
-        adapter = new MainAdapter(getActivity().getSupportFragmentManager());
+        adapter = new MainAdapter(getChildFragmentManager());
         // add fragments
         adapter.AddFragment(new FragDiary_cal(), "캘린더");
         adapter.AddFragment(new FragDiary_list(),"날씨 일기");

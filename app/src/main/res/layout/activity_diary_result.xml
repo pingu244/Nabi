@@ -46,6 +46,9 @@
             android:layout_height="match_parent">
 
             <LinearLayout
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -95,8 +98,7 @@
                 <TextView
                     android:id="@+id/DiaryResult_1"
                     android:padding="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginVertical="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="여기에 일기내용1"
@@ -109,6 +111,7 @@
                     android:text="그때 느낀 감정을 선택해볼까요?"/>
                 <!--           선택한 감정-->
                 <LinearLayout
+                    android:layout_marginVertical="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -135,8 +138,7 @@
                 <TextView
                     android:id="@+id/DiaryResult_2"
                     android:padding="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginVertical="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="여기에 일기내용2"
@@ -150,17 +152,14 @@
                 <TextView
                     android:id="@+id/DiaryResult_3"
                     android:padding="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginVertical="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="여기에 일기내용3"
                     android:background="@drawable/roundrectangle"/>
 
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"/>
+
 
 
             </LinearLayout>
