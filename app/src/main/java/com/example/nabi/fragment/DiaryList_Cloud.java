@@ -1,5 +1,7 @@
 package com.example.nabi.fragment;
 
+import static androidx.viewpager.widget.PagerAdapter.POSITION_NONE;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,6 +10,7 @@ import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -46,6 +49,9 @@ public class DiaryList_Cloud extends Fragment {
 
         return view;
     }
+
+
+
     private void initUI(View view){
         diaryListView = view.findViewById(R.id.diaryListRecyclerView); // diarylist_adapter.xml에서 만든 리사이클러뷰 연결
 
@@ -89,6 +95,7 @@ public class DiaryList_Cloud extends Fragment {
                         date_day = date_array[2];
                     items.add(new DiaryListItem(date_day, keyword, mood));
 
+
                 }
 
                 // 리스트 클릭하면 그 결과화면 나오는 것
@@ -107,11 +114,10 @@ public class DiaryList_Cloud extends Fragment {
                 });
                 outCursor.close();
 
-
-
                 //어댑터 연걸, 데이터셋 변경
                 diaryListViewAdapter.setItems(items);
                 diaryListViewAdapter.notifyDataSetChanged();
+
 
             }
         }

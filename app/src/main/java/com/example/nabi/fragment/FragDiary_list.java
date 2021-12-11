@@ -22,7 +22,7 @@ public class FragDiary_list extends Fragment {
 
     View view;
     ImageButton btnCloudy;
-    Fragment cloudyDiary;
+    DiaryList_Cloud cloudyDiary;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

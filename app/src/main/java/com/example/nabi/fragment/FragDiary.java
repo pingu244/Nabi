@@ -61,7 +61,34 @@ public class FragDiary extends Fragment {
         //connect tab layout with view pager
         tabLayout.setupWithViewPager(viewPager);
 
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+            }
+
+            @Override
+            public void onPageSelected(int position) { //페이지 넘어갈 때
+                switch (position) {
+
+                    case 1:
+                        refresh(); //어댑터에 notifyDataSetChanged
+                        break;
+                }
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+
+            }
+
+            private void refresh() {
+                adapter.notifyDataSetChanged();
+            }
+
+        });
 //        Toolbar toolbar = getActivity().findViewById(R.id.Diary_toolbar);
 //        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 //
@@ -84,7 +111,6 @@ public class FragDiary extends Fragment {
         view = inflater.inflate(R.layout.frag_diary, container,false);
         return view;
     }
-
 
 
 
@@ -127,6 +153,13 @@ public class FragDiary extends Fragment {
             // return tab title
             return stringArrayList.get(position);
         }
+
+        public int getItemPosition(@NonNull Object object) {
+
+            return POSITION_NONE;
+
+        }
+
     }
 
 }

@@ -37,14 +37,8 @@ public class DiaryListViewAdapter extends RecyclerView.Adapter<DiaryListViewAdap
         holder.onBind(diaryList.get(position));
 //        holder.keyword.setText(diaryList.get(position).getKeyword());
         holder.date.setText(diaryList.get(position).getDate());
-
-
-
-
-
         holder.setLayout();
     }
-
 
     @Override
     public int getItemCount() {
@@ -52,7 +46,7 @@ public class DiaryListViewAdapter extends RecyclerView.Adapter<DiaryListViewAdap
     }
 
     public void setItems(ArrayList<DiaryListItem> items) {
-        this.diaryList = items;
+        diaryList = items;
     }
     Context context;
 
