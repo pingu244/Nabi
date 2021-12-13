@@ -11,12 +11,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nabi.R;
@@ -25,6 +27,8 @@ import com.google.android.flexbox.AlignContent;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayout;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,7 +53,7 @@ public class WritingFrag2 extends Fragment {
 
 
     // 감정 버튼 6개
-    Button mood[][] = new Button[6][6];
+    TextView mood[][] = new TextView[6][6];
     // 감정 버튼들 id
     Integer mood_ids[][] = {{R.id.joyful1, R.id.joyful2, R.id.joyful3, R.id.joyful4, R.id.joyful5, R.id.joyful6},
             {R.id.peaceful1, R.id.peaceful2, R.id.peaceful3, R.id.peaceful4, R.id.peaceful5, R.id.peaceful6},
@@ -93,7 +97,7 @@ public class WritingFrag2 extends Fragment {
                         if (iswordselected[index1][index2]) // 선택 되어져있었다면 -> 선택 비활성화
                         {
                             // 선택 버튼 배경색깔을 선택되지않은 색으로 바꾸기
-                            ViewCompat.setBackgroundTintList(mood[index1][index2], ColorStateList.valueOf(Color.parseColor("#31000000")));
+                            ViewCompat.setBackgroundTintList(mood[index1][index2], ColorStateList.valueOf(Color.parseColor("#C4C4C4")));
                             //  선택 버튼 글씨색깔을 선택되지않은 색으로 바꾸기
                             mood[index1][index2].setTextColor(Color.parseColor("#000000"));
 
@@ -107,7 +111,7 @@ public class WritingFrag2 extends Fragment {
                         } else if(selected_count < 6)   // 선택되어져있지않았다면 -> 선택 활성화
                         {
                             // 선택 버튼 배경색깔을 선택한 색으로 바꾸기
-                            ViewCompat.setBackgroundTintList(mood[index1][index2], ColorStateList.valueOf(Color.parseColor("#95000000")));
+                            ViewCompat.setBackgroundTintList(mood[index1][index2], ColorStateList.valueOf(Color.parseColor("#686868")));
                             // 선택 버튼 글씨색깔을 선택한 색으로 바꾸기
                             mood[index1][index2].setTextColor(Color.parseColor("#ffffff"));
                             // 선택버튼 생성
@@ -165,24 +169,29 @@ public class WritingFrag2 extends Fragment {
                     for(int i = 0; i<selectbtn.size(); i++)
                     {
                         Button mButton = new Button(getActivity()); //버튼을 선언
-                        Button temp = getActivity().findViewById(selectbtn.get(i));
+                        TextView txt = new TextView(getActivity());
+                        TextView temp = getActivity().findViewById(selectbtn.get(i));
 
                         FlexboxLayout.LayoutParams pm = new FlexboxLayout.LayoutParams
                                 (FlexboxLayout.LayoutParams.WRAP_CONTENT, FlexboxLayout.LayoutParams.WRAP_CONTENT);
-                        pm.setMargins(5,5,5,5);
 
-                        mButton.setText(temp.getText()); //버튼에 들어갈 텍스트를 지정(String)
+                        DisplayMetrics dm = getResources().getDisplayMetrics(); // 단위를 dp로 맞춰주기 위함
+                        pm.setMargins(Math.round(5*dm.density),Math.round(5*dm.density),0,Math.round(5*dm.density));
+                        txt.setPadding(Math.round(12*dm.density),Math.round(6*dm.density),Math.round(12*dm.density),Math.round(6*dm.density));
+
+                        txt.setText(temp.getText()); //버튼에 들어갈 텍스트를 지정(String)
+                        txt.setTextSize(15);
 
                         keywords = keywords  + temp.getText()+ ",";
 
-                        mButton.setBackgroundResource(R.drawable.q3_moodword_normal);
+                        txt.setBackgroundResource(R.drawable.q3_moodword_normal);
 
-                        mButton.setLayoutParams(pm); //앞서 설정한 레이아웃파라미터를 버튼에 적용
-                        ViewCompat.setBackgroundTintList(mButton, ColorStateList.valueOf(Color.parseColor("#000000"))); // 배경 색 지정
-                        mButton.setTextColor(Color.parseColor("#ffffff"));  // 글씨 색 지정
+                        txt.setLayoutParams(pm); //앞서 설정한 레이아웃파라미터를 버튼에 적용
+                        ViewCompat.setBackgroundTintList(txt, ColorStateList.valueOf(Color.parseColor("#686868"))); // 배경 색 지정
+                        txt.setTextColor(Color.parseColor("#ffffff"));  // 글씨 색 지정
 
                         FlexboxLayout mView = getActivity().findViewById(R.id.page3_selectbox);
-                        mView.addView(mButton); //지정된 뷰에 셋팅완료된 mButton을 추가
+                        mView.addView(txt); //지정된 뷰에 셋팅완료된 mButton을 추가
                     }
                 }
                 else{
@@ -193,7 +202,7 @@ public class WritingFrag2 extends Fragment {
                         result.putIntegerArrayList("selectbtns",selectbtn);//번들에 넘길 값 저장
                         getParentFragmentManager().setFragmentResult("selectbtns", result);
 
-                        Button temp = getActivity().findViewById(selectbtn.get(i));
+                        TextView temp = getActivity().findViewById(selectbtn.get(i));
                         keywords = keywords  + temp.getText()+ ",";
                     }
                 }
@@ -227,31 +236,41 @@ public class WritingFrag2 extends Fragment {
     void createBtn(String text)
     {
 
-        Button mButton = new Button(getActivity()); //버튼을 선언
+        TextView txt = new TextView(getActivity());
 
         FlexboxLayout.LayoutParams pm = new FlexboxLayout.LayoutParams
                 (FlexboxLayout.LayoutParams.WRAP_CONTENT, FlexboxLayout.LayoutParams.WRAP_CONTENT);
-        pm.setMargins(5,5,5,5);
 
-        mButton.setText(text); //버튼에 들어갈 텍스트를 지정(String)
+        DisplayMetrics dm = getResources().getDisplayMetrics(); // 단위를 dp로 맞춰주기 위함
+        pm.setMargins(Math.round(5*dm.density),Math.round(5*dm.density),0,Math.round(5*dm.density));
+        txt.setPadding(Math.round(12*dm.density),Math.round(6*dm.density),Math.round(12*dm.density),Math.round(6*dm.density));
 
-        mButton.setBackgroundResource(R.drawable.q3_moodword_normal);
+        txt.setText(text); //버튼에 들어갈 텍스트를 지정(String)
+        txt.setTextSize(15);
 
-        mButton.setLayoutParams(pm); //앞서 설정한 레이아웃파라미터를 버튼에 적용
-        ViewCompat.setBackgroundTintList(mButton, ColorStateList.valueOf(Color.parseColor("#000000"))); // 배경 색 지정
-        mButton.setTextColor(Color.parseColor("#ffffff"));  // 글씨 색 지정
+        txt.setBackgroundResource(R.drawable.q3_moodword_normal);
+
+        txt.setLayoutParams(pm); //앞서 설정한 레이아웃파라미터를 버튼에 적용
+        ViewCompat.setBackgroundTintList(txt, ColorStateList.valueOf(Color.parseColor("#686868"))); // 배경 색 지정
+        txt.setTextColor(Color.parseColor("#ffffff"));  // 글씨 색 지정
         for(int j = 0; j<6; j++)
         {
             if(!isSelectbtnExist[j])
             {
-                mButton.setId(selectbtn_ids[j]);    // 아이디 지정: selectbtn_ids 중에 지정됨
+                txt.setId(selectbtn_ids[j]);    // 아이디 지정: selectbtn_ids 중에 지정됨
                 isSelectbtnExist[j] = true;
                 selectbtn.add(selectbtn_ids[j]);    // 동적 배열에 저장
+//                txt.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//
+//                    }
+//                });
                 break;
             }
         }
         FlexboxLayout mView = getActivity().findViewById(R.id.mood_word_selectbox);
-        mView.addView(mButton); //지정된 뷰에 셋팅완료된 mButton을 추가
+        mView.addView(txt); //지정된 뷰에 셋팅완료된 mButton을 추가
 
     }
 
@@ -259,20 +278,20 @@ public class WritingFrag2 extends Fragment {
     // 매개변수 : 버튼 id
     void deleteBtn(Integer what)
     {
-        Button mButton = getActivity().findViewById(what);
+        TextView txt = getActivity().findViewById(what);
         FlexboxLayout mView = getActivity().findViewById(R.id.mood_word_selectbox);
-        mView.removeView(mButton);
+        mView.removeView(txt);
     }
 
     // getText()로 비교하여 삭제시키는 함수
-    void findequalone(Button what)
+    void findequalone(TextView what)
     {
         Boolean find = false;
         int j = 0;
         while(j<selectbtn_ids.length)
         {
             try {
-                Button temp = getActivity().findViewById(selectbtn_ids[j]);
+                TextView temp = getActivity().findViewById(selectbtn_ids[j]);
                 find = temp.getText().equals(what.getText());
                 if(find) {
                     deleteBtn(selectbtn_ids[j]);

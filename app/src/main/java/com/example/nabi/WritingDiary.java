@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.nabi.fragment.WritingFrag1;
@@ -35,9 +36,8 @@ public class WritingDiary extends AppCompatActivity {
     WritingFrag3 frag3 = new WritingFrag3(); // 세번째 페이지 fragment
     WritingFrag4 frag4 = new WritingFrag4(); // 네번째 페이지 fragment
 
-    Date todaydate;
     TextView today_date;
-    Button backbtn, complete;
+    ImageButton backbtn;
 
     // db에 넣는 과정
     //db.execSQL("insert into diary_post (post_id, user_id, diary_title, content_1, diary_weather,reporting_date) " +
@@ -133,14 +133,8 @@ public class WritingDiary extends AppCompatActivity {
     // 마지막 페이지에서 '완료'버튼 누르면 결과화면으로 넘어가는 함수
     public void goToResult()
     {
-//        db = dbHelper.getWritableDatabase();
+
         Intent intent = new Intent(this, DiaryResult.class);
-
-//        db.execSQL("insert into diary_post (post_id, user_id, diary_title, " +
-//                "diary_mood, content_1, diary_keyword, content_2, content_3, diary_weather, reporting_date) " +
-//                "values (?, 'jungin-2','희애의 일기',"+q1_mood+",'"+q2_whatHappen+"'," +
-//                "'"+q3_todayKeyword+"','"+q4_why+"','"+q5_again+"',0,'"+YMD+"')");
-
 
         intent.putExtra("Diary_WritingResult", YMD);
         startActivity(intent);
