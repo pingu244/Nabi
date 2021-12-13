@@ -9,9 +9,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -22,7 +24,7 @@ import java.util.ArrayList;
 public class DiaryResult extends AppCompatActivity {
 
     TextView date, mood_per, whatHappen, keywords, why, again;
-    Button backToDiaryMain;
+    ImageButton backToDiaryMain;
     ProgressBar mood;
     FlexboxLayout selected_keywords;
 
@@ -138,21 +140,22 @@ public class DiaryResult extends AppCompatActivity {
 
         for(int i = 0; i<array.length; i++)
         {
-            Button mButton = new Button(this); //버튼을 선언
             TextView txt = new TextView(this);
 
             FlexboxLayout.LayoutParams pm = new FlexboxLayout.LayoutParams
                     (FlexboxLayout.LayoutParams.WRAP_CONTENT, FlexboxLayout.LayoutParams.WRAP_CONTENT);
-            pm.setMargins(5,10,5,10);
-            txt.setPadding(35,20,35,20);
+
+            DisplayMetrics dm = getResources().getDisplayMetrics(); // 단위를 dp로 맞춰주기 위함
+            pm.setMargins(Math.round(5*dm.density),Math.round(5*dm.density),0,Math.round(5*dm.density));
+            txt.setPadding(Math.round(12*dm.density),Math.round(6*dm.density),Math.round(12*dm.density),Math.round(6*dm.density));
 
             txt.setText(array[i]); //버튼에 들어갈 텍스트를 지정(String)
-            txt.setTextSize(20);
+            txt.setTextSize(13);
 
             txt.setBackgroundResource(R.drawable.q3_moodword_normal);
 
             txt.setLayoutParams(pm); //앞서 설정한 레이아웃파라미터를 버튼에 적용
-            ViewCompat.setBackgroundTintList(txt, ColorStateList.valueOf(Color.parseColor("#000000"))); // 배경 색 지정
+            ViewCompat.setBackgroundTintList(txt, ColorStateList.valueOf(Color.parseColor("#686868"))); // 배경 색 지정
             txt.setTextColor(Color.parseColor("#ffffff"));  // 글씨 색 지정
 
             FlexboxLayout mView = selected_keywords;

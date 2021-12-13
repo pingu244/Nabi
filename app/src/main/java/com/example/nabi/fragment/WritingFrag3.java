@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
 
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +18,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.nabi.R;
 import com.example.nabi.WritingDiary;
 import com.google.android.flexbox.FlexboxLayout;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -63,7 +67,6 @@ public class WritingFrag3 extends Fragment {
                 ((WritingDiary)getActivity()).replaceFragment("page4", WritingFrag4.newInstance());
                 ((WritingDiary)getActivity()).q4_why = content_3.getText().toString();
                 Log.v("frag3",((WritingDiary)getActivity()).q4_why);
-//                ((WritingDiary)getActivity()).q3_todayKeyword = keywords;
                 Log.v("frag2&3", ((WritingDiary)getActivity()).q3_todayKeyword);
             }
         });
@@ -91,23 +94,29 @@ public class WritingFrag3 extends Fragment {
 
         for(int i = 0; i<page3_selectbtn.size(); i++)
         {
-            Button mButton = new Button(getActivity()); //버튼을 선언
-            Button temp = getActivity().findViewById(page3_selectbtn.get(i));
+            TextView txt = new TextView(getActivity());
+
+            TextView temp = getActivity().findViewById(page3_selectbtn.get(i));
 
             FlexboxLayout.LayoutParams pm = new FlexboxLayout.LayoutParams
                     (FlexboxLayout.LayoutParams.WRAP_CONTENT, FlexboxLayout.LayoutParams.WRAP_CONTENT);
-            pm.setMargins(5,5,5,5);
 
-            mButton.setText(temp.getText()); //버튼에 들어갈 텍스트를 지정(String)
+            DisplayMetrics dm = getResources().getDisplayMetrics(); // 단위를 dp로 맞춰주기 위함
+            pm.setMargins(Math.round(5*dm.density),Math.round(5*dm.density),0,Math.round(5*dm.density));
+            txt.setPadding(Math.round(12*dm.density),Math.round(6*dm.density),Math.round(12*dm.density),Math.round(6*dm.density));
+
+
+            txt.setText(temp.getText()); //버튼에 들어갈 텍스트를 지정(String)
+            txt.setTextSize(15);
             keywords = keywords  + temp.getText()+ ",";
-            mButton.setBackgroundResource(R.drawable.q3_moodword_normal);
+            txt.setBackgroundResource(R.drawable.q3_moodword_normal);
 
-            mButton.setLayoutParams(pm); //앞서 설정한 레이아웃파라미터를 버튼에 적용
-            ViewCompat.setBackgroundTintList(mButton, ColorStateList.valueOf(Color.parseColor("#000000"))); // 배경 색 지정
-            mButton.setTextColor(Color.parseColor("#ffffff"));  // 글씨 색 지정
+            txt.setLayoutParams(pm); //앞서 설정한 레이아웃파라미터를 버튼에 적용
+            ViewCompat.setBackgroundTintList(txt, ColorStateList.valueOf(Color.parseColor("#686868"))); // 배경 색 지정
+            txt.setTextColor(Color.parseColor("#ffffff"));  // 글씨 색 지정
 
             FlexboxLayout mView = getActivity().findViewById(R.id.page3_selectbox);
-            mView.addView(mButton); //지정된 뷰에 셋팅완료된 mButton을 추가
+            mView.addView(txt); //지정된 뷰에 셋팅완료된 mButton을 추가
         }
 
         Log.v("page3", page3_selectbtn.toString());

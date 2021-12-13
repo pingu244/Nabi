@@ -25,589 +25,754 @@
         android:orientation="vertical"
         android:background="@drawable/roundrectangle">
 
-        <!--            버튼 선택하면 여기 보여짐-->
-        <!--            flexboxLayout은 자기가 자동으로 크기 넘치면 줄바꿈 해주는 애-->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <com.google.android.flexbox.FlexboxLayout
-                android:id="@+id/mood_word_selectbox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:flexWrap="wrap"
-                app:alignItems="stretch"
-                app:alignContent="stretch">
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            android:background="@drawable/edittext_rounded_corner_rectangle"
+            android:orientation="vertical">
 
-
-            </com.google.android.flexbox.FlexboxLayout>
-
-
-
-
-        </LinearLayout>
-
-        <!--            감정 단어들 목록-->
-        <ScrollView
-            android:id="@+id/page2_wordSelectview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            <!--            버튼 선택하면 여기 보여짐-->
+            <!--            flexboxLayout은 자기가 자동으로 크기 넘치면 줄바꿈 해주는 애-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <!--                    기쁨-->
-                <LinearLayout
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/mood_word_selectbox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <!--                        기쁨 글자-->
-                    <TextView
-                        android:layout_marginLeft="15dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="25dp"
-                        android:text="기쁨"/>
-                    <!--                    선-->
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#83000000"/>
-                    <!--                    기쁨 감정버튼들-->
-                    <com.google.android.flexbox.FlexboxLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:flexWrap="wrap"
-                        app:alignItems="stretch"
-                        app:alignContent="stretch">
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/joyful1"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="신난"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/joyful2"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="매력적인"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/joyful3"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="활기찬"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/joyful4"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="장난기 많은"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/joyful5"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="창의적인"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/joyful6"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="기쁜"/>
-
-                    </com.google.android.flexbox.FlexboxLayout>
-
-                    <!--                    선-->
-                    <View
-                        android:layout_marginTop="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#83000000"/>
+                    app:flexWrap="wrap"
+                    app:alignItems="stretch"
+                    app:alignContent="stretch">
 
 
+                </com.google.android.flexbox.FlexboxLayout>
 
-                </LinearLayout>
-
-                <!--                                        평화-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <!--                                                평화 글자-->
-                    <TextView
-                        android:layout_marginLeft="15dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="25dp"
-                        android:text="평화"/>
-                    <!--                    선-->
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#83000000"/>
-                    <!--                    평화 감정버튼들-->
-                    <com.google.android.flexbox.FlexboxLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:flexWrap="wrap"
-                        app:alignItems="stretch"
-                        app:alignContent="stretch">
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/peaceful1"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="만족스러운"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/peaceful2"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="사려깊은"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/peaceful3"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="친한"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/peaceful4"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="사랑스러운"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/peaceful5"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="사람을 믿는"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/peaceful6"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="고마운"/>
-
-                    </com.google.android.flexbox.FlexboxLayout>
-
-                    <!--                    선-->
-                    <View
-                        android:layout_marginTop="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#83000000"/>
-
-
-
-                </LinearLayout>
-
-                <!--                    힘찬-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <!--               힘찬 글자-->
-                    <TextView
-                        android:layout_marginLeft="15dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="25dp"
-                        android:text="힘찬"/>
-                    <!--                    선-->
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#83000000"/>
-                    <!--                    힘찬 감정버튼들-->
-                    <com.google.android.flexbox.FlexboxLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:flexWrap="wrap"
-                        app:alignItems="stretch"
-                        app:alignContent="stretch">
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/powerful1"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="심념있는"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/powerful2"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="희망찬"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/powerful3"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="감사한"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/powerful4"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="존경하는"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/powerful5"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="자랑스러운"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/powerful6"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="중요한"/>
-
-                    </com.google.android.flexbox.FlexboxLayout>
-
-                    <!--                    선-->
-                    <View
-                        android:layout_marginTop="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#83000000"/>
-
-
-
-                </LinearLayout>
-
-                <!--                    슬픔-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <!--               슬픔 글자-->
-                    <TextView
-                        android:layout_marginLeft="15dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="25dp"
-                        android:text="슬픔"/>
-                    <!--                    선-->
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#83000000"/>
-                    <!--                    슬픔 감정버튼들-->
-                    <com.google.android.flexbox.FlexboxLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:flexWrap="wrap"
-                        app:alignItems="stretch"
-                        app:alignContent="stretch">
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/sad1"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="죄책감있는"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/sad2"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="부끄러운"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/sad3"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="우울한"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/sad4"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="외로운"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/sad5"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="지루한"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/sad6"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="생기없는"/>
-
-                    </com.google.android.flexbox.FlexboxLayout>
-
-                    <!--                    선-->
-                    <View
-                        android:layout_marginTop="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#83000000"/>
-
-
-
-                </LinearLayout>
-
-                <!--                    분노-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <!--               분노 글자-->
-                    <TextView
-                        android:layout_marginLeft="15dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="25dp"
-                        android:text="분노"/>
-                    <!--                    선-->
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#83000000"/>
-                    <!--                    분노 감정버튼들-->
-                    <com.google.android.flexbox.FlexboxLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:flexWrap="wrap"
-                        app:alignItems="stretch"
-                        app:alignContent="stretch">
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/mad1"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="질투나는"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/mad2"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="이기적인"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/mad3"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="화난"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/mad4"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="적대적인"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/mad5"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="짜증나는"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/mad6"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="비판적인"/>
-
-                    </com.google.android.flexbox.FlexboxLayout>
-
-                    <!--                    선-->
-                    <View
-                        android:layout_marginTop="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#83000000"/>
-
-
-
-                </LinearLayout>
-
-                <!--                    두려움-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <!--               두려움 글자-->
-                    <TextView
-                        android:layout_marginLeft="15dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="25dp"
-                        android:text="두려움"/>
-                    <!--                    선-->
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="#83000000"/>
-                    <!--                    두려움 감정버튼들-->
-                    <com.google.android.flexbox.FlexboxLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:flexWrap="wrap"
-                        app:alignItems="stretch"
-                        app:alignContent="stretch">
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/scared1"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="당혹스러운"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/scared2"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="혼란스러운"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/scared3"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="무력한"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/scared4"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="순종적인"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/scared5"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="어리석은"/>
-                        <Button
-                            android:paddingHorizontal="20dp"
-                            android:id="@+id/scared6"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/q3_moodword_normal"
-                            android:backgroundTint="#31000000"
-                            android:text="불안한"/>
-
-                    </com.google.android.flexbox.FlexboxLayout>
-
-
-
-
-
-                </LinearLayout>
 
 
 
             </LinearLayout>
-        </ScrollView>
+
+            <!--            감정 단어들 목록-->
+            <ScrollView
+                android:id="@+id/page2_wordSelectview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <!--                    기쁨-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <!--                        기쁨 글자-->
+                        <TextView
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginVertical="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15dp"
+                            android:textColor="@color/black"
+                            android:text="기쁨"/>
+                        <!--                    선-->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#e2e2e2"/>
+                        <!--                    기쁨 감정버튼들-->
+                        <com.google.android.flexbox.FlexboxLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:flexWrap="wrap"
+                            app:alignItems="baseline"
+                            app:alignContent="flex_start">
+
+                            <TextView
+                                android:id="@+id/joyful1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:text="신난"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:backgroundTint="#C4C4C4"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"/>
+
+                            <TextView
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:id="@+id/joyful2"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="매력적인"/>
+                            <TextView
+                                android:id="@+id/joyful3"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="활기찬"/>
+                            <TextView
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="18dp"
+                                android:paddingVertical="8dp"
+                                android:id="@+id/joyful4"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="장난기 많은"/>
+                            <TextView
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:id="@+id/joyful5"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="창의적인"/>
+                            <TextView
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:id="@+id/joyful6"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="기쁜"/>
+
+                        </com.google.android.flexbox.FlexboxLayout>
+
+                        <!--                    선-->
+                        <View
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#e2e2e2"/>
+
+
+                    </LinearLayout>
+
+                    <!--                                        평화-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <!--                                                평화 글자-->
+                        <TextView
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginVertical="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15dp"
+                            android:textColor="@color/black"
+                            android:text="평화"/>
+                        <!--                    선-->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#e2e2e2"/>
+                        <!--                    평화 감정버튼들-->
+                        <com.google.android.flexbox.FlexboxLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:flexWrap="wrap"
+                            app:alignItems="baseline"
+                            app:alignContent="flex_start">
+                            <TextView
+                                android:id="@+id/peaceful1"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="18dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="만족스러운"/>
+                            <TextView
+                                android:id="@+id/peaceful2"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="사려깊은"/>
+                            <TextView
+                                android:id="@+id/peaceful3"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="친한"/>
+                            <TextView
+                                android:id="@+id/peaceful4"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="18dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="사랑스러운"/>
+                            <TextView
+                                android:id="@+id/peaceful5"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="18dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="사람을 믿는"/>
+                            <TextView
+                                android:id="@+id/peaceful6"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="고마운"/>
+
+                        </com.google.android.flexbox.FlexboxLayout>
+
+                        <!--                    선-->
+                        <View
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#e2e2e2"/>
+
+
+
+                    </LinearLayout>
+
+                    <!--                    힘찬-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <!--               힘찬 글자-->
+                        <TextView
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginVertical="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15dp"
+                            android:text="힘찬"
+                            android:textColor="@color/black"/>
+                        <!--                    선-->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#e2e2e2"/>
+                        <!--                    힘찬 감정버튼들-->
+                        <com.google.android.flexbox.FlexboxLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:flexWrap="wrap"
+                            app:alignItems="baseline"
+                            app:alignContent="flex_start">
+                            <TextView
+                                android:id="@+id/powerful1"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="심념있는"/>
+                            <TextView
+                                android:id="@+id/powerful2"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="희망찬"/>
+                            <TextView
+                                android:id="@+id/powerful3"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="감사한"/>
+                            <TextView
+                                android:id="@+id/powerful4"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="존경하는"/>
+                            <TextView
+                                android:id="@+id/powerful5"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="18dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="자랑스러운"/>
+                            <TextView
+                                android:id="@+id/powerful6"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="중요한"/>
+
+                        </com.google.android.flexbox.FlexboxLayout>
+
+                        <!--                    선-->
+                        <View
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#e2e2e2"/>
+
+
+
+                    </LinearLayout>
+
+                    <!--                    슬픔-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <!--               슬픔 글자-->
+                        <TextView
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginVertical="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15dp"
+                            android:text="슬픔"
+                            android:textColor="@color/black"/>
+                        <!--                    선-->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#e2e2e2"/>
+                        <!--                    슬픔 감정버튼들-->
+                        <com.google.android.flexbox.FlexboxLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:flexWrap="wrap"
+                            app:alignItems="baseline"
+                            app:alignContent="flex_start">
+                            <TextView
+                                android:id="@+id/sad1"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="18dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="죄책감있는"/>
+                            <TextView
+                                android:id="@+id/sad2"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="부끄러운"/>
+                            <TextView
+                                android:id="@+id/sad3"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="우울한"/>
+                            <TextView
+                                android:id="@+id/sad4"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="외로운"/>
+                            <TextView
+                                android:id="@+id/sad5"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="지루한"/>
+                            <TextView
+                                android:id="@+id/sad6"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="생기없는"/>
+
+                        </com.google.android.flexbox.FlexboxLayout>
+
+                        <!--                    선-->
+                        <View
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#e2e2e2"/>
+
+
+
+                    </LinearLayout>
+
+                    <!--                    분노-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <!--               분노 글자-->
+                        <TextView
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginVertical="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15dp"
+                            android:text="분노"
+                            android:textColor="@color/black"/>
+                        <!--                    선-->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#e2e2e2"/>
+                        <!--                    분노 감정버튼들-->
+                        <com.google.android.flexbox.FlexboxLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:flexWrap="wrap"
+                            app:alignItems="baseline"
+                            app:alignContent="flex_start">
+                            <TextView
+                                android:id="@+id/mad1"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="질투나는"/>
+                            <TextView
+                                android:id="@+id/mad2"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="이기적인"/>
+                            <TextView
+                                android:id="@+id/mad3"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="화난"/>
+                            <TextView
+                                android:id="@+id/mad4"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="적대적인"/>
+                            <TextView
+                                android:id="@+id/mad5"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="짜증나는"/>
+                            <TextView
+                                android:id="@+id/mad6"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="비판적인"/>
+
+                        </com.google.android.flexbox.FlexboxLayout>
+
+                        <!--                    선-->
+                        <View
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#e2e2e2"/>
+
+
+
+                    </LinearLayout>
+
+                    <!--                    두려움-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <!--               두려움 글자-->
+                        <TextView
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginVertical="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15dp"
+                            android:text="두려움"
+                            android:textColor="@color/black"/>
+                        <!--                    선-->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#e2e2e2"/>
+                        <!--                    두려움 감정버튼들-->
+                        <com.google.android.flexbox.FlexboxLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:flexWrap="wrap"
+                            app:alignItems="baseline"
+                            app:alignContent="flex_start">
+                            <TextView
+                                android:id="@+id/scared1"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="18dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="당혹스러운"/>
+                            <TextView
+                                android:id="@+id/scared2"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="18dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="혼란스러운"/>
+                            <TextView
+                                android:id="@+id/scared3"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="무력한"/>
+                            <TextView
+                                android:id="@+id/scared4"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="순종적인"/>
+                            <TextView
+                                android:id="@+id/scared5"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="어리석은"/>
+                            <TextView
+                                android:id="@+id/scared6"
+                                android:textSize="15dp"
+                                android:textColor="@color/black"
+                                android:paddingHorizontal="20dp"
+                                android:paddingVertical="8dp"
+                                android:layout_marginVertical="5dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/q3_moodword_normal"
+                                android:backgroundTint="#C4C4C4"
+                                android:text="불안한"/>
+
+                        </com.google.android.flexbox.FlexboxLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+
+
+        </LinearLayout>
+
 
 
 
@@ -625,19 +790,22 @@
             android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="이전"/>
+            android:background="#00ff0000"
+            android:text="&lt; 이전"/>
         <TextView
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
-            android:text="2/4"/>
+            android:textSize="14dp"
+            android:text="2/4"
+            android:textColor="@color/black"/>
         <Button
             android:id="@+id/second_next"
             android:layout_gravity="right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="다음"/>
+            android:background="#00ff0000"
+            android:text="다음 >"/>
 
     </FrameLayout>
 

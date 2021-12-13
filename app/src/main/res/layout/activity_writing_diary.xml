@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/activity_writing_diary"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".WritingDiary"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/diary_cloudy_background">
 
-    <Button
+    <ImageButton
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
         android:id="@+id/WritingDiary_back"
-        android:layout_width="50dp"
-        android:layout_height="50dp"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/diary_writing_back"
+        android:background="#00000000"/>
 
     <TextView
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="40dp"
         android:gravity="center_horizontal"
         android:id="@+id/today_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24dp"
-        android:text="0000년 00월 00일"/>
+        android:textSize="30dp"
+        android:text="0000년 00월 00일"
+        android:textColor="@color/black"/>
 
     <FrameLayout
         android:layout_marginRight="25dp"

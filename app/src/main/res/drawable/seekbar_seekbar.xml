@@ -10,18 +10,6 @@
         </shape>
     </item>
 
-    <!-- 시크바 배경2-->
-    <item android:id="@android:id/secondaryProgress">
-        <clip>
-            <shape android:shape="rectangle">
-                <size android:height="13dp" android:width="150dp"/>
-                <solid android:color="#ffffff" />
-
-                <corners android:radius="25dp" />
-            </shape>
-        </clip>
-    </item>
-
     <!-- 시크바 프로그래스-->
     <item android:id="@android:id/progress" >
         <clip>

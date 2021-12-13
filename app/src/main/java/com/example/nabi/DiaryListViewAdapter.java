@@ -121,7 +121,7 @@ public class DiaryListViewAdapter extends RecyclerView.Adapter<DiaryListViewAdap
                 txt.setBackgroundResource(R.drawable.q3_moodword_normal);
 
                 txt.setLayoutParams(pm); //앞서 설정한 레이아웃파라미터를 버튼에 적용
-                ViewCompat.setBackgroundTintList(txt, ColorStateList.valueOf(Color.parseColor("#000000"))); // 배경 색 지정
+                ViewCompat.setBackgroundTintList(txt, ColorStateList.valueOf(Color.parseColor("#686868"))); // 배경 색 지정
                 txt.setTextColor(Color.parseColor("#ffffff"));  // 글씨 색 지정
 
                 FlexboxLayout mView = itemView.findViewById(R.id.DiaryList_selectMoods);    // 감정단어 들어가는 늘어나는 레이아웃
