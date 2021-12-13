@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".WritingDiary"
     android:orientation="vertical"
-    android:background="@drawable/diary_cloudy_background">
+    android:background="@drawable/diary_sunny_background">
 
     <ImageButton
         android:layout_marginTop="30dp"
