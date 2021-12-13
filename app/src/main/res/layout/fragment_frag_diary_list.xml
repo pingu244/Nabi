@@ -9,70 +9,61 @@
 
 
     <LinearLayout
+        android:layout_marginHorizontal="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:weightSum="5">
 
         <ImageButton
             android:id="@+id/btnClear"
-            android:width="0dp"
-            android:height="30dp"
             android:layout_weight="1"
             android:background="@drawable/btnclear"
             android:layout_height="wrap_content"
-
-            android:layout_width="wrap_content"  />
+            android:layout_width="0dp"  />
         <ImageButton
             android:id="@+id/btnLittleCloudy"
-            android:width="0dp"
-            android:height="30dp"
             android:layout_weight="1"
             android:background="@drawable/btnlittlecloud"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"  />
+            android:layout_width="0dp"  />
 
         <ImageButton
             android:id="@+id/btnCloudy"
-            android:width="0dp"
-            android:height="30dp"
             android:layout_weight="1"
             android:background="@drawable/btncloudy"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"  />
-
-
+            android:layout_width="0dp"  />
 
         <ImageButton
             android:id="@+id/btnRain"
-            android:width="0dp"
-            android:height="30dp"
             android:layout_weight="1"
             android:background="@drawable/btnrain"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"  />
+            android:layout_width="0dp"  />
 
         <ImageButton
             android:id="@+id/btnSnow"
-            android:width="0dp"
-            android:height="30dp"
             android:layout_weight="1"
             android:background="@drawable/btnsnow"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"  />
+            android:layout_width="0dp"  />
     </LinearLayout>
 
     <FrameLayout
+        android:layout_marginVertical="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
+            android:layout_marginLeft="15dp"
             android:id="@+id/tvWeather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="맑은 날"
-            android:textSize="30dp"/>
+            android:textColor="@color/black"
+            android:textSize="20dp"/>
 
         <Spinner
             android:layout_gravity="right|center"
