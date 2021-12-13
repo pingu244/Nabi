@@ -81,7 +81,7 @@ public class FragDiary_list extends Fragment {
 
 
 
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.list_container, clearDiary).commitAllowingStateLoss();
+        //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.list_container, clearDiary).commitAllowingStateLoss();
 
         //흐림어리 이동
         btnCloudy.setOnClickListener(new View.OnClickListener() {
