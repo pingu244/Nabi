@@ -111,6 +111,7 @@ public class FragDiary_cal extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_frag_diary_cal, container, false);
 
+        getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.diarybg);
 
         goWriting = view.findViewById(R.id.go_writing);
         // 달력 밑에 일기쓰는 버튼 누르면 일기쓰는 액티비티인 WritingDiary를 보여줌

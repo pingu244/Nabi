@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 // 흐린날 날씨 목록 Fragment
-public class DiaryList_Cloud extends Fragment {
+public class DiaryList_Rain extends Fragment {
     @Nullable
     View view;
     RecyclerView diaryListView;
@@ -41,12 +41,8 @@ public class DiaryList_Cloud extends Fragment {
 
         view = inflater.inflate(R.layout.diarylist_adapter, container,false);
         initUI(view);
-
-        getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_cloud);
-
+        getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_rain);
         loadNoteListData();
-
-
 
         return view;
     }
@@ -66,7 +62,7 @@ public class DiaryList_Cloud extends Fragment {
     }
 
     public int loadNoteListData(){
-        String sql = "select reporting_date, diary_keyword, diary_mood from diary_post where diary_weather = 2"; //흐린 날 일기 선택
+        String sql = "select reporting_date, diary_keyword, diary_mood from diary_post where diary_weather = 3"; //비 오는 날 일기 선택
 
         int recordCount = 0;
 
@@ -104,7 +100,7 @@ public class DiaryList_Cloud extends Fragment {
                 {
                     public void onItemClick(View v, int pos)
                     {
-                        Cursor cursor = db.rawQuery("select reporting_date from diary_post where diary_weather = 2");
+                        Cursor cursor = db.rawQuery("select reporting_date from diary_post where diary_weather = 3");
                         cursor.moveToPosition(pos);
                         String diaryDate = cursor.getString(0);
                         Intent intent = new Intent(getActivity(), DiaryResult.class);

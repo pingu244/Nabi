@@ -1,9 +1,11 @@
 package com.example.nabi.fragment;
 
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -13,7 +15,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.nabi.R;
 
@@ -22,7 +26,16 @@ public class FragDiary_list extends Fragment {
 
     View view;
     ImageButton btnCloudy;
+    ImageButton btnLittleCloudy;
+    ImageButton btnClear;
+    ImageButton btnRain;
+    ImageButton btnSnow;
     DiaryList_Cloud cloudyDiary;
+    DiaryList_LittleCloud littleCloudyDiary;
+    DiaryList_Clear clearDiary;
+    DiaryList_Rain rainDiary;
+    DiaryList_Snow snowDiary;
+    TextView tvWeather;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -53,21 +66,73 @@ public class FragDiary_list extends Fragment {
         view = inflater.inflate(R.layout.fragment_frag_diary_list, container, false);
 
         btnCloudy = view.findViewById(R.id.btnCloudy);
+        btnLittleCloudy = view.findViewById(R.id.btnLittleCloudy);
+        btnClear = view.findViewById(R.id.btnClear);
+        btnRain = view.findViewById(R.id.btnRain);
+        btnSnow = view.findViewById(R.id.btnSnow);
+
+        tvWeather = view.findViewById(R.id.tvWeather);
+
         cloudyDiary = new DiaryList_Cloud();
+        littleCloudyDiary = new DiaryList_LittleCloud();
+        clearDiary = new DiaryList_Clear();
+        rainDiary = new DiaryList_Rain();
+        snowDiary = new DiaryList_Snow();
 
 
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.list_container, cloudyDiary).commitAllowingStateLoss();
 
-        //        흐린 날 아이콘 클릭 시 흐린 날 날씨 목록 화면으로 이동
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.list_container, clearDiary).commitAllowingStateLoss();
+
+        //흐림어리 이동
         btnCloudy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.list_container, cloudyDiary).commitAllowingStateLoss();
+                tvWeather.setText("흐린 날");
+
             }
         });
 
+        //약간 흐림어리 이동
+        btnLittleCloudy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.list_container, littleCloudyDiary).commitAllowingStateLoss();
+                tvWeather.setText("약간 흐린 날");
+
+            }
+        });
+
+        //맑음어리 이동
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.list_container, clearDiary).commitAllowingStateLoss();
+                tvWeather.setText("맑은 날");
 
 
+            }
+        });
+
+        //레인어리 이동
+        btnRain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.list_container, rainDiary).commitAllowingStateLoss();
+                tvWeather.setText("비 오는 날");
+
+            }
+        });
+
+        //스노어리 이동
+        btnSnow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.list_container, snowDiary).commitAllowingStateLoss();
+                tvWeather.setText("눈 오는 날");
+
+            }
+        });
         return view;
     }
 }

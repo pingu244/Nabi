@@ -3,9 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/GURU2/Nabii/app/src/main/res/drawable/back_tabs.xml" value="0.22083333333333333" />
+        <entry key="..\:/GURU2/Nabii/app/src/main/res/layout/activity_writing_diary.xml" value="0.2046875" />
+        <entry key="..\:/GURU2/Nabii/app/src/main/res/layout/diary_contain_main.xml" value="0.2046875" />
         <entry key="..\:/GURU2/Nabii/app/src/main/res/layout/diarylist.xml" value="0.1638888888888889" />
         <entry key="..\:/GURU2/Nabii/app/src/main/res/layout/diarylist_adapter.xml" value="0.21614583333333334" />
         <entry key="..\:/GURU2/Nabii/app/src/main/res/layout/frag_diary.xml" value="0.2046875" />
+        <entry key="..\:/GURU2/Nabii/app/src/main/res/layout/fragment_frag_diary_cal.xml" value="0.2046875" />
+        <entry key="..\:/GURU2/Nabii/app/src/main/res/layout/fragment_frag_diary_list.xml" value="0.23958333333333334" />
         <entry key="..\:/GURU2/Nabii/app/src/main/res/layout/fragment_writing_frag1.xml" value="0.36614583333333334" />
         <entry key="..\:/GURU2/Nabii/app/src/main/res/layout/fragment_writing_frag4.xml" value="0.36614583333333334" />
         <entry key="..\:/GURU2/nabii/app/src/main/res/drawable/calender_frame_rectangle.xml" value="0.38229166666666664" />
