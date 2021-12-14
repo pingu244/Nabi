@@ -20,17 +20,17 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/Diary_tab_layout"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="8dp"
             app:tabMode="fixed"
             app:tabGravity="center"
             app:tabIndicatorGravity="stretch"
-            app:tabSelectedTextColor="@color/white"
-            app:tabIndicatorAnimationMode="linear"
+            app:tabSelectedTextColor="@color/black"
+            app:tabIndicatorAnimationMode="elastic"
+            app:tabRippleColor="#00000000"
             app:tabIndicator="@drawable/tab_indicator"
-            app:tabBackground="@drawable/calender_frame_rectangle"
-            app:tabMaxWidth="200dp"/>
+            app:tabIndicatorColor="@color/white"/>
 
 <!--        <com.google.android.material.appbar.AppBarLayout-->
 <!--            android:layout_width="match_parent"-->
