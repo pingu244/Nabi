@@ -9,9 +9,11 @@
 
     <LinearLayout
         android:layout_gravity="center"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="338dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/calender_frame_rectangle"
         tools:context=".fragment.CalAndBottom"
@@ -20,10 +22,14 @@
 
         <!--    달력-->
         <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-            android:padding="5dp"
+
             android:id="@+id/calendarView"
-            android:layout_width="338dp"
-            android:layout_height="387dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="22dp"
+            android:layout_marginTop="22dp"
             app:mcv_selectionColor="@color/white"
             app:mcv_showOtherDates="defaults" />
 
@@ -37,13 +43,13 @@
 
         <LinearLayout
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <Button
                 android:layout_gravity="center"
                 android:id="@+id/go_writing"
-                android:layout_width="324dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_write" />
         </LinearLayout>

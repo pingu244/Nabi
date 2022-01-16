@@ -20,15 +20,19 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/Diary_tab_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="#66FFFFFF"
+
+            app:tabTextColor="@color/black"
+            app:tabSelectedTextColor="#454870"
             app:tabMode="fixed"
-            app:tabGravity="center"
+            app:tabGravity="fill"
             app:tabIndicatorGravity="stretch"
-            app:tabSelectedTextColor="@color/black"
             app:tabIndicatorAnimationMode="elastic"
-            app:tabRippleColor="#00000000"
+            app:tabRippleColor="@android:color/transparent"
             app:tabIndicator="@drawable/tab_indicator"
             app:tabIndicatorColor="@color/white"/>
 
