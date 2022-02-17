@@ -12,10 +12,10 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.nabi.fragment.FragDiary;
-import com.example.nabi.fragment.FragHealing;
-import com.example.nabi.fragment.FragHome;
-import com.example.nabi.fragment.FragRemind;
+import com.example.nabi.fragment.Diary.FragDiary;
+import com.example.nabi.fragment.Healing.FragHealing;
+import com.example.nabi.fragment.Home.FragHome;
+import com.example.nabi.fragment.Remind.FragRemind;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

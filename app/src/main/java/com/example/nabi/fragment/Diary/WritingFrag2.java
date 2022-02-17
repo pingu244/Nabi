@@ -1,4 +1,4 @@
-package com.example.nabi.fragment;
+package com.example.nabi.fragment.Diary;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -8,8 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -22,17 +20,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nabi.R;
-import com.example.nabi.WritingDiary;
 import com.google.android.flexbox.AlignContent;
 import com.google.android.flexbox.AlignItems;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayout;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 
 // 일기 작성할 때 두번째 페이지
 

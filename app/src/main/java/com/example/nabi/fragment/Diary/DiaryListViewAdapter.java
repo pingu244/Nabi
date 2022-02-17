@@ -1,4 +1,4 @@
-package com.example.nabi;
+package com.example.nabi.fragment.Diary;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.nabi.R;
 import com.google.android.flexbox.FlexboxLayout;
 
 import java.util.ArrayList;

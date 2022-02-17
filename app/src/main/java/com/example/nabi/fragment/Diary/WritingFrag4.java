@@ -1,4 +1,4 @@
-package com.example.nabi.fragment;
+package com.example.nabi.fragment.Diary;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -16,9 +16,16 @@ import android.widget.EditText;
 
 import com.example.nabi.DBHelper;
 import com.example.nabi.R;
-import com.example.nabi.WritingDiary;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 
 
 public class WritingFrag4 extends Fragment {
@@ -28,6 +35,7 @@ public class WritingFrag4 extends Fragment {
 
     DBHelper dbHelper;
     private SQLiteDatabase db;
+//    private FirebaseFirestore db;
 
     Integer one;
     String two,three,four,five;
@@ -87,11 +95,58 @@ public class WritingFrag4 extends Fragment {
 
 
 
+//                db = FirebaseFirestore.getInstance();
+//
+//                //해쉬맵 테이블을 파이어베이스 데이터베이스에 저장
+//                Map<String, Object> hashMap = new HashMap<>();
+//                hashMap.put("q1_mood", one);
+//                hashMap.put("q2_whatHappen", two);
+//                hashMap.put("q3_todayKeyword", three);
+//                hashMap.put("q4_why", four);
+//                hashMap.put("q5_again", five);
+//                hashMap.put("weather", 0);
+//
+//
+//                db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                        .collection("diary").document(YMD).set(hashMap)
+//                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                            @Override
+//                            public void onSuccess(Void aVoid) {
+//                                Log.d("dataPut", "DocumentSnapshot successfully written!");
+//                            }
+//                        })
+//                        .addOnFailureListener(new OnFailureListener() {
+//                            @Override
+//                            public void onFailure(@NonNull Exception e) {
+//                                Log.w("dataPut", "Error writing document", e);
+//                            }
+//                        });
+//                inputData(new SimpleCallback<boolean>(){
+//
+//                });
+
+
                 ((WritingDiary)getActivity()).goToResult();
             }
         });
 
     }
+//    private void inputData(@NonNull SimpleCallback<boolean> finishedCallback, Map<String, Object> hashMap, String YMD){
+//        db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                .collection("diary").document(YMD).set(hashMap)
+//                .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void aVoid) {
+//                        Log.d("dataPut", "DocumentSnapshot successfully written!");
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.w("dataPut", "Error writing document", e);
+//                    }
+//                });
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

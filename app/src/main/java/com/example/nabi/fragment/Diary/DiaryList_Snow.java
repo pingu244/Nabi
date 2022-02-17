@@ -1,36 +1,25 @@
-package com.example.nabi.fragment;
-
-import static androidx.viewpager.widget.PagerAdapter.POSITION_NONE;
+package com.example.nabi.fragment.Diary;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.nabi.DBHelper;
 import com.example.nabi.DiaryDataBase;
-import com.example.nabi.DiaryListItem;
-import com.example.nabi.DiaryListViewAdapter;
-import com.example.nabi.DiaryResult;
 import com.example.nabi.R;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 // 흐린날 날씨 목록 Fragment
-public class DiaryList_Rain extends Fragment {
+public class DiaryList_Snow extends Fragment {
     @Nullable
     View view;
     RecyclerView diaryListView;
@@ -41,9 +30,8 @@ public class DiaryList_Rain extends Fragment {
 
         view = inflater.inflate(R.layout.diarylist_adapter, container,false);
         initUI(view);
-        getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_rain);
+        getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_snow);
         loadNoteListData();
-
         return view;
     }
 
@@ -62,7 +50,7 @@ public class DiaryList_Rain extends Fragment {
     }
 
     public int loadNoteListData(){
-        String sql = "select reporting_date, diary_keyword, diary_mood from diary_post where diary_weather = 3"; //비 오는 날 일기 선택
+        String sql = "select reporting_date, diary_keyword, diary_mood from diary_post where diary_weather = 4"; //눈 오는 날 일기 선택
 
         int recordCount = 0;
 
@@ -100,7 +88,7 @@ public class DiaryList_Rain extends Fragment {
                 {
                     public void onItemClick(View v, int pos)
                     {
-                        Cursor cursor = db.rawQuery("select reporting_date from diary_post where diary_weather = 3");
+                        Cursor cursor = db.rawQuery("select reporting_date from diary_post where diary_weather = 4");
                         cursor.moveToPosition(pos);
                         String diaryDate = cursor.getString(0);
                         Intent intent = new Intent(getActivity(), DiaryResult.class);

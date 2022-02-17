@@ -1,28 +1,21 @@
-package com.example.nabi;
+package com.example.nabi.fragment.Diary;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModel;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.nabi.fragment.WritingFrag1;
-import com.example.nabi.fragment.WritingFrag2;
-import com.example.nabi.fragment.WritingFrag3;
-import com.example.nabi.fragment.WritingFrag4;
+import com.example.nabi.DBHelper;
+import com.example.nabi.R;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 //일기 쓰는 부분 activity
 
@@ -43,8 +36,7 @@ public class WritingDiary extends AppCompatActivity {
     //db.execSQL("insert into diary_post (post_id, user_id, diary_title, content_1, diary_weather,reporting_date) " +
     //        "values (?, 'jungin-2','11월 30일의 일기','"+content_1.getText().toString()+"',0,'"+YMD+"')");
 
-    DBHelper dbHelper = new DBHelper(WritingDiary.this);
-    private SQLiteDatabase db;
+
     String YMD;
 
     // fragment들에서 받아올 데이터들을 받을 변수

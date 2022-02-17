@@ -1,4 +1,4 @@
-package com.example.nabi.fragment;
+package com.example.nabi.fragment.Diary;
 
 import android.os.Bundle;
 

@@ -1,5 +1,6 @@
-package com.example.nabi;
+package com.example.nabi.fragment.Diary;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 
@@ -17,9 +18,22 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.nabi.DBHelper;
+import com.example.nabi.R;
 import com.google.android.flexbox.FlexboxLayout;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 
 public class DiaryResult extends AppCompatActivity {
 
@@ -30,10 +44,11 @@ public class DiaryResult extends AppCompatActivity {
 
     DBHelper dbHelper;
     private SQLiteDatabase db;
+//    private FirebaseFirestore db;
 
     // db에서 받아온 것들 변수
     Integer diary_mood, diary_weather;
-    String content_1, diary_keyword, content_2, content_3, reporting_date;
+    String content_1, diary_keyword, content_2, content_3, finalDate, reporting_date;
 
 
     @Override
@@ -43,6 +58,7 @@ public class DiaryResult extends AppCompatActivity {
 
         dbHelper = new DBHelper(this);
         db = dbHelper.getReadableDatabase();
+//        db = FirebaseFirestore.getInstance();
         
         
         date = findViewById(R.id.DiaryResult_date);
@@ -66,7 +82,6 @@ public class DiaryResult extends AppCompatActivity {
         Intent receive_intent = getIntent();
         String diary_writing_date = receive_intent.getStringExtra("Diary_WritingResult");
         String selected_date = receive_intent.getStringExtra("SelectedDate");
-        String finalDate = "";
 
         // intent한 값으로 날짜 설정
         if(diary_writing_date != null)
@@ -106,7 +121,51 @@ public class DiaryResult extends AppCompatActivity {
         db.close();
 
 
+//        CountDownLatch latch = new CountDownLatch(1);
+//        DocumentReference docRef = db.collection("users")
+//                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                .collection("diary").document(finalDate);
+//        Log.v("plz", "finalDate: "+finalDate);
 
+//        Task<DocumentSnapshot> documentSnapshotTask = docRef.get()
+//                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    DocumentSnapshot document = task.getResult();
+//                    if (document.exists()) {
+//                        Log.d("dataOutput", "DocumentSnapshot data: " + document.getData());
+//                        Map<String, Object> mymap = document.getData();
+//                        diary_mood = Integer.parseInt(mymap.get("q1_mood").toString());
+//                        content_1 = (String) mymap.get("q2_whatHappen");
+//                        diary_keyword = (String) mymap.get("q3_todayKeyword");
+//                        content_2 = (String) mymap.get("q4_why");
+//                        content_3 = (String) mymap.get("q5_again");
+//                        diary_weather = Integer.parseInt(mymap.get("weather").toString());
+//                        latch.countDown();
+//
+//                    } else {
+//                        Log.d("dataOutput", "No such document");
+//                        latch.countDown();
+//                    }
+//                } else {
+//                    Log.d("dataOutput", "get failed with ", task.getException());
+//                    latch.countDown();
+//                }
+//            }
+//        });
+//        try {
+//            latch.await();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        Log.v("plz","기분어떠한지? "+diary_mood);
+//        Log.v("plz",content_1);
+//        Log.v("plz",diary_keyword);
+//        Log.v("plz",content_2);
+//        Log.v("plz",content_3);
+//        Log.v("plz","오늘 날씨는 어떤지? "+diary_weather);
+//
 
 
 

@@ -1,4 +1,4 @@
-package com.example.nabi;
+package com.example.nabi.fragment.Diary;
 // 일기 목록 리사이클러뷰 구현에 사용됨. 데이터 모델 생성
 public class DiaryListItem {
     private String keyword;

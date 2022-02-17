@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.WritingFrag2"
+    tools:context=".fragment.Diary.WritingFrag2"
     android:orientation="vertical">
 
     <TextView

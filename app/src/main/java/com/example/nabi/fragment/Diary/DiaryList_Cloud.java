@@ -1,33 +1,22 @@
-package com.example.nabi.fragment;
-
-import static androidx.viewpager.widget.PagerAdapter.POSITION_NONE;
+package com.example.nabi.fragment.Diary;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.nabi.DBHelper;
 import com.example.nabi.DiaryDataBase;
-import com.example.nabi.DiaryListItem;
-import com.example.nabi.DiaryListViewAdapter;
-import com.example.nabi.DiaryResult;
 import com.example.nabi.R;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 // 흐린날 날씨 목록 Fragment
 public class DiaryList_Cloud extends Fragment {

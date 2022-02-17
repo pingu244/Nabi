@@ -1,4 +1,4 @@
-package com.example.nabi.fragment;
+package com.example.nabi.fragment.Diary;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -21,11 +21,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 import com.example.nabi.DBHelper;
 import com.example.nabi.R;
-import com.example.nabi.WritingDiary;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;

@@ -1,14 +1,11 @@
-package com.example.nabi.fragment;
+package com.example.nabi.fragment.Diary;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentResultListener;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,9 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.nabi.DiaryDataBase;
-import com.example.nabi.DiaryListItem;
-import com.example.nabi.DiaryListViewAdapter;
-import com.example.nabi.DiaryResult;
 import com.example.nabi.R;
 
 import java.util.ArrayList;

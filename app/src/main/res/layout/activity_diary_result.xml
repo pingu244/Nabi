@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DiaryResult"
+    tools:context=".fragment.Diary.DiaryResult"
     android:orientation="vertical"
     android:background="@drawable/diary_sunny_background">
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".fragment.FragDiary_cal"
+    tools:context=".fragment.Diary.FragDiary_cal"
     android:orientation="vertical">
 
     <LinearLayout

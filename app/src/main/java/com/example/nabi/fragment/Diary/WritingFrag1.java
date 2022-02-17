@@ -1,4 +1,4 @@
-package com.example.nabi.fragment;
+package com.example.nabi.fragment.Diary;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -6,8 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,7 +18,6 @@ import android.widget.TextView;
 
 import com.example.nabi.DBHelper;
 import com.example.nabi.R;
-import com.example.nabi.WritingDiary;
 
 import java.util.Calendar;
 

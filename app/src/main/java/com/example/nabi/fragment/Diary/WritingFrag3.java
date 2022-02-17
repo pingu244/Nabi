@@ -1,4 +1,4 @@
-package com.example.nabi.fragment;
+package com.example.nabi.fragment.Diary;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -17,14 +17,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.nabi.R;
-import com.example.nabi.WritingDiary;
 import com.google.android.flexbox.FlexboxLayout;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
