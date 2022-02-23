@@ -70,8 +70,9 @@ public class LoginActivity extends AppCompatActivity {
         googleBtn = findViewById(R.id.googleLogin);
 
         // 이미 로그인되어있으면 로그인창 생략하는 코드
-        if (firebaseAuth.getCurrentUser() != null)
+        if (firebaseAuth.getCurrentUser() != null) {
             updateUI(firebaseAuth.getCurrentUser());
+        }
 
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -284,6 +285,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user) { //update ui code here
         if (user != null) {
+            Toast.makeText(LoginActivity.this, firebaseAuth.getCurrentUser().getDisplayName()+"님 환영합니다!", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();

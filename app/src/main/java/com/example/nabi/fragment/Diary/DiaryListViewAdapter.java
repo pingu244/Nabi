@@ -62,7 +62,6 @@ public class DiaryListViewAdapter extends RecyclerView.Adapter<DiaryListViewAdap
         LinearLayout layoutDiaryList;
         TextView date;
         Integer moods;
-        FlexboxLayout moodBox;
 
         ImageView list_mood[] = new ImageView[5];
         Integer mood_ids[] = {R.id.DiaryList_one, R.id.DiaryList_two, R.id.DiaryList_three,R.id.DiaryList_four,R.id.DiaryList_five};
@@ -129,6 +128,7 @@ public class DiaryListViewAdapter extends RecyclerView.Adapter<DiaryListViewAdap
             }
 
 
+            // 1번질문 감정정도 조절
             moods = item.getMood();
             for(int i = 0; i<moods; i++)
                 list_mood[i].setImageResource(R.drawable.mood_circle);

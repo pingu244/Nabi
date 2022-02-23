@@ -34,8 +34,8 @@ public class WritingFrag4 extends Fragment {
     EditText content_4;
 
     DBHelper dbHelper;
-    private SQLiteDatabase db;
-//    private FirebaseFirestore db;
+//    private SQLiteDatabase db;
+    private FirebaseFirestore db;
 
     Integer one;
     String two,three,four,five;
@@ -61,8 +61,9 @@ public class WritingFrag4 extends Fragment {
             }
         });
 
-        dbHelper = new DBHelper(requireContext());
-        db = dbHelper.getWritableDatabase();
+//        dbHelper = new DBHelper(requireContext());
+//        db = dbHelper.getWritableDatabase();
+        db = FirebaseFirestore.getInstance();
 
         Calendar cal = Calendar.getInstance();
         int cYEAR = cal.get(Calendar.YEAR);
@@ -90,63 +91,44 @@ public class WritingFrag4 extends Fragment {
                 Log.v("daterrr", YMD);
 
 
-                db.execSQL("insert into diary_post (post_id, user_id, diary_title, content_1, content_2, content_3, diary_mood, diary_keyword, diary_weather,reporting_date) " +
-                        "values (?, 'jungin-2','희애의 일기','"+two+"','"+four+"','"+five+"',"+one+",'"+three+"',0,'"+YMD+"')");
+//                db.execSQL("insert into diary_post (post_id, user_id, diary_title, content_1, content_2, content_3, diary_mood, diary_keyword, diary_weather,reporting_date) " +
+//                        "values (?, 'jungin-2','희애의 일기','"+two+"','"+four+"','"+five+"',"+one+",'"+three+"',0,'"+YMD+"')");
 
 
 
-//                db = FirebaseFirestore.getInstance();
-//
+
+
 //                //해쉬맵 테이블을 파이어베이스 데이터베이스에 저장
-//                Map<String, Object> hashMap = new HashMap<>();
-//                hashMap.put("q1_mood", one);
-//                hashMap.put("q2_whatHappen", two);
-//                hashMap.put("q3_todayKeyword", three);
-//                hashMap.put("q4_why", four);
-//                hashMap.put("q5_again", five);
-//                hashMap.put("weather", 0);
-//
-//
-//                db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-//                        .collection("diary").document(YMD).set(hashMap)
-//                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void aVoid) {
-//                                Log.d("dataPut", "DocumentSnapshot successfully written!");
-//                            }
-//                        })
-//                        .addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                Log.w("dataPut", "Error writing document", e);
-//                            }
-//                        });
-//                inputData(new SimpleCallback<boolean>(){
-//
-//                });
+                Map<String, Object> hashMap = new HashMap<>();
+                hashMap.put("q1_mood", one);
+                hashMap.put("q2_whatHappen", two);
+                hashMap.put("q3_todayKeyword", three);
+                hashMap.put("q4_why", four);
+                hashMap.put("q5_again", five);
+                hashMap.put("weather", 0);
 
 
-                ((WritingDiary)getActivity()).goToResult();
+                db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .collection("diary").document(YMD).set(hashMap)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d("dataPut", "DocumentSnapshot successfully written!");
+                                ((WritingDiary)getActivity()).goToResult();
+                            }
+
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w("dataPut", "Error writing document", e);
+                            }
+                        });
+
             }
         });
 
     }
-//    private void inputData(@NonNull SimpleCallback<boolean> finishedCallback, Map<String, Object> hashMap, String YMD){
-//        db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-//                .collection("diary").document(YMD).set(hashMap)
-//                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void aVoid) {
-//                        Log.d("dataPut", "DocumentSnapshot successfully written!");
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.w("dataPut", "Error writing document", e);
-//                    }
-//                });
-//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

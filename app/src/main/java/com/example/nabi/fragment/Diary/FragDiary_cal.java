@@ -24,6 +24,12 @@ import android.widget.Button;
 
 import com.example.nabi.DBHelper;
 import com.example.nabi.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
@@ -33,6 +39,7 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
 
 
 public class FragDiary_cal extends Fragment {
@@ -41,7 +48,8 @@ public class FragDiary_cal extends Fragment {
     Button goWriting;
 
     DBHelper dbHelper;
-    private SQLiteDatabase db;
+//    private SQLiteDatabase db;
+    private FirebaseFirestore db;
 
     FragDiary_cal_bottomItem bottomitem;
 
@@ -86,8 +94,6 @@ public class FragDiary_cal extends Fragment {
 
                 Log.i("Year test", select);
 
-
-
                 search(select);
             }
         });
@@ -130,45 +136,69 @@ public class FragDiary_cal extends Fragment {
         selectMood = null;
         bottomitem = new FragDiary_cal_bottomItem();
         goWriting = view.findViewById(R.id.go_writing);
-        dbHelper = new DBHelper(getContext());
-        db = dbHelper.getReadableDatabase();
+//        dbHelper = new DBHelper(getContext());
+//        db = dbHelper.getReadableDatabase();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 
 
+//        String sql = "select diary_keyword, diary_mood from diary_post where reporting_date = '"+selectDate+"'";
+//
+//        if (db != null){
+//            // cursor에 rawQuery문 저장
+//            Cursor cursor = db.rawQuery(sql, null);
+//
+//            if(cursor!=null){
+//                while(cursor.moveToNext()){
+//                    selectKeyword = cursor.getString(0);
+//                    selectMood = cursor.getInt(1);
+//                }
+//            }
+//            cursor.close();
+//        }
+//        dbHelper.close();
+//        db.close();
+
         selectDate = date;
 
-        String sql = "select diary_keyword, diary_mood from diary_post where reporting_date = '"+selectDate+"'";
+        DocumentReference docRef = db.collection("users")
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .collection("diary").document(date);
 
-        if (db != null){
-            // cursor에 rawQuery문 저장
-            Cursor cursor = db.rawQuery(sql, null);
+        Task<DocumentSnapshot> documentSnapshotTask = docRef.get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                Map<String, Object> mymap = document.getData();
+                                selectMood = Integer.parseInt(mymap.get("q1_mood").toString());
+                                selectKeyword = (String) mymap.get("q3_todayKeyword");
 
-            if(cursor!=null){
-                while(cursor.moveToNext()){
-                    selectKeyword = cursor.getString(0);
-                    selectMood = cursor.getInt(1);
-                }
-            }
-            cursor.close();
-        }
-        dbHelper.close();
-        db.close();
+                                if(selectMood != null)
+                                {
+                                    Bundle bundle = new Bundle();
+                                    bundle.putInt("selectMood",selectMood);//번들에 넘길 값 저장
+                                    bundle.putString("selectKeyword",selectKeyword);
+                                    bundle.putString("selectDate",selectDate);
+                                    bottomitem.setArguments(bundle);
 
-        if(selectMood != null)
-        {
-            Bundle bundle = new Bundle();
-            bundle.putInt("selectMood",selectMood);//번들에 넘길 값 저장
-            bundle.putString("selectKeyword",selectKeyword);
-            bundle.putString("selectDate",selectDate);
-            bottomitem.setArguments(bundle);
+                                    goWriting.setVisibility(View.INVISIBLE);
+                                }
 
-            goWriting.setVisibility(View.INVISIBLE);
-        }
-        else
-            goWriting.setVisibility(View.VISIBLE);
 
-        transaction.replace(R.id.Diary_cal_bottom_item, bottomitem);
-        transaction.commitAllowingStateLoss();
+                            }
+                            else    goWriting.setVisibility(View.VISIBLE);
+                            transaction.replace(R.id.Diary_cal_bottom_item, bottomitem);
+                            transaction.commitAllowingStateLoss();
+
+                        }
+
+                    }
+                });
+
+
     }
 
 
