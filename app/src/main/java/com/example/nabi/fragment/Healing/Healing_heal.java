@@ -27,8 +27,8 @@ public class Healing_heal extends Fragment {
 
     @Nullable
     View view;
-    TextView tv_sadTest, tv_result,tv_bdiTest;
-    String result;
+    TextView tv_sadTest, tv_result,tv_bdiTest, tv_bdiFigure;
+    String result, bdiResult;
 
     public static Healing_heal newInstance() {
         return new Healing_heal();
@@ -45,6 +45,7 @@ public class Healing_heal extends Fragment {
         tv_sadTest = view.findViewById(R.id.sad_test);
         tv_result = view.findViewById(R.id.sad_figure);
         tv_bdiTest = view.findViewById(R.id.bdi_test);
+        tv_bdiFigure = view.findViewById(R.id.bdi_figure);
 
         //검사 하러가기 클릭 시 SAD 테스트 화면
         tv_sadTest.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +60,7 @@ public class Healing_heal extends Fragment {
         tv_bdiTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Healing_SadTest.class);
+                Intent intent = new Intent(getActivity(), Healing_BdiTest.class);
                 startActivity(intent);
             }
         });
@@ -69,6 +70,10 @@ public class Healing_heal extends Fragment {
                 .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .collection("healing").document("SAD Result");
 
+        // BDI 결과값 가져오기
+        DocumentReference documentBDI = db.collection("users")
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .collection("healing").document("BDI Result");
 
         // document가져오는 리스너
         Task<DocumentSnapshot> documentSnapshotTask = docRef.get()
@@ -82,6 +87,28 @@ public class Healing_heal extends Fragment {
                                 Map<String, Object> mymap = document.getData();
                                 result = (String) mymap.get("sad_result");
                                 tv_result.setText(result);
+                            }
+
+
+                        }
+
+
+                    }
+                });
+
+
+        // document가져오는 리스너
+        Task<DocumentSnapshot> documentSnapshotTask2 = documentBDI.get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                Log.d("dataOutput", "DocumentSnapshot data: " + document.getData());
+                                Map<String, Object> mymap = document.getData();
+                                bdiResult = (String) mymap.get("bdi_result");
+                                tv_bdiFigure.setText(bdiResult);
                             }
 
 

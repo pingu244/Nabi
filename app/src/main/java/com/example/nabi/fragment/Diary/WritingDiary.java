@@ -61,6 +61,7 @@ public class WritingDiary extends AppCompatActivity {
 
         backbtn = findViewById(R.id.WritingDiary_back);
         backbtn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 finish();

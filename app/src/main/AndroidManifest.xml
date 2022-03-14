@@ -22,7 +22,7 @@
         <activity android:name=".fragment.Diary.WritingDiary" />
         <activity android:name=".fragment.Healing.Healing_SadTest" />
         <activity android:name=".fragment.Healing.SadTestResult" />
-
+        <activity android:name=".fragment.Healing.Healing_BdiTest" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

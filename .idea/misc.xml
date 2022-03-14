@@ -13,6 +13,7 @@
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/activity_diary_result.xml" value="0.36614583333333334" />
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/activity_main.xml" value="0.2046875" />
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/activity_writing_diary.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/bdi_test_back.xml" value="0.36614583333333334" />
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/diary_contain_main.xml" value="0.36614583333333334" />
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/diarylist.xml" value="0.17806484295845998" />
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/frag_diary.xml" value="0.38924930491195553" />
@@ -23,7 +24,31 @@
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/fragment_frag_diary_list.xml" value="0.17806484295845998" />
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/fragment_writing_frag1.xml" value="0.36614583333333334" />
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/fragment_writing_frag2.xml" value="0.2046875" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/fragment_writing_frag3.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/fragment_writing_frag4.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_result.xml" value="0.2046875" />
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test16.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_1.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_10.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_11.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_12.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_13.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_14.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_15.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_17.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_18.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_19.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_2.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_20.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_21.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_3.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_4.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_5.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_6.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_7.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_8.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_9.xml" value="0.36614583333333334" />
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_heal.xml" value="0.36614583333333334" />
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_sad_test.xml" value="0.36614583333333334" />
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/hour3_item.xml" value="0.17806484295845998" />

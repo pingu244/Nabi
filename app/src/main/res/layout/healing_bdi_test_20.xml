@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:layout_marginTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:text="지난주부터 오늘까지 자신의 상태를 \n가장 잘 나타냈다고 생각되는 항목을 \n한 가지 골라주세요."
+        android:textColor="@color/black"/>
+
+    <View
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:layout_width="250dp"
+        android:layout_height="2px"
+        android:background="#D5D5D5"/>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RadioGroup
+            android:id="@+id/bdi_20"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/q20_score_0"
+                android:layout_marginLeft="70dp"
+                android:text="나는 전보다 건강에 대해 \n더 염려하지는 않는다."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <RadioButton
+                android:id="@+id/q20_score_1"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="20dp"
+                android:text="나는 통증, 소화불량, 변비 등의 \n신체적 문제로 걱정하고 있다"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <RadioButton
+                android:id="@+id/q20_score_2"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="20dp"
+                android:text="나는 건강이 너무 걱정되어 \n다른 일을 생각하기 힘들다"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <RadioButton
+                android:id="@+id/q20_score_3"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="20dp"
+                android:text="나는 건강이 너무 걱정되어 \n다른 일을 아무것도 생각할 수가 없다."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RadioGroup>
+
+
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp">
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:text="20/21"
+            android:textColor="@color/black" />
+        <Button
+            android:id="@+id/twentieth_next"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00ff0000"
+            android:text="다음 >"/>
+
+    </FrameLayout>
+
+</LinearLayout>

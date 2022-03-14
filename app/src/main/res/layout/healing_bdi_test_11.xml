@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:layout_marginTop="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:text="지난주부터 오늘까지 자신의 상태를 \n가장 잘 나타냈다고 생각되는 항목을 \n한 가지 골라주세요."
+        android:textColor="@color/black"/>
+
+    <View
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:layout_width="250dp"
+        android:layout_height="2px"
+        android:background="#D5D5D5"/>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RadioGroup
+            android:id="@+id/bdi_11"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/q11_score_0"
+                android:layout_marginLeft="70dp"
+                android:text="나는 전보다 더 짜증을 내지는 않는다."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <RadioButton
+                android:id="@+id/q11_score_1"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="20dp"
+                android:text="나는 전보다 더 쉽게 짜증이 나고\n귀찮아진다."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <RadioButton
+                android:id="@+id/q11_score_2"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="20dp"
+                android:text="나는 요즘 항상 짜증이 난다. "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <RadioButton
+                android:id="@+id/q11_score_3"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="20dp"
+                android:text="전에는 짜증나던 일에 요즘은 너무 지쳐서 \n짜증조차 나지 않는다."
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </RadioGroup>
+
+
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp">
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:text="11/21"
+            android:textColor="@color/black" />
+        <Button
+            android:id="@+id/eleventh_next"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00ff0000"
+            android:text="다음 >"/>
+
+    </FrameLayout>
+
+</LinearLayout>
