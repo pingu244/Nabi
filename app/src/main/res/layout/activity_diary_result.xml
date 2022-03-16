@@ -7,8 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.Diary.DiaryResult"
-    android:orientation="vertical"
-    android:background="@drawable/diary_sunny_background">
+    android:orientation="vertical">
 
     <ImageButton
         android:layout_marginTop="30dp"
@@ -31,7 +30,6 @@
         android:text="0000년 00월 00일"/>
 
 
-
     <LinearLayout
         android:layout_marginRight="25dp"
         android:layout_marginLeft="25dp"
@@ -47,12 +45,15 @@
             android:layout_height="wrap_content"
             android:padding="10dp">
             <ImageButton
+                android:id="@+id/diary_result_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginTop="5dp"
                 android:src="@drawable/diary_result_edit"
                 android:background="#00000000"
-                android:layout_gravity="right"/>
+                android:layout_gravity="right"
+                android:scaleType="centerInside"/>
         </FrameLayout>
         <ScrollView
             android:layout_width="match_parent"

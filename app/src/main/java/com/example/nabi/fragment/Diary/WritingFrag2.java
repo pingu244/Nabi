@@ -69,11 +69,9 @@ public class WritingFrag2 extends Fragment {
 
 
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
 
         // 감정 버튼들 설정
         for (int i = 0; i<6; i++)
@@ -84,6 +82,7 @@ public class WritingFrag2 extends Fragment {
                 final int index2;
                 index2 = j;
                 mood[index1][index2] = getActivity().findViewById(mood_ids[index1][index2]);
+
                 mood[index1][index2].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -116,12 +115,53 @@ public class WritingFrag2 extends Fragment {
                         }
                         else
                             Toast.makeText(getContext(), "6개까지 선택해주세요", Toast.LENGTH_SHORT).show();
-
                     }
+
                 });
+
+
             }
 
         }
+
+
+        // edit 하는 경우, 미리 선택되어 있게 하
+        if(((WritingDiary)getActivity()).q3_todayKeyword != null)
+        {
+            String[] EditArray = ((WritingDiary)getActivity()).q3_todayKeyword.split(",");
+            for (int i = 0; i<6; i++) {
+                final int index1;
+                index1 = i;
+                for (int j = 0; j < 6; j++) {
+                    final int index2;
+                    index2 = j;
+                    mood[index1][index2] = getActivity().findViewById(mood_ids[index1][index2]);
+
+                    for (int w = 0; w < EditArray.length; w++) {
+                        if (mood[index1][index2].getText().equals(EditArray[w])) {
+
+                            // 선택 버튼 배경색깔을 선택한 색으로 바꾸기
+                            ViewCompat.setBackgroundTintList(mood[index1][index2], ColorStateList.valueOf(Color.parseColor("#686868")));
+                            // 선택 버튼 글씨색깔을 선택한 색으로 바꾸기
+                            mood[index1][index2].setTextColor(Color.parseColor("#ffffff"));
+                            // 선택버튼 생성
+                            createBtn(mood[index1][index2].getText().toString());
+                            // 선택버튼 개수 조정
+                            selected_count++;
+                            // 선택여부 조정
+                            iswordselected[index1][index2] = true;
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+
+
+
+
 
 
         // 두번째 페이지의 이전으로 이동하는 버튼이어서 이름을 이렇게 지음(페이지_prior)
@@ -133,6 +173,7 @@ public class WritingFrag2 extends Fragment {
                 ((WritingDiary)getActivity()).replaceFragment("page1",WritingFrag1.newInstance());
             }
         });
+
         // 다음 버튼 작동 : 세번째 페이지로 이동
         Button second_next = getActivity().findViewById(R.id.second_next);
         second_next.setOnClickListener(new View.OnClickListener() {
@@ -207,19 +248,13 @@ public class WritingFrag2 extends Fragment {
                 Log.v("frag2", ((WritingDiary)getActivity()).q3_todayKeyword);
             }
         });
-
-
-
-
-
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_writing_frag2, container, false);
+
         return view;
     }
 
@@ -253,12 +288,6 @@ public class WritingFrag2 extends Fragment {
                 txt.setId(selectbtn_ids[j]);    // 아이디 지정: selectbtn_ids 중에 지정됨
                 isSelectbtnExist[j] = true;
                 selectbtn.add(selectbtn_ids[j]);    // 동적 배열에 저장
-//                txt.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//
-//                    }
-//                });
                 break;
             }
         }

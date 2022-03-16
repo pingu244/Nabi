@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.nabi.DBHelper;
+import com.example.nabi.MainActivity;
 import com.example.nabi.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -123,6 +124,8 @@ public class FragDiary_cal extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), WritingDiary.class);
+                // 오늘 날씨 정보 보내서 배경 바꾸기
+                intent.putExtra("diaryWrite_todayWeather", ((MainActivity)getActivity()).diary_weather);
                 startActivity(intent);
             }
         });

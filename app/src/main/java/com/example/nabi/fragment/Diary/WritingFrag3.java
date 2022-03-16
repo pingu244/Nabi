@@ -47,6 +47,10 @@ public class WritingFrag3 extends Fragment {
 
         content_3 = getActivity().findViewById(R.id.diary_content_3);
 
+        // 수정하는거면 값 띄우기
+        if(((WritingDiary)getActivity()).q4_why != null)
+            content_3.setText(((WritingDiary)getActivity()).q4_why);
+
         // 이전 버튼 작동 : 두번째 페이지로 이동
         Button third_prior = getActivity().findViewById(R.id.third_prior);
         third_prior.setOnClickListener(new View.OnClickListener() {

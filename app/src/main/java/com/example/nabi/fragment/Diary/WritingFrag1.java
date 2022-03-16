@@ -27,7 +27,6 @@ public class WritingFrag1 extends Fragment {
 
     WritingFrag2 frag2 = new WritingFrag2();
     EditText content_1;
-    private SQLiteDatabase db;
     DBHelper dbHelper;
     Integer seekbarValue = 3;
 
@@ -43,17 +42,12 @@ public class WritingFrag1 extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        dbHelper = new DBHelper(requireContext());
-        db = dbHelper.getWritableDatabase();
-
         content_1 = view.findViewById(R.id.diary_content_1);
 
-        Calendar cal = Calendar.getInstance();
-        int cYEAR = cal.get(Calendar.YEAR);
-        int cMonth = cal.get(Calendar.MONTH);
-        int cDay = cal.get(Calendar.DATE);
+        // 수정하는거면 값 띄우기
+        if(((WritingDiary)getActivity()).q2_whatHappen != null)
+            content_1.setText(((WritingDiary)getActivity()).q2_whatHappen);
 
-        String YMD = (cYEAR+"년 "+(cMonth+1)+"월 "+cDay+"일");
 
         // 첫번째 페이지에 있는 '다음'버튼이어서 이름을 이렇게 지음 (페이지번째_next)
         // '다음'버튼을 누르면 다음 fragment로 넘어감
@@ -64,9 +58,7 @@ public class WritingFrag1 extends Fragment {
                 ((WritingDiary)getActivity()).replaceFragment("page2", WritingFrag2.newInstance());
                 ((WritingDiary)getActivity()).q1_mood = seekbarValue;
                 ((WritingDiary)getActivity()).q2_whatHappen = content_1.getText().toString();
-                // db에 넣는 과정
-//                db.execSQL("insert into diary_post (post_id, user_id, diary_title, content_1, diary_weather,reporting_date) " +
-//                        "values (?, 'jungin-2','11월 30일의 일기','"+content_1.getText().toString()+"',0,'"+YMD+"')");
+
                 Log.v("frag1",((WritingDiary)getActivity()).q1_mood.toString());
                 Log.v("frag11",((WritingDiary)getActivity()).q2_whatHappen);
             }
@@ -75,6 +67,15 @@ public class WritingFrag1 extends Fragment {
         // 질문1: 기분 색칠
         SeekBar seekbar = getActivity().findViewById(R.id.seekbar);
         TextView seekbar_per = getActivity().findViewById(R.id.seekbar_percent);
+
+        // 수정하는거면 미리 설정
+        if(((WritingDiary)getActivity()).q1_mood != -1)
+        {
+            seekbar.setProgress(((WritingDiary)getActivity()).q1_mood);
+            int whatper = ((WritingDiary)getActivity()).q1_mood * 20;
+            seekbar_per.setText(whatper+ "%");
+        }
+
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
 
             @Override
