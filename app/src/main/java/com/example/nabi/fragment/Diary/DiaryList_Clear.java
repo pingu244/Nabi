@@ -34,12 +34,17 @@ public class DiaryList_Clear extends Fragment {
     RecyclerView diaryListView;
     DiaryListViewAdapter diaryListViewAdapter;
     ArrayList<DiaryListItem> diaryListItems = new ArrayList<DiaryListItem>();
+    String selectMonth = "1";
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.diarylist_adapter, container,false);
         initUI(view);
         getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_clear);
+
+        if (getArguments() != null)
+            selectMonth = getArguments().getString("selectedMonth"); // 프래그먼트1에서 받아온 값 넣기
 
         loadNoteListData();
 
@@ -69,7 +74,7 @@ public class DiaryList_Clear extends Fragment {
         // 파이어스토어 경로지정 + weather가 0인 문서들 가져오기
         db.collection("users")
                 .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .collection("diary").document("2022").collection("2")
+                .collection("diary").document("2022").collection(selectMonth)
                 .whereEqualTo("weather", 0)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -95,7 +100,7 @@ public class DiaryList_Clear extends Fragment {
                                 {
                                     db.collection("users")
                                             .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                            .collection("diary").document("2022").collection("2")
+                                            .collection("diary").document("2022").collection(selectMonth)
                                             .whereEqualTo("weather", 0)
                                             .get()
                                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -108,7 +113,7 @@ public class DiaryList_Clear extends Fragment {
                                                             if(pos==i)
                                                             {
                                                                 Intent intent = new Intent(getActivity(), DiaryResult.class);
-                                                                intent.putExtra("SelectedDate", "2022/2/"+document.getId());
+                                                                intent.putExtra("SelectedDate", "2022/"+selectMonth+"/"+document.getId());
                                                                 startActivity(intent);
                                                             }
                                                             i++;

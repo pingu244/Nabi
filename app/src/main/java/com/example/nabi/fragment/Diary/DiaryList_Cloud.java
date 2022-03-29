@@ -33,6 +33,8 @@ public class DiaryList_Cloud extends Fragment {
     RecyclerView diaryListView;
     DiaryListViewAdapter diaryListViewAdapter;
     ArrayList<DiaryListItem> diaryListItems = new ArrayList<DiaryListItem>();
+    String selectMonth;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
@@ -41,7 +43,11 @@ public class DiaryList_Cloud extends Fragment {
 
         getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_cloud);
 
+        if (getArguments() != null)
+            selectMonth = getArguments().getString("selectedMonth"); // 프래그먼트1에서 받아온 값 넣기
+
         loadNoteListData();
+
 
 
 
@@ -68,7 +74,7 @@ public class DiaryList_Cloud extends Fragment {
         // 파이어스토어 경로지정 + weather가 2인 문서들 가져오기
         db.collection("users")
                 .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .collection("diary").document("2022").collection("2")
+                .collection("diary").document("2022").collection(selectMonth)
                 .whereEqualTo("weather", 2)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -94,7 +100,7 @@ public class DiaryList_Cloud extends Fragment {
                                 {
                                     db.collection("users")
                                             .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                            .collection("diary").document("2022").collection("2")
+                                            .collection("diary").document("2022").collection(selectMonth)
                                             .whereEqualTo("weather", 2)
                                             .get()
                                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -107,7 +113,7 @@ public class DiaryList_Cloud extends Fragment {
                                                             if(pos==i)
                                                             {
                                                                 Intent intent = new Intent(getActivity(), DiaryResult.class);
-                                                                intent.putExtra("SelectedDate", "2022/2/"+document.getId());
+                                                                intent.putExtra("SelectedDate", "2022/"+selectMonth+"/"+document.getId());
                                                                 startActivity(intent);
                                                             }
                                                             i++;

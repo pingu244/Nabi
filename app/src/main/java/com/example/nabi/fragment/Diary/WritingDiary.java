@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import com.example.nabi.DBHelper;
 import com.example.nabi.R;
 
 import java.util.Calendar;
+import java.util.HashMap;
 
 //일기 쓰는 부분 activity
 
@@ -37,7 +39,8 @@ public class WritingDiary extends AppCompatActivity {
     //        "values (?, 'jungin-2','11월 30일의 일기','"+content_1.getText().toString()+"',0,'"+YMD+"')");
 
 
-    String YMD;
+    public String YMD;
+    public int weather;
 
     // fragment들에서 받아올 데이터들을 받을 변수
     public Integer q1_mood;
@@ -45,6 +48,9 @@ public class WritingDiary extends AppCompatActivity {
     public String q3_todayKeyword;
     public String q4_why;
     public String q5_again;
+
+    public int today_weather;
+
 
 
 
@@ -56,9 +62,8 @@ public class WritingDiary extends AppCompatActivity {
         fragmentTransaction.add(R.id.writingdiaryfrag, frag1, "page1").commit(); // 첫번째 페이지 보여주기
 
         today_date = findViewById(R.id.today_date);
-//        todaydate = new Date(System.currentTimeMillis());
-//        today_date.setText(new SimpleDateFormat("yyyy년 MM월 d일").format(todaydate));    // 오늘 날짜 띄우기
 
+        // x 버튼
         backbtn = findViewById(R.id.WritingDiary_back);
         backbtn.setOnClickListener(new View.OnClickListener() {
 
@@ -67,12 +72,65 @@ public class WritingDiary extends AppCompatActivity {
                 finish();
             }
         });
+
         Calendar cal = Calendar.getInstance();
         int cYEAR = cal.get(Calendar.YEAR);
         int cMonth = cal.get(Calendar.MONTH)+1;
         int cDay = cal.get(Calendar.DATE);
         today_date.setText(cYEAR+"년 "+cMonth+"월 "+cDay+"일");
         YMD = (cYEAR+"/"+cMonth+"/"+cDay);
+
+        // 수정하기 버튼 누르면 오는 데이터들
+        Intent receive_intent = getIntent();
+
+//        YMD = (String) hashMap.get("finalDate");
+        String date = receive_intent.getStringExtra("EditDiary_date");
+        if(date != null)
+        {
+            String[] date_array = date.split("/");
+            today_date.setText(date_array[0]+"년 "+date_array[1]+"월 "+date_array[2]+"일");
+        }
+
+
+
+//        q1_mood = Integer.parseInt(hashMap.get("diary_mood").toString());
+//        q2_whatHappen = (String) hashMap.get("content_1");
+//        q3_todayKeyword = (String) hashMap.get("diary_keyword");
+//        q4_why = (String) hashMap.get("content_2");
+//        q5_again = (String) hashMap.get("content_3");
+//        weather = Integer.parseInt(hashMap.get("diary_weather").toString());
+
+        q1_mood = receive_intent.getIntExtra("EditDiary_q1", -1);
+        q2_whatHappen = receive_intent.getStringExtra("EditDiary_q2");
+        q3_todayKeyword = receive_intent.getStringExtra("EditDiary_q3");
+        q4_why = receive_intent.getStringExtra("EditDiary_q4");
+        q5_again = receive_intent.getStringExtra("EditDiary_q5");
+        weather = receive_intent.getIntExtra("EditDiary_weather", -1);
+
+
+        today_weather = receive_intent.getIntExtra("diaryWrite_todayWeather", -1);
+        if(weather == -1)
+            weather = today_weather;
+
+        // 날씨따라 배경 바꾸기
+        switch (weather)
+        {
+            case 0:
+                findViewById(R.id.activity_writing_diary).setBackgroundResource(R.drawable.diary_sunny_background);
+                break;
+            case 1:
+                findViewById(R.id.activity_writing_diary).setBackgroundResource(R.drawable.diary_halfcloudy_background);
+                break;
+            case 2:
+                findViewById(R.id.activity_writing_diary).setBackgroundResource(R.drawable.diary_cloudy_background);
+                break;
+            case 3:
+                findViewById(R.id.activity_writing_diary).setBackgroundResource(R.drawable.diary_rainy_background);
+                break;
+            case 4:
+                findViewById(R.id.activity_writing_diary).setBackgroundResource(R.drawable.diary_snowy_background);
+                break;
+        }
 
 
 

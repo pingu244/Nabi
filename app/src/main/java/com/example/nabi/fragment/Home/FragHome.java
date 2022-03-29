@@ -37,6 +37,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.nabi.MainActivity;
+import com.example.nabi.fragment.Diary.WritingDiary;
 import com.example.nabi.fragment.Home.Day5_Adapter;
 import com.example.nabi.R;
 import com.example.nabi.fragment.Home.Hour3_Adapter;
@@ -92,8 +94,9 @@ public class FragHome extends Fragment {
     RecyclerView day5_recyclerView;
 
     RequestQueue queue;
-    @Override
 
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
@@ -137,6 +140,7 @@ public class FragHome extends Fragment {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         day5_recyclerView.setLayoutManager(layoutManager);
         day5_recyclerView.setAdapter(day5_adapter);
+
 
         return view;
 
@@ -431,24 +435,32 @@ public class FragHome extends Fragment {
                 main = jsonObject.getJSONArray("weather").getJSONObject(0).getString("main");
                 if (main.equals("Clear")) { //맑은 날
                     item.setImageView(R.drawable.ic_baseline_wb_sunny_24);
+                    if(i==0)    // 오늘 일기 배경바뀌게 하기위함
+                        ((MainActivity)getActivity()).diary_weather = 0;
                 }
 
                 else if (main.equals("Mist")||main.equals("Smoke")||main.equals("Haze")||main.equals("Dust")){ //약간 흐린
                     item.setImageView(R.drawable.ic_baseline_cloud_queue_24);
+                    if(i==0)    // 오늘 일기 배경바뀌게 하기위함
+                        ((MainActivity)getActivity()).diary_weather = 1;
                 }
 
                 else if (main.equals("Thunderstorm") ||main.equals("Clouds")||main.equals("Fog") ||main.equals("Sand")||main.equals("Ash")||main.equals("Squall")||main.equals("Tornado")){ //흐린
                     item.setImageView(R.drawable.ic_baseline_cloud_24);
+                    if(i==0)    // 오늘 일기 배경바뀌게 하기위함
+                        ((MainActivity)getActivity()).diary_weather = 2;
                 }
 
                 else if (main.equals("Rain")||main.equals("Drizzle")){ //비
                     item.setImageView(R.drawable.ic_baseline_opacity_24);
+                    if(i==0)    // 오늘 일기 배경바뀌게 하기위함
+                        ((MainActivity)getActivity()).diary_weather = 3;
                 }
 
                 else if ( main.equals("Snow")){
-
                     item.setImageView(R.drawable.ic_baseline_ac_unit_24);
-
+                    if(i==0)    // 오늘 일기 배경바뀌게 하기위함
+                        ((MainActivity)getActivity()).diary_weather = 4;
                 }
 
                 day5_list.add(item);
@@ -486,6 +498,7 @@ public class FragHome extends Fragment {
             }
 
             description = current.getJSONArray("weather").getJSONObject(0).getString("main"); // 현재 날씨
+//            ((WritingDiary)getActivity()).today_weather = description;  // public변수에 오늘 날씨 저장 -> 다이어리에서 사용하기위함
             nowTemp = current.getString(("temp")); //현재 온도
             uv = current.getString(("uvi")); //자외선 지수
             humidity = daily.getJSONObject(0).getString("humidity"); //습도
@@ -504,22 +517,18 @@ public class FragHome extends Fragment {
             else if (description.equals("Mist")||description.equals("Smoke")||description.equals("Haze")||description.equals("Dust")){//안개,구름 조금
                 tv_weather.setText("조금 흐림 "+minTemp+"/"+maxTemp);
                 weatherImg.setImageResource(R.drawable.ic_baseline_cloud_queue_24);
-
             }
             else if (description.equals("Thunderstorm") ||description.equals("Clouds")||description.equals("Fog") ||description.equals("Sand")||description.equals("Ash")||description.equals("Squall")||description.equals("Tornado")){//천둥번개, 구름
                 tv_weather.setText("흐림 "+minTemp+"/"+maxTemp);
                 weatherImg.setImageResource(R.drawable.ic_baseline_cloud_24);
-
             }
             else if (description.equals("Rain")||description.equals("Drizzle")){//비, 이슬비
                 tv_weather.setText("비 "+minTemp+"/"+maxTemp);
                 weatherImg.setImageResource(R.drawable.ic_baseline_opacity_24);
-
             }
             else if (description.equals("Snow")){//눈
                 tv_weather.setText("눈 "+minTemp+"/"+maxTemp);
                 weatherImg.setImageResource(R.drawable.ic_baseline_ac_unit_24);
-
             }else{
                 tv_weather.setText(description);
                 //weatherImg.setImageResource(R.drawable.ic_baseline_ac_unit_24);

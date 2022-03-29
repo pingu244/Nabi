@@ -71,7 +71,7 @@ public class FragDiary extends Fragment {
                         break;
                     case 1:
                         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.list_container, new DiaryList_Clear()).commitAllowingStateLoss();
-                        //refresh(); //어댑터에 notifyDataSetChanged
+//                        refresh(); //어댑터에 notifyDataSetChanged
                         break;
                 }
 

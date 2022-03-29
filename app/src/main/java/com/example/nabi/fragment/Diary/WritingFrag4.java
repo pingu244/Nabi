@@ -39,6 +39,7 @@ public class WritingFrag4 extends Fragment {
 
     Integer one;
     String two,three,four,five;
+    int six;
 
     // 프래그먼트간의 이동 위한 인스턴스 생성
     public static WritingFrag4 newInstance() {
@@ -51,6 +52,10 @@ public class WritingFrag4 extends Fragment {
 
         btnComplete = view.findViewById(R.id.fourth_complete);
         content_4 = getActivity().findViewById(R.id.diary_content_4);
+
+        // 수정하는거면 값 띄우기
+        if(((WritingDiary)getActivity()).q5_again != null)
+            content_4.setText(((WritingDiary)getActivity()).q5_again);
 
         // 이전 버튼 작동 : 두번째 페이지로 이동
         Button fourth_prior = getActivity().findViewById(R.id.fourth_prior);
@@ -69,7 +74,8 @@ public class WritingFrag4 extends Fragment {
         int cYEAR = cal.get(Calendar.YEAR);
         int cMonth = cal.get(Calendar.MONTH);
         int cDay = cal.get(Calendar.DATE);
-        String YMD = (cYEAR+"/"+(cMonth+1)+"/"+cDay);
+//        String YMD = (cYEAR+"/"+(cMonth+1)+"/"+cDay);
+        String YMD = ((WritingDiary)getActivity()).YMD;
 
         // '완료'버튼 눌렀을 때
         btnComplete.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +88,7 @@ public class WritingFrag4 extends Fragment {
                 three = ((WritingDiary)getActivity()).q3_todayKeyword;
                 four = ((WritingDiary)getActivity()).q4_why;
                 five = ((WritingDiary)getActivity()).q5_again;
+                six = ((WritingDiary)getActivity()).weather;
 
                 Log.v("variable",one.toString());
                 Log.v("variable",two);
@@ -105,7 +112,7 @@ public class WritingFrag4 extends Fragment {
                 hashMap.put("q3_todayKeyword", three);
                 hashMap.put("q4_why", four);
                 hashMap.put("q5_again", five);
-                hashMap.put("weather", 0);
+                hashMap.put("weather", six);
 
 
                 db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())

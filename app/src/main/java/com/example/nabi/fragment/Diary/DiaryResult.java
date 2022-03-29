@@ -38,7 +38,7 @@ import java.util.concurrent.CountDownLatch;
 public class DiaryResult extends AppCompatActivity {
 
     TextView date, mood_per, whatHappen, keywords, why, again;
-    ImageButton backToDiaryMain;
+    ImageButton backToDiaryMain, editBtn;
     ProgressBar mood;
     FlexboxLayout selected_keywords;
 
@@ -69,6 +69,7 @@ public class DiaryResult extends AppCompatActivity {
         why = findViewById(R.id.DiaryResult_2);
         again = findViewById(R.id.DiaryResult_3);
         selected_keywords = findViewById(R.id.DiaryResult_selctMood);
+        editBtn = findViewById(R.id.diary_result_edit);
 
         // 뒤로가기
         backToDiaryMain.setOnClickListener(new View.OnClickListener() {
@@ -78,9 +79,11 @@ public class DiaryResult extends AppCompatActivity {
             }
         });
 
+
         // WritingDiary 에서 여기로 intent
         Intent receive_intent = getIntent();
         String diary_writing_date = receive_intent.getStringExtra("Diary_WritingResult");
+        // 목록에서 선택한다면 여기로 intent
         String selected_date = receive_intent.getStringExtra("SelectedDate");
 
         // intent한 값으로 날짜 설정
@@ -143,6 +146,26 @@ public class DiaryResult extends AppCompatActivity {
                         content_3 = (String) mymap.get("q5_again");
                         diary_weather = Integer.parseInt(mymap.get("weather").toString());
 
+                        // 0. 날씨따라 배경 바꾸기
+                        switch (diary_weather)
+                        {
+                            case 0:
+                                findViewById(R.id.bg_diary).setBackgroundResource(R.drawable.diary_sunny_background);
+                                break;
+                            case 1:
+                                findViewById(R.id.bg_diary).setBackgroundResource(R.drawable.diary_halfcloudy_background);
+                                break;
+                            case 2:
+                                findViewById(R.id.bg_diary).setBackgroundResource(R.drawable.diary_cloudy_background);
+                                break;
+                            case 3:
+                                findViewById(R.id.bg_diary).setBackgroundResource(R.drawable.diary_rainy_background);
+                                break;
+                            case 4:
+                                findViewById(R.id.bg_diary).setBackgroundResource(R.drawable.diary_snowy_background);
+                                break;
+                        }
+
                         // 1. 기분 어느정도인지 나타내기
                         mood.setProgress(diary_mood);
                         switch (diary_mood)
@@ -200,6 +223,26 @@ public class DiaryResult extends AppCompatActivity {
 
                         // 5. 다시 살아본다면?
                         again.setText(content_3);
+
+                        // 수정하기
+                        editBtn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(DiaryResult.this, WritingDiary.class);
+
+                                intent.putExtra("EditDiary_date", finalDate);
+                                intent.putExtra("EditDiary_q1", diary_mood);
+                                intent.putExtra("EditDiary_q2", content_1);
+                                intent.putExtra("EditDiary_q3", diary_keyword);
+                                intent.putExtra("EditDiary_q4", content_2);
+                                intent.putExtra("EditDiary_q5", content_3);
+                                intent.putExtra("EditDiary_weather", diary_weather);
+
+                                startActivity(intent);
+                                finish();
+
+                            }
+                        });
 
                     } else {
                         Log.d("dataOutput", "No such document");
