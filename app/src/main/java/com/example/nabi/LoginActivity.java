@@ -36,11 +36,14 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.ktx.Firebase;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -128,28 +131,8 @@ public class LoginActivity extends AppCompatActivity {
         pwdReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                final EditText et = new EditText(LoginActivity.this);
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                builder.setTitle("비밀번호 재설정")
-                        .setMessage("이메일을 입력해주세요")
-                        .setView(et); //제목
-                builder.setPositiveButton("입력",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                firebaseAuth.sendPasswordResetEmail(et.getText().toString()).
-                                        addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if(task.isSuccessful()){
-                                                    Toast.makeText(getApplicationContext(), "이메일로 링크를 발송했습니다", Toast.LENGTH_LONG).show();
-                                                }
-                                            }
-                                        });
-                            }
-                        });
-                builder.show();
+                EditPasswordFrag p = new EditPasswordFrag();
+                p.show(getSupportFragmentManager(), "EditPassword");
             }
         });
 
@@ -282,14 +265,37 @@ public class LoginActivity extends AppCompatActivity {
     }
     //....페이스북 로그인 필요한 코드들 끝
 
-
+    // ~님 환영합니다!
+    String nickname;
+    Integer gloomyWeather = -1;
     private void updateUI(FirebaseUser user) { //update ui code here
-        if (user != null) {
-            Toast.makeText(LoginActivity.this, firebaseAuth.getCurrentUser().getDisplayName()+"님 환영합니다!", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("users")
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        Task<DocumentSnapshot> documentSnapshotTask = docRef.get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                Map<String, Object> mymap = document.getData();
+                                nickname = (String) mymap.get("name");
+//                                gloomyWeather = Integer.parseInt(mymap.get("gloomyWeather").toString());
+                                Toast.makeText(LoginActivity.this, nickname+"님 환영합니다!", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
+                                finish();
+//                                if(gloomyWeather == -1)
+//                                {
+//                                    GloomyWeatherFrag g = new GloomyWeatherFrag();
+//                                    g.show(getSupportFragmentManager(),"setGloomyWeather");
+//                                }
+                            }
+                        }
+                    }
+                });
+
     }
 
 

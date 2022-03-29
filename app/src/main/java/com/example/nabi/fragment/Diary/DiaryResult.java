@@ -54,7 +54,7 @@ public class DiaryResult extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diary_result);
+//        setContentView(R.layout.activity_diary_result);
 
 //        dbHelper = new DBHelper(this);
 //        db = dbHelper.getReadableDatabase();
@@ -165,6 +165,8 @@ public class DiaryResult extends AppCompatActivity {
                                 findViewById(R.id.bg_diary).setBackgroundResource(R.drawable.diary_snowy_background);
                                 break;
                         }
+
+                        setContentView(R.layout.activity_diary_result);
 
                         // 1. 기분 어느정도인지 나타내기
                         mood.setProgress(diary_mood);

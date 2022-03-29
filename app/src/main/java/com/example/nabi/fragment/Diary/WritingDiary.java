@@ -100,6 +100,7 @@ public class WritingDiary extends AppCompatActivity {
 //        q5_again = (String) hashMap.get("content_3");
 //        weather = Integer.parseInt(hashMap.get("diary_weather").toString());
 
+        YMD = receive_intent.getStringExtra("EditDiary_date");
         q1_mood = receive_intent.getIntExtra("EditDiary_q1", -1);
         q2_whatHappen = receive_intent.getStringExtra("EditDiary_q2");
         q3_todayKeyword = receive_intent.getStringExtra("EditDiary_q3");

@@ -102,6 +102,7 @@ public class JoinActivity extends AppCompatActivity {
                                     hashMap.put("uid", uid);
                                     hashMap.put("email", email);
                                     hashMap.put("name", nname);
+                                    hashMap.put("gloomyWeather", "-1");
 
                                     db.collection("users").document(uid)
                                             .set(hashMap)
@@ -123,7 +124,6 @@ public class JoinActivity extends AppCompatActivity {
                                     startActivity(intent);
                                     finish();
                                     Toast.makeText(JoinActivity.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
-
                                 } else{ // 가입 실패시
                                     mDialog.dismiss();
                                     Toast.makeText(JoinActivity.this, "다시 한 번 확인해 주세요.", Toast.LENGTH_SHORT).show();

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/dialogfraground"
+        android:padding="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="계정 삭제하기"
+            android:textColor="@color/black"
+            android:textSize="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="정말 계정을 삭제하시겠습니까?"
+            android:textColor="@color/black"
+            android:textSize="15dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="계정을 삭제하면 모든 활동 정보가 사라지고\n다시 되돌릴 수 없게 됩니다."
+            android:textColor="@color/black"
+            android:textSize="15dp"/>
+
+        <TextView
+            android:id="@+id/mypage_deleteBtn"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:paddingVertical="7dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/dialogfragbtn"
+            android:text="계정 삭제"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/mypage_delete_cancel"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:paddingVertical="7dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dialogfragbtn_cancel"
+            android:text="닫기"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

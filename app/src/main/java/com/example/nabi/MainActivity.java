@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     Fragment frag_diary;
     Fragment frag_remind;
 
-    public int diary_weather;   // home화면에서 writingDiary로 전달하기 위함
+    public int diary_weather = -1;   // home화면에서 writingDiary로 전달하기 위함
 
     BottomNavigationView bottomNavigation;
 

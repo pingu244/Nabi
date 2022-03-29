@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -19,6 +20,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,11 +40,20 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.nabi.GloomyWeatherFrag;
+import com.example.nabi.LoginActivity;
 import com.example.nabi.MainActivity;
+import com.example.nabi.fragment.Diary.DiaryResult;
 import com.example.nabi.fragment.Diary.WritingDiary;
 import com.example.nabi.fragment.Home.Day5_Adapter;
 import com.example.nabi.R;
 import com.example.nabi.fragment.Home.Hour3_Adapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -60,6 +72,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class FragHome extends Fragment {
 
@@ -95,6 +108,9 @@ public class FragHome extends Fragment {
 
     RequestQueue queue;
 
+    String nickname;
+    Integer gloomyWeather = -1;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -115,6 +131,45 @@ public class FragHome extends Fragment {
         tv_feelWeather = view.findViewById(R.id.tv_feelWeather);
         hour3_recyclerView = view.findViewById(R.id.hour3_view);
         day5_recyclerView = view.findViewById(R.id.day5_view);
+
+        // 마이페이지 버튼
+        ImageButton mypageBtn = view.findViewById(R.id.mypageBtn);
+        mypageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Mypage.class);
+                startActivity(intent);
+            }
+        });
+
+
+        // 우울설문했는지 확인
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("users")
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        Task<DocumentSnapshot> documentSnapshotTask = docRef.get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                Map<String, Object> mymap = document.getData();
+                                nickname = (String) mymap.get("name");
+                                try {
+                                    gloomyWeather = Integer.parseInt(mymap.get("gloomyWeather").toString());
+                                } catch (Exception e){}
+//                                Toast.makeText(getActivity(), nickname+"님 환영합니다!", Toast.LENGTH_SHORT).show();
+                                if(gloomyWeather == -1)
+                                {
+                                    GloomyWeatherFrag g = new GloomyWeatherFrag();
+                                    g.show(getParentFragmentManager(),"setGloomyWeather");
+                                }
+                            }
+                        }
+                    }
+                });
+
 
 
         long now = System.currentTimeMillis();
@@ -435,35 +490,62 @@ public class FragHome extends Fragment {
                 main = jsonObject.getJSONArray("weather").getJSONObject(0).getString("main");
                 if (main.equals("Clear")) { //맑은 날
                     item.setImageView(R.drawable.ic_baseline_wb_sunny_24);
-                    if(i==0)    // 오늘 일기 배경바뀌게 하기위함
-                        ((MainActivity)getActivity()).diary_weather = 0;
                 }
 
                 else if (main.equals("Mist")||main.equals("Smoke")||main.equals("Haze")||main.equals("Dust")){ //약간 흐린
                     item.setImageView(R.drawable.ic_baseline_cloud_queue_24);
-                    if(i==0)    // 오늘 일기 배경바뀌게 하기위함
-                        ((MainActivity)getActivity()).diary_weather = 1;
                 }
 
                 else if (main.equals("Thunderstorm") ||main.equals("Clouds")||main.equals("Fog") ||main.equals("Sand")||main.equals("Ash")||main.equals("Squall")||main.equals("Tornado")){ //흐린
                     item.setImageView(R.drawable.ic_baseline_cloud_24);
-                    if(i==0)    // 오늘 일기 배경바뀌게 하기위함
-                        ((MainActivity)getActivity()).diary_weather = 2;
                 }
 
                 else if (main.equals("Rain")||main.equals("Drizzle")){ //비
                     item.setImageView(R.drawable.ic_baseline_opacity_24);
-                    if(i==0)    // 오늘 일기 배경바뀌게 하기위함
-                        ((MainActivity)getActivity()).diary_weather = 3;
                 }
 
                 else if ( main.equals("Snow")){
                     item.setImageView(R.drawable.ic_baseline_ac_unit_24);
-                    if(i==0)    // 오늘 일기 배경바뀌게 하기위함
-                        ((MainActivity)getActivity()).diary_weather = 4;
                 }
 
                 day5_list.add(item);
+
+                // 오늘 일기 배경바뀌게 하기위함
+                if(i==0)
+                {
+                    try {
+                        switch (main){
+                            case "Clear":
+                                ((MainActivity)getActivity()).diary_weather = 0; break;
+                            case "Mist":
+                            case "Smoke":
+                            case "Haze":
+                            case "Dust":
+                                ((MainActivity)getActivity()).diary_weather = 1; break;
+                            case "Thunderstorm":
+                            case "Cloud":
+                            case "Fog":
+                            case "Sand":
+                            case "Ash":
+                            case "Squall":
+                            case "Tornado":
+                                ((MainActivity)getActivity()).diary_weather = 2; break;
+                            case "Rain":
+                            case "Drizzle":
+                                ((MainActivity)getActivity()).diary_weather = 3; break;
+                            case "Snow":
+                                ((MainActivity)getActivity()).diary_weather = 4; break;
+                            default:
+                                ((MainActivity)getActivity()).diary_weather = -1; break;
+                        }
+                    }catch (NullPointerException e)
+                    {
+                        Log.v("FragHome_diaryWeather", "또 예외..");
+                    }
+
+
+
+                }
 
             }
         }catch (JSONException e){

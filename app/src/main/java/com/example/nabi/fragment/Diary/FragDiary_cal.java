@@ -1,8 +1,6 @@
 package com.example.nabi.fragment.Diary;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -28,9 +26,12 @@ import com.example.nabi.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
@@ -38,8 +39,12 @@ import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Map;
 
 
@@ -55,7 +60,8 @@ public class FragDiary_cal extends Fragment {
     FragDiary_cal_bottomItem bottomitem;
 
     String selectKeyword, selectDate;
-    Integer selectMood;
+    Integer selectMood, moodValue = null;
+//    boolean checkMood;
 
 
     MaterialCalendarView materialCalendarView;  // 캘린더
@@ -71,17 +77,20 @@ public class FragDiary_cal extends Fragment {
         materialCalendarView = (MaterialCalendarView) getView().findViewById(R.id.calendarView);
         materialCalendarView.state().edit()
                 .setFirstDayOfWeek(Calendar.SUNDAY)
-                .setMinimumDate(CalendarDay.from(2017, 0, 1))
+                .setMinimumDate(CalendarDay.from(2018, 0, 1))
                 .setMaximumDate(CalendarDay.from(2030, 11, 31))
                 .setCalendarDisplayMode(CalendarMode.MONTHS)
                 .commit();
+
+
 
 
         materialCalendarView.setDateSelected(CalendarDay.today(), true);    // 오늘 선택되어있게
 
         materialCalendarView.addDecorators(
                 new FragDiary_cal.MySelectorDecorator(this),  // 선택된 애 어떻게 꾸밀지
-                new FragDiary_cal.OneDayDecorator()                   // 오늘꺼 어떻게 꾸밀지
+                new FragDiary_cal.OneDayDecorator()                // 오늘꺼 어떻게 꾸밀지
+
         );
 
         // 날짜 클릭할때 작동하는 함수
@@ -106,6 +115,45 @@ public class FragDiary_cal extends Fragment {
         int cDay = cal.get(Calendar.DATE);
         String YMD = (cYEAR+"/"+cMonth+"/"+cDay);
         search(YMD);
+
+
+        // 무드트래커를 향한 나의 몸부림
+        db = FirebaseFirestore.getInstance();
+        Calendar calendar = Calendar.getInstance();
+
+
+        int y = calendar.get(Calendar.YEAR);
+        int m = calendar.get(Calendar.MONTH)+1;
+
+        CollectionReference docRef = db.collection("users")
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .collection("diary");
+
+
+        Task<QuerySnapshot> documentSnapshotTask = docRef.get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        CalendarDay dayy = null;
+                        Log.v("tellmewhattodo", "첫번째 입니다");
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Map<String, Object> mmap = document.getData();
+                                String d = document.getId();
+                                Log.v("tellmewhattodo", d+"일 입니다");
+                                moodValue = Integer.parseInt(mmap.get("q1_mood").toString());
+                                dayy.from(y,m,Integer.parseInt(d));
+                                materialCalendarView.addDecorators(new MoodDecorator(dayy, moodValue));
+                            }
+                        } else {
+                            Log.d("EEE", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+
+//        calendarDayList.add(CalendarDay.today());
+//        calendarDayList.add(CalendarDay.from(2020, 11, 25));
 
     }
 
@@ -248,6 +296,132 @@ public class FragDiary_cal extends Fragment {
         public void decorate(DayViewFacade view) {
             view.setBackgroundDrawable(drawable);
             view.addSpan(new ForegroundColorSpan(Color.BLACK));
+        }
+    }
+
+
+    // 무드트래커
+    public class MoodDecorator implements DayViewDecorator{
+        private Drawable drawable0 = getResources().getDrawable(R.drawable.btnsnow);
+        private Drawable drawable1 = getResources().getDrawable(R.drawable.btnrain);
+        private Drawable drawable2 = getResources().getDrawable(R.drawable.btnclear);
+        private Drawable drawable3 = getResources().getDrawable(R.drawable.btncloudy);
+        private Drawable drawable4 = getResources().getDrawable(R.drawable.btnclear);
+        private Drawable drawable5 = getResources().getDrawable(R.drawable.btnclear);
+
+        private CalendarDay date;
+        private final Calendar calendar = Calendar.getInstance();
+//        private HashSet<CalendarDay> dates;
+        boolean checkMood;
+        int mood;
+
+
+
+
+
+        public MoodDecorator(CalendarDay dates, int moodValue) {
+
+            this.date = dates;
+            mood = moodValue;
+////            int cYEAR = calendar.get(Calendar.YEAR);
+////            int cMonth = calendar.get(Calendar.MONTH)+1;
+////            int cDay = calendar.get(Calendar.DATE);
+////            String YMD = (cYEAR+"/"+cMonth+"/"+cDay);
+////
+////            Log.v("whatyourfavoriteidea", YMD + " 입니다");
+//
+//            switch (moodValue){
+//                case 0:
+//                    drawable1 = getResources().getDrawable(R.drawable.btnclear); break;
+//                case 1:
+//                    drawable1 = getResources().getDrawable(R.drawable.btncloudy); break;
+//                case 2:
+//                    drawable1 = getResources().getDrawable(R.drawable.img); break;
+//                case 3:
+//                    drawable1 = getResources().getDrawable(R.drawable.img); break;
+//                case 4:
+//                    drawable1 = getResources().getDrawable(R.drawable.img); break;
+//                case 5:
+//                    drawable1 = getResources().getDrawable(R.drawable.img); break;
+//                default:
+//                    drawable1 = getResources().getDrawable(R.drawable.mood_circle2); break;
+//
+//            };
+
+
+
+
+        }
+
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+
+
+
+//            int cYEAR = day.getYear();
+//            int cMonth = day.getMonth()+1;
+//            int cDay = day.getDay();
+//            String YMD = (cYEAR+"/"+cMonth+"/"+cDay);
+//
+//            Log.v("whatyourfavoriteidea", YMD + " 입니다");
+//            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+//            try {
+//                DocumentReference docRef = db.collection("users")
+//                        .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                        .collection("diary").document(YMD);
+//
+//                Task<DocumentSnapshot> documentSnapshotTask = docRef.get()
+//                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                                if (task.isSuccessful()) {
+//                                    DocumentSnapshot document = task.getResult();
+//                                    if (document.exists()) {
+//                                        Map<String, Object> mymap = document.getData();
+//                                        moodValue = Integer.parseInt(mymap.get("q1_mood").toString());
+//
+//                                        checkMood = true;
+//
+//                                        Log.v("really?", YMD+"이고! "+moodValue+" : "+checkMood);
+//// 시도해봐야할것 : 여기말고 위에서 생성자 부르기 전에 db불러서 exist하면 arrayList에 넣기, 생성자에서 drawable설정
+//                                    }
+//                                    else
+//                                        checkMood = false;
+//                                }
+//
+//                            }
+//                        });
+//            }
+//            catch (NullPointerException e){ e.printStackTrace(); }
+
+
+//            Log.v("really?", YMD+"이고! "+checkMood);
+//            return checkMood;
+            return date.equals(day);
+//            return dates.contains(day);
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            switch (mood)
+            {
+                case 0:
+                    view.setBackgroundDrawable(drawable0); break;
+                case 1:
+                    view.setBackgroundDrawable(drawable1); break;
+                case 2:
+                    view.setBackgroundDrawable(drawable2); break;
+                case 3:
+                    view.setBackgroundDrawable(drawable3); break;
+                case 4:
+                    view.setBackgroundDrawable(drawable4); break;
+                case 5:
+                    view.setBackgroundDrawable(drawable5); break;
+                default:
+                    view.setBackgroundDrawable(drawable0);
+            }
+//            view.setBackgroundDrawable(drawable1);
         }
     }
 }

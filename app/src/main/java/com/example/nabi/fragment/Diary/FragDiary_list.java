@@ -69,7 +69,7 @@ public class FragDiary_list extends Fragment {
 //                FragmentTransaction ft = getFragmentManager().beginTransaction();
 //                ft.detach(cloudyDiary).attach(cloudyDiary).commit();
 //                diaryListViewAdapter.notifyDataSetChanged();
-                getActivity().getSupportFragmentManager().beginTransaction().remove(cloudyDiary).commitAllowingStateLoss();
+//                getActivity().getSupportFragmentManager().beginTransaction().remove(cloudyDiary).commitAllowingStateLoss();
                 // 도대체 새로고침 어떻게 해야하는거야으아으ㅏ으ㅏ
             }
 
