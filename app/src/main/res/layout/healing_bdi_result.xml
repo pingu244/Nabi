@@ -23,6 +23,33 @@
         android:textColor="@color/black"
         android:text=""/>
 
+    <TextView
+        android:id="@+id/cnt_1"
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1번 문항 : "/>
+
+    <TextView
+        android:id="@+id/cnt_2"
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2번 문항 : "/>
+
+    <TextView
+        android:id="@+id/cnt_3"
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3번 문항 : "/>
+
+    <TextView
+        android:id="@+id/cnt_4"
+        android:layout_marginLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4번 문항 : "/>
 
     <View
         android:layout_marginTop="20dp"
@@ -45,10 +72,21 @@
         android:text="멘트"/>
 
 
-    <Button
-        android:id="@+id/btnRetest"
-        android:layout_gravity="center"
+
+
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="다시 검사하기"/>
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnRetest"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="다시 검사하기"/>
+
+    </LinearLayout>
+
 </LinearLayout>

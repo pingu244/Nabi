@@ -1,5 +1,6 @@
 package com.example.nabi.fragment.Healing.BDI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +16,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.nabi.R;
+import com.example.nabi.fragment.Healing.FragHealing;
+import com.example.nabi.fragment.Healing.SadTestResult;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,9 +28,9 @@ import java.util.Map;
 
 public class BdiTestResult extends Fragment {
 
-    Integer score;
+    Integer score, cnt_1, cnt_2, cnt_3, cnt_4;
     View view;
-    TextView tv_bdiResult, tv_bdiText;
+    TextView tv_bdiResult, tv_bdiText, tv_count1, tv_count2, tv_count3, tv_count4;
     Button btnRetest;
     private FirebaseFirestore db;
 
@@ -39,17 +42,30 @@ public class BdiTestResult extends Fragment {
         tv_bdiResult = view.findViewById(R.id.tv_bdiResult);
         tv_bdiText = view.findViewById(R.id.tv_bdiText);
         btnRetest = view.findViewById(R.id.btnRetest);
+        tv_count1 = view.findViewById(R.id.cnt_1);
+        tv_count2 = view.findViewById(R.id.cnt_2);
+        tv_count3 = view.findViewById(R.id.cnt_3);
+        tv_count4 = view.findViewById(R.id.cnt_4);
 
         db = FirebaseFirestore.getInstance();
         Map<String, Object> hashMap = new HashMap<>();
 
 
 
+
         if (getArguments() != null)
         {
             score = getArguments().getInt("score");
-
+            cnt_1 = getArguments().getInt("cnt_1");
+            cnt_2 = getArguments().getInt("cnt_2");
+            cnt_3 = getArguments().getInt("cnt_3");
+            cnt_4 = getArguments().getInt("cnt_4");
         }
+
+        tv_count1.setText("1번 문항 : "+cnt_1+"개");
+        tv_count2.setText("2번 문항 : "+cnt_2+"개");
+        tv_count3.setText("3번 문항 : "+cnt_3+"개");
+        tv_count4.setText("4번 문항 : "+cnt_4+"개");
 
         if(score<=9){
             tv_bdiResult.setText("우울하지 않은 상태");
@@ -105,6 +121,8 @@ public class BdiTestResult extends Fragment {
                 transaction.commit();
             }
         });
+
+
         return view;
     }
 }

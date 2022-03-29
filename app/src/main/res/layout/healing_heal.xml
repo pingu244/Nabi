@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -91,6 +92,93 @@
                 android:text="BDI 검사 하기"/>
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center">
+
+
+
+        <LinearLayout
+            android:id="@+id/sad_def"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:background="@drawable/sad_layout"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:elevation="1dp"
+            android:padding="2dp">
+
+            <TextView
+                android:textSize="20dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="계절성 정서장애란?"/>
+        </LinearLayout>
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/sad_info_1"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:background="@drawable/sad_layout"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:elevation="1dp"
+            android:layout_marginRight="10dp">
+
+            <TextView
+                android:layout_marginTop="130dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="계절성 정서장애\n관련정보"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/sad_info_2"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:background="@drawable/sad_layout"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:elevation="1dp"
+            android:padding="2dp">
+
+            <TextView
+                android:layout_marginTop="130dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="계절성 정서장애\n관련 정보"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+</LinearLayout>
+
 </LinearLayout>

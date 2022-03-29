@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,6 +29,7 @@ public class Healing_heal extends Fragment {
     @Nullable
     View view;
     TextView tv_sadTest, tv_result,tv_bdiTest, tv_bdiFigure;
+    LinearLayout sad_def, sad_info_1, sad_info_2;
     String result, bdiResult;
 
     public static Healing_heal newInstance() {
@@ -46,6 +48,9 @@ public class Healing_heal extends Fragment {
         tv_result = view.findViewById(R.id.sad_figure);
         tv_bdiTest = view.findViewById(R.id.bdi_test);
         tv_bdiFigure = view.findViewById(R.id.bdi_figure);
+        sad_def = view.findViewById(R.id.sad_def);
+        sad_info_1 = view.findViewById(R.id.sad_info_1);
+        sad_info_2 = view.findViewById(R.id.sad_info_2);
 
         //검사 하러가기 클릭 시 SAD 테스트 화면
         tv_sadTest.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +66,33 @@ public class Healing_heal extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), Healing_BdiTest.class);
+                startActivity(intent);
+            }
+        });
+
+        //SAD 정의
+        sad_def.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Healing_SadDef.class);
+                startActivity(intent);
+            }
+        });
+
+        //SAD 관련정보 1
+        sad_info_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Healing_SadInfo1.class);
+                startActivity(intent);
+            }
+        });
+
+        //SAD 관련정보 2
+        sad_info_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Healing_SadInfo2.class);
                 startActivity(intent);
             }
         });

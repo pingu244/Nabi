@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 인터넷 권한 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/> <!--만보기-->
 
     <application
         android:allowBackup="true"
@@ -23,6 +24,9 @@
         <activity android:name=".fragment.Healing.Healing_SadTest" />
         <activity android:name=".fragment.Healing.SadTestResult" />
         <activity android:name=".fragment.Healing.Healing_BdiTest" />
+        <activity android:name=".fragment.Healing.Healing_SadDef" />
+        <activity android:name=".fragment.Healing.Healing_SadInfo1" />
+        <activity android:name=".fragment.Healing.Healing_SadInfo2" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

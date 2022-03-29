@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="15dp"
-        android:text="지난주부터 오늘까지 자신의 상태를 \n가장 잘 나타냈다고 생각되는 항목을 \n한 가지 골라주세요."
+        android:text="18. 지난주부터 오늘까지 자신의 상태를 \n가장 잘 나타냈다고 생각되는 항목을 \n한 가지 골라주세요."
         android:textColor="@color/black"/>
 
     <View

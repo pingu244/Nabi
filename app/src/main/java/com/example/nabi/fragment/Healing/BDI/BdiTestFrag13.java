@@ -19,7 +19,7 @@ import com.example.nabi.fragment.Healing.Healing_BdiTest;
 
 public class BdiTestFrag13 extends Fragment {
 
-    private Integer score;
+    private Integer score, cnt_1, cnt_2, cnt_3, cnt_4;
     // 프래그먼트간의 이동 위한 인스턴스 생성
     public static BdiTestFrag8 newInstance() {
         return new BdiTestFrag8();
@@ -86,18 +86,22 @@ public class BdiTestFrag13 extends Fragment {
                 switch (checkedId){
                     case R.id.q13_score_0:
                         score+=0;
+                        cnt_1++;
                         break;
 
                     case R.id.q13_score_1:
                         score+=1;
+                        cnt_2++;
                         break;
 
                     case R.id.q13_score_2:
                         score+=2;
+                        cnt_3++;
                         break;
 
                     case R.id.q13_score_3:
                         score+=3;
+                        cnt_4++;
                         break;
                 }
             }
@@ -109,6 +113,12 @@ public class BdiTestFrag13 extends Fragment {
             public void onClick(View v) {
                 Bundle bundle = new Bundle(); // 번들을 통해 값 전달
                 bundle.putInt("score",score);//번들에 넘길 값 저장
+                bundle.putInt("cnt_1",cnt_1);
+                bundle.putInt("cnt_2",cnt_2);
+                bundle.putInt("cnt_3",cnt_3);
+                bundle.putInt("cnt_4",cnt_4);
+
+
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 BdiTestFrag14 fragment14 = new BdiTestFrag14();//프래그먼트2 선언
                 fragment14.setArguments(bundle);//번들을 프래그먼트2로 보낼 준비
@@ -124,7 +134,10 @@ public class BdiTestFrag13 extends Fragment {
         if (getArguments() != null)
         {
             score = getArguments().getInt("score"); // 프래그먼트1에서 받아온 값 넣기
-
+            cnt_1 = getArguments().getInt("cnt_1");
+            cnt_2 = getArguments().getInt("cnt_2");
+            cnt_3 = getArguments().getInt("cnt_3");
+            cnt_4 = getArguments().getInt("cnt_4");
 
         }
         // Inflate the layout for this fragment
