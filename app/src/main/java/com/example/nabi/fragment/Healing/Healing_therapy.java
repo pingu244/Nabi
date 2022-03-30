@@ -36,17 +36,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Map;
 
-public class Healing_therapy extends Fragment implements SensorEventListener, LocationListener {
+public class Healing_therapy extends Fragment implements SensorEventListener {
 
     SensorManager sensorManager;
     Sensor stepCountSensor;
     TextView stepCountView, stepGoalView, tv_distance;
     private FirebaseFirestore db;
     String bdiResult;
-    private LocationManager locationManager;
-    private Location lastKnownLocation = null;
-    private Location nowLastLocation = null;
-    private boolean isGPSEnable = false;
+
 
     // 현재 걸음 수
     int currentSteps = 0;
@@ -69,10 +66,6 @@ public class Healing_therapy extends Fragment implements SensorEventListener, Lo
             requestPermissions(new String[]{Manifest.permission.ACTIVITY_RECOGNITION}, 0);
         }
 
-        locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
-        //GPS 사용 가능 여부 확인
-        isGPSEnable = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0, (LocationListener) this);
 
         // 걸음 센서 연결
         // * 옵션
@@ -146,11 +139,9 @@ public class Healing_therapy extends Fragment implements SensorEventListener, Lo
 
             if(event.values[0]==1.0f){
                 // 센서 이벤트가 발생할때 마다 걸음수 증가
-                double longwork = getGPSLocation();
-                if(longwork > 0.05){
+
                     currentSteps++;
                     stepCountView.setText(String.valueOf(currentSteps));
-                }
 
             }
 
@@ -162,59 +153,5 @@ public class Healing_therapy extends Fragment implements SensorEventListener, Lo
 
     }
 
-    public double getGPSLocation(){
-        double deltaTime = 0.0;
-        double deltaDist = 0.0;
 
-        if(isGPSEnable){
-            if(lastKnownLocation == null){
-                lastKnownLocation = nowLastLocation;
-            }
-
-            if(lastKnownLocation!=null && nowLastLocation!= null){
-                double lat1 = lastKnownLocation.getLatitude();
-                double lng1 = lastKnownLocation.getLongitude();
-                double lat2 = nowLastLocation.getLatitude();
-                double lng2 = nowLastLocation.getLongitude();
-
-                deltaTime = (nowLastLocation.getTime() - lastKnownLocation.getTime()) / 1000.0; //시간 간격
-
-                deltaDist = distance(lat1, lng1, lat2, lng2);
-                if(deltaDist > 0.05){
-                    //거리간격
-                    tv_distance.setText(Double.parseDouble(String.format("%.1f",deltaDist))+"m");
-                    return deltaDist;
-                }
-                lastKnownLocation = nowLastLocation;
-            }
-        }
-        return 0.0;
-    }
-
-    public void onLocationChanged(Location location){
-        nowLastLocation = location;
-
-        double lng = location.getLongitude();
-        double lat = location.getLatitude();
-    }
-
-    private static double distance(double lat1, double lon1, double lat2, double lon2){
-        double theta = lon1 - lon2;
-        double dist = Math.sin(deg2rad(lat1))*Math.sin(deg2rad(lat2))+Math.cos(deg2rad(lat1))*Math.cos(deg2rad(lat2))*Math.cos(deg2rad(theta));
-
-        dist = Math.acos(dist);
-        dist = rad2deg(dist);
-        dist = dist*60*1.1515;
-        dist = dist*1.609344*1000;
-
-        return dist;
-    }
-
-    private static double deg2rad(double deg){
-        return (deg*Math.PI/180.0);
-    }
-
-    private static double rad2deg(double rad){
-        return (rad*180/Math.PI);
-    }
 }
