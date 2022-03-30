@@ -174,6 +174,7 @@ public class FragDiary_cal extends Fragment {
                 Intent intent = new Intent(getActivity(), WritingDiary.class);
                 // 오늘 날씨 정보 보내서 배경 바꾸기
                 intent.putExtra("diaryWrite_todayWeather", ((MainActivity)getActivity()).diary_weather);
+                Log.v("diaryWrite_todayWeather", ((MainActivity)getActivity()).diary_weather+"입니다");
                 startActivity(intent);
             }
         });
