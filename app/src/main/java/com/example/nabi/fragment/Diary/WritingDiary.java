@@ -23,6 +23,13 @@ import java.util.HashMap;
 
 public class WritingDiary extends AppCompatActivity {
 
+    Calendar cal = Calendar.getInstance();
+    int cYEAR = cal.get(Calendar.YEAR);
+    int cMonth = cal.get(Calendar.MONTH)+1;
+    int cDay = cal.get(Calendar.DATE);
+    public String YMD;
+    public int weather;
+
     FragmentManager fragmentManager = getSupportFragmentManager();
     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
@@ -39,8 +46,7 @@ public class WritingDiary extends AppCompatActivity {
     //        "values (?, 'jungin-2','11월 30일의 일기','"+content_1.getText().toString()+"',0,'"+YMD+"')");
 
 
-    public String YMD;
-    public int weather;
+
 
     // fragment들에서 받아올 데이터들을 받을 변수
     public Integer q1_mood;
@@ -73,33 +79,20 @@ public class WritingDiary extends AppCompatActivity {
             }
         });
 
-        Calendar cal = Calendar.getInstance();
-        int cYEAR = cal.get(Calendar.YEAR);
-        int cMonth = cal.get(Calendar.MONTH)+1;
-        int cDay = cal.get(Calendar.DATE);
+
         today_date.setText(cYEAR+"년 "+cMonth+"월 "+cDay+"일");
         YMD = (cYEAR+"/"+cMonth+"/"+cDay);
+        Log.v("YMDERROR1", YMD+"입니다");
 
         // 수정하기 버튼 누르면 오는 데이터들
         Intent receive_intent = getIntent();
 
-//        YMD = (String) hashMap.get("finalDate");
         String date = receive_intent.getStringExtra("EditDiary_date");
         if(date != null)
         {
             String[] date_array = date.split("/");
             today_date.setText(date_array[0]+"년 "+date_array[1]+"월 "+date_array[2]+"일");
         }
-
-
-
-//        q1_mood = Integer.parseInt(hashMap.get("diary_mood").toString());
-//        q2_whatHappen = (String) hashMap.get("content_1");
-//        q3_todayKeyword = (String) hashMap.get("diary_keyword");
-//        q4_why = (String) hashMap.get("content_2");
-//        q5_again = (String) hashMap.get("content_3");
-//        weather = Integer.parseInt(hashMap.get("diary_weather").toString());
-
         YMD = receive_intent.getStringExtra("EditDiary_date");
         q1_mood = receive_intent.getIntExtra("EditDiary_q1", -1);
         q2_whatHappen = receive_intent.getStringExtra("EditDiary_q2");
@@ -187,7 +180,7 @@ public class WritingDiary extends AppCompatActivity {
     {
 
         Intent intent = new Intent(this, DiaryResult.class);
-
+        YMD = (cYEAR+"/"+cMonth+"/"+cDay);
         intent.putExtra("Diary_WritingResult", YMD);
         startActivity(intent);
         finish();

@@ -40,6 +40,7 @@ public class WritingFrag4 extends Fragment {
     Integer one;
     String two,three,four,five;
     int six;
+    String YMD2;
 
     // 프래그먼트간의 이동 위한 인스턴스 생성
     public static WritingFrag4 newInstance() {
@@ -72,10 +73,12 @@ public class WritingFrag4 extends Fragment {
 
         Calendar cal = Calendar.getInstance();
         int cYEAR = cal.get(Calendar.YEAR);
-        int cMonth = cal.get(Calendar.MONTH);
+        int cMonth = cal.get(Calendar.MONTH)+1;
         int cDay = cal.get(Calendar.DATE);
 //        String YMD = (cYEAR+"/"+(cMonth+1)+"/"+cDay);
-        String YMD = ((WritingDiary)getActivity()).YMD;
+        YMD2 = ((WritingDiary)getActivity()).YMD;
+        if(YMD2 == null)
+            YMD2 = (cYEAR+"/"+cMonth+"/"+cDay);
 
         // '완료'버튼 눌렀을 때
         btnComplete.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +98,7 @@ public class WritingFrag4 extends Fragment {
                 Log.v("variable",three);
                 Log.v("variable",four);
                 Log.v("variable",five);
-                Log.v("daterrr", YMD);
+//                Log.v("daterrr", YMD);
 
 
 //                db.execSQL("insert into diary_post (post_id, user_id, diary_title, content_1, content_2, content_3, diary_mood, diary_keyword, diary_weather,reporting_date) " +
@@ -114,9 +117,9 @@ public class WritingFrag4 extends Fragment {
                 hashMap.put("q5_again", five);
                 hashMap.put("weather", six);
 
-
+                Log.v("YMD2ERROR", YMD2+"입니다");
                 db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                        .collection("diary").document(YMD).set(hashMap)
+                        .collection("diary").document(YMD2).set(hashMap)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
