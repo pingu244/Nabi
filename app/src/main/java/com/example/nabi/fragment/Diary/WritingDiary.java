@@ -180,7 +180,8 @@ public class WritingDiary extends AppCompatActivity {
     {
 
         Intent intent = new Intent(this, DiaryResult.class);
-        YMD = (cYEAR+"/"+cMonth+"/"+cDay);
+        if(YMD == null)
+            YMD = (cYEAR+"/"+cMonth+"/"+cDay);
         intent.putExtra("Diary_WritingResult", YMD);
         startActivity(intent);
         finish();

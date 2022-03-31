@@ -109,7 +109,9 @@ public class FragHome extends Fragment {
     RequestQueue queue;
 
     String nickname;
+    // 우울한 날씨 변수
     Integer gloomyWeather = -1;
+    int weatherToDiary = -1;
 
 
     @Override
@@ -490,64 +492,46 @@ public class FragHome extends Fragment {
                 main = jsonObject.getJSONArray("weather").getJSONObject(0).getString("main");
                 if (main.equals("Clear")) { //맑은 날
                     item.setImageView(R.drawable.ic_baseline_wb_sunny_24);
+                    // 오늘 일기 배경바뀌게 하기위함
+                    if(i==0)
+                        weatherToDiary = 0;
                 }
 
                 else if (main.equals("Mist")||main.equals("Smoke")||main.equals("Haze")||main.equals("Dust")){ //약간 흐린
                     item.setImageView(R.drawable.ic_baseline_cloud_queue_24);
+                    // 오늘 일기 배경바뀌게 하기위함
+                    if(i==0)
+                        weatherToDiary = 1;
                 }
 
-                else if (main.equals("Thunderstorm") ||main.equals("Clouds")||main.equals("Fog") ||main.equals("Sand")||main.equals("Ash")||main.equals("Squall")||main.equals("Tornado")){ //흐린
+                else if (main.equals("Clouds")||main.equals("Fog") ||main.equals("Sand")||main.equals("Ash")||main.equals("Squall")||main.equals("Tornado")){ //흐린
                     item.setImageView(R.drawable.ic_baseline_cloud_24);
+                    // 오늘 일기 배경바뀌게 하기위함
+                    if(i==0)
+                        weatherToDiary = 2;
                 }
 
-                else if (main.equals("Rain")||main.equals("Drizzle")){ //비
+                else if (main.equals("Rain")||main.equals("Drizzle")||main.equals("Thunderstorm")){ //비
                     item.setImageView(R.drawable.ic_baseline_opacity_24);
+                    // 오늘 일기 배경바뀌게 하기위함
+                    if(i==0)
+                        weatherToDiary = 3;
                 }
 
                 else if ( main.equals("Snow")){
                     item.setImageView(R.drawable.ic_baseline_ac_unit_24);
+                    // 오늘 일기 배경바뀌게 하기위함
+                    if(i==0)
+                        weatherToDiary = 4;
                 }
 
                 day5_list.add(item);
-
-                // 오늘 일기 배경바뀌게 하기위함
-                if(i==0)
-                {
-                    try {
-                        switch (main){
-                            case "Clear":
-                                ((MainActivity)getActivity()).diary_weather = 0; break;
-                            case "Mist":
-                            case "Smoke":
-                            case "Haze":
-                            case "Dust":
-                                ((MainActivity)getActivity()).diary_weather = 1; break;
-                            case "Thunderstorm":
-                            case "Cloud":
-                            case "Fog":
-                            case "Sand":
-                            case "Ash":
-                            case "Squall":
-                            case "Tornado":
-                                ((MainActivity)getActivity()).diary_weather = 2; break;
-                            case "Rain":
-                            case "Drizzle":
-                                ((MainActivity)getActivity()).diary_weather = 3; break;
-                            case "Snow":
-                                ((MainActivity)getActivity()).diary_weather = 4; break;
-                            default:
-                                ((MainActivity)getActivity()).diary_weather = -1; break;
-                        }
-                    }catch (NullPointerException e)
-                    {
-                        Log.v("FragHome_diaryWeather", "또 예외..");
-                    }
-
-
-
-                }
-
             }
+
+            // MainActivity public변수에 저장해줌(일기쓸때 적용 위해)
+            ((MainActivity)getActivity()).diary_weather = weatherToDiary;
+            Log.v("diaryWrite_todayWeather", "첫번째: "+ weatherToDiary);
+
         }catch (JSONException e){
             e.printStackTrace();
         }
