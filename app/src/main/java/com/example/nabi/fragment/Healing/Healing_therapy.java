@@ -38,8 +38,10 @@ import java.util.Map;
 
 public class Healing_therapy extends Fragment implements SensorEventListener {
 
-    SensorManager sensorManager;
-    Sensor stepCountSensor;
+    SensorManager sm;
+    Sensor sensor_step_detector;
+
+
     TextView stepCountView, stepGoalView, tv_distance;
     private FirebaseFirestore db;
     String bdiResult;
@@ -49,6 +51,7 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
     int currentSteps = 0;
     @Nullable
     View view;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.healing_therapy, container, false);
@@ -60,8 +63,8 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
         tv_distance = view.findViewById(R.id.tv_distance);
 
         // 활동 퍼미션 체크
-        if(ContextCompat.checkSelfPermission(getContext(),
-                Manifest.permission.ACTIVITY_RECOGNITION) == PackageManager.PERMISSION_DENIED){
+        if (ContextCompat.checkSelfPermission(getContext(),
+                Manifest.permission.ACTIVITY_RECOGNITION) == PackageManager.PERMISSION_DENIED) {
 
             requestPermissions(new String[]{Manifest.permission.ACTIVITY_RECOGNITION}, 0);
         }
@@ -72,13 +75,10 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
         // - TYPE_STEP_DETECTOR:  리턴 값이 무조건 1, 앱이 종료되면 다시 0부터 시작
         // - TYPE_STEP_COUNTER : 앱 종료와 관계없이 계속 기존의 값을 가지고 있다가 1씩 증가한 값을 리턴
         //
-        sensorManager = (SensorManager) getActivity().getSystemService(SENSOR_SERVICE);
-        stepCountSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        sm = (SensorManager) getActivity().getSystemService(SENSOR_SERVICE);   // 센서 매니저 생성
+        sensor_step_detector = sm.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);  // 스템 감지 센서 등록
 
-        // 디바이스에 걸음 센서의 존재 여부 체크
-        if (stepCountSensor == null) {
-            Toast.makeText(getContext(), "No Step Sensor", Toast.LENGTH_SHORT).show();
-        }
+
 
         // BDI 결과값 가져오기
         DocumentReference documentBDI = db.collection("users")
@@ -99,13 +99,13 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
 
                                 //BDI 검사 결과에 따라 목표 걸음 수 다름
 
-                                if (bdiResult.equals("우울하지 않은 상태")){
+                                if (bdiResult.equals("우울하지 않은 상태")) {
                                     stepGoalView.setText(" / 3000");
-                                }else if (bdiResult.equals("가벼운 우울 상태")){
+                                } else if (bdiResult.equals("가벼운 우울 상태")) {
                                     stepGoalView.setText(" / 4000");
-                                }else if (bdiResult.equals("중한 우울 상태")){
+                                } else if (bdiResult.equals("중한 우울 상태")) {
                                     stepGoalView.setText(" / 5000");
-                                }else if (bdiResult.equals("심한 우울 상태")){
+                                } else if (bdiResult.equals("심한 우울 상태")) {
                                     stepGoalView.setText(" / 6000");
                                 }
                             }
@@ -119,39 +119,39 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
         return view;
     }
 
-    public void onStart() {
-        super.onStart();
-        if(stepCountSensor !=null) {
-            // 센서 속도 설정
-            // * 옵션
-            // - SENSOR_DELAY_NORMAL: 20,000 초 딜레이
-            // - SENSOR_DELAY_UI: 6,000 초 딜레이
-            // - SENSOR_DELAY_GAME: 20,000 초 딜레이
-            // - SENSOR_DELAY_FASTEST: 딜레이 없음
-            //
-            sensorManager.registerListener(this,stepCountSensor,SensorManager.SENSOR_DELAY_FASTEST);
-        }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        sm.registerListener(this, sensor_step_detector, SensorManager.SENSOR_DELAY_NORMAL);
     }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        sm.unregisterListener(this);
+    }
+
+
     @Override
     public void onSensorChanged(SensorEvent event) {
-        // 걸음 센서 이벤트 발생시
-        if(event.sensor.getType() == Sensor.TYPE_STEP_DETECTOR){
-
-            if(event.values[0]==1.0f){
-                // 센서 이벤트가 발생할때 마다 걸음수 증가
-
-                    currentSteps++;
-                    stepCountView.setText(String.valueOf(currentSteps));
-
-            }
-
+        // 센서 유형이 스텝감지 센서인 경우 걸음수 +1
+        switch (event.sensor.getType()) {
+            case Sensor.TYPE_STEP_DETECTOR:
+                stepCountView.setText("" + (++currentSteps));
+                break;
         }
     }
-
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
 
 
+
 }
+
+
+
+
