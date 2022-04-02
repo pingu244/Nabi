@@ -145,7 +145,7 @@ public class FragHome extends Fragment {
         });
 
 
-        // 우울설문했는지 확인
+        // 우울설문했는지 확인 + ~님 환영합니다!
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("users")
                 .document(FirebaseAuth.getInstance().getCurrentUser().getUid());
@@ -161,7 +161,12 @@ public class FragHome extends Fragment {
                                 try {
                                     gloomyWeather = Integer.parseInt(mymap.get("gloomyWeather").toString());
                                 } catch (Exception e){}
-//                                Toast.makeText(getActivity(), nickname+"님 환영합니다!", Toast.LENGTH_SHORT).show();
+                                if(((MainActivity)getActivity()).LoginSuccess == true)
+                                {
+                                    Toast.makeText(getActivity(), nickname+"님 환영합니다!", Toast.LENGTH_SHORT).show();
+                                    ((MainActivity)getActivity()).LoginSuccess = false;
+                                }
+
                                 if(gloomyWeather == -1)
                                 {
                                     GloomyWeatherFrag g = new GloomyWeatherFrag();
@@ -318,6 +323,7 @@ public class FragHome extends Fragment {
         }
         return location;
     }
+
     private void locationPermission() {
 
 
@@ -411,7 +417,7 @@ public class FragHome extends Fragment {
 
                 Date date = parser.parse(time);
 
-                item.setTime(formatter.format(date).toString());
+                item.setTime(formatter.format(date));
                 item.setTemp(jsonObject.getJSONObject("main").getDouble("temp"));
 
                 //main값에 따라 날씨 아이콘 적용하는 코드
@@ -529,8 +535,13 @@ public class FragHome extends Fragment {
             }
 
             // MainActivity public변수에 저장해줌(일기쓸때 적용 위해)
-            ((MainActivity)getActivity()).diary_weather = weatherToDiary;
-            Log.v("diaryWrite_todayWeather", "첫번째: "+ weatherToDiary);
+            try {
+                if(((MainActivity)getActivity()).diary_weather == null)
+                    ((MainActivity)getActivity()).diary_weather = weatherToDiary;
+                Log.v("diaryWrite_todayWeather", "첫번째: "+ weatherToDiary);
+                Log.v("diaryWrite_todayWeather", "두번째: "+ ((MainActivity)getActivity()).diary_weather);
+            } catch (Exception e){e.printStackTrace();}
+
 
         }catch (JSONException e){
             e.printStackTrace();

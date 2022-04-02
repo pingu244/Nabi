@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -26,7 +27,9 @@ public class MainActivity extends AppCompatActivity {
     Fragment frag_diary;
     Fragment frag_remind;
 
-    public int diary_weather = -1;   // home화면에서 writingDiary로 전달하기 위함
+    public Integer diary_weather = null;   // home화면에서 writingDiary로 전달하기 위함
+
+    public boolean LoginSuccess;
 
     BottomNavigationView bottomNavigation;
 
@@ -47,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
         openDatabase();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.container, frag_home).commitAllowingStateLoss();
+
+        Intent receive_intent = getIntent();
+        LoginSuccess = receive_intent.getBooleanExtra("LoginSuccess", false);
 
         bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
