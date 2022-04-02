@@ -79,7 +79,6 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
         sensor_step_detector = sm.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);  // 스템 감지 센서 등록
 
 
-
         // BDI 결과값 가져오기
         DocumentReference documentBDI = db.collection("users")
                 .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -137,10 +136,14 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
         // 센서 유형이 스텝감지 센서인 경우 걸음수 +1
-        switch (event.sensor.getType()) {
-            case Sensor.TYPE_STEP_DETECTOR:
-                stepCountView.setText("" + (++currentSteps));
-                break;
+
+        if(event.sensor.getType()==Sensor.TYPE_STEP_DETECTOR){
+            if(event.values[0]==1.0f){
+                currentSteps +=event.values[0];
+                stepCountView.setText(String.valueOf(currentSteps));
+            }else{
+                stepCountView.setText("감지 안됨");
+            }
         }
     }
     @Override
