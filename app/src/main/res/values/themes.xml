@@ -14,4 +14,50 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <!-- 캘린더뷰 스타일 -->
+    <style name="Widget.CalendarView.Custom" parent="android:Widget.CalendarView">
+        <item name="android:focusedMonthDateColor">@android:color/transparent</item>
+        <item name="android:weekNumberColor">@android:color/holo_red_light</item>
+        <item name="android:selectedWeekBackgroundColor">@android:color/transparent</item>
+        <item name="android:selectedDateVerticalBar">@android:color/transparent</item>
+        <item name="android:unfocusedMonthDateColor">@android:color/transparent</item>
+        <item name="android:weekDayTextAppearance">@style/TextAppearance.AppCompat.Medium</item>
+        <item name="android:dateTextAppearance">@style/TextAppearance.AppCompat.Medium</item>
+    </style>
+
+    <!-- 달력에 사용하는 스타일 -->
+    <style name="CustomTextAppearance" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">10dp</item>
+        <item name="android:textColor">#898989</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:gravity">start</item>
+    </style>
+
+    <!-- 요일, 달력 안 숫자들 폰트 설정 -->
+    <style name="CalendarViewCustom" parent="Theme.AppCompat">
+<!--        <item name="colorAccent">@android:color/black</item>-->
+<!--        <item name="colorPrimary">@android:color/holo_blue_light</item>-->
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <!-- 달력 안의 숫자들에 적용되는 스타일 -->
+    <style name="CalenderViewDateCustomText" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">#898989</item>
+        <item name="android:weekNumberColor">@android:color/holo_orange_dark</item>
+        <item name="android:gravity">start</item>
+    </style>
+
+    <!-- 달력 안의 요일들에 적용되는 스타일 -->
+    <style name="CalenderViewWeekCustomText" parent="android:TextAppearance.DeviceDefault.Small">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:weekNumberColor">@android:color/holo_red_light</item>
+    </style>
+
+    <!-- 연, 월 표시하는 헤더 -->
+    <style name="CalendarWidgetHeader">
+        <item name="android:textSize">24dp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 </resources>
