@@ -11,10 +11,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,8 +40,11 @@ import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
+import com.prolificinteractive.materialcalendarview.format.MonthArrayTitleFormatter;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -82,7 +87,22 @@ public class FragDiary_cal extends Fragment {
                 .setCalendarDisplayMode(CalendarMode.MONTHS)
                 .commit();
 
+        //월 한글로 보이게 설정
+        materialCalendarView.setTitleFormatter(new MonthArrayTitleFormatter(getResources().getTextArray(R.array.custom_months)));
 
+//        //월 보이는 방식 커스텀 (다영 0403)
+//        materialCalendarView.setTitleFormatter(new TitleFormatter() {
+//            @Override
+//            public CharSequence format(CalendarDay day) {
+//                Date inputText = day.getDate();
+//                String[] calendarHeaderElements = inputText.toString().split("-");
+//                StringBuilder calendarHeaderBuilder = new StringBuilder();
+//                calendarHeaderBuilder.append(calendarHeaderElements[0])
+//                        .append(" ")
+//                        .append(calendarHeaderElements[1]);
+//                return calendarHeaderBuilder.toString();
+//            }
+//        });
 
 
         materialCalendarView.setDateSelected(CalendarDay.today(), true);    // 오늘 선택되어있게
@@ -271,8 +291,9 @@ public class FragDiary_cal extends Fragment {
         @Override
         public void decorate(DayViewFacade view) {
             view.addSpan(new StyleSpan(Typeface.BOLD));
-            view.addSpan(new RelativeSizeSpan(1.5f));
-            view.addSpan(new ForegroundColorSpan(Color.BLACK));
+            view.addSpan(new RelativeSizeSpan(1.2f));
+            view.addSpan(new ForegroundColorSpan(Color.WHITE));
+            view.addSpan(new BackgroundColorSpan(Color.rgb(250,133,116)));
         }
 
         public void setDate(Date date) {
@@ -288,15 +309,18 @@ public class FragDiary_cal extends Fragment {
             drawable = context.getResources().getDrawable(R.drawable.myselector);
         }
 
+        //true 리턴으로 모든요일에 drawable 적용
         @Override
         public boolean shouldDecorate(CalendarDay day) {
             return true;
         }
 
+        //일자 선택시 drawable 적용되도록
         @Override
         public void decorate(DayViewFacade view) {
             view.setBackgroundDrawable(drawable);
-            view.addSpan(new ForegroundColorSpan(Color.BLACK));
+            view.addSpan(new ForegroundColorSpan(Color.GRAY)); //모든 date 색상
+
         }
     }
 

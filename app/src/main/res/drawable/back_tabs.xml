@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <item>
-        <shape>
-            <gradient android:angle="0"
-                android:endColor="@color/white"
-                android:startColor="@color/white"/>
-            <corners android:radius="10dp"/>
-
-            <stroke
-                android:width="1dp"
-                android:color="@color/black"/>
-
-        </shape>
-    </item>
-
+    <item
+        android:drawable="@drawable/tab_indicator"
+        android:state_selected="true" />
+    <item
+        android:drawable="@drawable/tab_ind_bg"
+        android:state_selected="false" />
 </selector>
+
+<!-- 3. 탭 인디케이터 두개 연결해주는거 -->

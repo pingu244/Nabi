@@ -7,7 +7,7 @@
     tools:context=".fragment.Diary.FragDiary_cal"
     android:orientation="vertical">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_gravity="center"
         android:layout_marginTop="35dp"
         android:layout_marginLeft="10dp"
@@ -20,7 +20,7 @@
         android:orientation="vertical"
         android:elevation="3dp">
 
-        <!--    달력-->
+        <!-- 달력-->
         <com.prolificinteractive.materialcalendarview.MaterialCalendarView
 
             android:id="@+id/calendarView"
@@ -30,10 +30,13 @@
             android:layout_marginRight="24dp"
             android:layout_marginBottom="22dp"
             android:layout_marginTop="22dp"
-            app:mcv_selectionColor="@color/white"
+
+            android:theme="@style/CalendarViewCustom"
+            app:mcv_dateTextAppearance="@style/CalenderViewDateCustomText"
+            app:mcv_weekDayLabels="@style/CalenderViewWeekCustomText"
             app:mcv_showOtherDates="defaults" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <FrameLayout
