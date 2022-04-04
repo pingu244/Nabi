@@ -87,7 +87,7 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
         // - TYPE_STEP_COUNTER : 앱 종료와 관계없이 계속 기존의 값을 가지고 있다가 1씩 증가한 값을 리턴
         //
         sm = (SensorManager) getActivity().getSystemService(SENSOR_SERVICE);   // 센서 매니저 생성
-        sensor_step_detector = sm.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);  // 스템 감지 센서 등록
+        sensor_step_detector = sm.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);  // 스템 감지 센서 등록
 
 
         // BDI 결과값 가져오기
@@ -161,7 +161,7 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
         // 센서 유형이 스텝감지 센서인 경우 걸음수 +1
 
-        if(event.sensor.getType()==Sensor.TYPE_STEP_DETECTOR){
+        if(event.sensor.getType()==Sensor.TYPE_STEP_COUNTER){
             if(event.values[0]==1.0f){
                 currentSteps +=event.values[0];
                 stepCountView.setText(String.valueOf(currentSteps));
