@@ -5,6 +5,10 @@ import static android.content.Context.SENSOR_SERVICE;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -34,6 +38,9 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.eazegraph.lib.charts.PieChart;
+import org.eazegraph.lib.models.PieModel;
+
 import java.util.Map;
 
 public class Healing_therapy extends Fragment implements SensorEventListener {
@@ -41,6 +48,7 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
     SensorManager sm;
     Sensor sensor_step_detector;
 
+    PieChart pieChart;
 
     TextView stepCountView, stepGoalView, tv_distance;
     private FirebaseFirestore db;
@@ -61,6 +69,9 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
         stepCountView = view.findViewById(R.id.tv_step);
         stepGoalView = view.findViewById(R.id.tv_goalStep);
         tv_distance = view.findViewById(R.id.tv_distance);
+
+        pieChart = (PieChart) view.findViewById(R.id.tab1_chart_2);
+
 
         // 활동 퍼미션 체크
         if (ContextCompat.checkSelfPermission(getContext(),
@@ -118,6 +129,19 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
         return view;
     }
 
+    // 파이 차트 설정
+    private void setPieChart() {
+
+
+        pieChart.clearChart();
+
+        pieChart.addPieSlice(new PieModel("TYPE 1", 60, Color.parseColor("#1a0c47")));
+
+        pieChart.startAnimation();
+
+    }
+
+
 
     @Override
     public void onResume() {
@@ -141,6 +165,10 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
             if(event.values[0]==1.0f){
                 currentSteps +=event.values[0];
                 stepCountView.setText(String.valueOf(currentSteps));
+                pieChart.addPieSlice(new PieModel("TYPE 1", 60, Color.parseColor("#CDA67F")));
+
+                pieChart.startAnimation();
+
             }else{
                 stepCountView.setText("감지 안됨");
             }
