@@ -70,7 +70,7 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
         stepGoalView = view.findViewById(R.id.tv_goalStep);
         tv_distance = view.findViewById(R.id.tv_distance);
 
-        pieChart = (PieChart) view.findViewById(R.id.piechart);
+        pieChart = (PieChart) view.findViewById(R.id.pieChart);
 
 
         // 활동 퍼미션 체크

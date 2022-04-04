@@ -50,8 +50,8 @@
                 android:orientation="horizontal"
                 android:layout_gravity="center">
 
-                <!--org.eazegraph.lib.charts.PieChart
-                    android:id="@+id/tab1_chart_2"
+                <org.eazegraph.lib.charts.PieChart
+                    android:id="@+id/pieChart"
                     android:layout_width="176dp"
                     android:layout_height="100dp"
                     android:layout_marginTop="15dp"
@@ -60,12 +60,9 @@
                     app:egEnableScroll="true"
                     app:egFixedBarWidth="true"
                     app:egLegendHeight="40dp"
-                    app:egShowDecimal="true" /-->
+                    app:egShowDecimal="true"/>
 
-                <com.github.mikephil.charting.charts.PieChart
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/piechart"/>
+
 
                 <TextView
                     android:id="@+id/tv_step"
