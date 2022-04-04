@@ -1,6 +1,7 @@
 package com.example.nabi.fragment.Home;
 
 import static android.content.ContentValues.TAG;
+import static android.content.Context.MODE_PRIVATE;
 
 import android.Manifest;
 import android.app.Activity;
@@ -8,6 +9,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -48,6 +50,7 @@ import com.example.nabi.fragment.Diary.WritingDiary;
 import com.example.nabi.fragment.Home.Day5_Adapter;
 import com.example.nabi.R;
 import com.example.nabi.fragment.Home.Hour3_Adapter;
+import com.example.nabi.fragment.PushNotification.PreferenceHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -112,6 +115,7 @@ public class FragHome extends Fragment {
     // 우울한 날씨 변수
     Integer gloomyWeather = -1;
     int weatherToDiary = -1;
+    Integer tomorrowWeather = -1;
 
 
     @Override
@@ -145,37 +149,44 @@ public class FragHome extends Fragment {
         });
 
 
-        // 우울설문했는지 확인 + ~님 환영합니다!
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference docRef = db.collection("users")
-                .document(FirebaseAuth.getInstance().getCurrentUser().getUid());
-        Task<DocumentSnapshot> documentSnapshotTask = docRef.get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                Map<String, Object> mymap = document.getData();
-                                nickname = (String) mymap.get("name");
-                                try {
-                                    gloomyWeather = Integer.parseInt(mymap.get("gloomyWeather").toString());
-                                } catch (Exception e){}
-                                if(((MainActivity)getActivity()).LoginSuccess == true)
-                                {
-                                    Toast.makeText(getActivity(), nickname+"님 환영합니다!", Toast.LENGTH_SHORT).show();
-                                    ((MainActivity)getActivity()).LoginSuccess = false;
-                                }
 
-                                if(gloomyWeather == -1)
-                                {
-                                    GloomyWeatherFrag g = new GloomyWeatherFrag();
-                                    g.show(getParentFragmentManager(),"setGloomyWeather");
+        // 로그인해서 처음 들어왔을때만 띄우기
+        if(((MainActivity)getActivity()).LoginSuccess)
+        {
+            // 우울설문했는지 확인 + ~님 환영합니다!
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            DocumentReference docRef = db.collection("users")
+                    .document(FirebaseAuth.getInstance().getCurrentUser().getUid());
+            Task<DocumentSnapshot> documentSnapshotTask = docRef.get()
+                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    Map<String, Object> mymap = document.getData();
+                                    nickname = (String) mymap.get("name");
+                                    gloomyWeather = Integer.parseInt(mymap.get("gloomyWeather").toString());
+
+
+                                        Toast.makeText(getActivity(), nickname+"님 환영합니다!", Toast.LENGTH_SHORT).show();
+                                        ((MainActivity)getActivity()).LoginSuccess = false;
+
+
+                                    if(gloomyWeather == -1)
+                                    {
+                                        GloomyWeatherFrag g = new GloomyWeatherFrag();
+                                        g.show(getParentFragmentManager(),"setGloomyWeather");
+                                    }
+                                    else
+                                        PreferenceHelper.setGloomy(getContext(), gloomyWeather);
                                 }
                             }
                         }
-                    }
-                });
+                    });
+        }
+
+
 
 
 
@@ -501,6 +512,8 @@ public class FragHome extends Fragment {
                     // 오늘 일기 배경바뀌게 하기위함
                     if(i==0)
                         weatherToDiary = 0;
+                    else if(i==1)
+                        tomorrowWeather = 0;
                 }
 
                 else if (main.equals("Mist")||main.equals("Smoke")||main.equals("Haze")||main.equals("Dust")){ //약간 흐린
@@ -508,6 +521,8 @@ public class FragHome extends Fragment {
                     // 오늘 일기 배경바뀌게 하기위함
                     if(i==0)
                         weatherToDiary = 1;
+                    else if(i == 1)
+                        tomorrowWeather = 1;
                 }
 
                 else if (main.equals("Clouds")||main.equals("Fog") ||main.equals("Sand")||main.equals("Ash")||main.equals("Squall")||main.equals("Tornado")){ //흐린
@@ -515,6 +530,8 @@ public class FragHome extends Fragment {
                     // 오늘 일기 배경바뀌게 하기위함
                     if(i==0)
                         weatherToDiary = 2;
+                    else if(i==1)
+                        tomorrowWeather = 2;
                 }
 
                 else if (main.equals("Rain")||main.equals("Drizzle")||main.equals("Thunderstorm")){ //비
@@ -522,6 +539,8 @@ public class FragHome extends Fragment {
                     // 오늘 일기 배경바뀌게 하기위함
                     if(i==0)
                         weatherToDiary = 3;
+                    else if(i==1)
+                        tomorrowWeather = 3;
                 }
 
                 else if ( main.equals("Snow")){
@@ -529,6 +548,8 @@ public class FragHome extends Fragment {
                     // 오늘 일기 배경바뀌게 하기위함
                     if(i==0)
                         weatherToDiary = 4;
+                    else if(i==1)
+                        tomorrowWeather = 4;
                 }
 
                 day5_list.add(item);
@@ -541,6 +562,14 @@ public class FragHome extends Fragment {
                 Log.v("diaryWrite_todayWeather", "첫번째: "+ weatherToDiary);
                 Log.v("diaryWrite_todayWeather", "두번째: "+ ((MainActivity)getActivity()).diary_weather);
             } catch (Exception e){e.printStackTrace();}
+
+
+            // preferences로 내일 날씨 저장
+            try {
+                PreferenceHelper.setTomorrowWeather(getContext(), tomorrowWeather);
+                Log.v("tomorrowWeather", "tomorrowWeather: "+ tomorrowWeather);
+            } catch (Exception e){e.printStackTrace();Log.v("tomorrowWeather", "ERROR");}
+
 
 
         }catch (JSONException e){

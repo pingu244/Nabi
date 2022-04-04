@@ -43,6 +43,7 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
 import com.prolificinteractive.materialcalendarview.format.MonthArrayTitleFormatter;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -88,7 +89,18 @@ public class FragDiary_cal extends Fragment {
                 .commit();
 
         //월 한글로 보이게 설정
-        materialCalendarView.setTitleFormatter(new MonthArrayTitleFormatter(getResources().getTextArray(R.array.custom_months)));
+//        materialCalendarView.setTitleFormatter(new MonthArrayTitleFormatter(getResources().getTextArray(R.array.custom_months)));
+
+        // 안희애가 해본 월 보이는 커스텀(0404) - 이거 원하는거 맞아?
+        SimpleDateFormat format = new SimpleDateFormat("M");
+        materialCalendarView.setTitleFormatter(new TitleFormatter() {
+            @Override
+            public CharSequence format(CalendarDay day) {
+                String formattedDate  = format.format(day.getDate());
+                return (formattedDate+"월");
+            }
+        });
+
 
 //        //월 보이는 방식 커스텀 (다영 0403)
 //        materialCalendarView.setTitleFormatter(new TitleFormatter() {
