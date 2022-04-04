@@ -1,6 +1,7 @@
 package com.example.nabi;
 
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.nabi.fragment.PushNotification.PreferenceHelper;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -24,6 +26,8 @@ import com.google.firebase.firestore.SetOptions;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class GloomyWeatherFrag extends DialogFragment {
 
@@ -103,6 +107,10 @@ public class GloomyWeatherFrag extends DialogFragment {
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
+
+                                // preferece에 우울한 날씨 저장
+                                PreferenceHelper.setGloomy(getContext(), select);
+
                                 Toast.makeText(getActivity(), "설정 되었습니다.", Toast.LENGTH_SHORT).show();
                                 dismiss();
                             }
@@ -110,6 +118,8 @@ public class GloomyWeatherFrag extends DialogFragment {
                         });
             }
         });
+
+
 
 
 
