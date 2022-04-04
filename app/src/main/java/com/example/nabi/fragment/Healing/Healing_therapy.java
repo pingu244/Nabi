@@ -5,6 +5,10 @@ import static android.content.Context.SENSOR_SERVICE;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -18,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,13 +39,16 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.eazegraph.lib.charts.PieChart;
+import org.eazegraph.lib.models.PieModel;
+
 import java.util.Map;
 
 public class Healing_therapy extends Fragment implements SensorEventListener {
 
     SensorManager sm;
     Sensor sensor_step_detector;
-
+    ProgressBar progressBar;
 
     TextView stepCountView, stepGoalView, tv_distance;
     private FirebaseFirestore db;
@@ -61,6 +69,7 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
         stepCountView = view.findViewById(R.id.tv_step);
         stepGoalView = view.findViewById(R.id.tv_goalStep);
         tv_distance = view.findViewById(R.id.tv_distance);
+        progressBar = view.findViewById(R.id.progressbar);
 
         // 활동 퍼미션 체크
         if (ContextCompat.checkSelfPermission(getContext(),
@@ -76,7 +85,7 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
         // - TYPE_STEP_COUNTER : 앱 종료와 관계없이 계속 기존의 값을 가지고 있다가 1씩 증가한 값을 리턴
         //
         sm = (SensorManager) getActivity().getSystemService(SENSOR_SERVICE);   // 센서 매니저 생성
-        sensor_step_detector = sm.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);  // 스템 감지 센서 등록
+        sensor_step_detector = sm.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);  // 스템 감지 센서 등록
 
 
         // BDI 결과값 가져오기
@@ -100,12 +109,16 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
 
                                 if (bdiResult.equals("우울하지 않은 상태")) {
                                     stepGoalView.setText(" / 3000");
+                                    progressBar.setMax(3000);
                                 } else if (bdiResult.equals("가벼운 우울 상태")) {
                                     stepGoalView.setText(" / 4000");
+                                    progressBar.setMax(4000);
                                 } else if (bdiResult.equals("중한 우울 상태")) {
                                     stepGoalView.setText(" / 5000");
+                                    progressBar.setMax(5000);
                                 } else if (bdiResult.equals("심한 우울 상태")) {
                                     stepGoalView.setText(" / 6000");
+                                    progressBar.setMax(6000);
                                 }
                             }
 
@@ -137,10 +150,12 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
         // 센서 유형이 스텝감지 센서인 경우 걸음수 +1
 
-        if(event.sensor.getType()==Sensor.TYPE_STEP_DETECTOR){
+        if(event.sensor.getType()==Sensor.TYPE_STEP_COUNTER){
             if(event.values[0]==1.0f){
                 currentSteps +=event.values[0];
                 stepCountView.setText(String.valueOf(currentSteps));
+                progressBar.setProgress(currentSteps);
+
             }else{
                 stepCountView.setText("감지 안됨");
             }

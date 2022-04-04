@@ -27,7 +27,6 @@
             android:background="@drawable/tab_ind_bg"
 
             app:tabMode="fixed"
-            app:tabBackground="@drawable/back_tabs"
             app:tabSelectedTextColor="#454870"
             app:tabTextColor="@color/black"
             app:layout_constraintTop_toTopOf="parent"
@@ -38,6 +37,7 @@
             app:tabGravity="fill"
             app:tabIndicatorAnimationMode="elastic"
             app:tabRippleColor="@android:color/transparent"
+            app:tabIndicator="@drawable/tab_indicator"
             app:tabIndicatorColor="@color/white"/>
 
 <!--        <com.google.android.material.appbar.AppBarLayout-->
