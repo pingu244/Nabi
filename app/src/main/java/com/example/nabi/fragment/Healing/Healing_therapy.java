@@ -70,7 +70,7 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
         stepGoalView = view.findViewById(R.id.tv_goalStep);
         tv_distance = view.findViewById(R.id.tv_distance);
 
-        pieChart = (PieChart) view.findViewById(R.id.tab1_chart_2);
+        pieChart = (PieChart) view.findViewById(R.id.piechart);
 
 
         // 활동 퍼미션 체크
@@ -165,7 +165,7 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
             if(event.values[0]==1.0f){
                 currentSteps +=event.values[0];
                 stepCountView.setText(String.valueOf(currentSteps));
-                pieChart.addPieSlice(new PieModel("TYPE 1", currentSteps, Color.parseColor("#CDA67F")));
+                pieChart.addPieSlice(new PieModel("걸음 수", currentSteps , Color.parseColor("#1a0c47")));
 
                 pieChart.startAnimation();
 

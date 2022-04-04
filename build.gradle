@@ -5,6 +5,7 @@ buildscript {
         jcenter()
         mavenCentral()  // 페이스북 로그인
         maven { url "https://maven.google.com" } //원형 차트 그래프
+        maven { url 'https://jitpack.io' }
 
 
 
@@ -23,7 +24,7 @@ allprojects {
         google()
         jcenter()
         maven { url "https://maven.google.com" }
-
+        maven { url 'https://jitpack.io' }
 
 
     }
