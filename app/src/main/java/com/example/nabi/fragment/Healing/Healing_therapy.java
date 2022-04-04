@@ -22,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,8 +48,7 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
 
     SensorManager sm;
     Sensor sensor_step_detector;
-
-    PieChart pieChart;
+    ProgressBar progressBar;
 
     TextView stepCountView, stepGoalView, tv_distance;
     private FirebaseFirestore db;
@@ -69,9 +69,7 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
         stepCountView = view.findViewById(R.id.tv_step);
         stepGoalView = view.findViewById(R.id.tv_goalStep);
         tv_distance = view.findViewById(R.id.tv_distance);
-
-        pieChart = (PieChart) view.findViewById(R.id.pieChart);
-
+        progressBar = view.findViewById(R.id.progressbar);
 
         // 활동 퍼미션 체크
         if (ContextCompat.checkSelfPermission(getContext(),
@@ -111,12 +109,16 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
 
                                 if (bdiResult.equals("우울하지 않은 상태")) {
                                     stepGoalView.setText(" / 3000");
+                                    progressBar.setMax(3000);
                                 } else if (bdiResult.equals("가벼운 우울 상태")) {
                                     stepGoalView.setText(" / 4000");
+                                    progressBar.setMax(4000);
                                 } else if (bdiResult.equals("중한 우울 상태")) {
                                     stepGoalView.setText(" / 5000");
+                                    progressBar.setMax(5000);
                                 } else if (bdiResult.equals("심한 우울 상태")) {
                                     stepGoalView.setText(" / 6000");
+                                    progressBar.setMax(6000);
                                 }
                             }
 
@@ -128,19 +130,6 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
                 });
         return view;
     }
-
-    // 파이 차트 설정
-    private void setPieChart() {
-
-
-        pieChart.clearChart();
-
-        pieChart.addPieSlice(new PieModel("TYPE 1", 60, Color.parseColor("#1a0c47")));
-
-        pieChart.startAnimation();
-
-    }
-
 
 
     @Override
@@ -165,9 +154,7 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
             if(event.values[0]==1.0f){
                 currentSteps +=event.values[0];
                 stepCountView.setText(String.valueOf(currentSteps));
-                pieChart.addPieSlice(new PieModel("걸음 수", currentSteps , Color.parseColor("#1a0c47")));
-
-                pieChart.startAnimation();
+                progressBar.setProgress(currentSteps);
 
             }else{
                 stepCountView.setText("감지 안됨");
