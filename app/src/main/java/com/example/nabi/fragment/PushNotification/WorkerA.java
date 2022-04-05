@@ -58,7 +58,7 @@ public class WorkerA extends Worker {
 
 
 
-        if (isEventANotifyAvailable) {
+        if (isNightNotifyRange) {
             // 현재 시각이 알림 범위에 해당하면 알림 생성
             mNotificationHelper.createNotification(Constants.WORK_A_NAME, randomValue);
         } else {

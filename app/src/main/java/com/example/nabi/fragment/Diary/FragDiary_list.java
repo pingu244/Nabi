@@ -50,9 +50,14 @@ public class FragDiary_list extends Fragment {
         rainDiary = new DiaryList_Rain();
         snowDiary = new DiaryList_Snow();
 
+
         diaryListView = view.findViewById(R.id.diaryListRecyclerView);
         diaryListViewAdapter = new DiaryListViewAdapter();
 //        diaryListView.setAdapter(diaryListViewAdapter);
+
+
+
+
         // 스피너
         Spinner monthSpinner = getActivity().findViewById(R.id.spinner_month);
 
@@ -103,8 +108,9 @@ public class FragDiary_list extends Fragment {
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 weather = 0;
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.list_container, clearDiary).commitAllowingStateLoss();
+                getChildFragmentManager().beginTransaction().replace(R.id.list_container, clearDiary).commitAllowingStateLoss();
                 tvWeather.setText("맑은 날");
 
                 Bundle bundle = new Bundle(); // 번들을 통해 값 전달
@@ -121,7 +127,7 @@ public class FragDiary_list extends Fragment {
             @Override
             public void onClick(View view) {
                 weather = 1;
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.list_container, littleCloudyDiary).commitAllowingStateLoss();
+                getChildFragmentManager().beginTransaction().replace(R.id.list_container, littleCloudyDiary).commitAllowingStateLoss();
                 tvWeather.setText("약간 흐린 날");
 
             }
@@ -135,11 +141,11 @@ public class FragDiary_list extends Fragment {
                 weather = 2;
                 Bundle bundle = new Bundle(); // 번들을 통해 값 전달
                 bundle.putString("selectedMonth",Integer.toString(selectMonth));//번들에 넘길 값 저장
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
                 cloudyDiary.setArguments(bundle);//번들을 프래그먼트2로 보낼 준비
                 transaction.commit();
 
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.list_container, cloudyDiary).commitAllowingStateLoss();
+                getChildFragmentManager().beginTransaction().replace(R.id.list_container, cloudyDiary).commitAllowingStateLoss();
                 tvWeather.setText("흐린 날");
 
             }
@@ -150,7 +156,7 @@ public class FragDiary_list extends Fragment {
             @Override
             public void onClick(View view) {
                 weather = 3;
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.list_container, rainDiary).commitAllowingStateLoss();
+                getChildFragmentManager().beginTransaction().replace(R.id.list_container, rainDiary).commitAllowingStateLoss();
                 tvWeather.setText("비 오는 날");
 
             }
@@ -161,7 +167,7 @@ public class FragDiary_list extends Fragment {
             @Override
             public void onClick(View view) {
                 weather = 4;
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.list_container, snowDiary).commitAllowingStateLoss();
+                getChildFragmentManager().beginTransaction().replace(R.id.list_container, snowDiary).commitAllowingStateLoss();
                 tvWeather.setText("눈 오는 날");
 
             }

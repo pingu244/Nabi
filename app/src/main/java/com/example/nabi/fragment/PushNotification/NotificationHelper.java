@@ -109,26 +109,26 @@ public class NotificationHelper {
         long currentMillis = cal.getTimeInMillis();
         if (workName.equals(WORK_A_NAME)) {
             // 현재 시각이 22:00보다 크면 다음 날 오전 알림, 현재 시각이 22:00 전인지 10:00 전인지에 따라 알림 딜레이 설정
-//            if (cal.get(Calendar.HOUR_OF_DAY) >= Constants.A_NIGHT_EVENT_TIME) {
-//                Calendar nextDayCal = getScheduledCalender(A_MORNING_EVENT_TIME);
-//                nextDayCal.add(Calendar.DAY_OF_YEAR, 1);
-//                pushDelayMillis = nextDayCal.getTimeInMillis() - currentMillis;
-//
-//            } else if (cal.get(Calendar.HOUR_OF_DAY) >= A_MORNING_EVENT_TIME && cal.get(Calendar.HOUR_OF_DAY) < A_NIGHT_EVENT_TIME) {
-//                pushDelayMillis = getScheduledCalender(A_NIGHT_EVENT_TIME).getTimeInMillis() - currentMillis;
-//
-//            } else if (cal.get(cal.get(Calendar.HOUR_OF_DAY)) < A_MORNING_EVENT_TIME) {
-//                pushDelayMillis = getScheduledCalender(A_MORNING_EVENT_TIME).getTimeInMillis() - currentMillis;
-//            }
             if (cal.get(Calendar.HOUR_OF_DAY) >= Constants.A_NIGHT_EVENT_TIME) {
-                Calendar nextDayCal = getScheduledCalender(A_NIGHT_EVENT_TIME);
+                Calendar nextDayCal = getScheduledCalender(A_MORNING_EVENT_TIME);
                 nextDayCal.add(Calendar.DAY_OF_YEAR, 1);
                 pushDelayMillis = nextDayCal.getTimeInMillis() - currentMillis;
 
-            } else if (cal.get(Calendar.HOUR_OF_DAY) < A_NIGHT_EVENT_TIME) {
+            } else if (cal.get(Calendar.HOUR_OF_DAY) >= A_MORNING_EVENT_TIME && cal.get(Calendar.HOUR_OF_DAY) < A_NIGHT_EVENT_TIME) {
                 pushDelayMillis = getScheduledCalender(A_NIGHT_EVENT_TIME).getTimeInMillis() - currentMillis;
 
+            } else if (cal.get(cal.get(Calendar.HOUR_OF_DAY)) < A_MORNING_EVENT_TIME) {
+                pushDelayMillis = getScheduledCalender(A_MORNING_EVENT_TIME).getTimeInMillis() - currentMillis;
             }
+//            if (cal.get(Calendar.HOUR_OF_DAY) >= Constants.A_NIGHT_EVENT_TIME) {
+//                Calendar nextDayCal = getScheduledCalender(A_NIGHT_EVENT_TIME);
+//                nextDayCal.add(Calendar.DAY_OF_YEAR, 1);
+//                pushDelayMillis = nextDayCal.getTimeInMillis() - currentMillis;
+//
+//            } else if (cal.get(Calendar.HOUR_OF_DAY) < A_NIGHT_EVENT_TIME) {
+//                pushDelayMillis = getScheduledCalender(A_NIGHT_EVENT_TIME).getTimeInMillis() - currentMillis;
+//
+//            }
         } else if (workName.equals(WORK_B_NAME)) {
             // 현재 시각이 21:00보다 크면 다음 날 오전 알림, 현재 시각이 21:00 전인지 09:00 전인지에 따라 알림 딜레이 설정
             if (cal.get(Calendar.HOUR_OF_DAY) >= B_NIGHT_EVENT_TIME) {

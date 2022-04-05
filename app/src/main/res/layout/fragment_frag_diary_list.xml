@@ -19,6 +19,7 @@
         <ImageButton
             android:id="@+id/btnClear"
             android:layout_weight="1"
+            android:scaleType="fitCenter"
             android:background="@drawable/btnclear"
             android:layout_height="wrap_content"
             android:layout_width="0dp"  />
@@ -26,6 +27,7 @@
         <ImageButton
             android:id="@+id/btnLittleCloudy"
             android:layout_weight="1"
+            android:scaleType="fitCenter"
             android:background="@drawable/btnlittlecloud"
             android:layout_height="wrap_content"
             android:layout_width="0dp"  />
@@ -33,6 +35,7 @@
         <ImageButton
             android:id="@+id/btnCloudy"
             android:layout_weight="1"
+            android:scaleType="fitCenter"
             android:background="@drawable/btncloudy"
             android:layout_height="wrap_content"
             android:layout_width="0dp"  />
@@ -40,6 +43,7 @@
         <ImageButton
             android:id="@+id/btnRain"
             android:layout_weight="1"
+            android:scaleType="fitCenter"
             android:background="@drawable/btnrain"
             android:layout_height="wrap_content"
             android:layout_width="0dp"  />
@@ -47,6 +51,7 @@
         <ImageButton
             android:id="@+id/btnSnow"
             android:layout_weight="1"
+            android:scaleType="fitCenter"
             android:background="@drawable/btnsnow"
             android:layout_height="wrap_content"
             android:layout_width="0dp"  />
