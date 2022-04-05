@@ -16,6 +16,8 @@ import android.hardware.SensorManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,10 +30,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nabi.R;
+import com.example.nabi.fragment.Home.Day5_Adapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,6 +48,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class Healing_therapy extends Fragment implements SensorEventListener {
@@ -60,16 +67,45 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
     @Nullable
     View view;
 
+    MusicListAdapter musicListAdapter;
+    ArrayList<MusicListAdapter.MusicCategory> music_itemData;
+    RecyclerView music_recycler;
+
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.healing_therapy, container, false);
 
         db = FirebaseFirestore.getInstance();
 
+        final MediaPlayer mediaPlayer;
+        mediaPlayer = MediaPlayer.create(getContext(),R.raw.ambientdrumandbassmusic);
+
         stepCountView = view.findViewById(R.id.tv_step);
         stepGoalView = view.findViewById(R.id.tv_goalStep);
         tv_distance = view.findViewById(R.id.tv_distance);
         progressBar = view.findViewById(R.id.progressbar);
+
+        music_recycler = view.findViewById(R.id.recycler_music);
+
+        //음악 리스트 어댑터 연결
+        music_itemData = new ArrayList<>();
+        musicListAdapter =new MusicListAdapter(music_itemData);
+        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        music_recycler.setLayoutManager(layoutManager);
+        music_recycler.setAdapter(musicListAdapter);
+
+        //음악 카테고리 목록
+        music_itemData.add(new MusicListAdapter.MusicCategory("감각적인",  R.drawable.ic_baseline_ac_unit_24));
+        music_itemData.add(new MusicListAdapter.MusicCategory("밝은", R.drawable.ic_baseline_ac_unit_24));
+        music_itemData.add(new MusicListAdapter.MusicCategory("새벽 감성", R.drawable.ic_baseline_ac_unit_24));
+        music_itemData.add(new MusicListAdapter.MusicCategory("수면", R.drawable.ic_baseline_ac_unit_24));
+        music_itemData.add(new MusicListAdapter.MusicCategory("신나는", R.drawable.ic_baseline_ac_unit_24));
+        music_itemData.add(new MusicListAdapter.MusicCategory("잔잔한 피아노", R.drawable.ic_baseline_ac_unit_24));
+        music_itemData.add(new MusicListAdapter.MusicCategory("편안한", R.drawable.ic_baseline_ac_unit_24));
+        music_itemData.add(new MusicListAdapter.MusicCategory("ASMR", R.drawable.ic_baseline_ac_unit_24));
+
 
         // 활동 퍼미션 체크
         if (ContextCompat.checkSelfPermission(getContext(),
