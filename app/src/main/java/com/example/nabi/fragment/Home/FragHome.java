@@ -35,6 +35,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -117,7 +118,7 @@ public class FragHome extends Fragment {
     int weatherToDiary = -1;
     Integer tomorrowWeather = -1;
 
-
+    private SwipeRefreshLayout swipeRefreshLayout;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
@@ -137,6 +138,19 @@ public class FragHome extends Fragment {
         tv_feelWeather = view.findViewById(R.id.tv_feelWeather);
         hour3_recyclerView = view.findViewById(R.id.hour3_view);
         day5_recyclerView = view.findViewById(R.id.day5_view);
+
+        swipeRefreshLayout = view.findViewById(R.id.swipeLayout);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                /* swipe 시 진행할 동작 */
+
+
+                /* 업데이트가 끝났음을 알림 */
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         // 마이페이지 버튼
         ImageButton mypageBtn = view.findViewById(R.id.mypageBtn);
@@ -352,6 +366,8 @@ public class FragHome extends Fragment {
                 public void onClick(DialogInterface dialog, int which) {
                     ActivityCompat.requestPermissions((Activity) getContext(),
                             new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_GPS_CODE);
+
+
                 }
             });
             builder.show();
