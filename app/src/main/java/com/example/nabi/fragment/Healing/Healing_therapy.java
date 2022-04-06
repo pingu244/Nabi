@@ -38,17 +38,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nabi.R;
 import com.example.nabi.fragment.Home.Day5_Adapter;
+import com.example.nabi.fragment.PushNotification.PreferenceHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Healing_therapy extends Fragment implements SensorEventListener {
@@ -63,7 +67,7 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
 
 
     // 현재 걸음 수
-    int currentSteps = 0;
+    int currentSteps = 0, temp;
     @Nullable
     View view;
 
@@ -121,7 +125,7 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
         // - TYPE_STEP_COUNTER : 앱 종료와 관계없이 계속 기존의 값을 가지고 있다가 1씩 증가한 값을 리턴
         //
         sm = (SensorManager) getActivity().getSystemService(SENSOR_SERVICE);   // 센서 매니저 생성
-        sensor_step_detector = sm.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);  // 스템 감지 센서 등록
+        sensor_step_detector = sm.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);  // 스템 감지 센서 등록
 
 
         // BDI 결과값 가져오기
@@ -167,6 +171,18 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        // 산책 값 가져오기
+        currentSteps = PreferenceHelper.getStep(getContext());
+        stepCountView.setText(String.valueOf(currentSteps));
+
+        progressBar.setProgress(currentSteps);
+
+
+
+    }
 
     @Override
     public void onResume() {
@@ -179,6 +195,10 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
     public void onPause() {
         super.onPause();
         sm.unregisterListener(this);
+
+
+        // 걸음수 임시 저장
+        PreferenceHelper.setStep(getContext(), currentSteps);
     }
 
 
@@ -186,7 +206,7 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
         // 센서 유형이 스텝감지 센서인 경우 걸음수 +1
 
-        if(event.sensor.getType()==Sensor.TYPE_STEP_COUNTER){
+        if(event.sensor.getType()==Sensor.TYPE_STEP_DETECTOR){
             if(event.values[0]==1.0f){
                 currentSteps +=event.values[0];
                 stepCountView.setText(String.valueOf(currentSteps));
