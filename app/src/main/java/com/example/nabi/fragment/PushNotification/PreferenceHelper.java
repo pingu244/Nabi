@@ -62,6 +62,18 @@ public class PreferenceHelper {
         return prefs.getInt("Tomorrow_weather", -1);
     }
 
+    public static void setStep(Context context, int value){
+        SharedPreferences prefs = getPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("Temp_walk", value);
+        editor.commit();
+    }
+
+    public static int getStep(Context context){
+        SharedPreferences prefs = getPreferences(context);
+        return prefs.getInt("Temp_walk", -1);
+    }
+
     public static void removeKey(Context context, String key) {
         SharedPreferences prefs = getPreferences(context);
         SharedPreferences.Editor edit = prefs.edit();

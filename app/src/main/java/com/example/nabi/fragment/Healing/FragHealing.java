@@ -57,7 +57,7 @@ public class FragHealing extends Fragment {
             public void onPageSelected(int position) { //페이지 넘어갈 때
                 switch (position) {
                     case 0:
-                        getActivity().findViewById(R.id.diaryBg).setBackgroundDrawable(getResources().getDrawable(R.drawable.diarybg));
+                        getActivity().findViewById(R.id.healingBg).setBackgroundDrawable(getResources().getDrawable(R.drawable.diarybg));
                         break;
                     case 1:
 

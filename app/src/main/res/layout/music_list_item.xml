@@ -1,0 +1,37 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="45dp"
+    android:layout_marginBottom="14dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:id="@+id/music_list_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:id="@+id/music_image"
+            android:layout_width="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_height="40dp"/>
+        <TextView
+            android:id="@+id/music_title"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginLeft="16dp"
+            android:text=""
+            android:layout_gravity="center_vertical"
+            android:textSize="14sp"
+            android:visibility="visible" />
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
