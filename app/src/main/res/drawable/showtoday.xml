@@ -6,4 +6,4 @@
     <item android:drawable="@android:color/transparent" />
 </selector>
 
-<!-- 1. 일자 선택시 background 모양 변경하는 drawable -->
+    <!-- 1. 오늘 표시하는 background 모양 변경하는 drawable -->

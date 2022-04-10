@@ -290,14 +290,15 @@ public class FragDiary_cal extends Fragment {
     // 오늘 표시 어떻게 할지
     public class OneDayDecorator implements DayViewDecorator {
         private CalendarDay date;
+        private Drawable drawable;
 
         public OneDayDecorator() {
             date = CalendarDay.today();
+            drawable = getResources().getDrawable(R.drawable.showtoday);
         }
 
         @Override
-        public boolean shouldDecorate(CalendarDay day) {
-            return date != null && day.equals(date);
+        public boolean shouldDecorate(CalendarDay day) {return date != null && day.equals(date);
         }
 
         @Override
@@ -306,6 +307,9 @@ public class FragDiary_cal extends Fragment {
             view.addSpan(new RelativeSizeSpan(1.2f));
             view.addSpan(new ForegroundColorSpan(Color.WHITE));
             view.addSpan(new BackgroundColorSpan(Color.rgb(250,133,116)));
+            view.setBackgroundDrawable(drawable);
+            view.setSelectionDrawable(drawable); //선택했을때 백그라운드 드로어블(선택 취소하면 나타났다사라짐)
+
         }
 
         public void setDate(Date date) {

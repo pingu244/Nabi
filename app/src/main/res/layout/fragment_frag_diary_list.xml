@@ -7,45 +7,50 @@
     tools:context=".fragment.Diary.FragDiary_list"
     android:orientation="vertical">
 
+<LinearLayout
 
-    <LinearLayout
-        android:layout_marginHorizontal="10dp"
+        android:layout_marginHorizontal="17dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="62dp"
         android:orientation="horizontal"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="35dp"
         android:weightSum="5">
 
         <ImageButton
             android:id="@+id/btnClear"
+            android:layout_marginRight="16dp"
             android:layout_weight="1"
             android:scaleType="fitCenter"
             android:background="@drawable/btnclear"
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"  />
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:elevation="3dp" />
 
         <ImageButton
             android:id="@+id/btnLittleCloudy"
+            android:layout_marginRight="16dp"
             android:layout_weight="1"
             android:scaleType="fitCenter"
             android:background="@drawable/btnlittlecloud"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_width="0dp"  />
 
         <ImageButton
             android:id="@+id/btnCloudy"
+            android:layout_marginRight="16dp"
             android:layout_weight="1"
             android:scaleType="fitCenter"
             android:background="@drawable/btncloudy"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_width="0dp"  />
 
         <ImageButton
             android:id="@+id/btnRain"
+            android:layout_marginRight="16dp"
             android:layout_weight="1"
             android:scaleType="fitCenter"
             android:background="@drawable/btnrain"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_width="0dp"  />
 
         <ImageButton
@@ -53,12 +58,13 @@
             android:layout_weight="1"
             android:scaleType="fitCenter"
             android:background="@drawable/btnsnow"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_width="0dp"  />
     </LinearLayout>
 
     <FrameLayout
-        android:layout_marginVertical="5dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -73,6 +79,7 @@
 
         <Spinner
             android:layout_gravity="right|center"
+            android:layout_weight="1"
             android:id="@+id/spinner_month"
             android:layout_width="100dp"
             android:layout_height="wrap_content"/>
@@ -82,10 +89,6 @@
         android:id="@+id/list_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
-
-
-
 
 
 </LinearLayout>
