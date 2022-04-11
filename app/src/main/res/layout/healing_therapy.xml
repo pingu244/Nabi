@@ -44,7 +44,7 @@
                     android:progress="0"
                     android:max="100"
                     android:progressBackgroundTint="#FBE7C6"
-                    android:progressDrawable="@drawable/circle_progressbaar"
+                    android:progressDrawable="@drawable/circle_progressbar"
                     android:progressTint="#1a0c47" />
 
                 <TextView
