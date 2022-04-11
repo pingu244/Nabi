@@ -436,24 +436,24 @@ public class FragHome extends Fragment {
 
                 String main = jsonObject.getJSONArray("weather").getJSONObject(0).getString("main");
                 if (main.equals("Clear")) { //맑은 날
-                    item.setImageView(R.drawable.ic_baseline_wb_sunny_24);
+                    item.setImageView(R.drawable.ic_mainweather_clear);
                 }
 
                 else if (main.equals("Mist")||main.equals("Smoke")||main.equals("Haze")||main.equals("Dust")){ //약간 흐린
-                    item.setImageView(R.drawable.ic_baseline_cloud_queue_24);
+                    item.setImageView(R.drawable.ic_mainweather_mist);
                 }
 
                 else if (main.equals("Thunderstorm") ||main.equals("Clouds")||main.equals("Fog") ||main.equals("Sand")||main.equals("Ash")||main.equals("Squall")||main.equals("Tornado")){ //흐린
-                    item.setImageView(R.drawable.ic_baseline_cloud_24);
+                    item.setImageView(R.drawable.ic_mainweather_cloud);
                 }
 
                 else if (main.equals("Rain")||main.equals("Drizzle")){ //비
-                    item.setImageView(R.drawable.ic_baseline_opacity_24);
+                    item.setImageView(R.drawable.ic_mainweather_rain);
                 }
 
                 else if ( main.equals("Snow")){
 
-                    item.setImageView(R.drawable.ic_baseline_ac_unit_24);
+                    item.setImageView(R.drawable.ic_mainweather_snow);
 
                 }
 
@@ -508,7 +508,7 @@ public class FragHome extends Fragment {
                 Log.d(TAG,dateString);
                 main = jsonObject.getJSONArray("weather").getJSONObject(0).getString("main");
                 if (main.equals("Clear")) { //맑은 날
-                    item.setImageView(R.drawable.ic_baseline_wb_sunny_24);
+                    item.setImageView(R.drawable.ic_mainweather_clear);
                     // 오늘 일기 배경바뀌게 하기위함
                     if(i==0)
                         weatherToDiary = 0;
@@ -517,7 +517,7 @@ public class FragHome extends Fragment {
                 }
 
                 else if (main.equals("Mist")||main.equals("Smoke")||main.equals("Haze")||main.equals("Dust")){ //약간 흐린
-                    item.setImageView(R.drawable.ic_baseline_cloud_queue_24);
+                    item.setImageView(R.drawable.ic_mainweather_mist);
                     // 오늘 일기 배경바뀌게 하기위함
                     if(i==0)
                         weatherToDiary = 1;
@@ -526,7 +526,7 @@ public class FragHome extends Fragment {
                 }
 
                 else if (main.equals("Clouds")||main.equals("Fog") ||main.equals("Sand")||main.equals("Ash")||main.equals("Squall")||main.equals("Tornado")){ //흐린
-                    item.setImageView(R.drawable.ic_baseline_cloud_24);
+                    item.setImageView(R.drawable.ic_mainweather_cloud);
                     // 오늘 일기 배경바뀌게 하기위함
                     if(i==0)
                         weatherToDiary = 2;
@@ -535,7 +535,7 @@ public class FragHome extends Fragment {
                 }
 
                 else if (main.equals("Rain")||main.equals("Drizzle")||main.equals("Thunderstorm")){ //비
-                    item.setImageView(R.drawable.ic_baseline_opacity_24);
+                    item.setImageView(R.drawable.ic_mainweather_rain);
                     // 오늘 일기 배경바뀌게 하기위함
                     if(i==0)
                         weatherToDiary = 3;
@@ -544,7 +544,7 @@ public class FragHome extends Fragment {
                 }
 
                 else if ( main.equals("Snow")){
-                    item.setImageView(R.drawable.ic_baseline_ac_unit_24);
+                    item.setImageView(R.drawable.ic_mainweather_snow);
                     // 오늘 일기 배경바뀌게 하기위함
                     if(i==0)
                         weatherToDiary = 4;
@@ -610,7 +610,7 @@ public class FragHome extends Fragment {
             humidity = daily.getJSONObject(0).getString("humidity"); //습도
             rainPer = daily.getJSONObject(0).getString("pop"); //강수확률
             feelWeather = current.getString(("feels_like")); //체감온도
-            temp_now.setText("현재 온도 : "+nowTemp);
+            temp_now.setText(nowTemp + "°");
             tv_humidity.setText("습도 : "+humidity+"%");
             tv_uv.setText("자외선 : "+uv);
             tv_rainPer.setText("강수확률 : "+rainPer+"%");
@@ -618,23 +618,23 @@ public class FragHome extends Fragment {
 
             if (description.equals("Clear")){//맑음
                 tv_weather.setText("맑음 "+minTemp+"/"+maxTemp);
-                weatherImg.setImageResource(R.drawable.ic_baseline_wb_sunny_24);
+                weatherImg.setImageResource(R.drawable.ic_mainweather_clear);
             }
             else if (description.equals("Mist")||description.equals("Smoke")||description.equals("Haze")||description.equals("Dust")){//안개,구름 조금
                 tv_weather.setText("조금 흐림 "+minTemp+"/"+maxTemp);
-                weatherImg.setImageResource(R.drawable.ic_baseline_cloud_queue_24);
+                weatherImg.setImageResource(R.drawable.ic_mainweather_mist);
             }
             else if (description.equals("Thunderstorm") ||description.equals("Clouds")||description.equals("Fog") ||description.equals("Sand")||description.equals("Ash")||description.equals("Squall")||description.equals("Tornado")){//천둥번개, 구름
                 tv_weather.setText("흐림 "+minTemp+"/"+maxTemp);
-                weatherImg.setImageResource(R.drawable.ic_baseline_cloud_24);
+                weatherImg.setImageResource(R.drawable.ic_mainweather_cloud);
             }
             else if (description.equals("Rain")||description.equals("Drizzle")){//비, 이슬비
                 tv_weather.setText("비 "+minTemp+"/"+maxTemp);
-                weatherImg.setImageResource(R.drawable.ic_baseline_opacity_24);
+                weatherImg.setImageResource(R.drawable.ic_mainweather_rain);
             }
             else if (description.equals("Snow")){//눈
                 tv_weather.setText("눈 "+minTemp+"/"+maxTemp);
-                weatherImg.setImageResource(R.drawable.ic_baseline_ac_unit_24);
+                weatherImg.setImageResource(R.drawable.ic_mainweather_snow);
             }else{
                 tv_weather.setText(description);
                 //weatherImg.setImageResource(R.drawable.ic_baseline_ac_unit_24);

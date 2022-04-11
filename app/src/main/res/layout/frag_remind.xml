@@ -32,11 +32,11 @@
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="2dp"
-                android:background="@color/white"/>
+                android:background="@color/white" />
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/btnsnow"/>
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:src="@drawable/ic_heart"/>
             <LinearLayout
                 android:layout_marginHorizontal="20dp"
                 android:layout_weight="1"
@@ -48,15 +48,18 @@
 
         <Spinner
             android:id="@+id/remindSpinner"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:layout_gravity="right|center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_width="54dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundrectangle2"/>
 
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:padding="10dp"
+        android:paddingTop="10dp"
+        android:paddingHorizontal="10dp"
         android:id="@+id/remind_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

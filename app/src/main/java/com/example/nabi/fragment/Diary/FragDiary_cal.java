@@ -91,7 +91,7 @@ public class FragDiary_cal extends Fragment {
         //월 한글로 보이게 설정
 //        materialCalendarView.setTitleFormatter(new MonthArrayTitleFormatter(getResources().getTextArray(R.array.custom_months)));
 
-        // 안희애가 해본 월 보이는 커스텀(0404) - 이거 원하는거 맞아?
+        // 안희애가 해본 월 보이는 커스텀(0404)
         SimpleDateFormat format = new SimpleDateFormat("M");
         materialCalendarView.setTitleFormatter(new TitleFormatter() {
             @Override
@@ -101,20 +101,8 @@ public class FragDiary_cal extends Fragment {
             }
         });
 
-
-//        //월 보이는 방식 커스텀 (다영 0403)
-//        materialCalendarView.setTitleFormatter(new TitleFormatter() {
-//            @Override
-//            public CharSequence format(CalendarDay day) {
-//                Date inputText = day.getDate();
-//                String[] calendarHeaderElements = inputText.toString().split("-");
-//                StringBuilder calendarHeaderBuilder = new StringBuilder();
-//                calendarHeaderBuilder.append(calendarHeaderElements[0])
-//                        .append(" ")
-//                        .append(calendarHeaderElements[1]);
-//                return calendarHeaderBuilder.toString();
-//            }
-//        });
+        // 월 헤더 글자크기, 색 설정
+        materialCalendarView.setHeaderTextAppearance(R.style.CalendarWidgetHeader);
 
 
         materialCalendarView.setDateSelected(CalendarDay.today(), true);    // 오늘 선택되어있게

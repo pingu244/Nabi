@@ -13,24 +13,26 @@
         android:layout_margin="4dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical">
 
         <ImageView
             android:layout_gravity="center"
             android:id="@+id/remind_weather"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginLeft="22dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/btnrain"/>
 
         <TextView
             android:id="@+id/remind_date"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="0000년 00월 00일"
-            android:textSize="25dp">
+            android:textSize="25dp"
+            android:textColor="@color/black">
 
         </TextView>
 
@@ -41,10 +43,10 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_gravity="center"
+                android:layout_marginRight="22dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/mypage_in"/>
+                android:src="@drawable/list_in"/>
 
         </LinearLayout>
 
