@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -25,6 +26,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -93,6 +95,7 @@ public class FragHome extends Fragment {
     private static int REQUEST_WEATHER_CODE = 1001;
     private static int REQUEST_GPS_CODE = 1002;
 
+    LinearLayout background;
     TextView tv_weather,today_date,current_location,temp_now,tv_humidity,tv_uv,tv_rainPer,tv_feelWeather;
     ImageView weatherImg;
 
@@ -126,6 +129,7 @@ public class FragHome extends Fragment {
 
         queue= Volley.newRequestQueue(getContext());
 
+        background = view.findViewById(R.id.home_background);
         tv_weather = view.findViewById(R.id.tv_weather);
         weatherImg = view.findViewById(R.id.weatherImg);
         today_date = view.findViewById(R.id.today_date);
@@ -424,12 +428,12 @@ public class FragHome extends Fragment {
                 String time = jsonObject.getString("dt_txt");
 
                 DateFormat parser = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss", Locale.ENGLISH);
-                DateFormat formatter = new SimpleDateFormat("HH:mm");
+                DateFormat formatter = new SimpleDateFormat("a h시", Locale.KOREA);
 
                 Date date = parser.parse(time);
-
                 item.setTime(formatter.format(date));
-                item.setTemp(jsonObject.getJSONObject("main").getDouble("temp"));
+                int t = (int)(Math.round(jsonObject.getJSONObject("main").getDouble("temp")));
+                item.setTemp(t);
 
                 //main값에 따라 날씨 아이콘 적용하는 코드
                 // (jsonArray.getJSONObject(i).getJSONObject("weather").getString("main"));
@@ -488,9 +492,12 @@ public class FragHome extends Fragment {
                 JSONObject jsonObject = daily.getJSONObject(i);
                 Day5_Adapter.ItemData item = new Day5_Adapter.ItemData();
                 time = jsonObject.getString("dt"); //날짜
-                minTemp = daily.getJSONObject(i).getJSONObject("temp").getString("min"); //일일 최소 온도
-                maxTemp = daily.getJSONObject(i).getJSONObject("temp").getString("max"); //일일 최대 온도
-                rain = jsonObject.getString("pop");
+                int a = Math.round(Float.valueOf(daily.getJSONObject(i).getJSONObject("temp").getString("min")));
+                int b = Math.round(Float.valueOf(daily.getJSONObject(i).getJSONObject("temp").getString("max")));
+                minTemp = Integer.toString(a)+"°"; //일일 최소 온도
+                maxTemp = Integer.toString(b)+"°"; //일일 최대 온도
+                int c = (int)(Float.valueOf(jsonObject.getString("pop"))*100);
+                rain = Integer.toString(c);
 
                 long unixTime = new Long(time);
 
@@ -594,8 +601,13 @@ public class FragHome extends Fragment {
             JSONObject current = new JSONObject(jsonString).getJSONObject("current");
 
             for(int i=0;i<daily.length();i++) {
-                minTemp = daily.getJSONObject(0).getJSONObject("temp").getString("min"); //일일 최소 온도
-                maxTemp = daily.getJSONObject(0).getJSONObject("temp").getString("max"); //일일 최대 온도
+                float a = Float.valueOf(daily.getJSONObject(0).getJSONObject("temp").getString("min"));
+                float b = Float.valueOf(daily.getJSONObject(0).getJSONObject("temp").getString("max"));
+                int aa = Math.round(a);
+                int bb = Math.round(b);
+
+                minTemp = aa+"°"; //일일 최소 온도
+                maxTemp = bb+"°"; //일일 최대 온도
 
 
                 Log.d(TAG,description);
@@ -605,11 +617,16 @@ public class FragHome extends Fragment {
 
             description = current.getJSONArray("weather").getJSONObject(0).getString("main"); // 현재 날씨
 //            ((WritingDiary)getActivity()).today_weather = description;  // public변수에 오늘 날씨 저장 -> 다이어리에서 사용하기위함
-            nowTemp = current.getString(("temp")); //현재 온도
-            uv = current.getString(("uvi")); //자외선 지수
+            int c = Math.round(Float.valueOf(current.getString(("temp"))));
+            nowTemp = Integer.toString(c); //현재 온도
+            int f = Math.round(Float.valueOf(current.getString(("uvi"))));
+            uv = Integer.toString(f); //자외선 지수
             humidity = daily.getJSONObject(0).getString("humidity"); //습도
-            rainPer = daily.getJSONObject(0).getString("pop"); //강수확률
-            feelWeather = current.getString(("feels_like")); //체감온도
+            int e = (int)(Float.valueOf(daily.getJSONObject(0).getString("pop"))*100);
+            rainPer = Integer.toString(e); //강수확률
+            int d = Math.round(Float.valueOf(current.getString(("feels_like"))));
+            feelWeather = d+"°"; //체감온도
+
             temp_now.setText(nowTemp + "°");
             tv_humidity.setText("습도 : "+humidity+"%");
             tv_uv.setText("자외선 : "+uv);
@@ -619,22 +636,27 @@ public class FragHome extends Fragment {
             if (description.equals("Clear")){//맑음
                 tv_weather.setText("맑음 "+minTemp+"/"+maxTemp);
                 weatherImg.setImageResource(R.drawable.ic_mainweather_clear);
+                background.setBackgroundColor(Color.parseColor("#BAD3A5"));
             }
             else if (description.equals("Mist")||description.equals("Smoke")||description.equals("Haze")||description.equals("Dust")){//안개,구름 조금
                 tv_weather.setText("조금 흐림 "+minTemp+"/"+maxTemp);
                 weatherImg.setImageResource(R.drawable.ic_mainweather_mist);
+                background.setBackgroundColor(Color.parseColor("#F6C97B"));
             }
             else if (description.equals("Thunderstorm") ||description.equals("Clouds")||description.equals("Fog") ||description.equals("Sand")||description.equals("Ash")||description.equals("Squall")||description.equals("Tornado")){//천둥번개, 구름
                 tv_weather.setText("흐림 "+minTemp+"/"+maxTemp);
                 weatherImg.setImageResource(R.drawable.ic_mainweather_cloud);
+                background.setBackgroundColor(Color.parseColor("#97ACE5"));
             }
             else if (description.equals("Rain")||description.equals("Drizzle")){//비, 이슬비
                 tv_weather.setText("비 "+minTemp+"/"+maxTemp);
                 weatherImg.setImageResource(R.drawable.ic_mainweather_rain);
+                background.setBackgroundColor(Color.parseColor("#8DC0D3"));
             }
             else if (description.equals("Snow")){//눈
                 tv_weather.setText("눈 "+minTemp+"/"+maxTemp);
                 weatherImg.setImageResource(R.drawable.ic_mainweather_snow);
+                background.setBackgroundColor(Color.parseColor("#B19ED8"));
             }else{
                 tv_weather.setText(description);
                 //weatherImg.setImageResource(R.drawable.ic_baseline_ac_unit_24);

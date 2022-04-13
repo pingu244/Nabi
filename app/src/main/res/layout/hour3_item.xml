@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="80dp"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/calender_frame_rectangle"
+    android:layout_margin="5dp">
 
     <TextView
         android:id="@+id/hour3_item_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:textSize="10dp"
+        android:textSize="15dp"
         android:textColor="@color/black"
         android:gravity="center"/>
 
@@ -23,7 +25,7 @@
         android:id="@+id/hour3_item_temp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="10dp"
+        android:textSize="15dp"
         android:textColor="@color/black"
         android:gravity="center"/>
 

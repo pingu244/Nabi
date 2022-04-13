@@ -33,7 +33,7 @@ public class Hour3_Adapter extends RecyclerView.Adapter<Hour3_Adapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ItemData vo = list.get(position);
         holder.tv_time.setText(vo.time);
-        holder.tv_temp.setText(vo.temp.toString());
+        holder.tv_temp.setText(vo.temp+"°");
         holder.img_temp.setImageResource(vo.imageView);
     }
 
@@ -46,7 +46,7 @@ public class Hour3_Adapter extends RecyclerView.Adapter<Hour3_Adapter.ViewHolder
 
     public static class ItemData {
         public String time;
-        public Double temp;
+        public int temp;
         public int imageView;
         public String main;
 
@@ -58,11 +58,11 @@ public class Hour3_Adapter extends RecyclerView.Adapter<Hour3_Adapter.ViewHolder
             this.time = time;
         }
 
-        public Double getTemp() {
+        public int getTemp() {
             return temp;
         }
 
-        public void setTemp(double temp) {
+        public void setTemp(int temp) {
             this.temp = temp;
         }
 
