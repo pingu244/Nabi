@@ -31,7 +31,7 @@ public class BdiTestResult extends Fragment {
     Integer score, cnt_1, cnt_2, cnt_3, cnt_4;
     View view;
     TextView tv_bdiResult, tv_bdiText, tv_count1, tv_count2, tv_count3, tv_count4;
-    Button btnRetest;
+    Button btnRetest, btnExit;
     private FirebaseFirestore db;
 
     @Override
@@ -42,6 +42,8 @@ public class BdiTestResult extends Fragment {
         tv_bdiResult = view.findViewById(R.id.tv_bdiResult);
         tv_bdiText = view.findViewById(R.id.tv_bdiText);
         btnRetest = view.findViewById(R.id.btnRetest);
+        btnExit = view.findViewById(R.id.btnExit);
+
         tv_count1 = view.findViewById(R.id.cnt_1);
         tv_count2 = view.findViewById(R.id.cnt_2);
         tv_count3 = view.findViewById(R.id.cnt_3);
@@ -122,6 +124,12 @@ public class BdiTestResult extends Fragment {
             }
         });
 
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().finish();
+            }
+        });
 
         return view;
     }

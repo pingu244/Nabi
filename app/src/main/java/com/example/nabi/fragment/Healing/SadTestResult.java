@@ -11,19 +11,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.nabi.R;
 
+import org.w3c.dom.Text;
 
 
 public class SadTestResult extends AppCompatActivity {
 
     ImageButton btnCancel;
     Button btnReTest;
-
+    TextView sadMention;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sad_test_result);
 
         TextView result = findViewById(R.id.sad_result);
+        sadMention = findViewById(R.id.sad_mention);
+
         btnCancel = findViewById(R.id.btnCancel);
         btnReTest = findViewById(R.id.btnRetest);
 
@@ -49,9 +52,14 @@ public class SadTestResult extends AppCompatActivity {
 
         if (count>=3){
             result.setText("주의! 상담권유");
+            sadMention.setText(" 총 6개의 질문 중,"+count+"개의 질문에서 \"예\"를 체크하셨습니다.\n" +
+                    "  계절의 변화에 따른 신체 변화에 주의를 기울일 필요가 있어요.\n" +
+                    "  정도가 심하다면, 전문가와의 상담을 추천합니다.");
         }
         else{
             result.setText("정상");
+            sadMention.setText(" 총 6개의 질문 중,"+count+"개의 질문에서 \"예\"를 체크하셨습니다.\n" +
+                    "  앞으로도 나비와 함께 힐링해봐요");
         }
     }
 }

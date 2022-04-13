@@ -4,89 +4,115 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_marginTop="50dp"
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        android:text="당신의 우울증 정도는"/>
-
-    <TextView
-        android:id="@+id/tv_bdiResult"
-        android:layout_marginTop="50dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        android:text=""/>
-
-    <TextView
-        android:id="@+id/cnt_1"
-        android:layout_marginLeft="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1번 문항 : "/>
-
-    <TextView
-        android:id="@+id/cnt_2"
-        android:layout_marginLeft="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2번 문항 : "/>
-
-    <TextView
-        android:id="@+id/cnt_3"
-        android:layout_marginLeft="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="3번 문항 : "/>
-
-    <TextView
-        android:id="@+id/cnt_4"
-        android:layout_marginLeft="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="4번 문항 : "/>
-
-    <View
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center"
-        android:layout_width="250dp"
-        android:layout_height="2px"
-        android:background="#D5D5D5"/>
-
-
-    <TextView
-        android:id="@+id/tv_bdiText"
-        android:layout_marginTop="50dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:textSize="15dp"
-        android:textColor="@color/black"
-        android:text="멘트"/>
-
-
-
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/btnRetest"
-            android:layout_gravity="center"
+        android:layout_gravity="center">
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="다시 검사하기"/>
+            android:orientation="vertical">
+            <TextView
+                android:layout_marginTop="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:text="당신의 우울증 정도는"/>
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tv_bdiResult"
+                android:layout_marginTop="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:text=""/>
+
+            <!--아이콘-->
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"/>
+
+
+            <View
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:layout_width="250dp"
+                android:layout_marginBottom="30dp"
+                android:layout_height="2px"
+                android:background="#D5D5D5"/>
+
+            <TextView
+                android:id="@+id/cnt_1"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1번 문항 : "/>
+
+            <TextView
+                android:id="@+id/cnt_2"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2번 문항 : "/>
+
+            <TextView
+                android:id="@+id/cnt_3"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3번 문항 : "/>
+
+            <TextView
+                android:id="@+id/cnt_4"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4번 문항 : "/>
+
+            <TextView
+                android:id="@+id/tv_bdiText"
+                android:layout_marginTop="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:text="멘트"/>
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btnRetest"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="다시 검사하기"/>
+
+                <Button
+                    android:id="@+id/btnExit"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="나가기"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
 
 </LinearLayout>
