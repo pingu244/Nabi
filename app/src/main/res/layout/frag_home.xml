@@ -14,6 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -37,16 +38,39 @@
                     android:layout_height="wrap_content"
                     android:textSize="24dp"
                     android:textColor="@color/indigo_pnt"
-                    android:layout_marginLeft="15dp"/>
+                    android:layout_marginLeft="15dp"
+                    android:shadowDy="15"
+                    android:shadowRadius="15"
+                    android:shadowColor="#1A000000"/>
 
-                <TextView
-                    android:id="@+id/current_location"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14dp"
-                    android:textColor="@color/white"
+                    android:orientation="horizontal"
                     android:layout_marginTop="5dp"
-                    android:layout_marginLeft="15dp"/>
+                    android:layout_marginLeft="15dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        android:src="@drawable/ic_gps"
+                        android:layout_marginRight="2dp"
+                        android:layout_gravity="center_vertical"
+                        android:elevation="1dp"/>
+
+                    <TextView
+                        android:id="@+id/current_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14dp"
+                        android:textColor="@color/white"
+
+                        android:shadowDy="15"
+                        android:shadowRadius="15"
+                        android:shadowColor="#1A000000"/>
+
+                </LinearLayout>
+
 
                 <TextView
                     android:id="@+id/tv_weather"
@@ -55,7 +79,10 @@
                     android:textSize="16dp"
                     android:textColor="@color/white"
                     android:layout_marginTop="5dp"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:shadowDy="15"
+                    android:shadowRadius="15"
+                    android:shadowColor="#1A000000"/>
 
                 <ImageView
                     android:id="@+id/weatherImg"
@@ -68,53 +95,218 @@
                     android:id="@+id/temp_now"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="40dp"
+                    android:textSize="48dp"
                     android:textStyle="bold"
                     android:textColor="@color/white"
                     android:layout_gravity="center"
+                    android:shadowDy="15"
+                    android:shadowRadius="15"
+                    android:shadowColor="#1A000000"
                     />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/hour3_view"
+                    android:paddingBottom="10dp"
+                    android:clipToPadding="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:layout_marginHorizontal="10dp"/>
 
-                <TextView
-                    android:id="@+id/tv_humidity"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:layout_margin="20dp"
-                    />
-                <TextView
-                    android:id="@+id/tv_uv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:layout_margin="20dp"
-                    />
+                    android:orientation="horizontal"
+                    android:background="@drawable/home_hour3_frame_rectangle"
 
-                <TextView
-                    android:id="@+id/tv_rainPer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:layout_margin="20dp"
-                    />
+                    android:layout_marginTop="10dp"
+                    android:elevation="10dp"
+                    android:paddingBottom="10dp"
+                    android:clipToPadding="false">
 
-                <TextView
-                    android:id="@+id/tv_feelWeather"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:layout_margin="20dp"
-                    />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="체감 온도"
+                            android:textSize="12dp"
+                            android:textColor="@color/white"
+                            android:gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_feelweather"
+                                android:layout_marginRight="5dp"/>
+
+                            <TextView
+                                android:id="@+id/tv_feelWeather"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12dp"
+                                android:textColor="@color/white"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="50dp"
+                        android:background="@color/transparent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="습도"
+                            android:textSize="12dp"
+                            android:textColor="@color/white"
+                            android:layout_gravity="center_horizontal"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_humidity"
+                                android:layout_marginRight="5dp"/>
+
+                            <TextView
+                                android:id="@+id/tv_humidity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12dp"
+                                android:textColor="@color/white"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="50dp"
+                        android:background="@color/transparent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="강수 확률"
+                            android:textSize="12dp"
+                            android:textColor="@color/white"
+                            android:layout_gravity="center_horizontal"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_rainper"
+                                android:layout_marginRight="5dp"/>
+
+                            <TextView
+                                android:id="@+id/tv_rainPer"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12dp"
+                                android:textColor="@color/white"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="50dp"
+                        android:background="@color/transparent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginTop="18dp"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="자외선"
+                            android:textSize="12dp"
+                            android:textColor="@color/white"
+                            android:layout_gravity="center_horizontal"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_uv"
+                                android:layout_marginRight="5dp"/>
+
+                            <TextView
+                                android:id="@+id/tv_uv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12dp"
+                                android:textColor="@color/white"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/day5_view"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp" />
+                    android:layout_height="wrap_content"
+
+                    android:background="@drawable/home_hour3_frame_rectangle"
+                    android:layout_marginTop="20dp"
+                    android:elevation="10dp"
+                    android:paddingBottom="10dp"
+                    android:clipToPadding="false"/>
 
             </LinearLayout>
 

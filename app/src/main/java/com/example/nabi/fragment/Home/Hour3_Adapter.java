@@ -1,5 +1,6 @@
 package com.example.nabi.fragment.Home;
 
+import android.graphics.Rect;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nabi.R;
@@ -17,6 +19,8 @@ import java.util.List;
 public class Hour3_Adapter extends RecyclerView.Adapter<Hour3_Adapter.ViewHolder> {
 
     private List<ItemData> list = new ArrayList<ItemData>();
+
+
     public Hour3_Adapter(List<ItemData> list){
         this.list=list;
     }
@@ -82,6 +86,7 @@ public class Hour3_Adapter extends RecyclerView.Adapter<Hour3_Adapter.ViewHolder
             this.main = main;
         }
     }
+
 
     class ViewHolder extends RecyclerView.ViewHolder {
 

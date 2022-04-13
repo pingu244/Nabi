@@ -628,10 +628,10 @@ public class FragHome extends Fragment {
             feelWeather = d+"°"; //체감온도
 
             temp_now.setText(nowTemp + "°");
-            tv_humidity.setText("습도 : "+humidity+"%");
-            tv_uv.setText("자외선 : "+uv);
-            tv_rainPer.setText("강수확률 : "+rainPer+"%");
-            tv_feelWeather.setText("체감온도 : "+feelWeather);
+            tv_humidity.setText(humidity+"%");
+            tv_uv.setText(uv);
+            tv_rainPer.setText(rainPer+"%");
+            tv_feelWeather.setText(feelWeather);
 
             if (description.equals("Clear")){//맑음
                 tv_weather.setText("맑음 "+minTemp+"/"+maxTemp);
