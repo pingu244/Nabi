@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageButton;
@@ -15,16 +16,21 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.nabi.R;
+import com.google.android.material.transition.MaterialContainerTransform;
+
+import java.io.IOException;
+import java.util.Locale;
 
 public class MusicPlayActivity extends AppCompatActivity {
 
 
     ProgressBar progressBar;
-    TextView btnPrevious;
+    TextView btnPrevious, tv_title, tv_playingTime, tv_playTime, tv_category;
     ImageButton btnPlay, btnPlayNext, btnPlayPre;
     int[] songs_sensitive, songs_happy, songs_dawn, songs_sleep, songs_exciting, songs_piano, songs_comfort, songs_asmr;
     MediaPlayer mediaPlayer;
-    int index = 0;
+    int currentPos;
+    boolean isPlaying = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,9 +44,15 @@ public class MusicPlayActivity extends AppCompatActivity {
         btnPlayNext = findViewById(R.id.btn_music_next);
         btnPlayPre = findViewById(R.id.btn_music_pre);
 
+        tv_title = findViewById(R.id.music_name);
+        tv_playingTime = findViewById(R.id.tv_playingTime);
+        tv_playTime = findViewById(R.id.tv_playTime);
+        tv_category = findViewById(R.id.music_category);
+
         Intent intent = getIntent(); /*데이터 수신*/
-        int pos = intent.getExtras().getInt("position");
+        final int[] pos = {intent.getExtras().getInt("position")};
         int category = intent.getExtras().getInt("category");
+        String title = intent.getExtras().getString("title");
 
         songs_sensitive = new int[]{R.raw.ambientdrumandbassmusic, R.raw.cycles, R.raw.gravity, R.raw.ludeilla, R.raw.ridetherunway, R.raw.you_had_to_be};//감각적인
         songs_happy = new int[]{R.raw.birds, R.raw.new_day, R.raw.photograph, R.raw.sax};//밝은
@@ -51,74 +63,150 @@ public class MusicPlayActivity extends AppCompatActivity {
         songs_comfort = new int[]{R.raw.wedding, R.raw.sweet_as_honey, R.raw.snack_time, R.raw.rainbow_forest, R.raw.dawn, R.raw.andrew_applepie, R.raw.a_quiet_thought}; //편안한
         songs_asmr = new int[]{R.raw.waterstream, R.raw.rain_short, R.raw.rain_sounds_lh, R.raw.rain_shower, R.raw.fire_sounds}; //ASMR
 
-        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.ambientdrumandbassmusic);// new를 쓰는 것이 아니라 플레이어 생성
-        btnPlay.setOnClickListener(new View.OnClickListener() {
+        //mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.ambientdrumandbassmusic);// new를 쓰는 것이 아니라 플레이어 생성
+
+        if (category==0){ //감각적인
+            for(int i = pos[0]; i<songs_sensitive.length; i++){
+                mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_sensitive[i]);
+                tv_title.setText(title);
+                tv_category.setText("감각적인");
+            }
+        }else if(category==1){//행복한
+            for(int i = pos[0]; i<songs_happy.length; i++){
+                mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_happy[i]);
+                tv_title.setText(title);
+                tv_category.setText("행복한");
+            }
+        }else if(category==2){//새벽감성
+            for(int i = pos[0]; i<songs_dawn.length; i++){
+                mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_dawn[i]);
+                tv_title.setText(title);
+                tv_category.setText("새벽감성");
+            }
+        }else if(category==3){//수면
+            for(int i = pos[0]; i<songs_sleep.length; i++){
+                mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_sleep[i]);
+                tv_title.setText(title);
+                tv_category.setText("수면");
+            }
+        }else if(category==4){//신나는
+            for(int i = pos[0]; i<songs_exciting.length; i++){
+                mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_exciting[i]);
+                tv_title.setText(title);
+                tv_category.setText("신나는");
+            }
+        }else if(category==5){//피아노
+            for(int i = pos[0]; i<songs_piano.length; i++){
+                mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_piano[i]);
+                tv_title.setText(title);
+                tv_category.setText("피아노 음악");
+            }
+        }else if(category==6){//편안한
+            for(int i = pos[0]; i<songs_comfort.length; i++){
+                mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_comfort[i]);
+                tv_title.setText(title);
+                tv_category.setText("편안한");
+            }
+        }else if(category==7){//ASMR
+            for(int i = pos[0]; i<songs_asmr.length; i++){
+                mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_asmr[i]);
+                tv_title.setText(title);
+                tv_category.setText("ASMR");
+            }
+        }
+
+        musicStart();
+        btnPlay.setImageResource(R.drawable.ic_baseline_pause_24);
+
+        btnPrevious.setOnClickListener(new View.OnClickListener() { //나가기
             @Override
-            public void onClick(View v) {
-
-                if (mediaPlayer.isPlaying()) {
-                    mediaPlayer.stop();
-                    //btnPlay.setText("START");
-
-                } else {
-                    //getApplicationContext() 현재 액티비티 정보얻어오기
-                    mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_sensitive[index]);
-                    mediaPlayer.start();
-                    //btnPlay.setText("STOP");
-                }
+            public void onClick(View view) {
+                isPlaying = false;
+                mediaPlayer.stop();
+                mediaPlayer.release();
+                finish();
             }
         });
 
-        btnPlayNext.setOnClickListener(new View.OnClickListener() {
+        btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
-                if (mediaPlayer.isPlaying()) {
-                    mediaPlayer.stop();
-                    index += 1;
-                    if (index >= songs_sensitive.length) {
-                        index = 0;
-                    }
-                    mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_sensitive[index]);
+            public void onClick(View view) {
+                if(isPlaying){
+                    isPlaying = false;
+                    btnPlay.setImageResource(R.drawable.mcv_action_next);
+                    mediaPlayer.pause();
+                }else{
+                    isPlaying = true;
+                    btnPlay.setImageResource(R.drawable.ic_baseline_pause_24);
                     mediaPlayer.start();
-                } else {
-                    Toast.makeText(getApplicationContext(), "재생중이 아닙니다", Toast.LENGTH_LONG).show();
                 }
-
             }
         });
 
         btnPlayPre.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
-                if (mediaPlayer.isPlaying()) {
-                    mediaPlayer.stop();
-                    index -= 1;
-                    if (index < 0) {
-                        index = songs_sensitive.length - 1;
-                    }
-                    mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_sensitive[index]);
-                    mediaPlayer.start();
-                } else {
-                    Toast.makeText(getApplicationContext(), "재생중이 아닙니다", Toast.LENGTH_LONG).show();
-                }
-
+            public void onClick(View view) {
 
             }
         });
 
-
-
-
-        btnPrevious.setOnClickListener(new View.OnClickListener() {
+        btnPlayNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+
             }
         });
-        
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        isPlaying = false;
+        mediaPlayer.stop();
+        mediaPlayer.release();
+    }
+
+    public void musicStart() {
+        isPlaying = true;
+        btnPlay.setImageResource(R.drawable.ic_baseline_pause_24);
+        new musicThread().start();
+        mediaPlayer.start();
+        progressBar.setProgress(0);
+        progressBar.setMax(mediaPlayer.getDuration());
+
+        //tv_playTime.setText("/" + mediaPlayer.getDuration()/60);
+
+        int minute, second, time;
+        time = mediaPlayer.getDuration();
+        minute = (time / (1000*60)) % 60;
+        second = (time / 1000) % 60;
+
+        tv_playTime.setText("/"+minute+":"+second);
+    }
+
+    class musicThread extends Thread{
+
+        @Override
+        public void run() {
+            while(isPlaying){  // 음악이 실행중일때 계속 돌아가게 함
+
+                progressBar.setProgress(mediaPlayer.getCurrentPosition());
+                //tv_playingTime.setText(mediaPlayer.getCurrentPosition());
+                if(progressBar.getProgress()==progressBar.getMax()){
+                    mediaPlayer.stop();
+                    isPlaying = false;
+                }
+            }
+        }
     }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+    }
 }

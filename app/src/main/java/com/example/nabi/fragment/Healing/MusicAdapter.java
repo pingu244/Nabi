@@ -52,7 +52,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>{
                 //String name = list.get(getAdapterPosition()).getMusicTitle();
                 intent.putExtra("category", vo.getCategory());
                 intent.putExtra("position", position);
-
+                intent.putExtra("title", vo.getMusicTitle());
                 context.startActivity(intent);
 
             }

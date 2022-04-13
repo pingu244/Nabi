@@ -82,8 +82,6 @@ public class Healing_therapy extends Fragment implements SensorEventListener {
 
         db = FirebaseFirestore.getInstance();
 
-        final MediaPlayer mediaPlayer;
-        mediaPlayer = MediaPlayer.create(getContext(),R.raw.ambientdrumandbassmusic);
 
         stepCountView = view.findViewById(R.id.tv_step);
         stepGoalView = view.findViewById(R.id.tv_goalStep);
