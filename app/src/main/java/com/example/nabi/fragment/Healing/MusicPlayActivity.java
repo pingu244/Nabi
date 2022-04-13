@@ -1,5 +1,6 @@
 package com.example.nabi.fragment.Healing;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -36,6 +37,10 @@ public class MusicPlayActivity extends AppCompatActivity {
         btnPlay = findViewById(R.id.btn_music_play);
         btnPlayNext = findViewById(R.id.btn_music_next);
         btnPlayPre = findViewById(R.id.btn_music_pre);
+
+        Intent intent = getIntent(); /*데이터 수신*/
+        int pos = intent.getExtras().getInt("position");
+        int category = intent.getExtras().getInt("category");
 
         songs_sensitive = new int[]{R.raw.ambientdrumandbassmusic, R.raw.cycles, R.raw.gravity, R.raw.ludeilla, R.raw.ridetherunway, R.raw.you_had_to_be};//감각적인
         songs_happy = new int[]{R.raw.birds, R.raw.new_day, R.raw.photograph, R.raw.sax};//밝은

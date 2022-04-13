@@ -50,7 +50,8 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>{
                 Intent intent = new Intent(context, MusicPlayActivity.class);
 
                 //String name = list.get(getAdapterPosition()).getMusicTitle();
-                intent.putExtra("title", vo.getMusicTitle());
+                intent.putExtra("category", vo.getCategory());
+                intent.putExtra("position", position);
 
                 context.startActivity(intent);
 
@@ -75,9 +76,10 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>{
     public MusicItem getItem(int position){return list.get(position);}
     public static class MusicItem {
 
-        public MusicItem(String musicTitle, Integer imageView){
+        public MusicItem(String musicTitle, Integer imageView, Integer category){
             this.musicTitle = musicTitle;
             this.imageView = imageView;
+            this.category = category;
         }
 
 
@@ -98,8 +100,11 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>{
             this.musicTitle = musicTitle;
         }
 
+        public int getCategory(){return category;}
+
         public String musicTitle;
         public int imageView;
+        public int category;
 
 
     }
