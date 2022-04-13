@@ -17,6 +17,7 @@ import com.example.nabi.R;
 
 public class MusicPlayActivity extends AppCompatActivity {
 
+
     ProgressBar progressBar;
     TextView btnPrevious;
     ImageButton btnPlay, btnPlayNext, btnPlayPre;

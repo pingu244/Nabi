@@ -19,6 +19,7 @@ import java.util.List;
 
 public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.ViewHolder>{
 
+
     private List<MusicListAdapter.MusicCategory> list = new ArrayList<MusicListAdapter.MusicCategory>();
     public MusicListAdapter(List<MusicListAdapter.MusicCategory> list){
         this.list=list;

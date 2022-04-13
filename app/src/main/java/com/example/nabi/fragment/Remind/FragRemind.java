@@ -39,6 +39,7 @@ public class FragRemind extends Fragment {
     RemindAdapter remindListAdapter;
     ArrayList<RemindAdapter.RemindItem> remind_itemData;
     Spinner monthSpinner;
+    Integer selectMonth = 1;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,6 +47,18 @@ public class FragRemind extends Fragment {
 
         remindList = view.findViewById(R.id.remind_list);
         monthSpinner = view.findViewById(R.id.remindSpinner);
+
+
+
+
+        // 어댑터 연결
+        remind_itemData = new ArrayList<>();
+        remindListAdapter =new RemindAdapter(remind_itemData);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        remindList.setLayoutManager(linearLayoutManager);
+        remindList.setAdapter(remindListAdapter);
+
+
 
         // 스피너 연결
         ArrayAdapter monthAdapter = ArrayAdapter.createFromResource(getActivity(),
@@ -58,6 +71,8 @@ public class FragRemind extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 // 선택되면
                 Toast.makeText(getContext(), (i+1)+"월", Toast.LENGTH_SHORT).show();
+                selectMonth = i+1;
+                refresh();
             }
 
             @Override
@@ -67,17 +82,20 @@ public class FragRemind extends Fragment {
         });
 
 
-        // 어댑터 연결
-        remind_itemData = new ArrayList<>();
-        remindListAdapter =new RemindAdapter(remind_itemData);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        remindList.setLayoutManager(linearLayoutManager);
-        remindList.setAdapter(remindListAdapter);
 
+        Log.v("remindlist",selectMonth+"월");
+
+
+
+        return view;
+    }
+
+    private void refresh()
+    {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("users")
                 .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .collection("diary").document("2022").collection("3")
+                .collection("diary").document("2022").collection(selectMonth.toString())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -114,7 +132,7 @@ public class FragRemind extends Fragment {
                                         weatherDrawable = getResources().getIdentifier( "@drawable/btnclear", "drawable", "com.example.nabi");
                                 }
 
-                                items.add(new RemindAdapter.RemindItem("2022년 3월 "+document.getId()+"일", weatherDrawable));
+                                items.add(new RemindAdapter.RemindItem("2022년 "+ selectMonth+"월 "+document.getId()+"일", weatherDrawable, "2022/"+selectMonth+"/"+document.getId()));
                             }
                             //어댑터 연걸, 데이터셋 변경
                             remindListAdapter.addItem(items);
@@ -123,9 +141,5 @@ public class FragRemind extends Fragment {
 
                     }
                 });
-
-//        remind_itemData.add(new RemindAdapter.RemindItem("2022년 4월 4일",  R.drawable.btnclear));
-
-        return view;
     }
 }

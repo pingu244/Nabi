@@ -101,6 +101,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>{
         public String musicTitle;
         public int imageView;
 
+
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
