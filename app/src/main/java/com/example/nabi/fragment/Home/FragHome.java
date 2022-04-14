@@ -6,6 +6,7 @@ import static android.content.Context.MODE_PRIVATE;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -78,6 +79,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
 public class FragHome extends Fragment {
 
@@ -96,7 +98,7 @@ public class FragHome extends Fragment {
     private static int REQUEST_GPS_CODE = 1002;
 
     LinearLayout background;
-    TextView tv_weather,today_date,current_location,temp_now,tv_humidity,tv_uv,tv_rainPer,tv_feelWeather;
+    TextView tv_weather,today_date,current_location,temp_now,tv_humidity,tv_uv,tv_rainPer,tv_feelWeather,home_weatherMessage;
     ImageView weatherImg;
 
     //최소 GPS 정보 업데이트 거리 1000미터
@@ -120,9 +122,18 @@ public class FragHome extends Fragment {
     int weatherToDiary = -1;
     Integer tomorrowWeather = -1;
 
+    // 날씨에 따른 랜덤 멘트
+    ArrayList<String>[] weather_message = new ArrayList[5];
+
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        final ProgressDialog mDialog = new ProgressDialog(getContext());
+        mDialog.setMessage("로딩중입니다...");
+        mDialog.show();
+
 
 
         view = inflater.inflate(R.layout.frag_home, container, false);
@@ -141,6 +152,43 @@ public class FragHome extends Fragment {
         tv_feelWeather = view.findViewById(R.id.tv_feelWeather);
         hour3_recyclerView = view.findViewById(R.id.hour3_view);
         day5_recyclerView = view.findViewById(R.id.day5_view);
+        home_weatherMessage = view.findViewById(R.id.home_weatherMessage);
+
+        // 랜덤 멘트 초기화
+        for(int i = 0; i<5; i++)
+            weather_message[i] = new ArrayList<String>();
+
+        // 맑음
+        weather_message[0].add("맑은 날, 기분좋게 웃는 일만 일어나길");
+        weather_message[0].add("어느때보다 환한 햇살이 비추는 날!\n환하게 웃는 날이 되길");
+        weather_message[0].add("맑은 날 맑은 웃음으로 보내봐요");
+        weather_message[0].add("하늘이 푸른 맑은 날이네요\n날씨처럼 기분 좋은 하루 보내세요");
+        weather_message[0].add("창문 너머로 들어오는 햇살이 기분좋은 날이에요");
+        // 약간 흐림
+        weather_message[1].add("흐린 날이지만 기분은 맑은 날 되세요");
+        weather_message[1].add("흐린 날,\n친구들과 함께하며 기분이 흐려지지 않게 보내보는 건 어떤가요?");
+        weather_message[1].add("약간 흐린 날이네요.\n따뜻한 차를 마시며 여유있게 보내봐요");
+        weather_message[1].add("흐린 날이지만 새로운 에너지로 힘차게 출발해봐요");
+        weather_message[1].add("약간 흐린 날이네요.\n다음 날은 맑길 기대하는 설렘으로 하루를 보내봐요!");
+        // 흐림
+        weather_message[2].add("흐린날이에요.\n흐린 날이 더 집중이 잘되는 장점이 있는 것 같아요.\n날은 흐리지만 더욱 파이팅해요");
+        weather_message[2].add("흐리지만 즐거운 마음으로 좋은 하루 보내시길");
+        weather_message[2].add("흐린 날이네요.\n유쾌한 생각으로 잘 마무리하셨으면 좋겠어요");
+        weather_message[2].add("흐린 날,\n그 위로 푸른 하늘이 있듯이 마음은 푸르게 가져봐요");
+        weather_message[2].add("흐리지만 짜증내지 말고 웃으면서 좋은 하루 보내세요!");
+        // 비
+        weather_message[3].add("내리는 비로 마음에 촉촉한 여유가 생기길");
+        weather_message[3].add("시끄러운 소음이 빗소리에 묻혀\n생각을 정리하기 딱 좋은 날이네요");
+        weather_message[3].add("빗소리를 들으며 편안하게 명상해보세요");
+        weather_message[3].add("우산 꼭 챙기시고 빗길 조심하세요");
+        weather_message[3].add("비가 와서 운치있는 날이에요");
+        // 눈
+        weather_message[4].add("눈이 오네요.\n따뜻하게 입으시고 포근한 하루 보내세요");
+        weather_message[4].add("눈 오는 겨울의 풍경을 즐겨봐요");
+        weather_message[4].add("눈이와서 풍경이 더욱 멋진 날이에요.\n좋아하는 사람들과 풍경을 즐겨봐요");
+        weather_message[4].add("눈이 와서 추운 날,\n마음만은 따뜻하게 보내봐요");
+        weather_message[4].add("눈 내리는 풍경을 바라보며 좋은 하루 보내세요");
+
 
         // 마이페이지 버튼
         ImageButton mypageBtn = view.findViewById(R.id.mypageBtn);
@@ -213,11 +261,20 @@ public class FragHome extends Fragment {
         //5일 날씨 어댑터 연결
         day5_list=new ArrayList<>();
         day5_adapter=new Day5_Adapter(day5_list);
-        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
+
+        // 세로 스크롤 안되게 막는 코드
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext().getApplicationContext()){
+//            @Override public boolean canScrollVertically()
+//            { return false; }
+//        };
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         day5_recyclerView.setLayoutManager(layoutManager);
         day5_recyclerView.setAdapter(day5_adapter);
 
+
+        mDialog.dismiss();
 
         return view;
 
@@ -425,13 +482,19 @@ public class FragHome extends Fragment {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                 Hour3_Adapter.ItemData item = new Hour3_Adapter.ItemData();
-                String time = jsonObject.getString("dt_txt");
 
-                DateFormat parser = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss", Locale.ENGLISH);
+                String unixTimeStamp = jsonObject.getString("dt");
+
+                long timestamp = Long.parseLong(unixTimeStamp)*1000L;
+                Date date = new Date();
+                date.setTime(timestamp);
+
+                DateFormat parser = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
                 DateFormat formatter = new SimpleDateFormat("a h시", Locale.KOREA);
 
-                Date date = parser.parse(time);
-                item.setTime(formatter.format(date));
+                String Datetime = parser.format(date);
+                Date ddate = parser.parse(Datetime);
+                item.setTime(formatter.format(ddate));
                 int t = (int)(Math.round(jsonObject.getJSONObject("main").getDouble("temp")));
                 item.setTemp(t);
 
@@ -505,6 +568,9 @@ public class FragHome extends Fragment {
                 SimpleDateFormat format = new SimpleDateFormat("MM.dd");
                 String dateString = format.format(date);
 
+                SimpleDateFormat format1 = new SimpleDateFormat("E요일", Locale.KOREA);
+
+                item.setDayOfWeek(format1.format(date));
                 item.setDay(format.format(date));
                 item.setTemp(minTemp+" / "+maxTemp);
                 item.setRainPer1(rain+"%");
@@ -620,7 +686,14 @@ public class FragHome extends Fragment {
             int c = Math.round(Float.valueOf(current.getString(("temp"))));
             nowTemp = Integer.toString(c); //현재 온도
             int f = Math.round(Float.valueOf(current.getString(("uvi"))));
-            uv = Integer.toString(f); //자외선 지수
+//            uv = Integer.toString(f); //자외선 지수
+            if (f>=0 && f<=2)
+                uv = "안전";
+            else if (f>2 && f<=7)
+                uv = "주의";
+            else if (f>7)
+                uv = "각별한 주의";
+
             humidity = daily.getJSONObject(0).getString("humidity"); //습도
             int e = (int)(Float.valueOf(daily.getJSONObject(0).getString("pop"))*100);
             rainPer = Integer.toString(e); //강수확률
@@ -633,30 +706,40 @@ public class FragHome extends Fragment {
             tv_rainPer.setText(rainPer+"%");
             tv_feelWeather.setText(feelWeather);
 
+
+            Random random = new Random();
+            int randomValue = random.nextInt(4);    // 랜덤값 줘서 멘트 랜덤으로
+
+
             if (description.equals("Clear")){//맑음
                 tv_weather.setText("맑음 "+minTemp+"/"+maxTemp);
                 weatherImg.setImageResource(R.drawable.ic_mainweather_clear);
                 background.setBackgroundColor(Color.parseColor("#BAD3A5"));
+                home_weatherMessage.setText(weather_message[0].get(randomValue));   // 랜덤 멘트
             }
             else if (description.equals("Mist")||description.equals("Smoke")||description.equals("Haze")||description.equals("Dust")){//안개,구름 조금
                 tv_weather.setText("조금 흐림 "+minTemp+"/"+maxTemp);
                 weatherImg.setImageResource(R.drawable.ic_mainweather_mist);
                 background.setBackgroundColor(Color.parseColor("#F6C97B"));
+                home_weatherMessage.setText(weather_message[1].get(randomValue));   // 랜덤 멘트
             }
             else if (description.equals("Thunderstorm") ||description.equals("Clouds")||description.equals("Fog") ||description.equals("Sand")||description.equals("Ash")||description.equals("Squall")||description.equals("Tornado")){//천둥번개, 구름
                 tv_weather.setText("흐림 "+minTemp+"/"+maxTemp);
                 weatherImg.setImageResource(R.drawable.ic_mainweather_cloud);
                 background.setBackgroundColor(Color.parseColor("#97ACE5"));
+                home_weatherMessage.setText(weather_message[2].get(randomValue));   // 랜덤 멘트
             }
             else if (description.equals("Rain")||description.equals("Drizzle")){//비, 이슬비
                 tv_weather.setText("비 "+minTemp+"/"+maxTemp);
                 weatherImg.setImageResource(R.drawable.ic_mainweather_rain);
                 background.setBackgroundColor(Color.parseColor("#8DC0D3"));
+                home_weatherMessage.setText(weather_message[3].get(randomValue));   // 랜덤 멘트
             }
             else if (description.equals("Snow")){//눈
                 tv_weather.setText("눈 "+minTemp+"/"+maxTemp);
                 weatherImg.setImageResource(R.drawable.ic_mainweather_snow);
                 background.setBackgroundColor(Color.parseColor("#B19ED8"));
+                home_weatherMessage.setText(weather_message[4].get(randomValue));   // 랜덤 멘트
             }else{
                 tv_weather.setText(description);
                 //weatherImg.setImageResource(R.drawable.ic_baseline_ac_unit_24);

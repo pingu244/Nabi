@@ -2,16 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="30dp"
-    android:layout_marginBottom="13dp">
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:layout_marginBottom="10dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_weight="2"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginRight="25dp"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/day5_dayOfWeek"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -31,17 +34,18 @@
             android:textSize="12dp" />
     </LinearLayout>
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="13dp"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        android:background="@color/transparent" />
+<!--    <View-->
+<!--        android:layout_width="fill_parent"-->
+<!--        android:layout_height="13dp"-->
+<!--        android:layout_gravity="center_vertical"-->
+<!--        android:layout_weight="1"-->
+<!--        android:background="@color/transparent" />-->
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_weight="4"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:layout_marginRight="25dp"
         android:orientation="horizontal">
 
@@ -75,21 +79,23 @@
         <!--            android:layout_height="25dp"/>-->
     </LinearLayout>
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        android:background="@color/transparent" />
+<!--    <View-->
+<!--        android:layout_width="fill_parent"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_gravity="center_vertical"-->
+<!--        android:layout_weight="1"-->
+<!--        android:background="@color/transparent" />-->
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_weight="2"
+        android:layout_width="0dp"
         android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/day5_temp"
-            android:layout_width="100dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:shadowColor="#1A000000"
             android:shadowDy="10"
             android:shadowRadius="15"
