@@ -67,7 +67,7 @@ dependencies {
 
     implementation 'com.android.support:appcompat-v7:31.0.3'    //탭 인디케이터
     implementation 'com.android.support:design:31.0.3'  //탭 인디케이터
-
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0" //새로고침
     // graphe
     implementation 'com.github.blackfizz:eazegraph:1.2.2@aar'
     implementation 'com.nineoldandroids:library:2.4.0'

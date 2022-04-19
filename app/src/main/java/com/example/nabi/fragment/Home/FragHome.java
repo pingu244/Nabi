@@ -36,8 +36,10 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -97,7 +99,8 @@ public class FragHome extends Fragment {
     private static int REQUEST_WEATHER_CODE = 1001;
     private static int REQUEST_GPS_CODE = 1002;
 
-    LinearLayout background;
+    SwipeRefreshLayout swipeRefreshLayout;
+    SwipeRefreshLayout background;
     TextView tv_weather,today_date,current_location,temp_now,tv_humidity,tv_uv,tv_rainPer,tv_feelWeather,home_weatherMessage;
     ImageView weatherImg;
 
@@ -154,6 +157,20 @@ public class FragHome extends Fragment {
         day5_recyclerView = view.findViewById(R.id.day5_view);
         home_weatherMessage = view.findViewById(R.id.home_weatherMessage);
 
+
+        background.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.detach(FragHome.this).attach(FragHome.this).commit();
+
+                Log.d(TAG,"새로고침");
+
+
+                //새로고침 종료
+                background.setRefreshing(false);
+            }
+        });
         // 랜덤 멘트 초기화
         for(int i = 0; i<5; i++)
             weather_message[i] = new ArrayList<String>();
