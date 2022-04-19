@@ -1,7 +1,7 @@
 package com.example.nabi.fragment.Home;
 
 import static android.content.ContentValues.TAG;
-import static android.content.Context.MODE_PRIVATE;
+import static java.lang.Thread.sleep;
 
 import android.Manifest;
 import android.app.Activity;
@@ -10,7 +10,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Address;
@@ -24,7 +23,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -48,13 +46,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.nabi.GloomyWeatherFrag;
-import com.example.nabi.LoginActivity;
 import com.example.nabi.MainActivity;
-import com.example.nabi.fragment.Diary.DiaryResult;
-import com.example.nabi.fragment.Diary.WritingDiary;
-import com.example.nabi.fragment.Home.Day5_Adapter;
 import com.example.nabi.R;
-import com.example.nabi.fragment.Home.Hour3_Adapter;
 import com.example.nabi.fragment.PushNotification.PreferenceHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -67,12 +60,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -87,6 +75,8 @@ public class FragHome extends Fragment {
 
     //AVD로 실행 시 구글 본사 위치
 
+    boolean cc1, cc2;
+    ProgressDialog mDialog;
     @Nullable
     View view;
     LocationManager locationManager;
@@ -133,9 +123,7 @@ public class FragHome extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        final ProgressDialog mDialog = new ProgressDialog(getContext());
-        mDialog.setMessage("로딩중입니다...");
-        mDialog.show();
+
 
 
 
@@ -157,12 +145,12 @@ public class FragHome extends Fragment {
         day5_recyclerView = view.findViewById(R.id.day5_view);
         home_weatherMessage = view.findViewById(R.id.home_weatherMessage);
 
-
         background.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.detach(FragHome.this).attach(FragHome.this).commit();
+                ft.detach(FragHome.this).attach(FragHome.this);
+                ft.commit();
 
                 Log.d(TAG,"새로고침");
 
@@ -171,6 +159,7 @@ public class FragHome extends Fragment {
                 background.setRefreshing(false);
             }
         });
+
         // 랜덤 멘트 초기화
         for(int i = 0; i<5; i++)
             weather_message[i] = new ArrayList<String>();
@@ -256,18 +245,16 @@ public class FragHome extends Fragment {
         }
 
 
-
-
-
         long now = System.currentTimeMillis();
         Date date = new Date(now);
         SimpleDateFormat sdf = new SimpleDateFormat("MM월 dd일"); // 날짜 포맷
         today_date.setText(sdf.format(date));
 
+        cc1 = false; cc2 = false;
         getLocation(); //현재 위치 불러오는 함수
+        new HomeAsync().execute(); // 로딩화면
 
-
-        //3시간 날씨 어댑터 연결
+//        //3시간 날씨 어댑터 연결
         hour3_list=new ArrayList<>();
         hour3_adapter=new Hour3_Adapter(hour3_list);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
@@ -280,18 +267,16 @@ public class FragHome extends Fragment {
         day5_adapter=new Day5_Adapter(day5_list);
 
         // 세로 스크롤 안되게 막는 코드
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext().getApplicationContext()){
-//            @Override public boolean canScrollVertically()
-//            { return false; }
-//        };
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext().getApplicationContext()){
+            @Override public boolean canScrollVertically()
+            { return false; }
+        };
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
 
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         day5_recyclerView.setLayoutManager(layoutManager);
         day5_recyclerView.setAdapter(day5_adapter);
 
-
-        mDialog.dismiss();
 
         return view;
 
@@ -363,6 +348,7 @@ public class FragHome extends Fragment {
                                     String gugun = address.getSubLocality(); //구,군
 
                                     current_location.setText(sido+" "+gugun);
+                                    Log.v("current_location1", sido+" "+gugun);
                                 }
 
                             }
@@ -399,6 +385,7 @@ public class FragHome extends Fragment {
                                     String gugun = address.getSubLocality();
 
                                     current_location.setText(sido+" "+gugun);
+                                    Log.v("current_location2", sido+" "+gugun);
                                 }
 
 
@@ -410,6 +397,7 @@ public class FragHome extends Fragment {
         }catch(Exception e){
             e.printStackTrace();
         }
+
         return location;
     }
 
@@ -546,6 +534,7 @@ public class FragHome extends Fragment {
 
 
                 hour3_list.add(item);
+                cc2 = true;
 
             }
         }catch (JSONException | ParseException e){
@@ -660,7 +649,7 @@ public class FragHome extends Fragment {
                 Log.v("tomorrowWeather", "tomorrowWeather: "+ tomorrowWeather);
             } catch (Exception e){e.printStackTrace();Log.v("tomorrowWeather", "ERROR");}
 
-
+            cc1 = true;
 
         }catch (JSONException e){
             e.printStackTrace();
@@ -768,6 +757,43 @@ public class FragHome extends Fragment {
 
         }
 
+    }
+
+    public class HomeAsync extends AsyncTask<Void, Location, Location> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            mDialog = new ProgressDialog(getContext());
+            mDialog.setMessage("로딩중입니다...");
+            mDialog.show();
+
+//            getLocation();
+        }
+
+        @Override
+        protected Location doInBackground(Void... voids) {
+            while(!(cc1 && cc2)) {
+                try {
+                    sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    Log.v("timesleep","timesleep");
+                }
+            }
+//            Log.v("timesleep","아웃!");
+
+
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Location aVoid) {
+            super.onPostExecute(aVoid);
+
+            mDialog.dismiss();
+        }
     }
 
 
