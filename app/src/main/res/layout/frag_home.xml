@@ -161,7 +161,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="미세먼지"
+                                android:text="미세 먼지"
                                 android:textSize="12dp"
                                 android:textColor="@color/white"
                                 android:layout_gravity="center_horizontal"/>
@@ -178,13 +178,27 @@
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_feelweather"
                                     android:layout_marginRight="5dp"/>
-
-                                <TextView
-                                    android:id="@+id/tv_fine_dust"
+                                <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="12dp"
-                                    android:textColor="@color/white"/>
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tv_fine_dust_grade"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12dp"
+                                        android:textColor="@color/white"/>
+
+                                    <TextView
+                                        android:id="@+id/tv_fine_dust"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/white"
+                                        android:textSize="10dp" />
+                                </LinearLayout>
+
+
                             </LinearLayout>
                         </LinearLayout>
 
@@ -204,7 +218,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="초미세먼지"
+                                android:text="초미세 먼지"
                                 android:textSize="12dp"
                                 android:textColor="@color/white"
                                 android:layout_gravity="center_horizontal"/>
@@ -221,13 +235,27 @@
                                     android:layout_height="wrap_content"
                                     android:src="@drawable/ic_humidity"
                                     android:layout_marginRight="5dp"/>
-
-                                <TextView
-                                    android:id="@+id/tv_ultrafine_dust"
+                                <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="12dp"
-                                    android:textColor="@color/white"/>
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tv_ultrafine_dust_grade"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12dp"
+                                        android:textColor="@color/white"/>
+                                    <TextView
+                                        android:id="@+id/tv_ultrafine_dust"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="10dp"
+                                        android:textColor="@color/white"/>
+
+                                </LinearLayout>
+
+
                             </LinearLayout>
                         </LinearLayout>
 

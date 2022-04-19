@@ -25,7 +25,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,8 +58,13 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -91,7 +95,8 @@ public class FragHome extends Fragment {
 
     SwipeRefreshLayout swipeRefreshLayout;
     SwipeRefreshLayout background;
-    TextView tv_weather,today_date,current_location,temp_now,tv_humidity,tv_uv,tv_rainPer,tv_feelWeather,home_weatherMessage;
+    TextView tv_weather,today_date,current_location,temp_now,tv_humidity,tv_uv,tv_rainPer,tv_feelWeather,home_weatherMessage,
+    fineDust, ultra_fineDust, fineDustGrade, ultra_fineDustGrade;
     ImageView weatherImg;
 
     //최소 GPS 정보 업데이트 거리 1000미터
@@ -144,6 +149,11 @@ public class FragHome extends Fragment {
         hour3_recyclerView = view.findViewById(R.id.hour3_view);
         day5_recyclerView = view.findViewById(R.id.day5_view);
         home_weatherMessage = view.findViewById(R.id.home_weatherMessage);
+        fineDust = view.findViewById(R.id.tv_fine_dust);
+        ultra_fineDust = view.findViewById(R.id.tv_ultrafine_dust);
+        fineDustGrade = view.findViewById(R.id.tv_fine_dust_grade);
+        ultra_fineDustGrade = view.findViewById(R.id.tv_ultrafine_dust_grade);
+
 
         background.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -254,6 +264,8 @@ public class FragHome extends Fragment {
         getLocation(); //현재 위치 불러오는 함수
         new HomeAsync().execute(); // 로딩화면
 
+
+
 //        //3시간 날씨 어댑터 연결
         hour3_list=new ArrayList<>();
         hour3_adapter=new Hour3_Adapter(hour3_list);
@@ -285,6 +297,7 @@ public class FragHome extends Fragment {
     public Location getLocation() {
         Geocoder geocoder = new Geocoder(getContext()); //위도, 경도 값 현재 주소로 변환 위한 지오코더
         List<Address> gList = null;
+        String sido = "", gugun = "";
 
         try {
             locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
@@ -344,11 +357,11 @@ public class FragHome extends Fragment {
                                 } else {
 
                                     Address address = gList.get(0);
-                                    String sido = address.getAdminArea(); //시,도
-                                    String gugun = address.getSubLocality(); //구,군
+                                    sido = address.getAdminArea(); //시,도
+                                    gugun = address.getSubLocality(); //구,군
 
-                                    current_location.setText(sido+" "+gugun);
-                                    Log.v("current_location1", sido+" "+gugun);
+                                    current_location.setText(sido + " " + gugun);
+                                    Log.v("current_location1", sido + " " + gugun);
                                 }
 
                             }
@@ -381,11 +394,11 @@ public class FragHome extends Fragment {
                                 } else {
 
                                     Address address = gList.get(0);
-                                    String sido = address.getAdminArea();
-                                    String gugun = address.getSubLocality();
+                                    sido = address.getAdminArea();
+                                    gugun = address.getSubLocality();
 
-                                    current_location.setText(sido+" "+gugun);
-                                    Log.v("current_location2", sido+" "+gugun);
+                                    current_location.setText(sido + " " + gugun);
+                                    Log.v("current_location2", sido + " " + gugun);
                                 }
 
 
@@ -394,9 +407,58 @@ public class FragHome extends Fragment {
                     }
                 }
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
+
+        // 미세먼지 위한 위치 변수 조정
+        {
+            String fineDustLoc = "";
+            if (sido.contains("서울"))
+                fineDustLoc = "서울";
+            else if (sido.contains("부산"))
+                fineDustLoc = "부산";
+            else if (sido.contains("대구"))
+                fineDustLoc = "대구";
+            else if (sido.contains("인천"))
+                fineDustLoc = "인천";
+            else if (sido.contains("광주"))
+                fineDustLoc = "광주";
+            else if (sido.contains("대전"))
+                fineDustLoc = "대전";
+            else if (sido.contains("울산"))
+                fineDustLoc = "울산";
+            else if (sido.contains("경기"))
+                fineDustLoc = "강원";
+            else if (sido.contains("충청"))
+                if (sido.contains("남"))
+                    fineDustLoc = "충남";
+                else
+                    fineDustLoc = "충북";
+            else if (sido.contains("전라"))
+                if (sido.contains("남"))
+                    fineDustLoc = "전남";
+                else
+                    fineDustLoc = "전북";
+            else if (sido.contains("경상"))
+                if (sido.contains("남"))
+                    fineDustLoc = "경남";
+                else
+                    fineDustLoc = "경북";
+            else if (sido.contains("제주"))
+                fineDustLoc = "제주";
+            else if (sido.contains("세종"))
+                fineDustLoc = "세종";
+
+            // 미세먼지 api 부르기
+            new FineDustAsync(getContext(),
+                    "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?sidoName=" +
+                            fineDustLoc +
+                            "&pageNo=1&numOfRows=100&returnType=xml&serviceKey=pvu3pESfzwCNhaeY5CD3LAhd9mOipW2LbQZhuJK1qzZ%2F4hz3BzjzyeGgX5nalUrnush7c7s1QAElm5abVaPCAA%3D%3D&ver=1.0", gugun)
+                    .execute();
+        }
+
 
         return location;
     }
@@ -759,6 +821,8 @@ public class FragHome extends Fragment {
 
     }
 
+
+    // 로딩중 dialog 띄우기
     public class HomeAsync extends AsyncTask<Void, Location, Location> {
 
         @Override
@@ -768,7 +832,6 @@ public class FragHome extends Fragment {
             mDialog.setMessage("로딩중입니다...");
             mDialog.show();
 
-//            getLocation();
         }
 
         @Override
@@ -781,10 +844,6 @@ public class FragHome extends Fragment {
                     Log.v("timesleep","timesleep");
                 }
             }
-//            Log.v("timesleep","아웃!");
-
-
-
             return null;
         }
 
@@ -795,6 +854,146 @@ public class FragHome extends Fragment {
             mDialog.dismiss();
         }
     }
+
+
+    // 미세먼지위한 async
+    public class FineDustAsync extends AsyncTask<Void, Void, String> {
+
+        private String receiveMsg = "";
+        private String requestUrl;
+        public Context mContext;
+        private String gu;
+
+        String value10, value25, grade10, grade25;
+
+        public FineDustAsync(Context context, String requestUrl, String gu) {
+
+            this.requestUrl = requestUrl;
+            this.mContext = context;
+            this.gu = gu;
+
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+
+            try {
+                boolean b_dataGu = false;
+                boolean b_pm10Value = false, pm10Grade = false;
+                boolean b_pm25Value = false, pm25Grade = false;
+                String one="", two="", three="", four="";
+
+                URL url = new URL(requestUrl);
+                InputStream is = url.openStream();
+                XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+                XmlPullParser parser = factory.newPullParser();
+                parser.setInput(new InputStreamReader(is, "UTF-8"));
+
+                int eventType = parser.getEventType();
+
+                while (eventType != XmlPullParser.END_DOCUMENT) {
+                    switch (eventType) {
+
+                        case XmlPullParser.START_DOCUMENT:
+
+                            break;
+
+                        case XmlPullParser.END_DOCUMENT:
+                            break;
+
+
+                        // 시작태그를 만나는순간 (JSON으로 치면 key을 대입해서 찾음)
+                        case XmlPullParser.START_TAG:
+
+                            if (parser.getName().equals("stationName"))
+                                b_dataGu = true;
+                            if (parser.getName().equals("pm10Value"))
+                                b_pm10Value = true;
+                            if (parser.getName().equals("pm25Value"))
+                                b_pm25Value = true;
+                            if (parser.getName().equals("pm10Grade"))
+                                pm10Grade = true;
+                            if (parser.getName().equals("pm25Grade"))
+                                pm25Grade = true;
+
+                            break;
+
+                        // 시작태그와 종료태그 사이 값을 만나는순간 (JSON으로 치면 key를 넣어서 값을 얻음)
+                        case XmlPullParser.TEXT:
+                            if (b_pm10Value) {
+                                one = parser.getText();
+                                b_pm10Value = false;
+                            } else if (b_pm25Value) {
+                                two = parser.getText();
+                                b_pm25Value = false;
+                            } else if (pm10Grade) {
+                                three = parser.getText();
+                                pm10Grade = false;
+                            } else if (pm25Grade) {
+                                four = parser.getText();
+                                pm25Grade = false;
+                            }
+                            if (b_dataGu) {
+                                b_dataGu = false;
+                                if(parser.getText().equals(gu))
+                                {
+                                    value10 = one;
+                                    value25 = two;
+                                    grade10 = three;
+                                    grade25 = four;
+                                }
+                            }
+                            break;
+                        // 종료태그를 만나는순간 (JSON으로 치면, value 찾고 이제 볼일없음)
+                        case XmlPullParser.END_TAG:
+                            if (parser.getName().equals("item")) {
+
+                            }
+                            break;
+                    }
+                    eventType = parser.next();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return receiveMsg;
+
+        }
+
+        @Override
+        protected void onPostExecute(String aVoid) {
+            super.onPostExecute(aVoid);
+
+            if(value10 != null){
+                fineDust.setText(value10 + "㎍/m³"); // pm10Value, 미세먼지
+                fineDustGrade.setText(gradeMeasure(Integer.parseInt(grade10)));
+                ultra_fineDust.setText(value25 + "㎍/m³"); // pm25Value, 초미세먼지
+                ultra_fineDustGrade.setText(gradeMeasure(Integer.parseInt(grade25)));
+            }else {
+                fineDustGrade.setText("정보없음"); // pm10Value, 미세먼지
+                ultra_fineDustGrade.setText("정보없음");
+            }
+
+        }
+
+        private String gradeMeasure(int grade){
+            String result = "";
+            switch (grade){
+                case 1:
+                    result = "좋음"; break;
+                case 2:
+                    result = "보통"; break;
+                case 3:
+                    result = "나쁨"; break;
+                case 4:
+                    result = "매우나쁨"; break;
+
+            }
+            return result;
+        }
+    }
+
 
 
 }
