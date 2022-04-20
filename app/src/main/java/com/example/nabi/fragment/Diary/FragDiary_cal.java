@@ -91,7 +91,7 @@ public class FragDiary_cal extends Fragment {
         //월 한글로 보이게 설정
 //        materialCalendarView.setTitleFormatter(new MonthArrayTitleFormatter(getResources().getTextArray(R.array.custom_months)));
 
-        // 안희애가 해본 월 보이는 커스텀(0404) - 이거 원하는거 맞아?
+        // 안희애가 해본 월 보이는 커스텀(0404)
         SimpleDateFormat format = new SimpleDateFormat("M");
         materialCalendarView.setTitleFormatter(new TitleFormatter() {
             @Override
@@ -100,21 +100,9 @@ public class FragDiary_cal extends Fragment {
                 return (formattedDate+"월");
             }
         });
+        // 월 헤더 글자크기, 색 설정
+        materialCalendarView.setHeaderTextAppearance(R.style.CalendarWidgetHeader);
 
-
-//        //월 보이는 방식 커스텀 (다영 0403)
-//        materialCalendarView.setTitleFormatter(new TitleFormatter() {
-//            @Override
-//            public CharSequence format(CalendarDay day) {
-//                Date inputText = day.getDate();
-//                String[] calendarHeaderElements = inputText.toString().split("-");
-//                StringBuilder calendarHeaderBuilder = new StringBuilder();
-//                calendarHeaderBuilder.append(calendarHeaderElements[0])
-//                        .append(" ")
-//                        .append(calendarHeaderElements[1]);
-//                return calendarHeaderBuilder.toString();
-//            }
-//        });
 
 
         materialCalendarView.setDateSelected(CalendarDay.today(), true);    // 오늘 선택되어있게
@@ -290,14 +278,15 @@ public class FragDiary_cal extends Fragment {
     // 오늘 표시 어떻게 할지
     public class OneDayDecorator implements DayViewDecorator {
         private CalendarDay date;
+        private Drawable drawable;
 
         public OneDayDecorator() {
             date = CalendarDay.today();
+            drawable = getResources().getDrawable(R.drawable.showtoday);
         }
 
         @Override
-        public boolean shouldDecorate(CalendarDay day) {
-            return date != null && day.equals(date);
+        public boolean shouldDecorate(CalendarDay day) {return date != null && day.equals(date);
         }
 
         @Override
@@ -306,6 +295,9 @@ public class FragDiary_cal extends Fragment {
             view.addSpan(new RelativeSizeSpan(1.2f));
             view.addSpan(new ForegroundColorSpan(Color.WHITE));
             view.addSpan(new BackgroundColorSpan(Color.rgb(250,133,116)));
+            view.setBackgroundDrawable(drawable);
+            view.setSelectionDrawable(drawable); //선택했을때 백그라운드 드로어블(선택 취소하면 나타났다사라짐)
+
         }
 
         public void setDate(Date date) {

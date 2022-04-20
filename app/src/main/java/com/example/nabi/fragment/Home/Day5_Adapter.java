@@ -33,6 +33,7 @@ public class Day5_Adapter extends RecyclerView.Adapter<Day5_Adapter.ViewHolder>{
     public void onBindViewHolder(@NonNull Day5_Adapter.ViewHolder holder, int position) {
 
         Day5_Adapter.ItemData vo = list.get(position);
+        holder.tv_dayOfWeek.setText(vo.dayOfWeek);
         holder.tv_day.setText(vo.day);
         holder.tv_temp.setText(vo.temp);
         holder.img_main.setImageResource(vo.imageView);
@@ -47,10 +48,13 @@ public class Day5_Adapter extends RecyclerView.Adapter<Day5_Adapter.ViewHolder>{
 
     public static class ItemData {
 
+        public String dayOfWeek;
         public String day;
         public String rainPer;
         public String temp;
         public int imageView;
+
+        public void setDayOfWeek(String dayOfWeek){ this.dayOfWeek = dayOfWeek; }
 
         public String getDay() {
             return day;
@@ -89,12 +93,13 @@ public class Day5_Adapter extends RecyclerView.Adapter<Day5_Adapter.ViewHolder>{
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tv_day,tv_temp,tv_rain;
+        TextView tv_day,tv_temp,tv_rain,tv_dayOfWeek;
         ImageView img_main;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            tv_dayOfWeek = itemView.findViewById(R.id.day5_dayOfWeek);
             tv_day = itemView.findViewById(R.id.day5_day);
             tv_temp = itemView.findViewById(R.id.day5_temp);
             tv_rain = itemView.findViewById(R.id.day5_rain);

@@ -112,11 +112,11 @@ public class DiaryListViewAdapter extends RecyclerView.Adapter<DiaryListViewAdap
                 FlexboxLayout.LayoutParams pm = new FlexboxLayout.LayoutParams
                         (FlexboxLayout.LayoutParams.WRAP_CONTENT, FlexboxLayout.LayoutParams.WRAP_CONTENT);
                 pm.setMargins(5,5,5,5);
-                txt.setPadding(25,9,25,9);
+                txt.setPadding(20,9,20,9);
                 txt.setGravity(View.TEXT_ALIGNMENT_CENTER);
 
                 txt.setText(array[i]); //view에 들어갈 텍스트를 지정(String)
-                txt.setTextSize(13);
+                txt.setTextSize(11);
                 txt.setBackgroundResource(R.drawable.q3_moodword_normal);
 
                 txt.setLayoutParams(pm); //앞서 설정한 레이아웃파라미터를 버튼에 적용

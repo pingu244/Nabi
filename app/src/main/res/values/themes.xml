@@ -54,10 +54,11 @@
         <item name="android:weekNumberColor">@android:color/holo_red_light</item>
     </style>
 
-    <!-- 연, 월 표시하는 헤더 -->
+    <!-- 월 표시하는 헤더 -->
     <style name="CalendarWidgetHeader">
         <item name="android:textSize">24dp</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#454870</item>
     </style>
 
 </resources>

@@ -19,6 +19,7 @@ import java.util.List;
 
 public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.ViewHolder>{
 
+
     private List<MusicListAdapter.MusicCategory> list = new ArrayList<MusicListAdapter.MusicCategory>();
     public MusicListAdapter(List<MusicListAdapter.MusicCategory> list){
         this.list=list;
@@ -42,7 +43,16 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
 
     }
 
-
+    //아이템 클릭 리스너 인터페이스
+    interface OnItemClickListener{
+        void onItemClick(View v, int position); //뷰와 포지션값
+    }
+    //리스너 객체 참조 변수
+    private OnItemClickListener mListener = null;
+    //리스너 객체 참조를 어댑터에 전달 메서드
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.mListener = listener;
+    }
     @Override
     public int getItemCount() {
         return list.size();
@@ -93,6 +103,7 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
                     intent = new Intent(view.getContext(), MusicItemActivity.class);
                     intent.putExtra("number", pos);
                     view.getContext().startActivity(intent);
+
                     Toast.makeText(view.getContext(), "클릭 되었습니다.", Toast.LENGTH_SHORT).show();
                 }
             });

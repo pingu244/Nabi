@@ -14,22 +14,27 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="35dp">
 
 
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/healing_tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:background="#66FFFFFF"
-            app:tabTextColor="@color/black"
-            app:tabSelectedTextColor="#454870"
+            android:background="@drawable/tab_ind_bg"
+
             app:tabMode="fixed"
-            app:tabGravity="fill"
+            app:tabSelectedTextColor="#454870"
+            app:tabTextColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+
             app:tabIndicatorGravity="stretch"
+            app:tabGravity="fill"
             app:tabIndicatorAnimationMode="elastic"
             app:tabRippleColor="@android:color/transparent"
             app:tabIndicator="@drawable/tab_indicator"

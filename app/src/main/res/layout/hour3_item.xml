@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_width="65dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/home_hour3_frame_rectangle"
+    android:layout_marginVertical="2dp"
+    android:layout_marginHorizontal="3dp"
+    android:elevation="4dp">
 
     <TextView
         android:id="@+id/hour3_item_time"
+        android:background="@drawable/home_hour_frame_rectangle2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:textSize="10dp"
+        android:layout_height="27dp"
+        android:textSize="12dp"
         android:textColor="@color/black"
         android:gravity="center"/>
 
     <ImageView
         android:id="@+id/hour3_item_image"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginHorizontal="13dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="3dp"
+        android:layout_gravity="center_horizontal"/>
 
     <TextView
         android:id="@+id/hour3_item_temp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="10dp"
-        android:textColor="@color/black"
+        android:textSize="12dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/white"
         android:gravity="center"/>
-
-
-
 
 </LinearLayout>

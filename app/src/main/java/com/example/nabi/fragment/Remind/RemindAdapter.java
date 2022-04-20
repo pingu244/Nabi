@@ -55,9 +55,10 @@ public class RemindAdapter extends RecyclerView.Adapter<RemindAdapter.ViewHolder
 
     public static class RemindItem {
 
-        public RemindItem(String remind_date, int imageView){
+        public RemindItem(String remind_date, int imageView, String date_dbPath){
             this.remind_date = remind_date;
             this.imageView = imageView;
+            this.dbPath = date_dbPath;
         }
         public String getRemind_date() {
             return remind_date;
@@ -75,7 +76,9 @@ public class RemindAdapter extends RecyclerView.Adapter<RemindAdapter.ViewHolder
             this.imageView = imageView;
         }
 
-        public String remind_date;
+        public String getdbPath(){ return dbPath;}
+
+        public String remind_date, dbPath;
         public int imageView;
 
     }
@@ -86,6 +89,7 @@ public class RemindAdapter extends RecyclerView.Adapter<RemindAdapter.ViewHolder
         ImageView img_main;
         RecyclerView remindList;
         Intent intent;
+        String resultDate;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -99,13 +103,14 @@ public class RemindAdapter extends RecyclerView.Adapter<RemindAdapter.ViewHolder
                 public void onClick(View view) {
                     int pos = getAdapterPosition();
                     intent = new Intent(view.getContext(), Remind_result.class);
+                    intent.putExtra("remindResult_date", resultDate);
                     intent.putExtra("number", pos);
                     view.getContext().startActivity(intent);
-                    Toast.makeText(view.getContext(), "클릭", Toast.LENGTH_SHORT).show();
                 }
             });
         }
         void onBind(RemindItem item) {
+            resultDate = item.getdbPath();
             remind_date.setText(item.getRemind_date());
             img_main.setImageResource(item.getImageView());
         }

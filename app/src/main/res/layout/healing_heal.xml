@@ -5,102 +5,130 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:paddingBottom="10dp"
+        android:clipToPadding="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="35dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginHorizontal="10dp"
         android:gravity="center">
 
         <LinearLayout
             android:id="@+id/sadLayout"
             android:layout_width="0dp"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/sad_layout"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:elevation="1dp"
-            android:layout_marginRight="10dp">
+            android:elevation="5dp"
+            android:padding="10dp"
+            android:layout_marginRight="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:text="SAD 지수를\n알아보세요"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/white"/>
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="나의 SAD 지수 :"/>
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:text="나의 SAD 지수 :"
+                android:textColor="#454870"
+                android:textSize="12dp"/>
 
             <TextView
                 android:id="@+id/sad_figure"
-                android:layout_marginLeft="10dp"
-                android:text=""
+                android:layout_marginLeft="15dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="#454870"
+                android:textSize="12dp"/>
 
             <TextView
                 android:id="@+id/sad_test"
-                android:layout_width="100dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="SAD 테스트 하기"/>
+                android:background="@drawable/roundrectangle"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="17dp"
+                android:paddingVertical="13dp"
+
+                android:text="SAD 테스트 하기"
+                android:textAlignment="center"
+                android:textColor="#454870"
+                android:textSize="16dp"/>
         </LinearLayout>
 
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="150dp"
-            android:background="@drawable/sad_layout"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bdi_layout"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:elevation="1dp"
-            android:padding="2dp">
+            android:elevation="5dp"
+            android:padding="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
                 android:text="우울증 정도를\n알아보세요"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/white"/>
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="나의 우울증 정도 :"/>
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:text="나의 우울증 정도 :"
+                android:textColor="#454870"
+                android:textSize="12dp"/>
 
             <TextView
                 android:id="@+id/bdi_figure"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="15dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColor="#454870"
+                android:textSize="12dp"/>
 
             <TextView
                 android:id="@+id/bdi_test"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:text="BDI 검사 하기"/>
+                android:background="@drawable/roundrectangle"
+                android:layout_marginTop="10dp"
+                android:paddingHorizontal="17dp"
+                android:paddingVertical="13dp"
+
+                android:text="BDI 검사 하기"
+                android:textAlignment="center"
+                android:textColor="#454870"
+                android:textSize="16dp"/>
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
+        android:paddingBottom="10dp"
+        android:clipToPadding="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="35dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="10dp"
         android:gravity="center">
 
 
@@ -108,50 +136,54 @@
         <LinearLayout
             android:id="@+id/sad_def"
             android:layout_width="0dp"
-            android:layout_height="150dp"
-            android:background="@drawable/sad_layout"
+            android:layout_height="wrap_content"
+            android:background="@drawable/saddef_layout"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:elevation="1dp"
-            android:padding="2dp">
+            android:elevation="5dp"
+            android:padding="10dp">
 
             <TextView
                 android:textSize="20dp"
-                android:layout_marginTop="100dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginTop="69dp"
+                android:layout_marginBottom="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="계절성 정서장애란?"/>
+                android:text="계절성 정서장애(SAD)란?"
+                android:textColor="#454870"/>
         </LinearLayout>
-
     </LinearLayout>
+
     <LinearLayout
+        android:paddingBottom="10dp"
+        android:clipToPadding="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="35dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginHorizontal="10dp"
         android:gravity="center">
 
         <LinearLayout
             android:id="@+id/sad_info_1"
             android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:background="@drawable/sad_layout"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundrectangle"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:elevation="1dp"
-            android:layout_marginRight="10dp">
+            android:elevation="5dp"
+            android:layout_marginRight="20dp">
+
 
             <TextView
                 android:layout_marginTop="130dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
                 android:text="계절성 정서장애\n관련정보"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textColor="#454870"/>
 
 
         </LinearLayout>
@@ -160,21 +192,21 @@
         <LinearLayout
             android:id="@+id/sad_info_2"
             android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:background="@drawable/sad_layout"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundrectangle"
             android:orientation="vertical"
             android:layout_weight="1"
-            android:elevation="1dp"
-            android:padding="2dp">
+            android:elevation="5dp">
 
             <TextView
                 android:layout_marginTop="130dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
                 android:text="계절성 정서장애\n관련 정보"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textColor="#454870" />
 
 
         </LinearLayout>
