@@ -47,7 +47,7 @@ public class MusicPlayActivity extends AppCompatActivity {
 
         Intent intent = getIntent(); /*데이터 수신*/
         category = intent.getExtras().getInt("category");
-        final int[] pos = {intent.getExtras().getInt("position")};
+         int pos = intent.getExtras().getInt("position");
         String title = intent.getExtras().getString("title");
         songs_sensitive = new int[]{R.raw.ambientdrumandbassmusic, R.raw.cycles, R.raw.gravity, R.raw.ludeilla, R.raw.ridetherunway, R.raw.you_had_to_be};//감각적인
         songs_happy = new int[]{R.raw.birds, R.raw.new_day, R.raw.photograph, R.raw.sax};//밝은
@@ -60,49 +60,49 @@ public class MusicPlayActivity extends AppCompatActivity {
 
         //mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.ambientdrumandbassmusic);// new를 쓰는 것이 아니라 플레이어 생성
         if (category==0){ //감각적인
-            for(int i = pos[0]; i<songs_sensitive.length; i++){
+            for(int i = pos; i<songs_sensitive.length; i++){
                 mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_sensitive[i]);
                 tv_title.setText(title);
                 tv_category.setText("감각적인");
             }
         }else if(category==1){//행복한
-            for(int i = pos[0]; i<songs_happy.length; i++){
+            for(int i = pos; i<songs_happy.length; i++){
                 mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_happy[i]);
                 tv_title.setText(title);
                 tv_category.setText("행복한");
             }
         }else if(category==2){//새벽감성
-            for(int i = pos[0]; i<songs_dawn.length; i++){
+            for(int i = pos; i<songs_dawn.length; i++){
                 mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_dawn[i]);
                 tv_title.setText(title);
                 tv_category.setText("새벽감성");
             }
         }else if(category==3){//수면
-            for(int i = pos[0]; i<songs_sleep.length; i++){
+            for(int i = pos; i<songs_sleep.length; i++){
                 mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_sleep[i]);
                 tv_title.setText(title);
                 tv_category.setText("수면");
             }
         }else if(category==4){//신나는
-            for(int i = pos[0]; i<songs_exciting.length; i++){
+            for(int i = pos; i<songs_exciting.length; i++){
                 mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_exciting[i]);
                 tv_title.setText(title);
                 tv_category.setText("신나는");
             }
         }else if(category==5){//피아노
-            for(int i = pos[0]; i<songs_piano.length; i++){
+            for(int i = pos; i<songs_piano.length; i++){
                 mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_piano[i]);
                 tv_title.setText(title);
                 tv_category.setText("피아노 음악");
             }
         }else if(category==6){//편안한
-            for(int i = pos[0]; i<songs_comfort.length; i++){
+            for(int i = pos; i<songs_comfort.length; i++){
                 mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_comfort[i]);
                 tv_title.setText(title);
                 tv_category.setText("편안한");
             }
         }else if(category==7){//ASMR
-            for(int i = pos[0]; i<songs_asmr.length; i++){
+            for(int i = pos; i<songs_asmr.length; i++){
                 mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_asmr[i]);
                 tv_title.setText(title);
                 tv_category.setText("ASMR");
@@ -118,6 +118,8 @@ public class MusicPlayActivity extends AppCompatActivity {
                 isPlaying = false;
                 mediaPlayer.stop();
                 mediaPlayer.release();
+                handler.removeMessages(0);
+
                 finish();
             }
         });
@@ -152,31 +154,8 @@ public class MusicPlayActivity extends AppCompatActivity {
             int index = 0;
             @Override
             public void onClick(View view) {
-                if(mediaPlayer.isPlaying()){
+                if (mediaPlayer.isPlaying()) {
                     mediaPlayer.stop();
-                    //getMusicInfo();
-                    index-=1;
-                    if(index<0){
-                        if(category==0){
-                            index = songs_sensitive.length-1;
-                            mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_sensitive[index]);
-                        }else if(category==1){
-                            index = songs_happy.length-1;
-                        }else if(category==2){
-                            index = songs_dawn.length-1;
-                        }else if (category==3){
-                            index = songs_sleep.length-1;
-                        }else if(category==4){
-                            index = songs_exciting.length-1;
-                        }else if(category==5){
-                            index = songs_piano.length-1;
-                        }else if(category==6){
-                            index = songs_comfort.length-1;
-                        }else if(category==7){
-                            index = songs_asmr.length-1;
-                        }
-
-                    }
 
                 }
             }
@@ -201,6 +180,8 @@ public class MusicPlayActivity extends AppCompatActivity {
         isPlaying = false;
         mediaPlayer.stop();
         mediaPlayer.release();
+        handler.removeMessages(0);
+
     }
 
     public void musicStart() {
@@ -236,23 +217,28 @@ public class MusicPlayActivity extends AppCompatActivity {
             }
         }
 
-        final Handler handler = new Handler(){
-            @Override
-            public void handleMessage(@NonNull Message msg) {
-                super.handleMessage(msg);
 
-                //밀리초 시간 변환
-                int minute, second, time;
+    }
 
+    final Handler handler = new Handler(){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+
+            //밀리초 시간 변환
+            int minute, second, time;
+
+            if(isPlaying){
                 time = mediaPlayer.getCurrentPosition();
                 minute = (time / (1000*60)) % 60;
                 second = (time / 1000) % 60;
 
                 tv_playingTime.setText(minute+":"+second);
-
             }
-        };
-    }
+
+
+        }
+    };
 
 
     @Override
