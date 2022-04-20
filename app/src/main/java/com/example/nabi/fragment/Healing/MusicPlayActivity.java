@@ -168,8 +168,9 @@ public class MusicPlayActivity extends AppCompatActivity {
         btnPlayNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mediaPlayer.isPlaying())
-                    mediaPlayer.stop();
+                if (mediaPlayer.isPlaying()){
+                    mediaPlayer.pause();
+                }
 
                 if (category==0){ //감각적인
                     pos[0]++;
