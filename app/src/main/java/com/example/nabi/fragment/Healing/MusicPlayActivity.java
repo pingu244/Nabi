@@ -168,8 +168,11 @@ public class MusicPlayActivity extends AppCompatActivity {
         btnPlayNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mediaPlayer.isPlaying()){
-                    mediaPlayer.pause();
+                if (isPlaying){
+                    mediaPlayer.stop();
+                    isPlaying = false;
+                    mediaPlayer.release();
+
                 }
 
                 if (category==0){ //감각적인
@@ -182,6 +185,7 @@ public class MusicPlayActivity extends AppCompatActivity {
                     tv_title.setText(title_sensitive[pos[0]]);
                     tv_category.setText("감각적인");
 
+                    isPlaying = true;
                     musicStart();
 
 
