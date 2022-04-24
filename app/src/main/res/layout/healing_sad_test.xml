@@ -24,16 +24,15 @@
         android:layout_marginBottom="40dp"
         android:gravity="center_horizontal"
         android:text="SAD 테스트"
-        android:textColor="@color/black"
-        android:textSize="30dp" />
+        android:textColor="@color/indigo_pnt"
+        android:textSize="20dp" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginBottom="70dp"
         android:background="@drawable/roundrectangle"
         android:elevation="3dp"
         android:orientation="vertical">
@@ -42,14 +41,14 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="30dp">
+            android:layout_marginBottom="48dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="48dp"
                 android:orientation="vertical"
                 android:paddingBottom="30dp">
 
@@ -62,10 +61,11 @@
 
                 <RadioGroup
                     android:id="@+id/radio"
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginHorizontal="35dp"
                     android:elevation="2dp">
 
                     <RadioButton
@@ -87,21 +87,28 @@
                         android:buttonTint="#A9CBD7"/>
                 </RadioGroup>
 
+                <View
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:background="#D5D5D5"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="2. 계절의 변화에 따라 사회적 활동의 양이 달라집니까?"
                     android:textColor="@color/black"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:textSize="18dp" />
 
                 <RadioGroup
                     android:id="@+id/radio2"
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginHorizontal="35dp"
 
                     android:elevation="2dp"
                     tools:ignore="DuplicateIds">
@@ -127,20 +134,28 @@
                         tools:ignore="DuplicateIds" />
                 </RadioGroup>
 
+                <View
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:background="#D5D5D5"/>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="3. 계절의 변화에 따라 전반적인 기분상태가 달라집니까?"
                     android:textColor="@color/black"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:textSize="18dp" />
 
                 <RadioGroup
                     android:id="@+id/radio3"
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginHorizontal="35dp"
                     android:elevation="2dp"
                     tools:ignore="DuplicateIds">
 
@@ -158,28 +173,35 @@
                         android:id="@+id/btnNo"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="아니오"
-                        android:textSize="15dp"
                         android:layout_weight="1"
                         android:buttonTint="#A9CBD7"
+                        android:text="아니오"
+                        android:textSize="15dp"
                         tools:ignore="DuplicateIds" />
                 </RadioGroup>
 
+                <View
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:background="#D5D5D5"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="4. 계절의 변화에 따라 체중이 변합니까?"
                     android:textColor="@color/black"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:textSize="18dp" />
 
                 <RadioGroup
                     android:id="@+id/radio4"
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginHorizontal="35dp"
                     android:elevation="2dp"
                     tools:ignore="DuplicateIds">
 
@@ -204,21 +226,28 @@
                         tools:ignore="DuplicateIds" />
                 </RadioGroup>
 
+                <View
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:background="#D5D5D5"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="5. 계절의 변화에 따라 식욕이 변합니까?"
                     android:textColor="@color/black"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:textSize="18dp" />
 
                 <RadioGroup
                     android:id="@+id/radio5"
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginHorizontal="35dp"
                     android:elevation="2dp"
                     tools:ignore="DuplicateIds">
 
@@ -243,21 +272,28 @@
                         tools:ignore="DuplicateIds" />
                 </RadioGroup>
 
+                <View
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:background="#D5D5D5"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="6. 계절의 변화에 따라 활력정도가 변합니까?"
                     android:textColor="@color/black"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:textSize="18dp" />
 
                 <RadioGroup
                     android:id="@+id/radio6"
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginHorizontal="35dp"
                     android:elevation="2dp"
                     tools:ignore="DuplicateIds">
 
@@ -283,15 +319,15 @@
                 </RadioGroup>
 
                 <Button
-                    android:id="@+id/btnComplete"
-                    android:layout_gravity="right"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#00ff0000"
-                    android:text="완료 >"/>
+                android:id="@+id/btnComplete"
+                android:layout_gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00ff0000"
+                android:text="완료 >"/>
             </LinearLayout>
-
         </ScrollView>
+
 
 
     </LinearLayout>
