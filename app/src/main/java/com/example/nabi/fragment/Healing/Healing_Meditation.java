@@ -1,5 +1,7 @@
 package com.example.nabi.fragment.Healing;
 
+import static android.icu.text.UnicodeSet.CASE;
+
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -18,13 +20,18 @@ import com.example.nabi.R;
 
 public class Healing_Meditation extends AppCompatActivity {
 
+    final int MESSAGE_ID_PLAYING = 1;
+
     TextView tv_title, tv_mention1, tv_mention2, btnPrevious, tv_playingTime, tv_playTime;
     Button btnQuit;
     ImageView imageView;
     int[] meditation_music;
+    String[] meditation_mention;
 
     MediaPlayer mediaPlayer;
     boolean isPlaying = false;
+
+    Handler handler;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,6 +50,10 @@ public class Healing_Meditation extends AppCompatActivity {
 
         meditation_music = new int[] {R.raw.monumental_journey,R.raw.spenta_mainyu, R.raw.spirit_of_fire, R.raw.the_sleeping_prophet, R.raw.venkatesananda };
 
+        meditation_mention = new String[]{"숨을 깊이 들이쉬고 내쉽니다.", "호흡을 깊이 하면서","몸과 마음을 편하게 하고 긴장을 푸세요.", "사랑과 자비로 가득찬 자신의 모습을 떠올립니다.",
+        "입가엔 미소를 가슴엔 평화를 담고서 이렇게 되뇌입니다.", "나는 하나 밖에 없는 귀한 나에게 자비의 마음을 보냅니다."};
+
+
 
         Intent intent = getIntent(); /*데이터 수신*/
         Integer pos = intent.getExtras().getInt("number");
@@ -52,6 +63,8 @@ public class Healing_Meditation extends AppCompatActivity {
 
         musicStart();
 
+
+        handler = new Handler();
         btnPrevious.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,16 +129,18 @@ public class Healing_Meditation extends AppCompatActivity {
 
                 try{
                     Thread.sleep(1000);
+
                 }catch (InterruptedException e){
                     e.printStackTrace();
                 }
                 handler2.sendEmptyMessage(1);
-
             }
         }
 
 
     }
+
+
 
     final Handler handler2 = new Handler(){
         @Override
@@ -141,11 +156,15 @@ public class Healing_Meditation extends AppCompatActivity {
                 second = (time / 1000) % 60;
 
                 tv_playingTime.setText(minute+":"+second);
+
+
             }
 
 
         }
     };
+
+
 
     @Override
     protected void onDestroy() {

@@ -96,7 +96,7 @@ public class FragHome extends Fragment {
     SwipeRefreshLayout swipeRefreshLayout;
     SwipeRefreshLayout background;
     TextView tv_weather,today_date,current_location,temp_now,tv_humidity,tv_uv,tv_rainPer,tv_feelWeather,home_weatherMessage,
-    fineDust, ultra_fineDust, fineDustGrade, ultra_fineDustGrade;
+            fineDust, ultra_fineDust, fineDustGrade, ultra_fineDustGrade;
     ImageView weatherImg;
 
     //최소 GPS 정보 업데이트 거리 1000미터
@@ -237,8 +237,8 @@ public class FragHome extends Fragment {
                                     gloomyWeather = Integer.parseInt(mymap.get("gloomyWeather").toString());
 
 
-                                        Toast.makeText(getActivity(), nickname+"님 환영합니다!", Toast.LENGTH_SHORT).show();
-                                        ((MainActivity)getActivity()).LoginSuccess = false;
+                                    Toast.makeText(getActivity(), nickname+"님 환영합니다!", Toast.LENGTH_SHORT).show();
+                                    ((MainActivity)getActivity()).LoginSuccess = false;
 
 
                                     if(gloomyWeather == -1)
