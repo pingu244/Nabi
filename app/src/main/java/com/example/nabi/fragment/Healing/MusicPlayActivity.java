@@ -156,12 +156,110 @@ public class MusicPlayActivity extends AppCompatActivity {
         //이전 곡 재생
         btnPlayPre.setOnClickListener(new View.OnClickListener() {
 
-            int index = 0;
             @Override
             public void onClick(View view) {
+                if (isPlaying) {
+                    mediaPlayer.stop();
+                    isPlaying = false;
+                    mediaPlayer.release();
+
+                }
+
+                if (category==0){ //감각적인
+                    pos[0]--;
+
+                    if(pos[0]<0){
+                        pos[0]=songs_sensitive.length-1;
+                    }
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_sensitive[pos[0]]);
+                    tv_title.setText(title_sensitive[pos[0]]);
+                    tv_category.setText("감각적인");
+
+                    isPlaying = true;
+                    musicStart();
+
+
+                }else if(category==1){//행복한
+                    pos[0]--;
+
+                    if(pos[0]<0){
+                        pos[0]=songs_happy.length-1;
+                    }
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_happy[pos[0]]);
+                    tv_title.setText(title_happy[pos[0]]);
+                    tv_category.setText("밝은");
+                    musicStart();
+                }
+                else if(category==2){//새벽감성
+                    pos[0]--;
+
+                    if(pos[0]<0){
+                        pos[0]=songs_dawn.length-1;
+                    }
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_dawn[pos[0]]);
+                    tv_title.setText(title_dawn[pos[0]]);
+                    tv_category.setText("새벽감성");
+                    musicStart();
+
+                }else if(category==3){//수면
+
+                    pos[0]--;
+
+                    if(pos[0]<0){
+                        pos[0]=songs_sleep.length-1;
+                    }
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_sleep[pos[0]]);
+                    tv_title.setText(title_sleep[pos[0]]);
+                    tv_category.setText("수면");
+                    musicStart();
+
+                }else if(category==4){//신나는
+                    pos[0]--;
+
+                    if(pos[0]<0){
+                        pos[0]=songs_exciting.length-1;
+                    }
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_exciting[pos[0]]);
+                    tv_title.setText(title_exciting[pos[0]]);
+                    tv_category.setText("신나는");
+                    musicStart();
+
+                }else if(category==5){//피아노
+                    pos[0]--;
+
+                    if(pos[0]<0){
+                        pos[0]=songs_piano.length-1;
+                    }
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_piano[pos[0]]);
+                    tv_title.setText(title_piano[pos[0]]);
+                    tv_category.setText("잔잔한");
+                    musicStart();
+                }else if(category==6) {//편안한
+                    pos[0]--;
+
+                    if (pos[0]<0) {
+                        pos[0] = songs_comfort.length-1;
+                    }
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_comfort[pos[0]]);
+                    tv_title.setText(title_comfort[pos[0]]);
+                    tv_category.setText("편안한");
+                    musicStart();
+
+                }else if(category==7){//ASMR
+                    pos[0]--;
+
+                    if(pos[0]<0){
+                        pos[0]=songs_asmr.length-1;
+                    }
+                    mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_asmr[pos[0]]);
+                    tv_title.setText(title_asmr[pos[0]]);
+                    tv_category.setText("ASMR");
+                    musicStart();
+
+                }
+
 
             }
-
         });
 
         //다음 곡 재생
