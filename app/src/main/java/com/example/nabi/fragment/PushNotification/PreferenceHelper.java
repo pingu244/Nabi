@@ -71,7 +71,7 @@ public class PreferenceHelper {
 
     public static int getStep(Context context){
         SharedPreferences prefs = getPreferences(context);
-        return prefs.getInt("Temp_walk", -1);
+        return prefs.getInt("Temp_walk", 0);
     }
 
     public static void removeKey(Context context, String key) {

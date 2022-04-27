@@ -967,9 +967,9 @@ public class FragHome extends Fragment {
 
             if(value10 != null){
                 fineDust.setText(value10 + "㎍/m³"); // pm10Value, 미세먼지
-                fineDustGrade.setText(gradeMeasure(Integer.parseInt(grade10)));
+                fineDustGrade.setText(gradeMeasure(grade10));
                 ultra_fineDust.setText(value25 + "㎍/m³"); // pm25Value, 초미세먼지
-                ultra_fineDustGrade.setText(gradeMeasure(Integer.parseInt(grade25)));
+                ultra_fineDustGrade.setText(gradeMeasure(grade25));
             }else {
                 fineDustGrade.setText("정보없음"); // pm10Value, 미세먼지
                 ultra_fineDustGrade.setText("정보없음");
@@ -977,9 +977,13 @@ public class FragHome extends Fragment {
 
         }
 
-        private String gradeMeasure(int grade){
+        private String gradeMeasure(String grade){
             String result = "";
-            switch (grade){
+            int g;
+            try{
+                g = Integer.parseInt(grade);
+            } catch (Exception e){g = 0;}
+            switch (g){
                 case 1:
                     result = "좋음"; break;
                 case 2:

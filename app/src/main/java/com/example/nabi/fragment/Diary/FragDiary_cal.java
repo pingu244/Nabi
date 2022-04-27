@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,7 +17,6 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,12 +28,9 @@ import com.example.nabi.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
@@ -41,17 +38,13 @@ import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
-import com.prolificinteractive.materialcalendarview.format.MonthArrayTitleFormatter;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Map;
+
+import static java.lang.Thread.sleep;
 
 
 public class FragDiary_cal extends Fragment {
@@ -66,7 +59,7 @@ public class FragDiary_cal extends Fragment {
     FragDiary_cal_bottomItem bottomitem;
 
     String selectKeyword, selectDate;
-    Integer selectMood, moodValue = null;
+    Integer selectMood, moodValue = 0;
 //    boolean checkMood;
 
 
@@ -109,7 +102,8 @@ public class FragDiary_cal extends Fragment {
 
         materialCalendarView.addDecorators(
                 new FragDiary_cal.MySelectorDecorator(this),  // 선택된 애 어떻게 꾸밀지
-                new FragDiary_cal.OneDayDecorator()                // 오늘꺼 어떻게 꾸밀지
+                new FragDiary_cal.OneDayDecorator(),                // 오늘꺼 어떻게 꾸밀지
+                new FragDiary_cal.MoodDecorator()
 
         );
 
@@ -138,38 +132,38 @@ public class FragDiary_cal extends Fragment {
 
 
         // 무드트래커를 향한 나의 몸부림
-        db = FirebaseFirestore.getInstance();
-        Calendar calendar = Calendar.getInstance();
-
-
-        int y = calendar.get(Calendar.YEAR);
-        int m = calendar.get(Calendar.MONTH)+1;
-
-        CollectionReference docRef = db.collection("users")
-                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .collection("diary");
-
-
-        Task<QuerySnapshot> documentSnapshotTask = docRef.get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        CalendarDay dayy = null;
-                        Log.v("tellmewhattodo", "첫번째 입니다");
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Map<String, Object> mmap = document.getData();
-                                String d = document.getId();
-                                Log.v("tellmewhattodo", d+"일 입니다");
-                                moodValue = Integer.parseInt(mmap.get("q1_mood").toString());
-                                dayy.from(y,m,Integer.parseInt(d));
-                                materialCalendarView.addDecorators(new MoodDecorator(dayy, moodValue));
-                            }
-                        } else {
-                            Log.d("EEE", "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
+//        db = FirebaseFirestore.getInstance();
+//        Calendar calendar = Calendar.getInstance();
+//
+//
+//        int y = calendar.get(Calendar.YEAR);
+//        int m = calendar.get(Calendar.MONTH)+1;
+//
+//        CollectionReference docRef = db.collection("users")
+//                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                .collection("diary");
+//
+//
+//        Task<QuerySnapshot> documentSnapshotTask = docRef.get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        CalendarDay dayy = null;
+//                        Log.v("tellmewhattodo", "첫번째 입니다");
+//                        if (task.isSuccessful()) {
+//                            for (QueryDocumentSnapshot document : task.getResult()) {
+//                                Map<String, Object> mmap = document.getData();
+//                                String d = document.getId();
+//                                Log.v("tellmewhattodo", d+"일 입니다");
+//                                moodValue = Integer.parseInt(mmap.get("q1_mood").toString());
+//                                dayy.from(y,m,Integer.parseInt(d));
+//                                materialCalendarView.addDecorators(new MoodDecorator());
+//                            }
+//                        } else {
+//                            Log.d("EEE", "Error getting documents: ", task.getException());
+//                        }
+//                    }
+//                });
 
 
 //        calendarDayList.add(CalendarDay.today());
@@ -270,7 +264,6 @@ public class FragDiary_cal extends Fragment {
                     }
                 });
 
-
     }
 
 
@@ -331,27 +324,26 @@ public class FragDiary_cal extends Fragment {
 
     // 무드트래커
     public class MoodDecorator implements DayViewDecorator{
-        private Drawable drawable0 = getResources().getDrawable(R.drawable.btnsnow);
-        private Drawable drawable1 = getResources().getDrawable(R.drawable.btnrain);
-        private Drawable drawable2 = getResources().getDrawable(R.drawable.btnclear);
-        private Drawable drawable3 = getResources().getDrawable(R.drawable.btncloudy);
-        private Drawable drawable4 = getResources().getDrawable(R.drawable.btnclear);
-        private Drawable drawable5 = getResources().getDrawable(R.drawable.btnclear);
+        private Drawable drawable0;
+        private Drawable drawable1;
+        private Drawable drawable2;
+        private Drawable drawable3;
+        private Drawable drawable4;
+        private Drawable drawable5;
 
         private CalendarDay date;
         private final Calendar calendar = Calendar.getInstance();
 //        private HashSet<CalendarDay> dates;
-        boolean checkMood;
-        int mood;
+        boolean checkMood = false;
+        boolean go = false;
 
 
 
 
-
-        public MoodDecorator(CalendarDay dates, int moodValue) {
-
-            this.date = dates;
-            mood = moodValue;
+//        public MoodDecorator(CalendarDay dates, int moodValue) {
+//
+//            this.date = dates;
+//            mood = moodValue;
 ////            int cYEAR = calendar.get(Calendar.YEAR);
 ////            int cMonth = calendar.get(Calendar.MONTH)+1;
 ////            int cDay = calendar.get(Calendar.DATE);
@@ -376,64 +368,83 @@ public class FragDiary_cal extends Fragment {
 //                    drawable1 = getResources().getDrawable(R.drawable.mood_circle2); break;
 //
 //            };
+//
+//
+//
+//
+//        }
 
-
-
-
+        public MoodDecorator(){
+            drawable0 = getResources().getDrawable(R.drawable.btnsnow);
+            drawable1 = getResources().getDrawable(R.drawable.btnrain);
+            drawable2 = getResources().getDrawable(R.drawable.btnclear);
+            drawable3 = getResources().getDrawable(R.drawable.btncloudy);
+            drawable4 = getResources().getDrawable(R.drawable.btnclear);
+            drawable5 = getResources().getDrawable(R.drawable.btnclear);
         }
+
 
         @Override
         public boolean shouldDecorate(CalendarDay day) {
 
 
-
-//            int cYEAR = day.getYear();
-//            int cMonth = day.getMonth()+1;
-//            int cDay = day.getDay();
-//            String YMD = (cYEAR+"/"+cMonth+"/"+cDay);
-//
-//            Log.v("whatyourfavoriteidea", YMD + " 입니다");
-//            FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-//            try {
-//                DocumentReference docRef = db.collection("users")
-//                        .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-//                        .collection("diary").document(YMD);
-//
-//                Task<DocumentSnapshot> documentSnapshotTask = docRef.get()
-//                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                                if (task.isSuccessful()) {
-//                                    DocumentSnapshot document = task.getResult();
-//                                    if (document.exists()) {
-//                                        Map<String, Object> mymap = document.getData();
-//                                        moodValue = Integer.parseInt(mymap.get("q1_mood").toString());
-//
-//                                        checkMood = true;
-//
-//                                        Log.v("really?", YMD+"이고! "+moodValue+" : "+checkMood);
-//// 시도해봐야할것 : 여기말고 위에서 생성자 부르기 전에 db불러서 exist하면 arrayList에 넣기, 생성자에서 drawable설정
-//                                    }
-//                                    else
-//                                        checkMood = false;
-//                                }
-//
-//                            }
-//                        });
-//            }
-//            catch (NullPointerException e){ e.printStackTrace(); }
+            int cYEAR = day.getYear();
+            int cMonth = day.getMonth()+1;
+            int cDay = day.getDay();
+            String YMD = (cYEAR+"/"+cMonth+"/"+cDay);
 
 
-//            Log.v("really?", YMD+"이고! "+checkMood);
-//            return checkMood;
-            return date.equals(day);
+            Log.v("whatyourfavoriteidea", YMD + " 입니다");
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            checkMood = false;
+            go = false;
+            moodValue = 0;
+            try {
+                DocumentReference docRef = db.collection("users")
+                        .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .collection("diary").document(YMD);
+
+                Task<DocumentSnapshot> documentSnapshotTask = docRef.get()
+                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    DocumentSnapshot document = task.getResult();
+                                    if (document.exists()) {
+                                        Map<String, Object> mymap = document.getData();
+                                        moodValue = Integer.parseInt(mymap.get("q1_mood").toString());
+
+                                        checkMood = true;
+                                        go = true;
+
+                                        Log.v("really?", YMD+"이고! "+moodValue+" : "+checkMood);
+// 시도해봐야할것 : 여기말고 위에서 생성자 부르기 전에 db불러서 exist하면 arrayList에 넣기, 생성자에서 drawable설정
+                                    }
+                                    else
+                                        go = true;
+                                }
+
+                            }
+                        });
+            }
+            catch (NullPointerException e){ e.printStackTrace(); }
+
+
+            Log.v("really?", YMD+"이고! "+checkMood);
+
+//            if (go)
+//                return checkMood;
+            return checkMood;
+
+
+//            return date.equals(day);
 //            return dates.contains(day);
         }
 
         @Override
         public void decorate(DayViewFacade view) {
-            switch (mood)
+            switch (moodValue)
             {
                 case 0:
                     view.setBackgroundDrawable(drawable0); break;
@@ -450,7 +461,10 @@ public class FragDiary_cal extends Fragment {
                 default:
                     view.setBackgroundDrawable(drawable0);
             }
-//            view.setBackgroundDrawable(drawable1);
+            view.setBackgroundDrawable(drawable1);
+            view.addSpan(new ForegroundColorSpan(Color.WHITE));
         }
     }
+
+
 }

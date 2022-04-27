@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:paddingTop="30dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,13 +9,14 @@
     android:orientation="vertical">
 
 <LinearLayout
-
-        android:layout_marginHorizontal="17dp"
-        android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:orientation="horizontal"
-        android:layout_marginTop="35dp"
-        android:weightSum="5">
+    android:clipToPadding="false"
+    android:layout_marginHorizontal="18dp"
+    android:layout_width="match_parent"
+    android:layout_height="62dp"
+    android:orientation="horizontal"
+    android:layout_marginTop="35dp"
+    android:layout_marginBottom="20dp"
+    android:weightSum="5">
 
         <ImageButton
             android:id="@+id/btnClear"
@@ -63,7 +65,6 @@
     </LinearLayout>
 
     <FrameLayout
-        android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
