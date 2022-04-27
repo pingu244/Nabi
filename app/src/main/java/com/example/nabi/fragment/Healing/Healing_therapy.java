@@ -1,42 +1,73 @@
 package com.example.nabi.fragment.Healing;
 
+import static android.content.Context.SENSOR_SERVICE;
+
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.nabi.MainActivity;
 import com.example.nabi.R;
+import com.example.nabi.fragment.Home.Day5_Adapter;
+import com.example.nabi.fragment.PushNotification.PreferenceHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import org.eazegraph.lib.charts.PieChart;
+import org.eazegraph.lib.models.PieModel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
-public class Healing_therapy extends Fragment {
+public class Healing_therapy extends Fragment implements SensorEventListener {
 
+    SensorManager sm;
+    Sensor sensor_step_detector;
     ProgressBar progressBar;
 
-    TextView stepCountView, stepGoalView, tv_distance, tv_kcal;
+    TextView stepCountView, stepGoalView, tv_distance;
     private FirebaseFirestore db;
     String bdiResult;
 
 
     // 현재 걸음 수
-    int currentSteps = 0;
+    int currentSteps = 0, temp;
     @Nullable
     View view;
 
@@ -44,6 +75,9 @@ public class Healing_therapy extends Fragment {
     ArrayList<MusicListAdapter.MusicCategory> music_itemData;
     RecyclerView music_recycler;
 
+    MeditationAdapter meditationAdapter;
+    ArrayList<MeditationAdapter.MeditationItem> meditationItems;
+    RecyclerView meditation_recycler;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -55,10 +89,10 @@ public class Healing_therapy extends Fragment {
         stepCountView = view.findViewById(R.id.tv_step);
         stepGoalView = view.findViewById(R.id.tv_goalStep);
         tv_distance = view.findViewById(R.id.tv_distance);
-        tv_kcal = view.findViewById(R.id.tv_kcal);
         progressBar = view.findViewById(R.id.progressbar);
 
         music_recycler = view.findViewById(R.id.recycler_music);
+        meditation_recycler = view.findViewById(R.id.recycler_meditation);
 
         //음악 리스트 어댑터 연결
         music_itemData = new ArrayList<>();
@@ -78,6 +112,36 @@ public class Healing_therapy extends Fragment {
         music_itemData.add(new MusicListAdapter.MusicCategory("편안한", R.drawable.ic_baseline_ac_unit_24));
         music_itemData.add(new MusicListAdapter.MusicCategory("ASMR", R.drawable.ic_baseline_ac_unit_24));
 
+
+        //명상 어댑터 연결
+        meditationItems = new ArrayList<>();
+        meditationAdapter = new MeditationAdapter(meditationItems);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        meditation_recycler.setLayoutManager(linearLayoutManager);
+        meditation_recycler.setAdapter(meditationAdapter);
+
+        //명상 음악 목록
+        meditationItems.add(new MeditationAdapter.MeditationItem("Monumental Journey","7:45",R.drawable.ic_baseline_opacity_24));
+        meditationItems.add(new MeditationAdapter.MeditationItem("Spenta Mainyu","2:49",R.drawable.ic_baseline_opacity_24));
+        meditationItems.add(new MeditationAdapter.MeditationItem("Spirit of Fire","10:08",R.drawable.ic_baseline_opacity_24));
+        meditationItems.add(new MeditationAdapter.MeditationItem("The Sleeping Prophet","7:43",R.drawable.ic_baseline_opacity_24));
+        meditationItems.add(new MeditationAdapter.MeditationItem("Venkatesananda","10:10",R.drawable.ic_baseline_opacity_24));
+        // 활동 퍼미션 체크
+        if (ContextCompat.checkSelfPermission(getContext(),
+                Manifest.permission.ACTIVITY_RECOGNITION) == PackageManager.PERMISSION_DENIED) {
+
+            requestPermissions(new String[]{Manifest.permission.ACTIVITY_RECOGNITION}, 0);
+        }
+
+
+        // 걸음 센서 연결
+        // * 옵션
+        // - TYPE_STEP_DETECTOR:  리턴 값이 무조건 1, 앱이 종료되면 다시 0부터 시작
+        // - TYPE_STEP_COUNTER : 앱 종료와 관계없이 계속 기존의 값을 가지고 있다가 1씩 증가한 값을 리턴
+        //
+        sm = (SensorManager) getActivity().getSystemService(SENSOR_SERVICE);   // 센서 매니저 생성
+        sensor_step_detector = sm.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);  // 스템 감지 센서 등록
 
 
         // BDI 결과값 가져오기
@@ -120,8 +184,6 @@ public class Healing_therapy extends Fragment {
 
                     }
                 });
-
-
         return view;
     }
 
@@ -129,16 +191,52 @@ public class Healing_therapy extends Fragment {
     public void onStart() {
         super.onStart();
         // 산책 값 가져오기
-        currentSteps = ((MainActivity)getActivity()).currentSteps;
+        currentSteps = PreferenceHelper.getStep(getContext());
         stepCountView.setText(String.valueOf(currentSteps));
 
         progressBar.setProgress(currentSteps);
 
-        tv_kcal.setText(String.valueOf(currentSteps/30));
-        tv_distance.setText(String.format("%.2f", currentSteps * 0.0006));
+
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        sm.registerListener(this, sensor_step_detector, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        sm.unregisterListener(this);
+
+
+        // 걸음수 임시 저장
+        PreferenceHelper.setStep(getContext(), currentSteps);
+    }
+
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        // 센서 유형이 스텝감지 센서인 경우 걸음수 +1
+
+        if(event.sensor.getType()==Sensor.TYPE_STEP_DETECTOR){
+            if(event.values[0]==1.0f){
+                currentSteps +=event.values[0];
+                stepCountView.setText(String.valueOf(currentSteps));
+                progressBar.setProgress(currentSteps);
+
+            }else{
+                stepCountView.setText("감지 안됨");
+            }
+        }
+    }
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
 
 
 

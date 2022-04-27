@@ -270,6 +270,7 @@ public class MusicPlayActivity extends AppCompatActivity {
                     mediaPlayer.stop();
                     isPlaying = false;
                     mediaPlayer.release();
+
                 }
 
                 if (category==0){ //감각적인
