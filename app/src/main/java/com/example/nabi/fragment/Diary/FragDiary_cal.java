@@ -1,9 +1,11 @@
 package com.example.nabi.fragment.Diary;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -431,11 +433,11 @@ public class FragDiary_cal extends Fragment {
             catch (NullPointerException e){ e.printStackTrace(); }
 
 
-            Log.v("really?", YMD+"이고! "+checkMood);
+            Log.v("really?1212", YMD+"이고! "+checkMood);
 
 //            if (go)
 //                return checkMood;
-            return checkMood;
+            return true;
 
 
 //            return date.equals(day);
@@ -466,5 +468,29 @@ public class FragDiary_cal extends Fragment {
         }
     }
 
+
+    // 로딩중 dialog 띄우기
+    public class MoodTrackerAsync extends AsyncTask<Void, Location, Location> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+
+        }
+
+        @Override
+        protected Location doInBackground(Void... voids) {
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Location aVoid) {
+            super.onPostExecute(aVoid);
+
+
+        }
+    }
 
 }
