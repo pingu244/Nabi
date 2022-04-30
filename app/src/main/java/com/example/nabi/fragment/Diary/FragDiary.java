@@ -33,40 +33,87 @@ public class FragDiary extends Fragment {
     TabLayout tabLayout;
     ViewPager viewPager;
     MainAdapter adapter;
+    DiaryList_Clear clearDiary;
+
+    FragDiary_cal fragDiary_cal;
+    FragDiary_list fragDiary_list;
+
+    FragmentManager childFragmentManager;
+    boolean start = true;
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        start = true;
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        clearDiary = new DiaryList_Clear();
+
         tabLayout = getActivity().findViewById(R.id.Diary_tab_layout);
         viewPager = getActivity().findViewById(R.id.Diary_view_pager);
 
+        fragDiary_cal = new FragDiary_cal();
+        fragDiary_list = new FragDiary_list();
+        childFragmentManager = getChildFragmentManager();
+
 
         // adapter 초기화
-        adapter = new MainAdapter(getChildFragmentManager());
+        adapter = new MainAdapter(childFragmentManager);
         // add fragments
-        adapter.AddFragment(new FragDiary_cal(), "캘린더");
-        adapter.AddFragment(new FragDiary_list(),"날씨 일기");
+        adapter.AddFragment(fragDiary_cal, "캘린더");
+        adapter.AddFragment(fragDiary_list,"날씨 일기");
         //set adapter
         viewPager.setAdapter(adapter);
         //connect tab layout with view pager
         tabLayout.setupWithViewPager(viewPager);
 
 
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                if(start)
+                {
+                    if(position==0)
+                        getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.diarybg);
+                    else
+                        getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_clear);
+                    start = false;
+                }
 
             }
 
             @Override
             public void onPageSelected(int position) { //페이지 넘어갈 때
+
                 switch (position) {
                     case 0:
                         getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.diarybg);
                         break;
                     case 1:
-//                        getChildFragmentManager().beginTransaction().replace(R.id.list_container, new DiaryList_Clear()).commitAllowingStateLoss();
+                        switch (fragDiary_list.diaryList_bg)
+                        {
+                            case 0:
+                                getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_clear);
+                                break;
+                            case 1:
+                                getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_littlecloud);
+                                break;
+                            case 2:
+                                getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_cloud);
+                                break;
+                            case 3:
+                                getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_rain);
+                                break;
+                            case 4:
+                                getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_snow);
+                                break;
+                        }
                         break;
                 }
 
@@ -102,7 +149,7 @@ public class FragDiary extends Fragment {
 
 
     // viewpager 관련 클래스
-    private class MainAdapter extends FragmentPagerAdapter{
+    public static class MainAdapter extends FragmentPagerAdapter{
         // arrayList 초기화
         ArrayList<Fragment> fragmentArrayList = new ArrayList<>();
         ArrayList<String> stringArrayList = new ArrayList<>();

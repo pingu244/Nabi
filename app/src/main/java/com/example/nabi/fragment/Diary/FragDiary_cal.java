@@ -280,6 +280,13 @@ public class FragDiary_cal extends Fragment {
     // 무드트래커
     public class MoodDecorator implements DayViewDecorator{
         private Drawable drawable;
+        Drawable drawable0 = getResources().getDrawable(R.drawable.mood_circle2);
+        Drawable drawable1 = getResources().getDrawable(R.drawable.btnrain);
+        Drawable drawable2 = getResources().getDrawable(R.drawable.btncloudy);
+        Drawable drawable3 = getResources().getDrawable(R.drawable.btnlittlecloud);
+        Drawable drawable4 = getResources().getDrawable(R.drawable.btnclear);
+        Drawable drawable5 = getResources().getDrawable(R.drawable.mood_circle);
+
         ArrayList<String> deco_dates;
         boolean checkMood = false;
         int moodValue;
@@ -287,6 +294,23 @@ public class FragDiary_cal extends Fragment {
         public MoodDecorator(ArrayList<String> deco_dates, int mood){
             this.deco_dates = deco_dates;
             this.moodValue = mood;
+
+            switch (moodValue)
+            {
+                case 0:
+                    drawable = drawable0; break;
+                case 1:
+                    drawable = drawable1; break;
+                case 2:
+                    drawable = drawable2; break;
+                case 3:
+                    drawable = drawable3; break;
+                case 4:
+                    drawable = drawable4; break;
+                case 5:
+                    drawable = drawable5; break;
+            }
+            drawable.setBounds(0, 0, 80, 80);
         }
 
 
@@ -307,23 +331,7 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            switch (moodValue)
-            {
-                case 0:
-                    drawable = getResources().getDrawable(R.drawable.mood_circle2); break;
-                case 1:
-                    drawable = getResources().getDrawable(R.drawable.btnrain); break;
-                case 2:
-                    drawable = getResources().getDrawable(R.drawable.btncloudy); break;
-                case 3:
-                    drawable = getResources().getDrawable(R.drawable.btnlittlecloud); break;
-                case 4:
-                    drawable = getResources().getDrawable(R.drawable.btnclear); break;
-                case 5:
-                    drawable = getResources().getDrawable(R.drawable.mood_circle); break;
-            }
 
-            drawable.setBounds(0, 0, 80, 80);
 //            view.addSpan(new ForegroundColorSpan(Color.BLACK));
 //            view.setBackgroundDrawable(drawable);
             ImageSpan span = new ImageSpan(drawable,ImageSpan.ALIGN_CENTER);

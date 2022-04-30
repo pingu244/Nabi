@@ -40,21 +40,6 @@
             app:tabIndicator="@drawable/tab_indicator"
             app:tabIndicatorColor="@color/white"/>
 
-<!--        <com.google.android.material.appbar.AppBarLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:theme="@style/Theme.AppCompat"-->
-<!--            android:background="@android:color/transparent">-->
-
-<!--            <androidx.appcompat.widget.Toolbar-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="?attr/actionBarSize"-->
-<!--                android:id="@+id/Diary_toolbar"-->
-<!--                android:background="@android:color/transparent"-->
-<!--                app:popupTheme="@style/Theme.AppCompat"/>-->
-<!--        </com.google.android.material.appbar.AppBarLayout>-->
-<!--        <include layout= "@layout/diary_contain_main"/>-->
-
     </LinearLayout>
 
     <androidx.viewpager.widget.ViewPager

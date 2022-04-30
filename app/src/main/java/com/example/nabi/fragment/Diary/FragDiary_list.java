@@ -33,7 +33,7 @@ public class FragDiary_list extends Fragment {
     DiaryList_Clear clearDiary;
     DiaryList_Rain rainDiary;
     DiaryList_Snow snowDiary;
-    TextView tvWeather;
+    public Integer diaryList_bg = 0;
 
     int selectMonth = 1;
     int weather;
@@ -65,11 +65,15 @@ public class FragDiary_list extends Fragment {
         btnRain = view.findViewById(R.id.btnRain);
         btnSnow = view.findViewById(R.id.btnSnow);
 
+        // 처음에는 맑음 선택되어 있음
+        getChildFragmentManager().beginTransaction().replace(R.id.list_container, new DiaryList_Clear()).commitAllowingStateLoss();
+
 
         //맑음어리 이동
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                diaryList_bg = 0;
                 getChildFragmentManager().beginTransaction().replace(R.id.list_container, clearDiary).commitAllowingStateLoss();
             }
         });
@@ -78,6 +82,7 @@ public class FragDiary_list extends Fragment {
         btnLittleCloudy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                diaryList_bg = 1;
                 getChildFragmentManager().beginTransaction().replace(R.id.list_container, littleCloudyDiary).commitAllowingStateLoss();
             }
         });
@@ -87,6 +92,7 @@ public class FragDiary_list extends Fragment {
         btnCloudy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                diaryList_bg = 2;
                 getChildFragmentManager().beginTransaction().replace(R.id.list_container, cloudyDiary).commitAllowingStateLoss();
 
             }
@@ -96,6 +102,7 @@ public class FragDiary_list extends Fragment {
         btnRain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                diaryList_bg = 3;
                 getChildFragmentManager().beginTransaction().replace(R.id.list_container, rainDiary).commitAllowingStateLoss();
             }
         });
@@ -104,6 +111,7 @@ public class FragDiary_list extends Fragment {
         btnSnow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                diaryList_bg = 4;
                 getChildFragmentManager().beginTransaction().replace(R.id.list_container, snowDiary).commitAllowingStateLoss();
             }
         });
