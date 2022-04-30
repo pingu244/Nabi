@@ -42,8 +42,6 @@ public class DiaryResult extends AppCompatActivity {
     ProgressBar mood;
     FlexboxLayout selected_keywords;
 
-//    DBHelper dbHelper;
-//    private SQLiteDatabase db;
     private FirebaseFirestore db;
 
     // db에서 받아온 것들 변수
@@ -56,8 +54,6 @@ public class DiaryResult extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary_result);
 
-//        dbHelper = new DBHelper(this);
-//        db = dbHelper.getReadableDatabase();
         db = FirebaseFirestore.getInstance();
         
         
@@ -93,35 +89,6 @@ public class DiaryResult extends AppCompatActivity {
             finalDate = selected_date;
         String[] date_array = finalDate.split("/");
         date.setText(date_array[0]+"년 "+date_array[1]+"월 "+date_array[2]+"일");
-
-
-
-
-
-        // db로 변수에 값 받아오기
-//        String sql = "select diary_mood, content_1, diary_keyword, content_2, content_3, diary_weather, reporting_date " +
-//                "from diary_post where reporting_date='"+finalDate+"'";
-
-//        if (db != null){
-//            // cursor에 rawQuery문 저장
-//            Cursor cursor = db.rawQuery(sql, null);
-//
-//            if(cursor!=null){
-//                while(cursor.moveToNext()){
-//                    diary_mood = cursor.getInt(0);
-//                    content_1 = cursor.getString(1);
-//                    diary_keyword = cursor.getString(2);
-//                    content_2 = cursor.getString(3);
-//                    content_3 = cursor.getString(4);
-//                    diary_weather = cursor.getInt(5);
-//                    reporting_date = cursor.getString(6);
-//                }
-//
-//            }
-//                cursor.close();
-//            }
-//        dbHelper.close();
-//        db.close();
 
 
         // 파이어스토어 경로지정
@@ -166,7 +133,6 @@ public class DiaryResult extends AppCompatActivity {
                                 break;
                         }
 
-//                        setContentView(R.layout.activity_diary_result);
 
                         // 1. 기분 어느정도인지 나타내기
                         mood.setProgress(diary_mood);

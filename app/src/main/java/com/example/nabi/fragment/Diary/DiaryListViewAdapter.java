@@ -62,6 +62,7 @@ public class DiaryListViewAdapter extends RecyclerView.Adapter<DiaryListViewAdap
         LinearLayout layoutDiaryList;
         TextView date;
         Integer moods;
+        FlexboxLayout mView;
 
         ImageView list_mood[] = new ImageView[5];
         Integer mood_ids[] = {R.id.DiaryList_one, R.id.DiaryList_two, R.id.DiaryList_three,R.id.DiaryList_four,R.id.DiaryList_five};
@@ -104,14 +105,18 @@ public class DiaryListViewAdapter extends RecyclerView.Adapter<DiaryListViewAdap
         void onBind(DiaryListItem item){
             date.setText(item.getDate());
 
+            mView = itemView.findViewById(R.id.DiaryList_selectMoods);    // 감정단어 들어가는 늘어나는 레이아웃
+            mView.removeAllViews();
             String[] array = item.getKeyword().split(",");
             for(int i = 0; i<array.length; i++)
             {
                 TextView txt = new TextView(context);
 
+                // 단어 들어가는 그 하나의 타원
                 FlexboxLayout.LayoutParams pm = new FlexboxLayout.LayoutParams
                         (FlexboxLayout.LayoutParams.WRAP_CONTENT, FlexboxLayout.LayoutParams.WRAP_CONTENT);
                 pm.setMargins(5,5,5,5);
+
                 txt.setPadding(20,9,20,9);
                 txt.setGravity(View.TEXT_ALIGNMENT_CENTER);
 
@@ -122,8 +127,6 @@ public class DiaryListViewAdapter extends RecyclerView.Adapter<DiaryListViewAdap
                 txt.setLayoutParams(pm); //앞서 설정한 레이아웃파라미터를 버튼에 적용
                 ViewCompat.setBackgroundTintList(txt, ColorStateList.valueOf(Color.parseColor("#686868"))); // 배경 색 지정
                 txt.setTextColor(Color.parseColor("#ffffff"));  // 글씨 색 지정
-
-                FlexboxLayout mView = itemView.findViewById(R.id.DiaryList_selectMoods);    // 감정단어 들어가는 늘어나는 레이아웃
                 mView.addView(txt); //지정된 뷰에 셋팅완료된 textview를 추가
             }
 

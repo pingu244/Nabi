@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -33,27 +34,9 @@ public class FragDiary extends Fragment {
     ViewPager viewPager;
     MainAdapter adapter;
 
-    TextView item1,item2, select;
-
-    Fragment fragdiary = new FragDiary_cal();
-    Fragment fraglist = new FragDiary_list();
-
-    ImageButton btnCloudy;
-    ImageButton btnLittleCloudy;
-    ImageButton btnClear;
-    ImageButton btnRain;
-    ImageButton btnSnow;
-
-    LinearLayout diaryBg;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        btnCloudy = getActivity().findViewById(R.id.btnCloudy);
-        btnLittleCloudy = getActivity().findViewById(R.id.btnLittleCloudy);
-        btnClear = getActivity().findViewById(R.id.btnClear);
-        btnRain = getActivity().findViewById(R.id.btnRain);
-        btnSnow = getActivity().findViewById(R.id.btnSnow);
-
 
         tabLayout = getActivity().findViewById(R.id.Diary_tab_layout);
         viewPager = getActivity().findViewById(R.id.Diary_view_pager);
@@ -80,30 +63,10 @@ public class FragDiary extends Fragment {
             public void onPageSelected(int position) { //페이지 넘어갈 때
                 switch (position) {
                     case 0:
-//                        getActivity().findViewById(R.id.diaryBg).setBackgroundDrawable(getResources().getDrawable(R.drawable.diarybg));
                         getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.diarybg);
                         break;
                     case 1:
-
-//                        try{
-//                            if(btnClear.isSelected())
-//                                getActivity().findViewById(R.id.diaryBg).setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_clear));
-//                            else if(btnLittleCloudy.isSelected())
-//                                getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_littlecloud);
-//                            else if(btnCloudy.isSelected())
-//                                getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_cloud);
-//                            else if(btnRain.isSelected())
-//                                getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_rain);
-//                            else if(btnSnow.isSelected())
-//                                getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_snow);
-//                        }catch (Exception e){}
-
-
-                        getActivity().findViewById(R.id.diaryBg).setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_clear));
-//                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.list_container, new DiaryList_Clear()).commitAllowingStateLoss();
-
-//                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Diary_view_pager, new FragDiary_list()).commitAllowingStateLoss();
-//                        refresh(); //어댑터에 notifyDataSetChanged
+//                        getChildFragmentManager().beginTransaction().replace(R.id.list_container, new DiaryList_Clear()).commitAllowingStateLoss();
                         break;
                 }
 
@@ -120,17 +83,6 @@ public class FragDiary extends Fragment {
             }
 
         });
-//        Toolbar toolbar = getActivity().findViewById(R.id.Diary_toolbar);
-//        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-//
-//        item1 = getActivity().findViewById(R.id.Diary_select_item1);
-//        item2 = getActivity().findViewById(R.id.Diary_select_item2);
-
-
-
-
-
-//        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Diary_frag, fragdiary).commitAllowingStateLoss() ;
 
 
 

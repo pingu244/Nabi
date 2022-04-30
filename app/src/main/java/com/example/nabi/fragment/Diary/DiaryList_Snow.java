@@ -7,6 +7,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,13 +37,45 @@ public class DiaryList_Snow extends Fragment {
     RecyclerView diaryListView;
     DiaryListViewAdapter diaryListViewAdapter;
     ArrayList<DiaryListItem> diaryListItems = new ArrayList<DiaryListItem>();
+    Integer selectMonth;
+    TextView tvWeather;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.diarylist_adapter, container,false);
         initUI(view);
         getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_snow);
+
+        tvWeather = getActivity().findViewById(R.id.tvWeather);
+        tvWeather.setText("눈 오는 날");
+
+        // 처음 보여지는 건 1월
+        selectMonth = 1;
         loadNoteListData();
+
+        // 스피너
+        Spinner monthSpinner = getActivity().findViewById(R.id.spinner_month);
+
+        ArrayAdapter monthAdapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.spinner_date_month, android.R.layout.simple_spinner_item);
+        monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+
+        monthSpinner.setAdapter(monthAdapter);
+        monthSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                // 선택되면
+                selectMonth = i+1;
+                loadNoteListData();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // 아무것도 선택되지 않은 상태일 때
+            }
+        });
+
         return view;
     }
 
@@ -63,7 +99,7 @@ public class DiaryList_Snow extends Fragment {
         // 파이어스토어 경로지정 + weather가 4인 문서들 가져오기
         db.collection("users")
                 .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .collection("diary").document("2022").collection("2")
+                .collection("diary").document("2022").collection(selectMonth.toString())
                 .whereEqualTo("weather", 4)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -89,7 +125,7 @@ public class DiaryList_Snow extends Fragment {
                                 {
                                     db.collection("users")
                                             .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                            .collection("diary").document("2022").collection("2")
+                                            .collection("diary").document("2022").collection(selectMonth.toString())
                                             .whereEqualTo("weather", 4)
                                             .get()
                                             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -102,7 +138,7 @@ public class DiaryList_Snow extends Fragment {
                                                             if(pos==i)
                                                             {
                                                                 Intent intent = new Intent(getActivity(), DiaryResult.class);
-                                                                intent.putExtra("SelectedDate", "2022/2/"+document.getId());
+                                                                intent.putExtra("SelectedDate", "2022/"+selectMonth+"/"+document.getId());
                                                                 startActivity(intent);
                                                             }
                                                             i++;

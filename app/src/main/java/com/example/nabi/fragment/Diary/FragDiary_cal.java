@@ -14,8 +14,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.text.Spanned;
 import android.text.style.BackgroundColorSpan;
+import android.text.style.DrawableMarginSpan;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.ImageSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 import android.util.Log;
@@ -23,6 +26,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.nabi.DBHelper;
 import com.example.nabi.MainActivity;
@@ -71,7 +75,8 @@ public class FragDiary_cal extends Fragment {
 
 
     MaterialCalendarView materialCalendarView;  // 캘린더
-
+    // materialCalendar 깃허브 주소
+//    https://github.com/prolificinteractive/material-calendarview
 
 
 
@@ -87,7 +92,6 @@ public class FragDiary_cal extends Fragment {
                 .setMaximumDate(CalendarDay.from(2030, 11, 31))
                 .setCalendarDisplayMode(CalendarMode.MONTHS)
                 .commit();
-
 
         // 안희애가 해본 월 보이는 커스텀(0404)
         SimpleDateFormat format = new SimpleDateFormat("M");
@@ -270,7 +274,6 @@ public class FragDiary_cal extends Fragment {
         public void decorate(DayViewFacade view) {
             view.setBackgroundDrawable(drawable);
             view.addSpan(new ForegroundColorSpan(Color.GRAY)); //모든 date 색상
-
         }
     }
 
@@ -279,25 +282,11 @@ public class FragDiary_cal extends Fragment {
         private Drawable drawable;
         ArrayList<String> deco_dates;
         boolean checkMood = false;
+        int moodValue;
 
         public MoodDecorator(ArrayList<String> deco_dates, int mood){
             this.deco_dates = deco_dates;
-
-            switch (mood)
-            {
-                case 0:
-                    drawable = getResources().getDrawable(R.drawable.mood_circle2); break;
-                case 1:
-                    drawable = getResources().getDrawable(R.drawable.btnrain); break;
-                case 2:
-                    drawable = getResources().getDrawable(R.drawable.btncloudy); break;
-                case 3:
-                    drawable = getResources().getDrawable(R.drawable.btnlittlecloud); break;
-                case 4:
-                    drawable = getResources().getDrawable(R.drawable.btnclear); break;
-                case 5:
-                    drawable = getResources().getDrawable(R.drawable.mood_circle); break;
-            }
+            this.moodValue = mood;
         }
 
 
@@ -318,9 +307,30 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.setBackgroundDrawable(drawable);
+            switch (moodValue)
+            {
+                case 0:
+                    drawable = getResources().getDrawable(R.drawable.mood_circle2); break;
+                case 1:
+                    drawable = getResources().getDrawable(R.drawable.btnrain); break;
+                case 2:
+                    drawable = getResources().getDrawable(R.drawable.btncloudy); break;
+                case 3:
+                    drawable = getResources().getDrawable(R.drawable.btnlittlecloud); break;
+                case 4:
+                    drawable = getResources().getDrawable(R.drawable.btnclear); break;
+                case 5:
+                    drawable = getResources().getDrawable(R.drawable.mood_circle); break;
+            }
+
+            drawable.setBounds(0, 0, 80, 80);
+//            view.addSpan(new ForegroundColorSpan(Color.BLACK));
+//            view.setBackgroundDrawable(drawable);
+            ImageSpan span = new ImageSpan(drawable,ImageSpan.ALIGN_CENTER);
+            view.addSpan(span);
         }
     }
+
 
 
     // async로 특정 month 데베 돌아서 값 있으면 무드따라 날짜배열에 저장, onProgressUpdate에서 decorater 호출
@@ -386,7 +396,6 @@ public class FragDiary_cal extends Fragment {
         @Override
         protected void onProgressUpdate(Long... values) {
             super.onProgressUpdate(values);
-            materialCalendarView = getView().findViewById(R.id.calendarView);
 
             materialCalendarView.addDecorators(
                     new FragDiary_cal.MoodDecorator(deco_mood0_dates, 0),
