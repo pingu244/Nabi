@@ -73,6 +73,7 @@ public class WritingFrag1 extends Fragment {
         {
             seekbar.setProgress(((WritingDiary)getActivity()).q1_mood);
             int whatper = ((WritingDiary)getActivity()).q1_mood * 20;
+            seekbarValue = ((WritingDiary)getActivity()).q1_mood;
             seekbar_per.setText(whatper+ "%");
         }
 

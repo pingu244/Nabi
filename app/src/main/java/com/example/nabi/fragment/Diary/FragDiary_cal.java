@@ -45,6 +45,7 @@ import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 import com.prolificinteractive.materialcalendarview.format.TitleFormatter;
 
 import java.text.SimpleDateFormat;
@@ -61,15 +62,12 @@ public class FragDiary_cal extends Fragment {
     View view;
     Button goWriting;
 
-    DBHelper dbHelper;
-//    private SQLiteDatabase db;
     private FirebaseFirestore db;
 
     FragDiary_cal_bottomItem bottomitem;
 
     String selectKeyword, selectDate;
-    Integer selectMood, moodValue = 0;
-//    boolean checkMood;
+    Integer selectMood;
 
 
     MaterialCalendarView materialCalendarView;  // 캘린더
@@ -90,8 +88,6 @@ public class FragDiary_cal extends Fragment {
                 .setCalendarDisplayMode(CalendarMode.MONTHS)
                 .commit();
 
-        //월 한글로 보이게 설정
-//        materialCalendarView.setTitleFormatter(new MonthArrayTitleFormatter(getResources().getTextArray(R.array.custom_months)));
 
         // 안희애가 해본 월 보이는 커스텀(0404)
         SimpleDateFormat format = new SimpleDateFormat("M");
@@ -110,11 +106,7 @@ public class FragDiary_cal extends Fragment {
         materialCalendarView.addDecorators(
                 new FragDiary_cal.MySelectorDecorator(this),  // 선택된 애 어떻게 꾸밀지
                 new FragDiary_cal.OneDayDecorator()                // 오늘꺼 어떻게 꾸밀지
-//                new FragDiary_cal.MoodDecorator()
-
         );
-
-        new MoodAsyncTask(4).execute();
 
         // 날짜 클릭할때 작동하는 함수
         materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
@@ -130,6 +122,15 @@ public class FragDiary_cal extends Fragment {
             }
         });
 
+        // 월 바꿀 때 작동하는 함수
+        materialCalendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
+            @Override
+            public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
+                // 선택한 달의 무드트래커 띄우기
+                new MoodAsyncTask(date.getMonth() + 1).execute();
+            }
+        });
+
         // 처음 떴을때 오늘날짜 일기있는지 보여주기
         Calendar cal = Calendar.getInstance();
         int cYEAR = cal.get(Calendar.YEAR);
@@ -138,45 +139,8 @@ public class FragDiary_cal extends Fragment {
         String YMD = (cYEAR+"/"+cMonth+"/"+cDay);
         search(YMD);
 
-
-
-        // 무드트래커를 향한 나의 몸부림
-//        db = FirebaseFirestore.getInstance();
-//        Calendar calendar = Calendar.getInstance();
-//
-//
-//        int y = calendar.get(Calendar.YEAR);
-//        int m = calendar.get(Calendar.MONTH)+1;
-//
-//        CollectionReference docRef = db.collection("users")
-//                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-//                .collection("diary");
-//
-//
-//        Task<QuerySnapshot> documentSnapshotTask = docRef.get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        CalendarDay dayy = null;
-//                        Log.v("tellmewhattodo", "첫번째 입니다");
-//                        if (task.isSuccessful()) {
-//                            for (QueryDocumentSnapshot document : task.getResult()) {
-//                                Map<String, Object> mmap = document.getData();
-//                                String d = document.getId();
-//                                Log.v("tellmewhattodo", d+"일 입니다");
-//                                moodValue = Integer.parseInt(mmap.get("q1_mood").toString());
-//                                dayy.from(y,m,Integer.parseInt(d));
-//                                materialCalendarView.addDecorators(new MoodDecorator());
-//                            }
-//                        } else {
-//                            Log.d("EEE", "Error getting documents: ", task.getException());
-//                        }
-//                    }
-//                });
-
-
-//        calendarDayList.add(CalendarDay.today());
-//        calendarDayList.add(CalendarDay.from(2020, 11, 25));
+        // 처음 떴을때 이번 달 무드트래커 띄우기
+        new MoodAsyncTask(cMonth).execute();
 
     }
 
@@ -236,14 +200,13 @@ public class FragDiary_cal extends Fragment {
                                 if(selectMood != null)
                                 {
                                     Bundle bundle = new Bundle();
-                                    bundle.putInt("selectMood",selectMood);//번들에 넘길 값 저장
+                                    bundle.putInt("selectMood",selectMood); //번들에 넘길 값 저장
                                     bundle.putString("selectKeyword",selectKeyword);
                                     bundle.putString("selectDate",selectDate);
                                     bottomitem.setArguments(bundle);
 
                                     goWriting.setVisibility(View.INVISIBLE);
                                 }
-
 
                             }
                             else    goWriting.setVisibility(View.VISIBLE);
@@ -281,7 +244,6 @@ public class FragDiary_cal extends Fragment {
             view.addSpan(new BackgroundColorSpan(Color.rgb(250,133,116)));
             view.setBackgroundDrawable(drawable);
             view.setSelectionDrawable(drawable); //선택했을때 백그라운드 드로어블(선택 취소하면 나타났다사라짐)
-
         }
 
         public void setDate(Date date) {
@@ -312,89 +274,64 @@ public class FragDiary_cal extends Fragment {
         }
     }
 
-
     // 무드트래커
     public class MoodDecorator implements DayViewDecorator{
-        private Drawable drawable0;
-        private Drawable drawable1;
-        private Drawable drawable2;
-        private Drawable drawable3;
-        private Drawable drawable4;
-        private Drawable drawable5;
-
-        ArrayList<String> deco_dates = new ArrayList<>();
-        ArrayList<Integer> deco_mood = new ArrayList<>();
-
-        private CalendarDay date;
-        private final Calendar calendar = Calendar.getInstance();
+        private Drawable drawable;
+        ArrayList<String> deco_dates;
         boolean checkMood = false;
 
-
-        public MoodDecorator(ArrayList<String> deco_dates, ArrayList<Integer> deco_mood){
-            drawable0 = getResources().getDrawable(R.drawable.btnsnow);
-            drawable1 = getResources().getDrawable(R.drawable.btnrain);
-            drawable2 = getResources().getDrawable(R.drawable.btnclear);
-            drawable3 = getResources().getDrawable(R.drawable.btncloudy);
-            drawable4 = getResources().getDrawable(R.drawable.btnclear);
-            drawable5 = getResources().getDrawable(R.drawable.btnclear);
+        public MoodDecorator(ArrayList<String> deco_dates, int mood){
             this.deco_dates = deco_dates;
-            this.deco_mood = deco_mood;
+
+            switch (mood)
+            {
+                case 0:
+                    drawable = getResources().getDrawable(R.drawable.mood_circle2); break;
+                case 1:
+                    drawable = getResources().getDrawable(R.drawable.btnrain); break;
+                case 2:
+                    drawable = getResources().getDrawable(R.drawable.btncloudy); break;
+                case 3:
+                    drawable = getResources().getDrawable(R.drawable.btnlittlecloud); break;
+                case 4:
+                    drawable = getResources().getDrawable(R.drawable.btnclear); break;
+                case 5:
+                    drawable = getResources().getDrawable(R.drawable.mood_circle); break;
+            }
         }
 
 
         @Override
         public boolean shouldDecorate(CalendarDay day) {
-
-
             int cYEAR = day.getYear();
             int cMonth = day.getMonth()+1;
             int cDay = day.getDay();
             String YMD = (cYEAR+"/"+cMonth+"/"+cDay);
 
-
-
             checkMood = false;
-            moodValue = -1;
             for(int i = 0; i<deco_dates.size(); i++)
-            {
                 if(deco_dates.get(i).equals(YMD))
-                {
                     checkMood = true;
-                    moodValue = deco_mood.get(i);
-                }
-            }
+
             return checkMood;
         }
 
         @Override
         public void decorate(DayViewFacade view) {
-            switch (moodValue)
-            {
-                case 0:
-                    view.setBackgroundDrawable(drawable0); break;
-                case 1:
-                    view.setBackgroundDrawable(drawable1); break;
-                case 2:
-                    view.setBackgroundDrawable(drawable2); break;
-                case 3:
-                    view.setBackgroundDrawable(drawable3); break;
-                case 4:
-                    view.setBackgroundDrawable(drawable4); break;
-                case 5:
-                    view.setBackgroundDrawable(drawable5); break;
-                default:
-                    view.setBackgroundDrawable(drawable0);
-            }
-//            view.addSpan(new ForegroundColorSpan(Color.WHITE));
+            view.setBackgroundDrawable(drawable);
         }
     }
 
 
-    // async로 특정 month 데베 돌아서 값 있으면 날짜와 무드 저장, post에서 decorater 호출
+    // async로 특정 month 데베 돌아서 값 있으면 무드따라 날짜배열에 저장, onProgressUpdate에서 decorater 호출
     private class MoodAsyncTask extends AsyncTask<Void, Long, Boolean> {
 
-        ArrayList<String> deco_dates = new ArrayList<>();
-        ArrayList<Integer> deco_mood = new ArrayList<>();
+        ArrayList<String> deco_mood0_dates = new ArrayList<>();
+        ArrayList<String> deco_mood1_dates = new ArrayList<>();
+        ArrayList<String> deco_mood2_dates = new ArrayList<>();
+        ArrayList<String> deco_mood3_dates = new ArrayList<>();
+        ArrayList<String> deco_mood4_dates = new ArrayList<>();
+        ArrayList<String> deco_mood5_dates = new ArrayList<>();
         Integer month;
 
         public MoodAsyncTask(Integer month) {
@@ -418,19 +355,30 @@ public class FragDiary_cal extends Fragment {
                                     Map<String, Object> mymap = document.getData();
                                     int diary_mood = Integer.parseInt(mymap.get("q1_mood").toString());
 
-                                    deco_dates.add("2022/"+month+"/"+document.getId());
-                                    deco_mood.add(diary_mood);
-
-                                    Log.v("decodecoinin", "2022/"+month+"/"+document.getId()+" : "+diary_mood);
+                                    // 각 감정별로 배열에 날짜 저장
+                                    switch (diary_mood)
+                                    {
+                                        case 0:
+                                            deco_mood0_dates.add("2022/"+month+"/"+document.getId()); break;
+                                        case 1:
+                                            deco_mood1_dates.add("2022/"+month+"/"+document.getId()); break;
+                                        case 2:
+                                            deco_mood2_dates.add("2022/"+month+"/"+document.getId()); break;
+                                        case 3:
+                                            deco_mood3_dates.add("2022/"+month+"/"+document.getId()); break;
+                                        case 4:
+                                            deco_mood4_dates.add("2022/"+month+"/"+document.getId()); break;
+                                        case 5:
+                                            deco_mood5_dates.add("2022/"+month+"/"+document.getId()); break;
+                                    }
 
                                 }
+                                // 파베 다 읽어오면 함수 실행
                                 publishProgress();
-
                             }
 
                         }
                     });
-
 
             return null;
         }
@@ -440,10 +388,13 @@ public class FragDiary_cal extends Fragment {
             super.onProgressUpdate(values);
             materialCalendarView = getView().findViewById(R.id.calendarView);
 
-            for(int i = 0; i<deco_dates.size();i++)
-                Log.v("decodeco", deco_dates.get(i)+" : "+deco_mood.get(i));
             materialCalendarView.addDecorators(
-                    new FragDiary_cal.MoodDecorator(deco_dates, deco_mood)
+                    new FragDiary_cal.MoodDecorator(deco_mood0_dates, 0),
+                    new FragDiary_cal.MoodDecorator(deco_mood1_dates, 1),
+                    new FragDiary_cal.MoodDecorator(deco_mood2_dates, 2),
+                    new FragDiary_cal.MoodDecorator(deco_mood3_dates, 3),
+                    new FragDiary_cal.MoodDecorator(deco_mood4_dates, 4),
+                    new FragDiary_cal.MoodDecorator(deco_mood5_dates, 5)
 
             );
         }

@@ -117,7 +117,6 @@ public class WritingFrag4 extends Fragment {
                 hashMap.put("q5_again", five);
                 hashMap.put("weather", six);
 
-                Log.v("YMD2ERROR", YMD2+"입니다");
                 db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                         .collection("diary").document(YMD2).set(hashMap)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {

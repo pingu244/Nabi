@@ -109,30 +109,30 @@ public class FragRemind extends Fragment {
                                 String diary_keyword = (String) mymap.get("q3_todayKeyword");
                                 int weather = Integer.parseInt(mymap.get("weather").toString());
 
-                                int weatherDrawable;
+                                Drawable drawable;
 
                                 switch (weather)
                                 {
                                     case 0:
-                                        weatherDrawable = getResources().getIdentifier( "@drawable/btnclear", "drawable", "com.example.nabi");
+                                        drawable = getResources().getDrawable(R.drawable.btnclear);
                                         break;
                                     case 1:
-                                        weatherDrawable = getResources().getIdentifier( "@drawable/btnlittlecloud", "drawable", "com.example.nabi");
+                                        drawable = getResources().getDrawable(R.drawable.btnlittlecloud);
                                         break;
                                     case 2:
-                                        weatherDrawable = getResources().getIdentifier( "@drawable/btncloudy", "drawable", "com.example.nabi");
+                                        drawable = getResources().getDrawable(R.drawable.btncloudy);
                                         break;
                                     case 3:
-                                        weatherDrawable = getResources().getIdentifier( "@drawable/btnrain", "drawable", "com.example.nabi");
+                                        drawable = getResources().getDrawable(R.drawable.btnrain);
                                         break;
                                     case 4:
-                                        weatherDrawable = getResources().getIdentifier( "@drawable/btnsnow", "drawable", "com.example.nabi");
+                                        drawable = getResources().getDrawable(R.drawable.btnsnow);
                                         break;
                                     default:
-                                        weatherDrawable = getResources().getIdentifier( "@drawable/btnclear", "drawable", "com.example.nabi");
+                                        drawable = getResources().getDrawable(R.drawable.btnclear);
                                 }
 
-                                items.add(new RemindAdapter.RemindItem("2022년 "+ selectMonth+"월 "+document.getId()+"일", weatherDrawable, "2022/"+selectMonth+"/"+document.getId()));
+                                items.add(new RemindAdapter.RemindItem("2022년 "+ selectMonth+"월 "+document.getId()+"일", drawable, "2022/"+selectMonth+"/"+document.getId()));
                             }
                             //어댑터 연걸, 데이터셋 변경
                             remindListAdapter.addItem(items);

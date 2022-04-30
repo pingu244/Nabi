@@ -55,7 +55,7 @@ public class RemindAdapter extends RecyclerView.Adapter<RemindAdapter.ViewHolder
 
     public static class RemindItem {
 
-        public RemindItem(String remind_date, int imageView, String date_dbPath){
+        public RemindItem(String remind_date, Drawable imageView, String date_dbPath){
             this.remind_date = remind_date;
             this.imageView = imageView;
             this.dbPath = date_dbPath;
@@ -68,18 +68,18 @@ public class RemindAdapter extends RecyclerView.Adapter<RemindAdapter.ViewHolder
             this.remind_date = remind_date;
         }
 
-        public int getImageView() {
+        public Drawable getImageView() {
             return imageView;
         }
 
-        public void setImageView(int imageView) {
+        public void setImageView(Drawable imageView) {
             this.imageView = imageView;
         }
 
         public String getdbPath(){ return dbPath;}
 
         public String remind_date, dbPath;
-        public int imageView;
+        public Drawable imageView;
 
     }
 
@@ -112,7 +112,7 @@ public class RemindAdapter extends RecyclerView.Adapter<RemindAdapter.ViewHolder
         void onBind(RemindItem item) {
             resultDate = item.getdbPath();
             remind_date.setText(item.getRemind_date());
-            img_main.setImageResource(item.getImageView());
+            img_main.setImageDrawable(item.getImageView());
         }
 //        // 아이템들을 담은 리니어레이아웃을 보여주는 메서드.
 //        public void setLayout(){
