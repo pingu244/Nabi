@@ -53,12 +53,13 @@ public class RemindAdapter extends RecyclerView.Adapter<RemindAdapter.ViewHolder
         list = data;
     }
 
-    public static class RemindItem {
+    public static class RemindItem implements Comparable<RemindItem> {
 
-        public RemindItem(String remind_date, Drawable imageView, String date_dbPath){
+        public RemindItem(String remind_date, Drawable imageView, String date_dbPath, Integer date_day){
             this.remind_date = remind_date;
             this.imageView = imageView;
             this.dbPath = date_dbPath;
+            this.date_day = date_day;
         }
         public String getRemind_date() {
             return remind_date;
@@ -80,7 +81,13 @@ public class RemindAdapter extends RecyclerView.Adapter<RemindAdapter.ViewHolder
 
         public String remind_date, dbPath;
         public Drawable imageView;
+        Integer date_day;
 
+        // 정렬위한 함수
+        @Override
+        public int compareTo(RemindItem remindItem) {
+            return this.date_day.compareTo(remindItem.date_day);
+        }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

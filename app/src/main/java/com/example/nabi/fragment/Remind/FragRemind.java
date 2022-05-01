@@ -30,6 +30,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.Map;
 
 public class FragRemind extends Fragment {
@@ -59,6 +61,8 @@ public class FragRemind extends Fragment {
         remindList.setAdapter(remindListAdapter);
 
 
+        // 처음 보여지는 건 해당 월
+        selectMonth = Calendar.getInstance().get(Calendar.MONTH)+1;
 
         // 스피너 연결
         ArrayAdapter monthAdapter = ArrayAdapter.createFromResource(getActivity(),
@@ -66,11 +70,11 @@ public class FragRemind extends Fragment {
         monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
 
         monthSpinner.setAdapter(monthAdapter);
+        monthSpinner.setSelection(selectMonth-1);   // 스피너 초기값
         monthSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 // 선택되면
-                Toast.makeText(getContext(), (i+1)+"월", Toast.LENGTH_SHORT).show();
                 selectMonth = i+1;
                 refresh();
             }
@@ -83,7 +87,6 @@ public class FragRemind extends Fragment {
 
 
 
-        Log.v("remindlist",selectMonth+"월");
 
 
 
@@ -132,8 +135,9 @@ public class FragRemind extends Fragment {
                                         drawable = getResources().getDrawable(R.drawable.btnclear);
                                 }
 
-                                items.add(new RemindAdapter.RemindItem("2022년 "+ selectMonth+"월 "+document.getId()+"일", drawable, "2022/"+selectMonth+"/"+document.getId()));
+                                items.add(new RemindAdapter.RemindItem("2022년 "+ selectMonth+"월 "+document.getId()+"일", drawable, "2022/"+selectMonth+"/"+document.getId(), Integer.valueOf(document.getId())));
                             }
+                            Collections.sort(items);    // 날짜따라 정렬
                             //어댑터 연걸, 데이터셋 변경
                             remindListAdapter.addItem(items);
                             remindListAdapter.notifyDataSetChanged();

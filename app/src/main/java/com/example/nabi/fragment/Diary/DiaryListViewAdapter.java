@@ -131,6 +131,9 @@ public class DiaryListViewAdapter extends RecyclerView.Adapter<DiaryListViewAdap
             }
 
 
+            // mood 초기화
+            for(int i = 0; i<5; i++)
+                list_mood[i].setImageResource(R.drawable.mood_circle2);
             // 1번질문 감정정도 조절
             moods = item.getMood();
             for(int i = 0; i<moods; i++)

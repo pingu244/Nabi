@@ -25,10 +25,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
 import java.util.Map;
 
 // 흐린날 날씨 목록 Fragment
@@ -51,8 +54,8 @@ public class DiaryList_Clear extends Fragment {
         tvWeather = getActivity().findViewById(R.id.tvWeather);
         tvWeather.setText("맑은 날");
 
-        // 처음 보여지는 건 1월
-        selectMonth = 1;
+        // 처음 보여지는 건 해당 월
+        selectMonth = Calendar.getInstance().get(Calendar.MONTH)+1;
         loadNoteListData();
 
         // 스피너
@@ -63,6 +66,7 @@ public class DiaryList_Clear extends Fragment {
         monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
 
         monthSpinner.setAdapter(monthAdapter);
+        monthSpinner.setSelection(selectMonth-1);   // 스피너 초기값
         monthSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -114,12 +118,11 @@ public class DiaryList_Clear extends Fragment {
                             //date, title 담길 배열 생성
                             ArrayList<DiaryListItem> items = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("dfdf", document.getId() + " => " + document.getData());
                                 Map<String, Object> mymap = document.getData();
                                 int diary_mood = Integer.parseInt(mymap.get("q1_mood").toString());
                                 String diary_keyword = (String) mymap.get("q3_todayKeyword");
 
-                                items.add(new DiaryListItem(document.getId(), diary_keyword, diary_mood));
+                                items.add(new DiaryListItem(document.getId(), diary_keyword, diary_mood, Integer.valueOf(document.getId())));
                             }
 
                             // 리스트 클릭하면 그 결과화면 나오는 것
@@ -157,6 +160,7 @@ public class DiaryList_Clear extends Fragment {
                                 }
                             });
 
+                            Collections.sort(items);    // 날짜따라 정렬
                             //어댑터 연걸, 데이터셋 변경
                             diaryListViewAdapter.setItems(items);
                             diaryListViewAdapter.notifyDataSetChanged();

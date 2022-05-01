@@ -158,9 +158,13 @@ public class FragHome extends Fragment {
         background.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.detach(FragHome.this).attach(FragHome.this);
-                ft.commit();
+//                FragmentTransaction ft = getFragmentManager().beginTransaction();
+//                ft.detach(FragHome.this).attach(FragHome.this);
+//                ft.commit();
+
+                FragmentTransaction t = getActivity().getSupportFragmentManager().beginTransaction();
+                t.setReorderingAllowed(false);
+                t.detach(FragHome.this).attach(FragHome.this).commitAllowingStateLoss();
 
                 Log.d(TAG,"새로고침");
 
@@ -838,10 +842,9 @@ public class FragHome extends Fragment {
         protected Location doInBackground(Void... voids) {
             while(!(cc1 && cc2)) {
                 try {
-                    sleep(3000);
+                    sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                    Log.v("timesleep","timesleep");
                 }
             }
             return null;
@@ -953,6 +956,9 @@ public class FragHome extends Fragment {
                     }
                     eventType = parser.next();
                 }
+
+                publishProgress();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -962,9 +968,8 @@ public class FragHome extends Fragment {
         }
 
         @Override
-        protected void onPostExecute(String aVoid) {
-            super.onPostExecute(aVoid);
-
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
             if(value10 != null){
                 fineDust.setText(value10 + "㎍/m³"); // pm10Value, 미세먼지
                 fineDustGrade.setText(gradeMeasure(grade10));
@@ -974,7 +979,6 @@ public class FragHome extends Fragment {
                 fineDustGrade.setText("정보없음"); // pm10Value, 미세먼지
                 ultra_fineDustGrade.setText("정보없음");
             }
-
         }
 
         private String gradeMeasure(String grade){
@@ -992,7 +996,6 @@ public class FragHome extends Fragment {
                     result = "나쁨"; break;
                 case 4:
                     result = "매우나쁨"; break;
-
             }
             return result;
         }

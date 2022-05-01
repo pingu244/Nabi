@@ -280,12 +280,12 @@ public class FragDiary_cal extends Fragment {
     // 무드트래커
     public class MoodDecorator implements DayViewDecorator{
         private Drawable drawable;
-        Drawable drawable0 = getResources().getDrawable(R.drawable.mood_circle2);
-        Drawable drawable1 = getResources().getDrawable(R.drawable.btnrain);
-        Drawable drawable2 = getResources().getDrawable(R.drawable.btncloudy);
-        Drawable drawable3 = getResources().getDrawable(R.drawable.btnlittlecloud);
-        Drawable drawable4 = getResources().getDrawable(R.drawable.btnclear);
-        Drawable drawable5 = getResources().getDrawable(R.drawable.mood_circle);
+        Drawable drawable0 = getContext().getResources().getDrawable(R.drawable.mood_circle2);
+        Drawable drawable1 = getContext().getResources().getDrawable(R.drawable.btnrain);
+        Drawable drawable2 = getContext().getResources().getDrawable(R.drawable.btncloudy);
+        Drawable drawable3 = getContext().getResources().getDrawable(R.drawable.btnlittlecloud);
+        Drawable drawable4 = getContext().getResources().getDrawable(R.drawable.btnclear);
+        Drawable drawable5 = getContext().getResources().getDrawable(R.drawable.mood_circle);
 
         ArrayList<String> deco_dates;
         boolean checkMood = false;

@@ -1,5 +1,6 @@
 package com.example.nabi.fragment.Diary;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.nabi.MainActivity;
 import com.example.nabi.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -46,6 +48,13 @@ public class FragDiary extends Fragment {
     public void onStart() {
         super.onStart();
         start = true;
+
+//        FragmentTransaction t = getActivity().getSupportFragmentManager().beginTransaction();
+//        t.setReorderingAllowed(false);
+//        t.detach(this).attach(this).commitAllowingStateLoss();
+
+//        getFragmentManager().beginTransaction().detach(this).commit();
+//        getFragmentManager().beginTransaction().attach(this).commit();
     }
 
     @Override
@@ -121,7 +130,6 @@ public class FragDiary extends Fragment {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
 
             }
 

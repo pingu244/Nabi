@@ -78,7 +78,7 @@ public class FragDiary_cal_bottomItem extends Fragment {
                 String date_day = "";
                 if(date_array.length>1)
                     date_day = date_array[2];
-                items.add(new DiaryListItem(date_day, sltKeyword, sltMood));
+                items.add(new DiaryListItem(date_day, sltKeyword, sltMood, 0));
 
                 // 리스트 클릭하면 그 결과화면 나오는 것
                 diaryListViewAdapter.setOnItemClickListener(new DiaryListViewAdapter.OnItemClickListener()
