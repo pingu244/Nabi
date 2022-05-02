@@ -90,7 +90,7 @@
             <LinearLayout
                 android:padding="10dp"
                 android:background="@drawable/calender_frame_rectangle"
-                android:backgroundTint="#80FFFFFF"
+                android:backgroundTint="#C7FFFFFF"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -127,9 +127,9 @@
                     android:layout_marginBottom="5dp"/>
 
                 <LinearLayout
-                    android:padding="10dp"
+                    android:padding="7dp"
                     android:background="@drawable/calender_frame_rectangle"
-                    android:backgroundTint="#80FFFFFF"
+                    android:backgroundTint="#C7FFFFFF"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
@@ -138,7 +138,8 @@
                         android:layout_weight="7"
                         android:id="@+id/remind_piechart"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="10dp"/>
 
                     <LinearLayout
                         android:layout_weight="3"
@@ -153,37 +154,37 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="기쁨"
-                            android:textSize="13dp"/>
+                            android:textSize="15dp"/>
                         <TextView
                             android:id="@+id/remind_pie_two"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="평화"
-                            android:textSize="13dp"/>
+                            android:textSize="15dp"/>
                         <TextView
                             android:id="@+id/remind_pie_three"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="힘찬"
-                            android:textSize="13dp"/>
+                            android:textSize="15dp"/>
                         <TextView
                             android:id="@+id/remind_pie_four"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="슬픔"
-                            android:textSize="13dp"/>
+                            android:textSize="15dp"/>
                         <TextView
                             android:id="@+id/remind_pie_five"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="분노"
-                            android:textSize="13dp"/>
+                            android:textSize="15dp"/>
                         <TextView
                             android:id="@+id/remind_pie_six"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="두려움"
-                            android:textSize="13dp"/>
+                            android:textSize="15dp"/>
 
 
                     </LinearLayout>
@@ -194,17 +195,67 @@
 
 
             <LinearLayout
+                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:background="@color/teal_200"
-                android:layout_weight="1"/>
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="오늘의 감정"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:layout_marginBottom="5dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="7dp"
+                    android:background="@drawable/calender_frame_rectangle"
+                    android:backgroundTint="#C7FFFFFF"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="산책"
+                        android:textSize="15dp"
+                        android:layout_gravity="center|top"
+                        android:layout_marginBottom="5dp"/>
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/graph_temp"
+                            android:layout_marginBottom="5dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2000걸음"
+                            android:textSize="15dp"
+                            android:layout_gravity="center"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@color/purple_200"
+            android:background="@drawable/calender_frame_rectangle"
+            android:backgroundTint="#C7FFFFFF"
             android:layout_weight="1"/>
 
     </LinearLayout>

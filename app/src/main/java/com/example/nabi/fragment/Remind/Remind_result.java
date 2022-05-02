@@ -350,12 +350,14 @@ public class Remind_result extends AppCompatActivity {
 
             }
         }
-        one.setText("기쁨 "+count[0]);
-        two.setText("평화 "+count[1]);
-        three.setText("힘찬 "+count[2]);
-        four.setText("슬픔 "+count[3]);
-        five.setText("분노 "+count[4]);
-        six.setText("두려움 "+count[5]);
+
+        //이부분 화면에 출력하는거 아니라서 일단 주석처리했습니다. (0502 다영)
+//        one.setText("기쁨 "+count[0]);
+//        two.setText("평화 "+count[1]);
+//        three.setText("힘찬 "+count[2]);
+//        four.setText("슬픔 "+count[3]);
+//        five.setText("분노 "+count[4]);
+//        six.setText("두려움 "+count[5]);
 
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
         String label = "type";
@@ -369,15 +371,16 @@ public class Remind_result extends AppCompatActivity {
         typeAmountMap.put("분노",count[4]);
         typeAmountMap.put("두려움",count[5]);
 
+        //이거 색 분류해주시와요..! 그때그때 다르게 나옵니다
         //initializing colors for the entries
         ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(Color.parseColor("#304567"));
-        colors.add(Color.parseColor("#309967"));
-        colors.add(Color.parseColor("#476567"));
-        colors.add(Color.parseColor("#890567"));
-        colors.add(Color.parseColor("#a35567"));
+        colors.add(Color.parseColor("#EFE480"));
+        colors.add(Color.parseColor("#ADC3FF"));
+        colors.add(Color.parseColor("#B0E093"));
+        colors.add(Color.parseColor("#CCB4FF"));
+        colors.add(Color.parseColor("#FFAAA1"));
         colors.add(Color.parseColor("#ff5f67"));
-        colors.add(Color.parseColor("#3ca567"));
+        colors.add(Color.parseColor("#F4CA77"));
 
         //input data and fit data into pie chart entry
         for(String type: typeAmountMap.keySet()){

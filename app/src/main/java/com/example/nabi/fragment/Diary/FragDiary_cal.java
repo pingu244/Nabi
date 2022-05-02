@@ -310,7 +310,7 @@ public class FragDiary_cal extends Fragment {
                 case 5:
                     drawable = drawable5; break;
             }
-            drawable.setBounds(0, 0, 80, 80);
+            drawable.setBounds(20, 30, 40, 40);
         }
 
 
