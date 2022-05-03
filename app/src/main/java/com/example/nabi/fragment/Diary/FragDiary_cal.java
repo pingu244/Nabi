@@ -246,8 +246,8 @@ public class FragDiary_cal extends Fragment {
             view.addSpan(new RelativeSizeSpan(1.2f));
             view.addSpan(new ForegroundColorSpan(Color.WHITE));
             view.addSpan(new BackgroundColorSpan(Color.rgb(250,133,116)));
-            view.setBackgroundDrawable(drawable);
-            view.setSelectionDrawable(drawable); //선택했을때 백그라운드 드로어블(선택 취소하면 나타났다사라짐)
+            //view.setBackgroundDrawable(drawable);
+            //view.setSelectionDrawable(drawable); //선택했을때 백그라운드 드로어블(선택 취소하면 나타났다사라짐)
         }
 
         public void setDate(Date date) {
@@ -310,7 +310,7 @@ public class FragDiary_cal extends Fragment {
                 case 5:
                     drawable = drawable5; break;
             }
-            drawable.setBounds(20, 30, 40, 40);
+            drawable.setBounds(0, 0, 80, 80);
         }
 
 
@@ -334,7 +334,7 @@ public class FragDiary_cal extends Fragment {
 
 //            view.addSpan(new ForegroundColorSpan(Color.BLACK));
 //            view.setBackgroundDrawable(drawable);
-            ImageSpan span = new ImageSpan(drawable,ImageSpan.ALIGN_CENTER);
+            ImageSpan span = new ImageSpan(drawable,ImageSpan.ALIGN_BASELINE);
             view.addSpan(span);
         }
     }

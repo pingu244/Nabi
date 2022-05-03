@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F2DCE2">
+    android:background="@drawable/remind_bg">
 
     <LinearLayout
         android:layout_marginTop="30dp"
@@ -33,7 +33,7 @@
                 android:text="감정보고서"
                 android:textColor="@color/black"
                 android:layout_gravity="center"
-                android:textSize="30dp"/>
+                android:textSize="25dp"/>
         </FrameLayout>
 
 
@@ -88,7 +88,9 @@
                 android:layout_marginBottom="5dp"/>
 
             <LinearLayout
-                android:padding="10dp"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="5dp"
+
                 android:background="@drawable/calender_frame_rectangle"
                 android:backgroundTint="#C7FFFFFF"
                 android:layout_width="match_parent"
@@ -106,7 +108,8 @@
 
 
         <LinearLayout
-            android:layout_margin="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="17dp"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -118,6 +121,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -135,14 +139,14 @@
                     android:orientation="horizontal">
 
                     <com.github.mikephil.charting.charts.PieChart
-                        android:layout_weight="7"
+                        android:layout_weight="6"
                         android:id="@+id/remind_piechart"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginRight="10dp"/>
+                        android:layout_marginRight="7dp"/>
 
                     <LinearLayout
-                        android:layout_weight="3"
+                        android:layout_weight="4"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
@@ -203,7 +207,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="오늘의 감정"
+                    android:text="오늘의 힐링"
                     android:textColor="@color/black"
                     android:textSize="15dp"
                     android:layout_marginBottom="5dp"/>
@@ -217,9 +221,11 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:layout_marginLeft="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:gravity="center">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -241,22 +247,76 @@
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
+                    <!--                    구분선-->
+                    <LinearLayout
+                        android:layout_marginHorizontal="7dp"
+                        android:layout_width="30dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center"
+                        android:background="#CACDDF"/>
 
+                    <LinearLayout
+                        android:layout_marginRight="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="명상"
+                            android:textSize="15dp"
+                            android:layout_gravity="center|top"
+                            android:layout_marginBottom="5dp"/>
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/graph_temp"
+                            android:layout_marginBottom="5dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="20분"
+                            android:textSize="15dp"
+                            android:layout_gravity="center"/>
+                    </LinearLayout>
                 </LinearLayout>
-
-
-
             </LinearLayout>
-
-
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@drawable/calender_frame_rectangle"
-            android:backgroundTint="#C7FFFFFF"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="40dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="나비의 한마디"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:layout_marginBottom="5dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/calender_frame_rectangle"
+                android:backgroundTint="#C7FFFFFF">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingVertical="18dp"
+                    android:paddingHorizontal="10dp"
+                    android:text="오늘 하루 슬픈일이 있었군요. 오늘은 슬퍼해도 괜찮아요."/>
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
 
     </LinearLayout>
 
