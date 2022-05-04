@@ -34,6 +34,8 @@ public class DiaryListItem implements Comparable<DiaryListItem> {
     public Integer getMood(){ return mood; }
     public void setMood(Integer mood){ this.mood = mood; }
 
+    public Integer getDate_day(){return date_day;}
+
     // 정렬위한 함수
     @Override
     public int compareTo(DiaryListItem diaryListItem) {

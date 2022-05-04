@@ -83,7 +83,7 @@ public class FragDiary_cal_bottomItem extends Fragment {
                 // 리스트 클릭하면 그 결과화면 나오는 것
                 diaryListViewAdapter.setOnItemClickListener(new DiaryListViewAdapter.OnItemClickListener()
                 {
-                    public void onItemClick(View v, int pos)
+                    public void onItemClick(View v, int pos, String id)
                     {
                         Intent intent = new Intent(getActivity(), DiaryResult.class);
                         intent.putExtra("SelectedDate", sltDate);

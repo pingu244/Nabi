@@ -90,10 +90,11 @@ public class DiaryListViewAdapter extends RecyclerView.Adapter<DiaryListViewAdap
                 {
 
                     int pos = getAdapterPosition();
+                    String documentID = ((String) date.getText());
                     // 리스너 객체의 메서드 호출
                     if (pos != RecyclerView.NO_POSITION)
                     {
-                        mListener.onItemClick(v, pos);
+                        mListener.onItemClick(v, pos, documentID);
                     }
 
                 }
@@ -153,7 +154,7 @@ public class DiaryListViewAdapter extends RecyclerView.Adapter<DiaryListViewAdap
 
     public interface OnItemClickListener
     {
-        void onItemClick(View v, int pos);
+        void onItemClick(View v, int pos, String documentID);
     }
 
     // 리스너 객체 참조를 저장하는 변수

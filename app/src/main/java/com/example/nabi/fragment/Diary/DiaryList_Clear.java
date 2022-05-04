@@ -130,7 +130,7 @@ public class DiaryList_Clear extends Fragment {
                             // 분명 더 좋은 방법이 있을텐데 나는 너무 노가다
                             diaryListViewAdapter.setOnItemClickListener(new DiaryListViewAdapter.OnItemClickListener()
                             {
-                                public void onItemClick(View v, int pos)
+                                public void onItemClick(View v, int pos, String id)
                                 {
                                     db.collection("users")
                                             .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -144,7 +144,7 @@ public class DiaryList_Clear extends Fragment {
                                                     if (task.isSuccessful()) {
                                                         for (QueryDocumentSnapshot document : task.getResult())
                                                         {
-                                                            if(pos==i)
+                                                            if(id.equals(document.getId()))
                                                             {
                                                                 Intent intent = new Intent(getActivity(), DiaryResult.class);
                                                                 intent.putExtra("SelectedDate", "2022/"+selectMonth+"/"+document.getId());
