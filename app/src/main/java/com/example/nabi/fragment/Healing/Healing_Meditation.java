@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -31,7 +32,7 @@ public class Healing_Meditation extends AppCompatActivity {
     MediaPlayer mediaPlayer;
     boolean isPlaying = false;
 
-    Handler handler;
+    Integer meditation_time;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,7 +65,6 @@ public class Healing_Meditation extends AppCompatActivity {
         musicStart();
 
 
-        handler = new Handler();
         btnPrevious.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,12 +104,15 @@ public class Healing_Meditation extends AppCompatActivity {
         mediaPlayer.release();
         handler2.removeMessages(0);
 
+        Log.d("명상 시간", String.valueOf(meditation_time));
+
     }
 
     public void musicStart(){
 
         isPlaying = true;
         new meditationThread().start();
+        new mentionThread().start();
         mediaPlayer.start();
         int minute, second, time;
         time = mediaPlayer.getDuration();
@@ -139,7 +142,44 @@ public class Healing_Meditation extends AppCompatActivity {
 
 
     }
+    class mentionThread extends Thread{
 
+        @Override
+        public void run() {
+            while(isPlaying){  // 음악이 실행중일때 계속 돌아가게 함
+
+                try{
+                    Thread.sleep(1000);
+
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+                handler.sendEmptyMessage(1);
+            }
+        }
+
+
+    }
+
+    final Handler handler = new Handler(){
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+
+            if (isPlaying) {
+                int i = -1;
+
+                if (i == meditation_mention.length - 1) {
+                    i = 0;
+                } else {
+                    i++;
+                }
+
+                tv_mention1.setText(meditation_mention[i]);
+                tv_mention2.setText(meditation_mention[i + 1]);
+            }
+        }
+
+    };
 
 
     final Handler handler2 = new Handler(){
@@ -152,10 +192,18 @@ public class Healing_Meditation extends AppCompatActivity {
 
             if(isPlaying){
                 time = mediaPlayer.getCurrentPosition();
+
                 minute = (time / (1000*60)) % 60;
                 second = (time / 1000) % 60;
 
+                meditation_time = time;
+
                 tv_playingTime.setText(minute+":"+second);
+
+
+
+
+
 
 
             }
