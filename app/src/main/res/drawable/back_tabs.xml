@@ -7,5 +7,4 @@
         android:drawable="@drawable/tab_ind_bg"
         android:state_selected="false" />
 </selector>
-
 <!-- 3. 탭 인디케이터 두개 연결해주는거 -->

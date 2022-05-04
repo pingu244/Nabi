@@ -53,6 +53,7 @@ public class DiaryList_Cloud extends Fragment {
         tvWeather.setText("흐린 날");
 
         getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_cloud);
+        getActivity().findViewById(R.id.diarylist_cloudybg).setBackgroundResource(R.drawable.diarylist_icbg);
 
         // 처음 보여지는 건 해당 월
         selectMonth = Calendar.getInstance().get(Calendar.MONTH)+1;

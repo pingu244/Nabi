@@ -9,61 +9,156 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:layout_marginHorizontal="17dp"
-        android:layout_marginTop="35dp"
-        android:clipToPadding="false"
+        android:layout_height="66dp"
         android:orientation="horizontal"
         android:weightSum="5">
 
-
-        <ImageButton
-            android:id="@+id/btnClear"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="16dp"
-            android:layout_weight="1"
-            android:background="@drawable/btnclear"
-            android:scaleType="fitCenter" />
-
-
-        <ImageButton
-            android:id="@+id/btnLittleCloudy"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="16dp"
-            android:layout_weight="1"
-            android:background="@drawable/btnlittlecloud"
-            android:scaleType="fitCenter" />
-
-
-        <ImageButton
-            android:id="@+id/btnCloudy"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="16dp"
-            android:layout_weight="1"
-            android:background="@drawable/btncloudy"
-            android:scaleType="fitCenter" />
-
-
-        <ImageButton
-            android:id="@+id/btnRain"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="16dp"
-            android:layout_weight="1"
-            android:background="@drawable/btnrain"
-            android:scaleType="fitCenter" />
-
-        <ImageButton
-            android:id="@+id/btnSnow"
-            android:layout_width="0dp"
+        <FrameLayout
+            android:id="@+id/diarylist_clearbg"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/btnsnow"
-            android:scaleType="fitCenter" />
+            android:gravity="start" >
+
+            <ImageButton
+                android:id="@+id/btnClear"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/btnclear"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:elevation="3dp"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/diarylist_littlecloudbg"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/btnLittleCloudy"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/btnlittlecloud"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:elevation="3dp"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/diarylist_cloudybg"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <ImageButton
+                android:id="@+id/btnCloudy"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/btncloudy"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:elevation="3dp"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/diarylist_rainbg"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/btnRain"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/btnrain"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:elevation="3dp"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/diarylist_snowbg"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="end">
+
+            <ImageButton
+                android:id="@+id/btnSnow"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/btnsnow"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:elevation="3dp"/>
+        </FrameLayout>
+
+
     </LinearLayout>
+
+
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="62dp"-->
+<!--        android:layout_marginHorizontal="17dp"-->
+<!--        android:layout_marginTop="35dp"-->
+<!--        android:clipToPadding="false"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:weightSum="5">-->
+
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/btnClear"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginRight="16dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/btnclear"-->
+<!--            android:scaleType="fitCenter" />-->
+
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/btnLittleCloudy"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginRight="16dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/btnlittlecloud"-->
+<!--            android:scaleType="fitCenter" />-->
+
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/btnCloudy"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginRight="16dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/btncloudy"-->
+<!--            android:scaleType="fitCenter" />-->
+
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/btnRain"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginRight="16dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/btnrain"-->
+<!--            android:scaleType="fitCenter" />-->
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/btnSnow"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/btnsnow"-->
+<!--            android:scaleType="fitCenter" />-->
+<!--    </LinearLayout>-->
 
     <FrameLayout
         android:layout_width="match_parent"

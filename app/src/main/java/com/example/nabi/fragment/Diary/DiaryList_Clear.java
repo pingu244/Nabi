@@ -50,6 +50,7 @@ public class DiaryList_Clear extends Fragment {
         view = inflater.inflate(R.layout.diarylist_adapter, container,false);
         initUI(view);
         getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_clear);
+        getActivity().findViewById(R.id.diarylist_clearbg).setBackgroundResource(R.drawable.diarylist_icbg);
 
         tvWeather = getActivity().findViewById(R.id.tvWeather);
         tvWeather.setText("맑은 날");
