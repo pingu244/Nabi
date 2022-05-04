@@ -153,18 +153,29 @@ public class NotificationHelper {
         intent.setAction(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_LAUNCHER);
 
-        NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-        // Notificatoin을 이루는 공통 부분 정의
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(mContext, NOTIFICATION_CHANNEL_ID);
-        notificationBuilder.setSmallIcon(R.drawable.btnclear) // 기본 제공되는 이미지
-                .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE)
-                .setAutoCancel(true); // 클릭 시 Notification 제거
+
+
+//        NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+//        // Notificatoin을 이루는 공통 부분 정의
+//        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(mContext, NOTIFICATION_CHANNEL_ID);
+//        notificationBuilder.setSmallIcon(R.drawable.btnclear) // 기본 제공되는 이미지
+//                .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE)
+//                .setContentIntent(pendingIntent1)
+//                .setAutoCancel(true); // 클릭 시 Notification 제거
 
         // 매개변수가 WorkerA라면
         if (workName.equals(WORK_A_NAME)) {
+            PendingIntent pendingIntent = PendingIntent.getActivity(mContext, WORK_A_NOTIFICATION_CODE, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+            NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+            // Notificatoin을 이루는 공통 부분 정의
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(mContext, NOTIFICATION_CHANNEL_ID);
+            notificationBuilder.setSmallIcon(R.drawable.btnclear) // 기본 제공되는 이미지
+                    .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE)
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true); // 클릭 시 Notification 제거
+
             // Notification 클릭 시 동작할 Intent 입력, 중복 방지를 위해 FLAG_CANCEL_CURRENT로 설정, CODE를 다르게하면 Notification 개별 생성
             // Code가 같으면 같은 알림으로 인식하여 갱신작업 진행
-            PendingIntent pendingIntent = PendingIntent.getActivity(mContext, WORK_A_NOTIFICATION_CODE, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
             int gloomyWeather = PreferenceHelper.getGloomy(mContext);
             int tomorrowWeather = PreferenceHelper.getTomorrowWeather(mContext);
@@ -218,8 +229,7 @@ public class NotificationHelper {
 
                 // Notification 제목, 컨텐츠 설정
                 notificationBuilder.setStyle(new NotificationCompat.BigTextStyle().bigText(message.get(randomValue)))
-                        .setContentTitle("내일은").setContentText(message.get(randomValue))
-                        .setContentIntent(pendingIntent);
+                        .setContentTitle("내일은").setContentText(message.get(randomValue));
             }
 
             boolean noti_boolean = PreferenceHelper.getNotification_TimeBoolean(mContext);  // 알림 한번만 가게끔 하는 장치
@@ -228,10 +238,19 @@ public class NotificationHelper {
                 PreferenceHelper.setNotification_TimeBoolean(mContext, false);
             }
         } else if (workName.equals(WORK_B_NAME)) {
+            NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
             PendingIntent pendingIntent = PendingIntent.getActivity(mContext, WORK_B_NOTIFICATION_CODE, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-            notificationBuilder.setContentTitle("WorkerB Notification").setContentText("set a Notification contents")
-                    .setContentIntent(pendingIntent);
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(mContext, NOTIFICATION_CHANNEL_ID);
+            notificationBuilder.setSmallIcon(R.drawable.btnclear) // 기본 제공되는 이미지
+                    .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE)
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(true); // 클릭 시 Notification 제거
+
+
+
+
+            notificationBuilder.setContentTitle("WorkerB Notification").setContentText("set a Notification contents");
 
             if (notificationManager != null) {
                 notificationManager.notify(WORK_B_NOTIFICATION_CODE, notificationBuilder.build());

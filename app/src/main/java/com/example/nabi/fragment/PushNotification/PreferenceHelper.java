@@ -62,10 +62,11 @@ public class PreferenceHelper {
         return prefs.getInt("Tomorrow_weather", -1);
     }
 
-    public static void setStep(Context context, int value){
+    public static void setStep(Context context, int value, String date){
         SharedPreferences prefs = getPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putInt("Temp_walk", value);
+        editor.putString("Date", date);
         editor.commit();
     }
 
@@ -73,6 +74,27 @@ public class PreferenceHelper {
         SharedPreferences prefs = getPreferences(context);
         return prefs.getInt("Temp_walk", 0);
     }
+
+    public static String getDate(Context context){
+        SharedPreferences prefs = getPreferences(context);
+        return prefs.getString("Date","");
+    }
+
+    public static void setMeditate(Context context, int value){
+        SharedPreferences prefs = getPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("Temp_meditate", value);
+        editor.commit();
+    }
+
+    public static int getMeditate(Context context){
+        SharedPreferences prefs = getPreferences(context);
+        return prefs.getInt("Temp_meditate", 0);
+    }
+
+
+
+
 
     public static void removeKey(Context context, String key) {
         SharedPreferences prefs = getPreferences(context);

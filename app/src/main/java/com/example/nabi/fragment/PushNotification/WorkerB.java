@@ -41,7 +41,7 @@ public class WorkerB extends Worker {
         NotificationHelper mNotificationHelper = new NotificationHelper(getApplicationContext());
         long currentMillis = Calendar.getInstance(TimeZone.getTimeZone(KOREA_TIMEZONE), Locale.KOREA).getTimeInMillis();
 
-        // 알림 범위(08:00-09:00, 20:00-21:00)에 해당하는지 기준 설정
+        // 알림 범위에 해당하는지 기준 설정
         Calendar eventCal = NotificationHelper.getScheduledCalender(B_MORNING_EVENT_TIME);
         long morningNotifyMinRange = eventCal.getTimeInMillis();
 
@@ -52,6 +52,7 @@ public class WorkerB extends Worker {
         long nightNotifyMinRange = eventCal.getTimeInMillis();
 
         eventCal.add(Calendar.HOUR_OF_DAY, Constants.NOTIFICATION_INTERVAL_HOUR);
+//        eventCal.add(Calendar.HOUR_OF_DAY);
         long nightNotifyMaxRange = eventCal.getTimeInMillis();
 
         // 현재 시각이 알림 범위에 해당하면 알림 생성
@@ -60,26 +61,24 @@ public class WorkerB extends Worker {
         boolean isNightNotifyRange = nightNotifyMinRange <= currentMillis && currentMillis <= nightNotifyMaxRange;
         boolean isEventANotifyAvailable = isMorningNotifyRange || isNightNotifyRange;
 
-        Random random = new Random();
-        int randomValue = random.nextInt(4);
-
-        if (isEventANotifyAvailable) {
-
-
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            DocumentReference docRef = db.collection("users")
-                    .document(FirebaseAuth.getInstance().getCurrentUser().getUid());
-
-            Map<String, Object> hashMap = new HashMap<>();
-            hashMap.put("test", "success!");
-            docRef.set(hashMap, SetOptions.merge())
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-//                            mNotificationHelper.createNotification(Constants.WORK_B_NAME, randomValue);
-                        }
-
-                    });
+        if (isNightNotifyRange) {
+            // 현재 시각이 알림 범위에 해당하면 알림 생성
+//            mNotificationHelper.createNotification(Constants.WORK_B_NAME, -1);
+//
+//            FirebaseFirestore db = FirebaseFirestore.getInstance();
+//            DocumentReference docRef = db.collection("users")
+//                    .document(FirebaseAuth.getInstance().getCurrentUser().getUid());
+//
+//            Map<String, Object> hashMap = new HashMap<>();
+//            hashMap.put("test", "8시"+Calendar.getInstance().get(Calendar.MINUTE));
+//            docRef.set(hashMap, SetOptions.merge())
+//                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                        @Override
+//                        public void onSuccess(Void aVoid) {
+////                            mNotificationHelper.createNotification(Constants.WORK_B_NAME, randomValue);
+//                        }
+//
+//                    });
 
         } else {
             long notificationDelay = NotificationHelper.getNotificationDelay(Constants.WORK_B_NAME);

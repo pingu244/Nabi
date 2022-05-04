@@ -1,7 +1,5 @@
 package com.example.nabi;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,34 +8,43 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.Manifest;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nabi.fragment.Diary.FragDiary;
+import com.example.nabi.fragment.Diary.WritingDiary;
 import com.example.nabi.fragment.Healing.FragHealing;
 import com.example.nabi.fragment.Home.FragHome;
 import com.example.nabi.fragment.PushNotification.PreferenceHelper;
 import com.example.nabi.fragment.Remind.FragRemind;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
@@ -49,6 +56,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     TextView stepCountView, tv_distance, tv_kcal;
     public int currentSteps = 0;    // 현재 걸음 수
     int kcal = 0; double km = 0;   // 칼로리, 거리
+
+    java.util.Calendar cal = java.util.Calendar.getInstance();
+    int cYEAR = cal.get(java.util.Calendar.YEAR);
+    int cMonth = cal.get(java.util.Calendar.MONTH);
+    int cDay = cal.get(java.util.Calendar.DATE);
+    String YMD = (cYEAR+"/"+(cMonth+1)+"/"+cDay);
 
 
     Fragment frag_home;
@@ -62,10 +75,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     BottomNavigationView bottomNavigation;
 
+    private AlarmManager alarmManager;
+
     private long mBackWait = 0;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -110,6 +126,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
 
 
+
+
         // 산책 걸음수 측정
         // 활동 퍼미션 체크
         if (ContextCompat.checkSelfPermission(this,
@@ -137,6 +155,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         if(System.currentTimeMillis() - mBackWait > 2000){
             mBackWait = System.currentTimeMillis();
             Toast.makeText(this, "한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
+
+
         } else{
 
 
@@ -152,12 +172,69 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         super.onStart();
         // 산책 값 가져오기
         currentSteps = PreferenceHelper.getStep(this);
+
+        // 걸음수 DB저장
+        String savedYMD = PreferenceHelper.getDate(this);
+
+        //yyyy/MM/dd 포맷 설정
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+
+
+
+//compareTo메서드를 통한 날짜비교
+
+        int compare = 0;
+        try {
+            Date savedDate = new Date(dateFormat.parse(savedYMD).getTime());
+            Date today = new Date(dateFormat.parse(YMD).getTime());
+            compare = savedDate.compareTo(today);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        // savedDate가 today보다 이전이다. (true)
+        if(compare<0){
+            Map<String, Object> hashMap = new HashMap<>();
+            hashMap.put("walk", currentSteps);
+
+            db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .collection("diary").document(savedYMD).set(hashMap, SetOptions.merge())
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d("dataPut", "DocumentSnapshot successfully written!");
+                            PreferenceHelper.setStep(getApplicationContext(), 0, YMD);
+                        }
+
+                    });
+        }
+        else{
+            Map<String, Object> hashMap = new HashMap<>();
+            hashMap.put("walk", currentSteps);
+
+            db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .collection("diary").document(YMD).set(hashMap, SetOptions.merge())
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d("dataPut", "DocumentSnapshot successfully written!");
+                        }
+
+                    });
+
+        }
+        // 걸음수 DB저장 끝
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
         sm.registerListener(this, sensor_step_detector, SensorManager.SENSOR_DELAY_NORMAL);
+
     }
 
 
@@ -166,7 +243,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         super.onPause();
         sm.unregisterListener(this);
         // 걸음수 임시 저장
-        PreferenceHelper.setStep(this, currentSteps);
+        PreferenceHelper.setStep(this, currentSteps, YMD);
     }
 
 
@@ -191,7 +268,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
                 } catch (Exception e){}
                 // 걸음수 임시 저장
-                PreferenceHelper.setStep(this, currentSteps);
+                PreferenceHelper.setStep(this, currentSteps,YMD);
 
             }
         }
@@ -201,4 +278,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void onAccuracyChanged(Sensor sensor, int i) {
 
     }
+
+
 }

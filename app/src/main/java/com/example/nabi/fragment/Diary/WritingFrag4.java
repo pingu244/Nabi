@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -118,7 +119,7 @@ public class WritingFrag4 extends Fragment {
                 hashMap.put("weather", six);
 
                 db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                        .collection("diary").document(YMD2).set(hashMap)
+                        .collection("diary").document(YMD2).set(hashMap, SetOptions.merge())
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {

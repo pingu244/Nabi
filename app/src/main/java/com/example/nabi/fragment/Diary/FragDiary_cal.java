@@ -7,10 +7,12 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -197,20 +199,26 @@ public class FragDiary_cal extends Fragment {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
-                                Map<String, Object> mymap = document.getData();
-                                selectMood = Integer.parseInt(mymap.get("q1_mood").toString());
-                                selectKeyword = (String) mymap.get("q3_todayKeyword");
+                                try{
+                                    Map<String, Object> mymap = document.getData();
+                                    selectMood = Integer.parseInt(mymap.get("q1_mood").toString());
+                                    selectKeyword = (String) mymap.get("q3_todayKeyword");
 
-                                if(selectMood != null)
-                                {
-                                    Bundle bundle = new Bundle();
-                                    bundle.putInt("selectMood",selectMood); //번들에 넘길 값 저장
-                                    bundle.putString("selectKeyword",selectKeyword);
-                                    bundle.putString("selectDate",selectDate);
-                                    bottomitem.setArguments(bundle);
+                                    if(selectMood != null)
+                                    {
+                                        Bundle bundle = new Bundle();
+                                        bundle.putInt("selectMood",selectMood); //번들에 넘길 값 저장
+                                        bundle.putString("selectKeyword",selectKeyword);
+                                        bundle.putString("selectDate",selectDate);
+                                        bottomitem.setArguments(bundle);
 
-                                    goWriting.setVisibility(View.INVISIBLE);
+                                        goWriting.setVisibility(View.INVISIBLE);
+                                    }
                                 }
+                                catch (Exception e){
+                                    goWriting.setVisibility(View.VISIBLE);
+                                }
+
 
                             }
                             else    goWriting.setVisibility(View.VISIBLE);
@@ -278,14 +286,15 @@ public class FragDiary_cal extends Fragment {
     }
 
     // 무드트래커
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public class MoodDecorator implements DayViewDecorator{
         private Drawable drawable;
-        Drawable drawable0 = getContext().getResources().getDrawable(R.drawable.mood_circle2);
-        Drawable drawable1 = getContext().getResources().getDrawable(R.drawable.btnrain);
-        Drawable drawable2 = getContext().getResources().getDrawable(R.drawable.btncloudy);
-        Drawable drawable3 = getContext().getResources().getDrawable(R.drawable.btnlittlecloud);
-        Drawable drawable4 = getContext().getResources().getDrawable(R.drawable.btnclear);
-        Drawable drawable5 = getContext().getResources().getDrawable(R.drawable.mood_circle);
+        Drawable drawable0 = getActivity().getDrawable(R.drawable.mood_circle2);
+        Drawable drawable1 = getActivity().getDrawable(R.drawable.btnrain);
+        Drawable drawable2 = getActivity().getDrawable(R.drawable.btncloudy);
+        Drawable drawable3 = getActivity().getDrawable(R.drawable.btnlittlecloud);
+        Drawable drawable4 = getActivity().getDrawable(R.drawable.btnclear);
+        Drawable drawable5 = getActivity().getDrawable(R.drawable.mood_circle);
 
         ArrayList<String> deco_dates;
         boolean checkMood = false;
@@ -371,7 +380,10 @@ public class FragDiary_cal extends Fragment {
 
                                 for (QueryDocumentSnapshot document : task.getResult()) {
                                     Map<String, Object> mymap = document.getData();
-                                    int diary_mood = Integer.parseInt(mymap.get("q1_mood").toString());
+                                    int diary_mood = -1;
+                                    try{
+                                        diary_mood = Integer.parseInt(mymap.get("q1_mood").toString());
+                                    }catch (Exception e){}
 
                                     // 각 감정별로 배열에 날짜 저장
                                     switch (diary_mood)
@@ -401,6 +413,7 @@ public class FragDiary_cal extends Fragment {
             return null;
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
         protected void onProgressUpdate(Long... values) {
             super.onProgressUpdate(values);

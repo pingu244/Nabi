@@ -18,6 +18,17 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.nabi.R;
+import com.example.nabi.fragment.PushNotification.PreferenceHelper;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Healing_Meditation extends AppCompatActivity {
 
@@ -33,6 +44,13 @@ public class Healing_Meditation extends AppCompatActivity {
     boolean isPlaying = false;
 
     Integer meditation_time;
+    FirebaseFirestore db;
+    java.util.Calendar cal = java.util.Calendar.getInstance();
+    int cYEAR = cal.get(java.util.Calendar.YEAR);
+    int cMonth = cal.get(java.util.Calendar.MONTH);
+    int cDay = cal.get(java.util.Calendar.DATE);
+    String YMD = (cYEAR+"/"+(cMonth+1)+"/"+cDay);
+    Integer meditation_timeBefore;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -87,10 +105,48 @@ public class Healing_Meditation extends AppCompatActivity {
                 mediaPlayer.stop();
                 mediaPlayer.release();
                 handler2.removeMessages(0);
+                quitDBsave();
                 finish();
 
             }
         });
+
+
+        db = FirebaseFirestore.getInstance();
+
+
+        // 명상시간 DB저장
+        String savedYMD = PreferenceHelper.getDate(this);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+
+        int compare = 0;
+        try {
+            Date savedDate = new Date(dateFormat.parse(savedYMD).getTime());
+            Date today = new Date(dateFormat.parse(YMD).getTime());
+            compare = savedDate.compareTo(today);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Integer time = PreferenceHelper.getMeditate(this);
+        // savedDate가 today보다 이전이다. (true)
+        if(compare<0){
+            Map<String, Object> hashMap = new HashMap<>();
+            hashMap.put("meditate", time);
+
+            db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .collection("diary").document(savedYMD).set(hashMap, SetOptions.merge())
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d("dataPut", "DocumentSnapshot successfully written!");
+                            PreferenceHelper.setMeditate(getApplicationContext(), 0);
+                        }
+
+                    });
+        }
+        // 명상시간 DB저장 끝
+
 
 
     }
@@ -104,12 +160,14 @@ public class Healing_Meditation extends AppCompatActivity {
         mediaPlayer.release();
         handler2.removeMessages(0);
 
-        Log.d("명상 시간", String.valueOf(meditation_time));
+        quitDBsave();
+
 
     }
 
     public void musicStart(){
 
+        meditation_timeBefore = PreferenceHelper.getMeditate(this);
         isPlaying = true;
         new meditationThread().start();
         new mentionThread().start();
@@ -196,7 +254,9 @@ public class Healing_Meditation extends AppCompatActivity {
                 minute = (time / (1000*60)) % 60;
                 second = (time / 1000) % 60;
 
+
                 meditation_time = time;
+                PreferenceHelper.setMeditate(getApplicationContext(), meditation_timeBefore + meditation_time);
 
                 tv_playingTime.setText(minute+":"+second);
 
@@ -217,5 +277,27 @@ public class Healing_Meditation extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    private void quitDBsave(){
+        db = FirebaseFirestore.getInstance();
+        Log.d("명상 시간", String.valueOf(meditation_time));
+        {
+
+            Integer time = PreferenceHelper.getMeditate(this);
+            Map<String, Object> hashMap = new HashMap<>();
+            hashMap.put("meditate", time);
+
+            db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .collection("diary").document(YMD).set(hashMap, SetOptions.merge())
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d("명상 시간", time+"밀리초");
+                        }
+
+                    });
+
+        }
     }
 }
