@@ -2,6 +2,7 @@ package com.example.nabi.fragment.Diary;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -85,7 +86,11 @@ public class DiaryList_LittleCloud extends Fragment {
         return view;
     }
 
-
+    @Override
+    public void onPause() {
+        super.onPause();
+        getActivity().findViewById(R.id.diarylist_littlecloudbg).setBackgroundColor(Color.parseColor("#00000000"));
+    }
 
     private void initUI(View view){
         diaryListView = view.findViewById(R.id.diaryListRecyclerView); // diarylist_adapter.xml에서 만든 리사이클러뷰 연결

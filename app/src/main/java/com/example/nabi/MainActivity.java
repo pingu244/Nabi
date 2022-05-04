@@ -75,8 +75,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     BottomNavigationView bottomNavigation;
 
-    private AlarmManager alarmManager;
-
     private long mBackWait = 0;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override

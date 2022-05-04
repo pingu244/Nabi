@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +19,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.nabi.R;
+import com.example.nabi.fragment.PushNotification.PreferenceHelper;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
@@ -53,12 +56,18 @@ public class Remind_result extends AppCompatActivity {
     ImageButton back;
     LineChart linechart;
     PieChart piechart;
-    TextView one, two, three, four, five, six;
-    String resultDate;
+    TextView one, two, three, four, five, six, step, meditateTime, nabi_word;
+    ProgressBar walkingProgress, meditateProgress;
+    ImageView walkSuccess, meditateSuccess;
+    Integer steps, meditate, walkingMax;
+    String resultDate, bdiResult;
     String[] sevendays = {"","","","","","",""};
     int[] seven_moods = {0,0,0,0,0,0,0};
     String result = "";
+    Integer today_weather;
     int j = 0;
+
+    String nabi1 = "", nabi2="", nabi3="";
 
     class MyAsync extends AsyncTask<Void, Integer, Boolean> {
 
@@ -174,8 +183,27 @@ public class Remind_result extends AppCompatActivity {
                 linechart.invalidate();
             }
 
+            // 원그래프(감정단어) 띄우는 함수
             showPieChart();
 
+            // 산책 부분
+            step.setText(steps+"걸음");
+            walkingProgress.setMax(walkingMax);
+            walkingProgress.setProgress(steps);
+            if(steps>=walkingMax)
+                walkSuccess.setVisibility(View.VISIBLE);
+
+            // 명상 부분
+            meditateProgress.setMax(10);
+            meditate = (meditate / (1000*60)) % 60;
+            meditateTime.setText(meditate+"분");
+            meditateProgress.setProgress(meditate);
+            if(meditate>=10)
+                meditateSuccess.setVisibility(View.VISIBLE);
+
+            // 나비 한마디
+            nabi_word();
+            nabi_word.setText(nabi1+"\n"+nabi2+"\n"+nabi3);
 
 
             Toast.makeText(getApplicationContext(), "완료 되었습니다.", Toast.LENGTH_SHORT).show();
@@ -198,8 +226,17 @@ public class Remind_result extends AppCompatActivity {
         four = findViewById(R.id.remind_pie_four);
         five = findViewById(R.id.remind_pie_five);
         six = findViewById(R.id.remind_pie_six);
+        step = findViewById(R.id.remind_step);
+        meditateTime = findViewById(R.id.remind_meditate);
 
         back = findViewById(R.id.remind_result_back);
+
+        walkingProgress = findViewById(R.id.remind_walk_progressbar);
+        meditateProgress = findViewById(R.id.remind_meditate_progressbar);
+        walkSuccess = findViewById(R.id.remind_walk_success);
+        meditateSuccess = findViewById(R.id.remind_meditate_success);
+
+        nabi_word = findViewById(R.id.nabi_word);
 
         // 뒤로가기 버튼
         back.setOnClickListener(new View.OnClickListener() {
@@ -231,15 +268,49 @@ public class Remind_result extends AppCompatActivity {
 
 
 
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
+        // BDI 결과값 가져오기 -> 산책 max값 정하기 위해
+        DocumentReference documentBDI = db.collection("users")
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .collection("healing").document("BDI Result");
+
+        // document가져오는 리스너
+        Task<DocumentSnapshot> documentSnapshotTask2 = documentBDI.get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                Log.d("dataOutput", "DocumentSnapshot data: " + document.getData());
+                                Map<String, Object> mymap = document.getData();
+                                bdiResult = (String) mymap.get("bdi_result");
+
+                                //BDI 검사 결과에 따라 목표 걸음 수 다름
+
+                                if (bdiResult.equals("우울하지 않은 상태")) {
+                                    walkingMax = 3000;
+                                } else if (bdiResult.equals("가벼운 우울 상태")) {
+                                    walkingMax = 4000;
+                                } else if (bdiResult.equals("중한 우울 상태")) {
+                                    walkingMax = 5000;
+                                } else if (bdiResult.equals("심한 우울 상태")) {
+                                    walkingMax = 6000;
+                                }
+                            }
+                        }
+                    }
+                });
+
+
 
         for(int i = 0; i<7; i++)
             check[i] = false;
 
-
         new MyAsync(this).execute();
 
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         for(int index = 0; index<7; index++)
         {
             DocumentReference docRef = db.collection("users")
@@ -256,8 +327,15 @@ public class Remind_result extends AppCompatActivity {
                                 DocumentSnapshot document = task.getResult();
                                 if (document.exists()) {
                                     Map<String, Object> mymap = document.getData();
-                                    if(finalIndex==0)
+                                    if(finalIndex==0){
                                         result = mymap.get("q3_todayKeyword").toString();
+                                        today_weather = Integer.valueOf(mymap.get("weather").toString());
+                                        try{
+                                            steps = Integer.valueOf(mymap.get("walk").toString());
+                                            meditate = Integer.valueOf(mymap.get("meditate").toString());
+                                        } catch (Exception e){ steps = 0; meditate = 0;}
+
+                                    }
                                     seven_moods[finalIndex] = Integer.parseInt(mymap.get("q1_mood").toString());
 
                                     Log.v("remind___dateTest4242", (finalIndex)+"번째 기분은: " + mymap.get("q1_mood").toString()+"입니다");
@@ -296,6 +374,7 @@ public class Remind_result extends AppCompatActivity {
         return dtFormat.format(cal.getTime());
     }
 
+    // 원 그래프 함수
     private void showPieChart(){
 
         int[] count = new int[6];
@@ -393,6 +472,7 @@ public class Remind_result extends AppCompatActivity {
         //setting text size of the value
         pieDataSet.setValueTextSize(13f);
         //providing color list for coloring different entries
+//        if (pieDataSet.getEntryForIndex(0).getLabel())
         pieDataSet.setColors(colors);
         //grouping the data set from entry to chart
         PieData pieData = new PieData(pieDataSet);
@@ -409,6 +489,226 @@ public class Remind_result extends AppCompatActivity {
 
         piechart.setData(pieData);
         piechart.invalidate();
+    }
+
+
+
+    // 엄청난 노가다가 시작된다....
+    // 나비의 한마디가 아닌 한마디..
+    void nabi_word(){
+
+        // 어제 기분 정도와 오늘 기분 정도 비교하여 한마디
+        Integer todayMood = seven_moods[0];
+        Integer yesterdayMood = seven_moods[1];
+        switch (todayMood){
+            case 0:
+                switch (yesterdayMood){
+                    case 0:
+                        nabi1 = "요즘 슬픈 일이 많은가요? 다 괜찮아요."; break;
+                    case 1:
+                        nabi1 = "오늘 하루 슬픈일이 있었군요. 괜찮아요 다 잘될거에요"; break;
+                    case 2:
+                        nabi1 = "너무 슬퍼하지 말아요, 이런 날도 있는거지요. 내일은 내일의 해가 뜰 거예요. 나비가 도와줄게요"; break;
+                    case 3:
+                        nabi1 = "우울할 수 있어요. 괜찮아요. 나비가 도와줄게요"; break;
+                    case 4:
+                        nabi1 = "마음껏 슬퍼하는 것도 좋아요. 내일은 내일의 해가 뜰 거예요. 나비가 도와줄게요"; break;
+                    case 5:
+                        nabi1 = "항상 맑을 수는 없죠. 어제의 당신이 오늘의 당신을 위로해주는 하루가 되길. 나비가 진심으로 바랍니다."; break;
+                } break;
+            case 1:
+                switch (yesterdayMood){
+                    case 0:
+                        nabi1 = "조금씩 괜찮아지고 있어요. 잘 해내고 있어요!"; break;
+                    case 1:
+                        nabi1 = "괜찮아요. 조급해하지 말아요. 나비가 옆에서 기다릴게요"; break;
+                    case 2:
+                        nabi1 = "오늘 하루 슬픈일이 있었군요. 괜찮아요 다 잘될거에요"; break;
+                    case 3:
+                        nabi1 = "너무 주눅둘지 마세요. 당신을 사랑하는 것이 제일 중요하답니다! :)"; break;
+                    case 4:
+                        nabi1 = "항상 완벽할 수는 없어요. 괜찮아요. 잘하고 있어요"; break;
+                    case 5:
+                        nabi1 = "힘들었던 하루였군요. 잘 버텨냈어요!"; break;
+                } break;
+            case 2:
+                switch (yesterdayMood){
+                    case 0:
+                        nabi1 = "어제보다 기분이 많이 좋아졌어요. 앞으로도 파이팅!"; break;
+                    case 1:
+                        nabi1 = "만족스러운 하루였군요! 좋아요. 내일도 기대되는데요?"; break;
+                    case 2:
+                        nabi1 = "조금만 더 힘을 내요! 나비가 항상 응원하고 있어요"; break;
+                    case 3:
+                        nabi1 = "오늘 우울한 일이 있었나요? 마음껏 우울해도 좋아요. 함께 이겨내봐요."; break;
+                    case 4:
+                        nabi1 = "괜찮아요. 모두가 한 번쯤은 겪는 감정이에요. 다 지나가게 될거에요"; break;
+                    case 5:
+                        nabi1 = "오늘보다 내일은 더 행복한 하루가 될거에요. 나비가 도와줄게요."; break;
+                } break;
+            case 3:
+                switch (yesterdayMood){
+                    case 0:
+                        nabi1 = "오늘 좋은 일이 있었나요? 당신이 행복해하니 곧 나비에게도 좋은 일이 찾아올 것 같아요~"; break;
+                    case 1:
+                        nabi1 = "어제보다 기분이 많이 좋아졌어요 앞으로도 나비와 함께 해요!"; break;
+                    case 2:
+                        nabi1 = "한 걸음 한 걸음 걷다 보면, 언젠가는 목표에 도달해있을 거예요. 나비가 응원합니다!"; break;
+                    case 3:
+                        nabi1 = "나이스 ~ ! 이렇게만 꾸준히 해나가요."; break;
+                    case 4:
+                        nabi1 = "오늘 하루 슬픈일이 있었군요. 오늘은 슬퍼해도 괜찮아요."; break;
+                    case 5:
+                        nabi1 = "오늘 하루 일진이 사나웠나요~ 나비가 다 물리쳐 줄게요! 당신은 웃는 모습이 제일 아름답답니다 :)"; break;
+                } break;
+            case 4:
+                switch (yesterdayMood){
+                    case 0:
+                        nabi1 = "어제의 나를 이겨냈군요! 한층 단단해진 당신을 칭찬합니다~"; break;
+                    case 1:
+                        nabi1 = "잘 해나가고 있어요. 이러한 발전은 소중한 밑거름이 될 거에요."; break;
+                    case 2:
+                        nabi1 = "어제보다 기분이 많이 좋아졌어요 앞으로도 파이팅!"; break;
+                    case 3:
+                        nabi1 = "만족스러운 하루였군요! 오늘 하루도 화이팅!"; break;
+                    case 4:
+                        nabi1 = "나이스 ~ ! 이렇게만 꾸준히 해나가요."; break;
+                    case 5:
+                        nabi1 = "오늘 하루 슬픈일이 있었군요. 괜찮아요 다 잘될거에요."; break;
+                } break;
+            case 5:
+                switch (yesterdayMood){
+                    case 0:
+                        nabi1 = "어제 힘들었던 감정을 완벽히 이겨냈군요. 정말 대단해요!"; break;
+                    case 1:
+                        nabi1 = "어제 힘들었던 감정을 이겨냈군요. 정말 대단해요!"; break;
+                    case 2:
+                        nabi1 = "어제보다 기분이 많이 좋아졌어요. 앞으로 함께 더 노력해봐요!"; break;
+                    case 3:
+                        nabi1 = "좋아요! 행복에 한발 더 가까워졌어요. 앞으로도 함께 해요."; break;
+                    case 4:
+                        nabi1 = "좋아요! 행복에 한발 더 가까워졌어요. 앞으로도 함께 해요."; break;
+                    case 5:
+                        nabi1 = "나이스 ~ ! 이렇게만 꾸준히 해나가요."; break;
+                } break;
+        }
+
+        // 산책, 명상 성취도따라서 한마디
+        // 산책 성취도 계산
+        Integer walkPercent = (steps/walkingMax)*100;
+        if(walkPercent == 0){
+            if(meditate == 0){
+                nabi2 = "오늘은 활동을 하지 않았네요. 내일은 힘내서 해봐요!";
+            }else if(meditate <= 2){
+                nabi2 = "하나씩 이루어나가는 모습이 보기 좋아요";
+            }else if(meditate <= 4){
+                nabi2 = "명상을 좀 더 해봐요! 산책도 잊지 말아요.";
+            }else if(meditate <= 6){
+                nabi2 = "명상은 마음을 단련할 수 있는 좋은 기회죠. 내일은 산책 어때요?";
+            }else if(meditate <= 8){
+                nabi2 = "명상을 많이 했군요! 산책은 몸과 마음의 건강에 좋아요. 산책을 조금 더 해볼까요?";
+            }else if(meditate >= 10){
+                nabi2 = "목표 명상시간 달성! 산책도 해보는건 어떨까요?";
+            }
+        }
+        else if(walkPercent<=20){
+            if(meditate == 0){
+                nabi2 = "하나씩 이루어나가는 모습이 보기 좋아요.";
+            }else if(meditate <= 2){
+                nabi2 = "좋아요! 내일은 좀 더 활동에 집중해볼까요?";
+            }else if(meditate <= 4){
+                nabi2 = "산책과 명상을 하려고 노력하셨네요 좀 더 해봐요!";
+            }else if(meditate <= 6){
+                nabi2 = "명상은 마음을 단련할 수 있는 좋은 기회죠. 내일은 산책에 힘을 내볼까요?";
+            }else if(meditate <= 8){
+                nabi2 = "명상을 많이 했군요! 산책은 몸과 마음의 건강에 좋아요. 산책을 조금 더 해볼까요?";
+            }else if(meditate >= 10){
+                nabi2 = "목표 명상시간 달성! 조금 더 산책해봐요.";
+            }
+        }
+        else if(walkPercent <= 40){
+            if(meditate == 0){
+                nabi2 = "내일은 명상도 함께 해보는건 어때요?";
+            }else if(meditate <= 2){
+                nabi2 = "발전해나가는 모습이 보기 좋아요. 내일은 명상 어때요?";
+            }else if(meditate <= 4){
+                nabi2 = "발전해나가는 모습이 보기 좋아요";
+            }else if(meditate <= 6){
+                nabi2 = "시도하는 모습이 보기 좋아요. 많이 노력하셨네요. 조금만 더 화이팅 합시다!";
+            }else if(meditate <= 8){
+                nabi2 = "명상 수고했어요! 하지만 우리 조금만 더  걸어봐요~";
+            }else if(meditate >= 10){
+                nabi2 = "목표 명상시간 달성! 조금만 더 걸어볼까요?";
+            }
+        }
+        else if(walkPercent <= 60){
+            if(meditate == 0){
+                nabi2 = "조금만 더 걸어볼까요? 명상도 함께 해요";
+            }else if(meditate <= 2){
+                nabi2 = "산책은 내 몸을 건강하게 할 수 있죠. 명상은 마음을 단련할 수 있습니다. 함께 해봐요~";
+            }else if(meditate <= 4){
+                nabi2 = "산책은 내 몸을 건강하게 할 수 있죠.  내일은 명상 어때요?";
+            }else if(meditate <= 6){
+                nabi2 = "산책과 명상, 동시에 하기 힘들죠? 하지만 잘하고 있어요. 조금만 더 노력해 봅시다!";
+            }else if(meditate <= 8){
+                nabi2 = "오늘은 명상에 많은 시간을 썼네요. 내일은 산책을 더 많이 해볼까요?";
+            }else if(meditate >= 10){
+                nabi2 = "목표 명상시간 달성! 산책도 화이팅!";
+            }
+        }
+        else if(walkPercent <= 80){
+            if(meditate == 0){
+                nabi2 = "산책을 많이 했네요! 명상도 함께 해봐요.";
+            }else if(meditate <= 2){
+                nabi2 = "산책을 많이 했네요! 명상도 함께 해봐요.";
+            }else if(meditate <= 4){
+                nabi2 = "조금만 더 하면 목표 산책량 달성! 명상도 빼먹지 말아요~";
+            }else if(meditate <= 6){
+                nabi2 = "산책을 많이 했네요! 명상도 꾸준히 해봐요.";
+            }else if(meditate <= 8){
+                nabi2 = "이렇게만 계속 해볼까요?  좋은 결과가 있을거에요.";
+            }else if(meditate >= 10){
+                nabi2 = "목표 명상시간 달성! 산책도 조금만 힘내요.";
+            }
+        }
+        else if(walkPercent >= 100){
+            if(meditate == 0){
+                nabi2 = "목표 산책량 달성! 명상도 함께 해봐요.";
+            }else if(meditate <= 2){
+                nabi2 = "목표 산책량 달성! 명상도 꾸준히 해봐요.";
+            }else if(meditate <= 4){
+                nabi2 = "목표 산책량 달성! 내일은 명상에 집중해볼까요?";
+            }else if(meditate <= 6){
+                nabi2 = "목표 산책량 달성! 명상도 함께 완료해봐요.";
+            }else if(meditate <= 8){
+                nabi2 = "목표 산책량 달성! 명상도 조금만 힘내요.";
+            }else if(meditate >= 10){
+                nabi2 = "일일 산책량도 채우고 명상까지 완료했네요! 잘했어요!";
+            }
+        }
+
+
+        // 우울한 날씨였을때, 기분정도따라서 한마디
+        Integer gloomyWeather = PreferenceHelper.getGloomy(this);
+        if(gloomyWeather==today_weather){
+            switch (todayMood){
+                case 0:
+                    nabi3 = "우울한 날씨였잖아요. 다음에는 나비와 함께 이겨내볼까요?"; break;
+                case 1:
+                    nabi3 = "우울한 날씨였잖아요. 오늘 하루 잘 이겨냈어요."; break;
+                case 2:
+                    nabi3 = "우울한 날씨였는데도 오늘 하루 잘 버텼어요. 대단해요."; break;
+                case 3:
+                    nabi3 = "우울한 날씨였지만 잘 이겨냈어요. 앞으로는 좋은 일이 있을거에요."; break;
+                case 4:
+                    nabi3 = "우울한 날씨도 잘 이겨냈어요. 오늘 하루도 수고 많았어요!"; break;
+                case 5:
+                    nabi3 = "사실 오늘 우울한 날씨였는데, 완벽하게 극복하셨네요! 당신이 대견해요~ 나비는 너무 행복하답니다!"; break;
+            }
+        }
+
+
+
     }
 
 

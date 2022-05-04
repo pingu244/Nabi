@@ -2,6 +2,7 @@ package com.example.nabi.fragment.Diary;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -84,6 +85,12 @@ public class DiaryList_Rain extends Fragment {
 
 
         return view;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getActivity().findViewById(R.id.diarylist_rainbg).setBackgroundColor(Color.parseColor("#00000000"));
     }
 
 
