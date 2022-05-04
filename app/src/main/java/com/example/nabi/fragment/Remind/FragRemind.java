@@ -108,9 +108,15 @@ public class FragRemind extends Fragment {
                             ArrayList<RemindAdapter.RemindItem> items = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Map<String, Object> mymap = document.getData();
-                                int diary_mood = Integer.parseInt(mymap.get("q1_mood").toString());
-                                String diary_keyword = (String) mymap.get("q3_todayKeyword");
-                                int weather = Integer.parseInt(mymap.get("weather").toString());
+                                int diary_mood = -1;
+                                String diary_keyword = "";
+                                int weather = -1;
+                                try{
+                                    diary_mood = Integer.parseInt(mymap.get("q1_mood").toString());
+                                    diary_keyword = (String) mymap.get("q3_todayKeyword");
+                                    weather = Integer.parseInt(mymap.get("weather").toString());
+                                } catch (Exception e){}
+
 
                                 Drawable drawable;
 
@@ -132,10 +138,11 @@ public class FragRemind extends Fragment {
                                         drawable = getResources().getDrawable(R.drawable.btnsnow);
                                         break;
                                     default:
-                                        drawable = getResources().getDrawable(R.drawable.btnclear);
+                                        drawable = null;
                                 }
 
-                                items.add(new RemindAdapter.RemindItem("2022년 "+ selectMonth+"월 "+document.getId()+"일", drawable, "2022/"+selectMonth+"/"+document.getId(), Integer.valueOf(document.getId())));
+                                if(drawable != null)
+                                    items.add(new RemindAdapter.RemindItem("2022년 "+ selectMonth+"월 "+document.getId()+"일", drawable, "2022/"+selectMonth+"/"+document.getId(), Integer.valueOf(document.getId())));
                             }
                             Collections.sort(items);    // 날짜따라 정렬
                             //어댑터 연걸, 데이터셋 변경
