@@ -120,7 +120,7 @@ public class JoinActivity extends AppCompatActivity {
                                             });
 
                                     //가입이 이루어져을시 가입 화면을 빠져나감.
-                                    Intent intent = new Intent(JoinActivity.this, MainActivity.class);
+                                    Intent intent = new Intent(JoinActivity.this, OnBoardingActivity.class);
                                     startActivity(intent);
                                     finish();
                                     Toast.makeText(JoinActivity.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.nabi">
     <!-- GPS 위치 획득 권한 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -20,6 +21,7 @@
         <activity android:name=".fragment.Home.Mypage"></activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".JoinActivity" />
+        <activity android:name=".OnBoardingActivity"/>/
         <activity android:name=".fragment.Diary.DiaryResult" />
         <activity android:name=".fragment.Diary.WritingDiary" />
         <activity android:name=".fragment.Healing.Healing_SadTest" />
@@ -33,6 +35,7 @@
         <activity android:name=".fragment.Healing.MusicPlayActivity"/>
         <activity android:name=".fragment.Healing.Healing_Meditation"/>
         <activity android:name=".LoginActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
