@@ -43,8 +43,8 @@
             app:tabBackground="@drawable/dot_indicator"
             android:layout_gravity="center"
             app:tabGravity="center"
-            app:tabPaddingStart="6dp"
-            app:tabPaddingEnd="6dp"
+            app:tabPaddingStart="20dp"
+            app:tabPaddingEnd="20dp"
             app:tabIndicatorHeight="0dp"
             app:tabIndicatorGravity="center"/>
 
