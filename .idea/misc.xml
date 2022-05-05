@@ -4,7 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/frag_home.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_result.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_music_play.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/onboarding.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/onboarding_adapter.xml" value="0.36614583333333334" />
         <entry key="..\:/GURU2/Nabi/app/src/main/res/drawable/dot_indicator.xml" value="0.3723076923076923" />
         <entry key="..\:/GURU2/Nabi/app/src/main/res/layout/dot_indicator.xml" value="0.3619791666666667" />
         <entry key="..\:/GURU2/Nabi/app/src/main/res/layout/onboarding.xml" value="0.3619791666666667" />
