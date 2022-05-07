@@ -18,7 +18,6 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,6 +42,7 @@ import com.google.firebase.firestore.SetOptions;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -123,8 +123,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         });
 
 
-
-
+//        pushWalkDataPush();
 
         // 산책 걸음수 측정
         // 활동 퍼미션 체크
@@ -154,10 +153,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             mBackWait = System.currentTimeMillis();
             Toast.makeText(this, "한 번 더 누르면 종료됩니다.", Toast.LENGTH_SHORT).show();
 
-
         } else{
-
-
             // 종료
             ActivityCompat.finishAffinity(this);
             System.exit(0);
@@ -168,63 +164,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public void onStart() {
         super.onStart();
-        // 산책 값 가져오기
-        currentSteps = PreferenceHelper.getStep(this);
 
-        // 걸음수 DB저장
-        String savedYMD = PreferenceHelper.getDate(this);
-
-        //yyyy/MM/dd 포맷 설정
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-
-
-
-//compareTo메서드를 통한 날짜비교
-
-        int compare = 0;
-        try {
-            Date savedDate = new Date(dateFormat.parse(savedYMD).getTime());
-            Date today = new Date(dateFormat.parse(YMD).getTime());
-            compare = savedDate.compareTo(today);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        // savedDate가 today보다 이전이다. (true)
-        if(compare<0){
-            Map<String, Object> hashMap = new HashMap<>();
-            hashMap.put("walk", currentSteps);
-
-            db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                    .collection("diary").document(savedYMD).set(hashMap, SetOptions.merge())
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Log.d("dataPut", "DocumentSnapshot successfully written!");
-                            PreferenceHelper.setStep(getApplicationContext(), 0, YMD);
-                        }
-
-                    });
-        }
-        else{
-            Map<String, Object> hashMap = new HashMap<>();
-            hashMap.put("walk", currentSteps);
-
-            db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                    .collection("diary").document(YMD).set(hashMap, SetOptions.merge())
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Log.d("dataPut", "DocumentSnapshot successfully written!");
-                        }
-
-                    });
-
-        }
-        // 걸음수 DB저장 끝
+        pushWalkDataPush();
 
     }
 
@@ -240,8 +181,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void onPause() {
         super.onPause();
         sm.unregisterListener(this);
-        // 걸음수 임시 저장
-        PreferenceHelper.setStep(this, currentSteps, YMD);
+
+
+        pushWalkDataPush();
+
+//        // 걸음수 임시 저장
+//        PreferenceHelper.setStep(this, currentSteps);
     }
 
 
@@ -266,7 +211,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
                 } catch (Exception e){}
                 // 걸음수 임시 저장
-                PreferenceHelper.setStep(this, currentSteps,YMD);
+                PreferenceHelper.setStep(this, currentSteps);
 
             }
         }
@@ -277,5 +222,77 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     }
 
+    // 걸음수 DB저장
+    private void pushWalkDataPush() {
+
+        String savedYMD = null;
+        try{
+            savedYMD = PreferenceHelper.getDate(this);
+        } catch (Exception e){}
+
+        java.util.Calendar cal = java.util.Calendar.getInstance();
+        java.util.Calendar cal2 = java.util.Calendar.getInstance();
+
+        //yyyy/MM/dd 포맷 설정
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/M/d");
+
+        //compareTo메서드를 통한 날짜비교
+        int compare = 0;
+        try {
+            Date savedDate = dateFormat.parse(savedYMD);
+            cal.setTime(savedDate);
+
+            Date today = dateFormat.parse(YMD);
+            cal2.setTime(today);
+
+            compare = cal.compareTo(cal2);
+
+            Log.v("pushWalkDataPush",savedDate+" / "+today+" / "+compare);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        // 산책 값 가져오기
+        int steps = PreferenceHelper.getStep(this);
+
+        // savedDate가 today보다 이전이다. (true)
+        if(compare==-1){
+            Map<String, Object> hashMap = new HashMap<>();
+            hashMap.put("walk", steps);
+
+            db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .collection("diary").document(savedYMD).set(hashMap, SetOptions.merge())
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d("dataPut", "DocumentSnapshot successfully written!");
+                            PreferenceHelper.setStep(getApplicationContext(), 0);
+                            PreferenceHelper.setDate(getApplicationContext(), YMD);
+                            PreferenceHelper.setMeditate(getApplicationContext(), 0);
+                        }
+
+                    });
+        }
+        else{
+            Map<String, Object> hashMap = new HashMap<>();
+            hashMap.put("walk", steps);
+
+            db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                    .collection("diary").document(YMD).set(hashMap, SetOptions.merge())
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            PreferenceHelper.setDate(getApplicationContext(), YMD);
+                        }
+
+                    });
+        }
+
+        // 산책 값 가져오기
+        currentSteps = PreferenceHelper.getStep(this);
+
+    }
 
 }

@@ -3,6 +3,7 @@ package com.example.nabi.fragment.Remind;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -31,8 +32,16 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.renderer.XAxisRenderer;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.utils.EntryXComparator;
+import com.github.mikephil.charting.utils.MPPointF;
+import com.github.mikephil.charting.utils.Transformer;
+import com.github.mikephil.charting.utils.Utils;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,12 +49,19 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
 
@@ -65,9 +81,89 @@ public class Remind_result extends AppCompatActivity {
     int[] seven_moods = {0,0,0,0,0,0,0};
     String result = "";
     Integer today_weather;
-    int j = 0;
 
-    String nabi1 = "", nabi2="", nabi3="";
+    String nabi1 = "", nabi2="", nabi3="";  // 나비 한마디
+
+
+    // 오늘 날짜만 검정색으로 나오게 하는것
+    public class ColoredLabelXAxisRenderer extends XAxisRenderer {
+
+        List<Integer> labelColors;
+
+        public ColoredLabelXAxisRenderer(ViewPortHandler viewPortHandler, XAxis xAxis, Transformer trans) {
+            super(viewPortHandler, xAxis, trans);
+            labelColors = Collections.EMPTY_LIST;
+        }
+
+        public ColoredLabelXAxisRenderer(ViewPortHandler viewPortHandler, XAxis xAxis, Transformer trans, List<Integer> colors) {
+            super(viewPortHandler, xAxis, trans);
+            this.labelColors = colors;
+        }
+
+        @Override
+        protected void drawLabels(Canvas c, float pos, MPPointF anchor) {
+            final float labelRotationAngleDegrees = mXAxis.getLabelRotationAngle();
+            boolean centeringEnabled = mXAxis.isCenterAxisLabelsEnabled();
+
+            float[] positions = new float[mXAxis.mEntryCount * 2];
+
+            for (int i = 0; i < positions.length; i += 2) {
+
+                // only fill x values
+                if (centeringEnabled) {
+                    positions[i] = mXAxis.mCenteredEntries[i / 2];
+                } else {
+                    positions[i] = mXAxis.mEntries[i / 2];
+                }
+            }
+
+            mTrans.pointValuesToPixel(positions);
+
+            for (int i = 0; i < positions.length; i += 2) {
+
+                float x = positions[i];
+
+                if (mViewPortHandler.isInBoundsX(x)) {
+
+                    String label = mXAxis.getValueFormatter().getFormattedValue(mXAxis.mEntries[i / 2], mXAxis);
+                    int color = Color.parseColor("#9D9D9D");
+                    if(i==positions.length-2)
+                        color = Color.BLACK;
+
+                    mAxisLabelPaint.setColor(color);
+
+                    if (mXAxis.isAvoidFirstLastClippingEnabled()) {
+
+                        // avoid clipping of the last
+                        if (i == mXAxis.mEntryCount - 1 && mXAxis.mEntryCount > 1) {
+                            float width = Utils.calcTextWidth(mAxisLabelPaint, label);
+
+                            if (width > mViewPortHandler.offsetRight() * 2
+                                    && x + width > mViewPortHandler.getChartWidth())
+                                x -= width / 2;
+
+                            // avoid clipping of the first
+                        } else if (i == 0) {
+
+                            float width = Utils.calcTextWidth(mAxisLabelPaint, label);
+                            x += width / 2;
+                        }
+                    }
+
+                    drawLabel(c, label, x, pos, anchor, labelRotationAngleDegrees);
+                }
+            }
+        }
+
+        private int getColorForXValue(int index) {
+            if (index >= labelColors.size()) return mXAxis.getTextColor();
+
+            if (index < 0) return mXAxis.getTextColor();
+
+            return labelColors.get(index);
+        }
+    }
+
 
     class MyAsync extends AsyncTask<Void, Integer, Boolean> {
 
@@ -77,27 +173,16 @@ public class Remind_result extends AppCompatActivity {
             mContext = context;
         }
 
-
         @Override
         protected void onPreExecute() {
-
             mDialog = new ProgressDialog(mContext);
             mDialog.setMessage("로딩중입니다...");
             mDialog.show();
-
-
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            super.onProgressUpdate(values);
         }
 
         @Override
         protected Boolean doInBackground(Void... voids) {
-
-
-
+            // 시킨 일 다 완료되길 기다림
             while(true) {
                 try {
                     sleep(2000);
@@ -107,8 +192,11 @@ public class Remind_result extends AppCompatActivity {
                             go = false;
                         Log.v("remind___check", i+"번째: "+check[i]);
                     }
-                    if(go)
+                    if(go){
+                        publishProgress(0);
                         break;
+                    }
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -118,14 +206,58 @@ public class Remind_result extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(Boolean aVoid) {
-
-
+        protected void onProgressUpdate(Integer... value) {
+            super.onProgressUpdate(value);
+            // 시킨 일 끝난 후 화면에 보이는 작업들
             {
+                // 선 그래프
                 ArrayList<Entry> values = new ArrayList<>();
 
                 for (int i = 0; i < 7; i++)
                     Log.v("remind____dateTest", i + "번째 기분은: " + seven_moods[i] + "입니다");
+
+                // x축 커스텀
+                XAxis xAxis = linechart.getXAxis();
+
+                // XAxis에 원하는 String 설정하기 (날짜)
+                xAxis.setValueFormatter(new ValueFormatter() {
+
+                    @Override
+                    public String getFormattedValue(float value) {
+                        SimpleDateFormat dtFormat = new SimpleDateFormat("yyyy/M/d");
+                        long emissionsMilliSince1970Time = 0;
+                        try {
+                            Date dt = dtFormat.parse(sevendays[7-(int)value]);
+                            emissionsMilliSince1970Time = dt.getTime();
+                        } catch (ParseException e) {}
+                        // Show time in local version
+                        Date timeMilliseconds = new Date(emissionsMilliSince1970Time);
+                        SimpleDateFormat dateTimeFormat = new SimpleDateFormat("M/d");
+
+                        return dateTimeFormat.format(timeMilliseconds);
+                    }
+                });
+                xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                xAxis.setTextSize(11f);
+                xAxis.setTextColor(Color.BLACK);
+                xAxis.setDrawAxisLine(true);
+                xAxis.setDrawGridLines(false);
+                linechart.getXAxis().setSpaceMin(0.5f);
+                linechart.getXAxis().setSpaceMax(0.5f);
+
+
+
+                // y축 오른쪽 label 없애기
+                YAxis yAxisRight = linechart.getAxisRight();
+                yAxisRight.setEnabled(false);
+                YAxis yAxisLeft = linechart.getAxisLeft();
+                yAxisLeft.setTextSize(11f);
+                yAxisLeft.setAxisMaximum(101f);
+                yAxisLeft.setAxisMinimum(-1f);
+                yAxisLeft.setDrawGridLines(false);
+                yAxisLeft.setDrawAxisLine(true);
+                yAxisLeft.setSpaceBottom(1f);
+
 
                 values.add(new Entry(1, seven_moods[6] * 20));
                 values.add(new Entry(2, seven_moods[5] * 20));
@@ -145,32 +277,17 @@ public class Remind_result extends AppCompatActivity {
                 LineData data = new LineData(dataSets);
 
 
-                // x축 커스텀
-                XAxis xAxis = linechart.getXAxis();
-                xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-                xAxis.setTextSize(10f);
-                xAxis.setTextColor(Color.RED);
-                xAxis.setDrawAxisLine(false);
-                xAxis.setDrawGridLines(false);
-
-                // y축 오른쪽 label 없애기
-                YAxis yAxisRight = linechart.getAxisRight();
-                yAxisRight.setEnabled(false);
-                YAxis yAxisLeft = linechart.getAxisLeft();
-                yAxisLeft.setAxisMaximum(100f);
-                yAxisLeft.setAxisMinimum(0f);
-                yAxisLeft.setDrawGridLines(false);
-
-
                 // 커스텀들
 //        linechart.setBackgroundColor(Color.WHITE); // 그래프 배경 색 설정
-                set1.setColor(Color.BLACK); // 차트의 선 색 설정
+                set1.setColor(Color.parseColor("#FFA6A6")); // 차트의 선 색 설정
+                set1.setLineWidth(3f);
+                set1.setMode(LineDataSet.Mode.LINEAR);
+                set1.setCubicIntensity(0f);
                 set1.setDrawCircles(false); // point circle 안보이게 설정
                 set1.setValueTextColor(Color.TRANSPARENT);
-//        set1.setCircleColor(Color.BLACK); // 차트의 points 점 색 설정
 
-//        set1.setDrawFilled(true); // 차트 아래 fill(채우기) 설정
-//        set1.setFillColor(Color.GREEN); // 차트 아래 채우기 색 설정
+                // 오늘 날짜만 검정색으로 나오게 하는것
+                linechart.setXAxisRenderer(new ColoredLabelXAxisRenderer(linechart.getViewPortHandler(), linechart.getXAxis(), linechart.getTransformer(YAxis.AxisDependency.LEFT)));
 
                 // 밑에 색깔보여주는 legend 안보이게 설정
                 linechart.getLegend().setEnabled(false);
@@ -206,17 +323,17 @@ public class Remind_result extends AppCompatActivity {
             nabi_word.setText(nabi1+"\n"+nabi2+"\n"+nabi3);
 
 
-            Toast.makeText(getApplicationContext(), "완료 되었습니다.", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getApplicationContext(), "완료 되었습니다.", Toast.LENGTH_SHORT).show();
             mDialog.dismiss();
 
         }
+
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_remind_result);
-
 
         linechart = findViewById(R.id.remind_linechart);
         piechart = findViewById(R.id.remind_piechart);
@@ -374,6 +491,13 @@ public class Remind_result extends AppCompatActivity {
         return dtFormat.format(cal.getTime());
     }
 
+    // 밀리초로 반환
+    private static float Milliseconds(String strDate) throws Exception {
+        SimpleDateFormat dtFormat = new SimpleDateFormat("yyyy/M/d");
+        Date dt = dtFormat.parse(strDate);
+        return dt.getTime();
+    }
+
     // 원 그래프 함수
     private void showPieChart(){
 
@@ -450,17 +574,6 @@ public class Remind_result extends AppCompatActivity {
         typeAmountMap.put("분노",count[4]);
         typeAmountMap.put("두려움",count[5]);
 
-        //이거 색 분류해주시와요..! 그때그때 다르게 나옵니다
-        //initializing colors for the entries
-        ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(Color.parseColor("#EFE480"));
-        colors.add(Color.parseColor("#ADC3FF"));
-        colors.add(Color.parseColor("#B0E093"));
-        colors.add(Color.parseColor("#CCB4FF"));
-        colors.add(Color.parseColor("#FFAAA1"));
-        colors.add(Color.parseColor("#ff5f67"));
-        colors.add(Color.parseColor("#F4CA77"));
-
         //input data and fit data into pie chart entry
         for(String type: typeAmountMap.keySet()){
             if(typeAmountMap.get(type).intValue() != 0)
@@ -472,8 +585,26 @@ public class Remind_result extends AppCompatActivity {
         //setting text size of the value
         pieDataSet.setValueTextSize(13f);
         //providing color list for coloring different entries
-//        if (pieDataSet.getEntryForIndex(0).getLabel())
+
+
+        // 색 지정되게 수정했습니다 (희애0507)
+        ArrayList<Integer> colors = new ArrayList<>();
+        for(int i = 0; i<pieDataSet.getEntryCount(); i++){
+            if (pieDataSet.getEntryForIndex(i).getLabel().equals("기쁨"))
+                colors.add(Color.parseColor("#EFE480"));
+            else if(pieDataSet.getEntryForIndex(i).getLabel().equals("평화"))
+                colors.add(Color.parseColor("#ADC3FF"));
+            else if(pieDataSet.getEntryForIndex(i).getLabel().equals("힘찬"))
+                colors.add(Color.parseColor("#B0E093"));
+            else if(pieDataSet.getEntryForIndex(i).getLabel().equals("슬픔"))
+                colors.add(Color.parseColor("#CCB4FF"));
+            else if(pieDataSet.getEntryForIndex(i).getLabel().equals("분노"))
+                colors.add(Color.parseColor("#FFAAA1"));
+            else if(pieDataSet.getEntryForIndex(i).getLabel().equals("두려움"))
+                colors.add(Color.parseColor("#ff5f67"));
+        }
         pieDataSet.setColors(colors);
+
         //grouping the data set from entry to chart
         PieData pieData = new PieData(pieDataSet);
         //showing the value of the entries, default true if not set

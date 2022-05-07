@@ -105,47 +105,13 @@ public class Healing_Meditation extends AppCompatActivity {
                 mediaPlayer.stop();
                 mediaPlayer.release();
                 handler2.removeMessages(0);
-                quitDBsave();
+                pushMeditateTime();   // 나갈때 명상시간 파베에
                 finish();
 
             }
         });
 
 
-        db = FirebaseFirestore.getInstance();
-
-
-        // 명상시간 DB저장
-        String savedYMD = PreferenceHelper.getDate(this);
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-
-        int compare = 0;
-        try {
-            Date savedDate = new Date(dateFormat.parse(savedYMD).getTime());
-            Date today = new Date(dateFormat.parse(YMD).getTime());
-            compare = savedDate.compareTo(today);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        Integer time = PreferenceHelper.getMeditate(this);
-        // savedDate가 today보다 이전이다. (true)
-        if(compare<0){
-            Map<String, Object> hashMap = new HashMap<>();
-            hashMap.put("meditate", time);
-
-            db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                    .collection("diary").document(savedYMD).set(hashMap, SetOptions.merge())
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Log.d("dataPut", "DocumentSnapshot successfully written!");
-                            PreferenceHelper.setMeditate(getApplicationContext(), 0);
-                        }
-
-                    });
-        }
-        // 명상시간 DB저장 끝
 
 
 
@@ -160,7 +126,7 @@ public class Healing_Meditation extends AppCompatActivity {
         mediaPlayer.release();
         handler2.removeMessages(0);
 
-        quitDBsave();
+        pushMeditateTime();   // 나갈때 명상시간 파베에
 
 
     }
@@ -279,25 +245,21 @@ public class Healing_Meditation extends AppCompatActivity {
         super.onDestroy();
     }
 
-    private void quitDBsave(){
+    private void pushMeditateTime() {
         db = FirebaseFirestore.getInstance();
         Log.d("명상 시간", String.valueOf(meditation_time));
-        {
+        Integer time = PreferenceHelper.getMeditate(this);
+        Map<String, Object> hashMap = new HashMap<>();
+        hashMap.put("meditate", time);
 
-            Integer time = PreferenceHelper.getMeditate(this);
-            Map<String, Object> hashMap = new HashMap<>();
-            hashMap.put("meditate", time);
+        db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .collection("diary").document(YMD).set(hashMap, SetOptions.merge())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("명상 시간", time+"밀리초");
+                    }
 
-            db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                    .collection("diary").document(YMD).set(hashMap, SetOptions.merge())
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Log.d("명상 시간", time+"밀리초");
-                        }
-
-                    });
-
-        }
+                });
     }
 }

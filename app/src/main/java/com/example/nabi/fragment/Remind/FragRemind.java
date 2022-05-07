@@ -108,12 +108,8 @@ public class FragRemind extends Fragment {
                             ArrayList<RemindAdapter.RemindItem> items = new ArrayList<>();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Map<String, Object> mymap = document.getData();
-                                int diary_mood = -1;
-                                String diary_keyword = "";
                                 int weather = -1;
                                 try{
-                                    diary_mood = Integer.parseInt(mymap.get("q1_mood").toString());
-                                    diary_keyword = (String) mymap.get("q3_todayKeyword");
                                     weather = Integer.parseInt(mymap.get("weather").toString());
                                 } catch (Exception e){}
 
@@ -140,6 +136,18 @@ public class FragRemind extends Fragment {
                                     default:
                                         drawable = null;
                                 }
+
+
+//                                // 오늘 날짜면 리스트에 안올리기
+//                                java.util.Calendar cal = java.util.Calendar.getInstance();
+//                                int cYEAR = cal.get(java.util.Calendar.YEAR);
+//                                int cMonth = cal.get(java.util.Calendar.MONTH);
+//                                int cDay = cal.get(java.util.Calendar.DATE);
+//                                String YMD = (cYEAR+"/"+(cMonth+1)+"/"+cDay);
+//                                String today = "2022/"+selectMonth+"/"+document.getId();
+//                                if(today.equals(YMD))
+//                                    drawable = null;
+
 
                                 if(drawable != null)
                                     items.add(new RemindAdapter.RemindItem("2022년 "+ selectMonth+"월 "+document.getId()+"일", drawable, "2022/"+selectMonth+"/"+document.getId(), Integer.valueOf(document.getId())));
