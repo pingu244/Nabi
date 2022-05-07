@@ -8,24 +8,31 @@
     android:background="#B8E4EA"
     android:orientation="vertical">
 
-    <ImageButton
-        android:id="@+id/btnCancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
-        android:background="#00000000"
-        android:src="@drawable/diary_writing_back" />
-
-    <TextView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="40dp"
-        android:gravity="center_horizontal"
-        android:text="SAD 테스트"
-        android:textColor="@color/indigo_pnt"
-        android:textSize="20dp" />
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center_vertical"
+            android:background="#00000000"
+            android:src="@drawable/exit_black" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:text="SAD 테스트"
+            android:textColor="@color/indigo_pnt"
+            android:textSize="20dp" />
+    </FrameLayout>
 
 
     <LinearLayout
@@ -92,7 +99,7 @@
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="2px"
-                    android:background="#D5D5D5"/>
+                    android:background="#E2E2E2"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -139,7 +146,7 @@
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="2px"
-                    android:background="#D5D5D5"/>
+                    android:background="#E2E2E2"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -185,7 +192,7 @@
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="2px"
-                    android:background="#D5D5D5"/>
+                    android:background="#E2E2E2"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -231,7 +238,7 @@
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="2px"
-                    android:background="#D5D5D5"/>
+                    android:background="#E2E2E2"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -277,7 +284,7 @@
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="2px"
-                    android:background="#D5D5D5"/>
+                    android:background="#E2E2E2"/>
 
                 <TextView
                     android:layout_width="match_parent"

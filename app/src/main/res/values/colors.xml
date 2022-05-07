@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="indigo_pnt">#FF454870</color>
     <color name="transparent">#000000</color>
+    <color name="warning">#FF253D63</color>
+    <color name="good">#FFFA8574</color>
 </resources>
