@@ -22,13 +22,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import java.util.ArrayList;
 import java.util.Map;
 
 public class Healing_therapy extends Fragment {
 
-    ProgressBar progressBar;
+    CircularProgressBar progressBar;
 
     TextView stepCountView, stepGoalView, tv_distance, tv_kcal;
     private FirebaseFirestore db;
@@ -121,16 +122,16 @@ public class Healing_therapy extends Fragment {
 
                                 if (bdiResult.equals("우울하지 않은 상태")) {
                                     stepGoalView.setText(" / 3000");
-                                    progressBar.setMax(3000);
+                                    progressBar.setProgressMax(3000);
                                 } else if (bdiResult.equals("가벼운 우울 상태")) {
                                     stepGoalView.setText(" / 4000");
-                                    progressBar.setMax(4000);
+                                    progressBar.setProgressMax(4000);
                                 } else if (bdiResult.equals("중한 우울 상태")) {
                                     stepGoalView.setText(" / 5000");
-                                    progressBar.setMax(5000);
+                                    progressBar.setProgressMax(5000);
                                 } else if (bdiResult.equals("심한 우울 상태")) {
                                     stepGoalView.setText(" / 6000");
-                                    progressBar.setMax(6000);
+                                    progressBar.setProgressMax(6000);
                                 }
                             }
 

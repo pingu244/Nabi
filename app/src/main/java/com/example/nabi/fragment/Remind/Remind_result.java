@@ -48,6 +48,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -74,7 +75,7 @@ public class Remind_result extends AppCompatActivity {
     PieChart piechart;
     TextView one, two, three, four, five, six, step, meditateTime, nabi_word;
     TextView keywordPercentage[];
-    ProgressBar walkingProgress, meditateProgress;
+    CircularProgressBar walkingProgress, meditateProgress;
     ImageView walkSuccess, meditateSuccess;
     Integer steps, meditate, walkingMax;
     String resultDate, bdiResult;
@@ -295,13 +296,14 @@ public class Remind_result extends AppCompatActivity {
 
             // 산책 부분
             step.setText(steps+"걸음");
-            walkingProgress.setMax(walkingMax);
+//            walkingProgress.setMax(walkingMax);
+            walkingProgress.setProgressMax(walkingMax);
             walkingProgress.setProgress(steps);
             if(steps>=walkingMax)
                 walkSuccess.setVisibility(View.VISIBLE);
 
             // 명상 부분
-            meditateProgress.setMax(10);
+            meditateProgress.setProgressMax(10);
             meditate = (meditate / (1000*60)) % 60;
             meditateTime.setText(meditate+"분");
             meditateProgress.setProgress(meditate);

@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
@@ -16,18 +17,23 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.nabi.R;
+import com.mikhaellopez.circularprogressbar.CircularProgressBar;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MusicPlayActivity extends AppCompatActivity {
 
 
-    ProgressBar progressBar;
-    TextView btnPrevious, tv_title, tv_playingTime, tv_playTime, tv_category;
-    ImageButton btnPlay, btnPlayNext, btnPlayPre;
+    CircularProgressBar progressBar;
+    TextView tv_title, tv_playingTime, tv_playTime, tv_category;
+    ImageButton btnPlay, btnPlayNext, btnPlayPre, btnPrevious;
     int[] songs_sensitive, songs_happy, songs_dawn, songs_sleep, songs_exciting, songs_piano, songs_comfort, songs_asmr;
     String [] title_sensitive, title_happy, title_dawn, title_sleep, title_exciting, title_piano, title_comfort, title_asmr;
 
     MediaPlayer mediaPlayer;
     int currentPos, category;
+
 
     boolean isPlaying = false;
 
@@ -44,6 +50,11 @@ public class MusicPlayActivity extends AppCompatActivity {
         btnPlayPre = findViewById(R.id.btn_music_pre);
 
         tv_title = findViewById(R.id.music_name);
+        tv_title.setSingleLine(true);    // 한줄로 표시하기
+        tv_title.setEllipsize(TextUtils.TruncateAt.MARQUEE); // 흐르게 만들기
+        tv_title.setSelected(true);      // 선택하기
+
+
         tv_playingTime = findViewById(R.id.tv_playingTime);
         tv_playTime = findViewById(R.id.tv_playTime);
         tv_category = findViewById(R.id.music_category);
@@ -77,37 +88,44 @@ public class MusicPlayActivity extends AppCompatActivity {
                 tv_title.setText(title);
                 tv_category.setText("감각적인");
 
-        }else if(category==1){//행복한
+        }
+        else if(category==1){//행복한
                 mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_happy[pos[0]]);
                 tv_title.setText(title);
                 tv_category.setText("밝은");
 
-        }else if(category==2){//새벽감성
+        }
+        else if(category==2){//새벽감성
                 mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_dawn[pos[0]]);
                 tv_title.setText(title);
                 tv_category.setText("새벽감성");
 
-        }else if(category==3){//수면
+        }
+        else if(category==3){//수면
                 mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_sleep[pos[0]]);
                 tv_title.setText(title);
                 tv_category.setText("수면");
 
-        }else if(category==4){//신나는
+        }
+        else if(category==4){//신나는
                 mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_exciting[pos[0]]);
                 tv_title.setText(title);
                 tv_category.setText("신나는");
 
-        }else if(category==5){//피아노
+        }
+        else if(category==5){//피아노
                 mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_piano[pos[0]]);
                 tv_title.setText(title);
                 tv_category.setText("잔잔한");
 
-        }else if(category==6){//편안한
+        }
+        else if(category==6){//편안한
                 mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_comfort[pos[0]]);
                 tv_title.setText(title);
                 tv_category.setText("편안한");
 
-        }else if(category==7){//ASMR
+        }
+        else if(category==7){//ASMR
                 mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_asmr[pos[0]]);
                 tv_title.setText(title);
                 tv_category.setText("ASMR");
@@ -123,7 +141,6 @@ public class MusicPlayActivity extends AppCompatActivity {
                 isPlaying = false;
                 mediaPlayer.stop();
                 mediaPlayer.release();
-                handler.removeMessages(0);
 
                 finish();
             }
@@ -138,14 +155,14 @@ public class MusicPlayActivity extends AppCompatActivity {
                     mediaPlayer.pause();
 
                     //현재 상태 저장
-                    currentPos = mediaPlayer.getCurrentPosition();
+//                    currentPos = mediaPlayer.getCurrentPosition();
 
                 }else{
                     isPlaying = true;
                     btnPlay.setImageResource(R.drawable.ic_baseline_pause_24);
 
                     //저장한 위치에서 다시 시작
-                    mediaPlayer.seekTo(currentPos);
+//                    mediaPlayer.seekTo(currentPos);
                     mediaPlayer.start();
                     new musicThread().start();
 
@@ -380,7 +397,6 @@ public class MusicPlayActivity extends AppCompatActivity {
         isPlaying = false;
         mediaPlayer.stop();
         mediaPlayer.release();
-        handler.removeMessages(0);
 
     }
 
@@ -390,7 +406,7 @@ public class MusicPlayActivity extends AppCompatActivity {
         new musicThread().start();
         mediaPlayer.start();
         progressBar.setProgress(0);
-        progressBar.setMax(mediaPlayer.getDuration());
+        progressBar.setProgressMax(mediaPlayer.getDuration());
 
         //tv_playTime.setText("/" + mediaPlayer.getDuration()/60);
 
@@ -398,8 +414,12 @@ public class MusicPlayActivity extends AppCompatActivity {
         time = mediaPlayer.getDuration();
         minute = (time / (1000*60)) % 60;
         second = (time / 1000) % 60;
+        SimpleDateFormat sdf = new SimpleDateFormat("m:ss");
+        Date timeInDate = new Date(time);
+        String timeInFormat = sdf.format(timeInDate);
 
-        tv_playTime.setText("/"+minute+":"+second);
+
+        tv_playTime.setText(timeInFormat);
     }
 
     class musicThread extends Thread{
@@ -408,9 +428,19 @@ public class MusicPlayActivity extends AppCompatActivity {
         public void run() {
             while(isPlaying){  // 음악이 실행중일때 계속 돌아가게 함
 
-                progressBar.setProgress(mediaPlayer.getCurrentPosition());
-                handler.sendEmptyMessage(1);
-                if(progressBar.getProgress()==progressBar.getMax()){
+                int time = mediaPlayer.getCurrentPosition();
+                progressBar.setProgress(time);
+                SimpleDateFormat sdf = new SimpleDateFormat("m:ss");
+                Date timeInDate = new Date(time);
+                String timeInFormat = sdf.format(timeInDate);
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tv_playingTime.setText(timeInFormat);
+                    }
+                });
+                if(progressBar.getProgress()==progressBar.getProgressMax()){
                     mediaPlayer.stop();
                     isPlaying = false;
                 }
@@ -420,30 +450,4 @@ public class MusicPlayActivity extends AppCompatActivity {
 
     }
 
-    final Handler handler = new Handler(){
-        @Override
-        public void handleMessage(@NonNull Message msg) {
-            super.handleMessage(msg);
-
-            //밀리초 시간 변환
-            int minute, second, time;
-
-            if(isPlaying){
-                time = mediaPlayer.getCurrentPosition();
-                minute = (time / (1000*60)) % 60;
-                second = (time / 1000) % 60;
-
-                tv_playingTime.setText(minute+":"+second);
-            }
-
-
-        }
-    };
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-    }
 }

@@ -2,35 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#F5BB77">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:padding="20dp">
 
-        <TextView
+        <ImageButton
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
             android:id="@+id/btnPrevious"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="x"
-            android:textSize="30dp"
-            android:textColor="@color/black"
-            android:layout_marginTop="30dp"/>
+            android:src="@drawable/mypage_back"
+            android:background="#00000000"/>
 
         <TextView
             android:id="@+id/meditation_name"
+            android:layout_marginTop="10dp"
+            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:gravity="center"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="30dp"
             android:text="명상 이름"
             android:textColor="@color/black"
-            android:textSize="25dp"/>
-    </LinearLayout>
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/img_meditation"
@@ -40,17 +41,18 @@
         android:layout_marginTop="50dp"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="60dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_gravity="center">
 
         <TextView
             android:id="@+id/tv_mention1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
+            android:gravity="center"
             android:text="명상멘트1"
             android:textSize="20dp"
             android:textColor="@color/black"
@@ -61,7 +63,7 @@
             android:id="@+id/tv_mention2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
+            android:gravity="center"
             android:layout_marginTop="10dp"
             android:text="명상멘트2"
             android:src="@drawable/mcv_action_previous"/>
@@ -70,28 +72,38 @@
             android:layout_width="wrap_content"
             android:orientation="horizontal"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_gravity="center">
 
             <TextView
-            android:id="@+id/tv_playingTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+                android:id="@+id/tv_playingTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text=" / "/>
 
             <TextView
                 android:id="@+id/tv_playTime"
-                android:layout_marginLeft="20dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"/>
         </LinearLayout>
 
 
-        <Button
-            android:id="@+id/btn_quit"
-            android:text="종료"
+        <ImageButton
+            android:layout_gravity="center"
+            android:id="@+id/meditation_btn"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginRight="20dp"
-            android:src="@drawable/mcv_action_next"/>
+            android:src="@drawable/ic_baseline_pause_24"/>
 
     </LinearLayout>
 

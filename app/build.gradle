@@ -79,5 +79,11 @@ dependencies {
 
     implementation 'com.romandanylyk:pageindicatorview:1.0.3' //워크스루
 
+    // https://github.com/lopspower/CircularProgressBar
+    implementation 'com.mikhaellopez:circularprogressbar:3.1.0' // circular progressbar
+
+    // https://github.com/lopspower/CircularImageView
+    implementation 'com.mikhaellopez:circularimageview:4.3.0' // 원형 이미지뷰
+
 
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/remind_bg">
 
@@ -253,18 +253,17 @@
                             android:layout_gravity="center"
                             android:layout_marginBottom="5dp">
 
-                            <ProgressBar
+                            <com.mikhaellopez.circularprogressbar.CircularProgressBar
                                 android:id="@+id/remind_walk_progressbar"
-                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                                 android:layout_width="45dp"
                                 android:layout_height="45dp"
                                 android:layout_gravity="center"
-                                android:indeterminate="false"
-                                android:progress="0"
-                                android:max="100"
-                                android:progressBackgroundTint="#F4F6F8"
-                                android:progressDrawable="@drawable/circle_progressbar"
-                                android:progressTint="#72DFC5" />
+                                app:cpb_background_progressbar_color="#F4F6F8"
+                                app:cpb_background_progressbar_width="7dp"
+                                app:cpb_progress_direction="to_right"
+                                app:cpb_progressbar_color="#72DFC5"
+                                app:cpb_progressbar_width="7dp"
+                                app:cpb_round_border="true" />
 
                             <LinearLayout
                                 android:layout_gravity="center"
@@ -323,18 +322,17 @@
                             android:layout_gravity="center"
                             android:layout_marginBottom="5dp">
 
-                            <ProgressBar
+                            <com.mikhaellopez.circularprogressbar.CircularProgressBar
                                 android:id="@+id/remind_meditate_progressbar"
-                                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                                 android:layout_width="45dp"
                                 android:layout_height="45dp"
                                 android:layout_gravity="center"
-                                android:indeterminate="false"
-                                android:progress="0"
-                                android:max="100"
-                                android:progressBackgroundTint="#F4F6F8"
-                                android:progressDrawable="@drawable/circle_progressbar"
-                                android:progressTint="#81D3FF" />
+                                app:cpb_background_progressbar_color="#F4F6F8"
+                                app:cpb_background_progressbar_width="7dp"
+                                app:cpb_progress_direction="to_right"
+                                app:cpb_progressbar_color="#81D3FF"
+                                app:cpb_progressbar_width="7dp"
+                                app:cpb_round_border="true" />
 
                             <LinearLayout
                                 android:layout_gravity="center"

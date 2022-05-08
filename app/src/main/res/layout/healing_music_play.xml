@@ -2,109 +2,144 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#C9CDF7">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:padding="20dp">
 
-        <TextView
+        <ImageButton
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
             android:id="@+id/btnPrevious"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="&lt;"
-            android:textSize="30dp"
-            android:textColor="@color/black"
-            android:layout_marginTop="30dp"/>
+            android:src="@drawable/mypage_back"
+            android:background="#00000000"/>
 
         <TextView
             android:id="@+id/music_category"
+            android:layout_marginTop="10dp"
+            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:gravity="center"
-            android:layout_marginLeft="120dp"
-            android:layout_marginTop="30dp"
             android:text="음악 종류"
             android:textColor="@color/black"
-            android:textSize="25dp"/>
-    </LinearLayout>
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+    </RelativeLayout>
 
 
     <TextView
         android:id="@+id/music_name"
-        android:layout_width="match_parent"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
-        android:gravity="center_horizontal"
+
         android:text="음악 이름"
         android:textColor="@color/black"
-        android:textSize="25dp"/>
+        android:textSize="25dp" />
 
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:clipToPadding="false">
 
-        <ProgressBar
+        <!--        <ImageView-->
+        <!--            android:layout_width="320dp"-->
+        <!--            android:layout_height="320dp"-->
+        <!--            android:src="@drawable/btnrain"-->
+        <!--            android:elevation="5dp"/>-->
+
+        <com.mikhaellopez.circularprogressbar.CircularProgressBar
             android:id="@+id/music_progressbar"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_marginTop="30dp"
-            android:indeterminate="false"
-            android:max="100"
-            android:progress="0"
-            android:progressBackgroundTint="#FBE7C6"
-            android:progressDrawable="@drawable/circle_progressbar"
-            android:progressTint="#1a0c47" />
-
-        <TextView
-            android:id="@+id/tv_playingTime"
+            android:layout_width="280dp"
+            android:layout_height="280dp"
             android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:elevation="5dp"
 
-        <TextView
-            android:id="@+id/tv_playTime"
-            android:layout_gravity="center"
-            android:layout_marginLeft="30dp"
+            app:cpb_background_progressbar_color="#7FFFFFFF"
+            app:cpb_background_progressbar_width="25dp"
+            app:cpb_progress_direction="to_right"
+            app:cpb_progressbar_color="#CC454870"
+            app:cpb_progressbar_width="25dp"
+            app:cpb_round_border="true" />
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/tv_playingTime"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:text="·"
+                android:textSize="25dp"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:id="@+id/tv_playTime"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
+
     </FrameLayout>
 
-    
-    
+
+
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="60dp"
+        android:layout_gravity="center"
         android:gravity="center">
 
         <ImageButton
             android:id="@+id/btn_music_pre"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginRight="20dp"
             android:src="@drawable/mcv_action_previous"/>
 
         <ImageButton
+            android:layout_gravity="center"
             android:id="@+id/btn_music_play"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginHorizontal="30dp"
             android:src="@drawable/mcv_action_next"/>
 
         <ImageButton
             android:id="@+id/btn_music_next"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginRight="20dp"
             android:src="@drawable/mcv_action_next"/>
     </LinearLayout>
 
