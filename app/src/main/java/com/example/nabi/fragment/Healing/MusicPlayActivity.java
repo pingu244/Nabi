@@ -3,8 +3,6 @@ package com.example.nabi.fragment.Healing;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageButton;
@@ -408,16 +406,10 @@ public class MusicPlayActivity extends AppCompatActivity {
         progressBar.setProgress(0);
         progressBar.setProgressMax(mediaPlayer.getDuration());
 
-        //tv_playTime.setText("/" + mediaPlayer.getDuration()/60);
-
-        int minute, second, time;
-        time = mediaPlayer.getDuration();
-        minute = (time / (1000*60)) % 60;
-        second = (time / 1000) % 60;
+        int time = mediaPlayer.getDuration();
         SimpleDateFormat sdf = new SimpleDateFormat("m:ss");
         Date timeInDate = new Date(time);
         String timeInFormat = sdf.format(timeInDate);
-
 
         tv_playTime.setText(timeInFormat);
     }

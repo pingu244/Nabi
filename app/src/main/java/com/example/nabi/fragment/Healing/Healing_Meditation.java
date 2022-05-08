@@ -5,8 +5,6 @@ import static android.icu.text.UnicodeSet.CASE;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -32,8 +30,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Healing_Meditation extends AppCompatActivity {
-
-    final int MESSAGE_ID_PLAYING = 1;
 
     TextView tv_title, tv_mention1, tv_mention2, tv_playingTime, tv_playTime;
     ImageButton meditation_btn;
@@ -159,7 +155,6 @@ public class Healing_Meditation extends AppCompatActivity {
         public void run() {
             while(isPlaying){  // 음악이 실행중일때 계속 돌아가게 함
 
-//                handler2.sendEmptyMessage(1);
                 int time = mediaPlayer.getCurrentPosition();
                 SimpleDateFormat sdf = new SimpleDateFormat("m:ss");
                 Date timeInDate = new Date(time);
@@ -207,7 +202,6 @@ public class Healing_Meditation extends AppCompatActivity {
                 }catch (InterruptedException e){
                     e.printStackTrace();
                 }
-//                handler.sendEmptyMessage(1);
             }
         }
     }

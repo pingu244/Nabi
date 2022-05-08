@@ -39,6 +39,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
+import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     // 산책 걸음수 측정 변수
     SensorManager sm;
     Sensor sensor_step_detector;
-    ProgressBar progressBar;
+    CircularProgressBar progressBar;
     TextView stepCountView, tv_distance, tv_kcal;
     public int currentSteps = 0;    // 현재 걸음 수
     int kcal = 0; double km = 0;   // 칼로리, 거리
