@@ -73,6 +73,7 @@ public class Remind_result extends AppCompatActivity {
     LineChart linechart;
     PieChart piechart;
     TextView one, two, three, four, five, six, step, meditateTime, nabi_word;
+    TextView keywordPercentage[];
     ProgressBar walkingProgress, meditateProgress;
     ImageView walkSuccess, meditateSuccess;
     Integer steps, meditate, walkingMax;
@@ -82,7 +83,7 @@ public class Remind_result extends AppCompatActivity {
     String result = "";
     Integer today_weather;
 
-    String nabi1 = "", nabi2="", nabi3="";  // 나비 한마디
+    String nabi1 = "", nabi2="", nabi3=null;  // 나비 한마디
 
 
     // 오늘 날짜만 검정색으로 나오게 하는것
@@ -93,11 +94,6 @@ public class Remind_result extends AppCompatActivity {
         public ColoredLabelXAxisRenderer(ViewPortHandler viewPortHandler, XAxis xAxis, Transformer trans) {
             super(viewPortHandler, xAxis, trans);
             labelColors = Collections.EMPTY_LIST;
-        }
-
-        public ColoredLabelXAxisRenderer(ViewPortHandler viewPortHandler, XAxis xAxis, Transformer trans, List<Integer> colors) {
-            super(viewPortHandler, xAxis, trans);
-            this.labelColors = colors;
         }
 
         @Override
@@ -155,13 +151,7 @@ public class Remind_result extends AppCompatActivity {
             }
         }
 
-        private int getColorForXValue(int index) {
-            if (index >= labelColors.size()) return mXAxis.getTextColor();
 
-            if (index < 0) return mXAxis.getTextColor();
-
-            return labelColors.get(index);
-        }
     }
 
 
@@ -320,10 +310,18 @@ public class Remind_result extends AppCompatActivity {
 
             // 나비 한마디
             nabi_word();
-            nabi_word.setText(nabi1+"\n"+nabi2+"\n"+nabi3);
+            if(nabi3 == null)
+                nabi_word.setText(nabi1+"\n\n"+nabi2);
+            else
+                nabi_word.setText(nabi1+"\n\n"+nabi3+"\n\n"+nabi2);
 
 
 //            Toast.makeText(getApplicationContext(), "완료 되었습니다.", Toast.LENGTH_SHORT).show();
+            try {
+                sleep(1000);    // 1초만 기다리자
+            } catch (InterruptedException e) {
+//                e.printStackTrace();
+            }
             mDialog.dismiss();
 
         }
@@ -342,7 +340,8 @@ public class Remind_result extends AppCompatActivity {
         three = findViewById(R.id.remind_pie_three);
         four = findViewById(R.id.remind_pie_four);
         five = findViewById(R.id.remind_pie_five);
-        six = findViewById(R.id.remind_pie_six);
+        six = findViewById(R.id.remind_pie_six_per);
+        keywordPercentage = new TextView[]{one, two, three, four, five, six};
         step = findViewById(R.id.remind_step);
         meditateTime = findViewById(R.id.remind_meditate);
 
@@ -469,17 +468,6 @@ public class Remind_result extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     }
 
     // 날짜 계산 함수
@@ -554,13 +542,7 @@ public class Remind_result extends AppCompatActivity {
             }
         }
 
-        //이부분 화면에 출력하는거 아니라서 일단 주석처리했습니다. (0502 다영)
-//        one.setText("기쁨 "+count[0]);
-//        two.setText("평화 "+count[1]);
-//        three.setText("힘찬 "+count[2]);
-//        four.setText("슬픔 "+count[3]);
-//        five.setText("분노 "+count[4]);
-//        six.setText("두려움 "+count[5]);
+
 
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
         String label = "type";
@@ -584,9 +566,8 @@ public class Remind_result extends AppCompatActivity {
         PieDataSet pieDataSet = new PieDataSet(pieEntries,label);
         //setting text size of the value
         pieDataSet.setValueTextSize(13f);
+
         //providing color list for coloring different entries
-
-
         // 색 지정되게 수정했습니다 (희애0507)
         ArrayList<Integer> colors = new ArrayList<>();
         for(int i = 0; i<pieDataSet.getEntryCount(); i++){
@@ -605,16 +586,46 @@ public class Remind_result extends AppCompatActivity {
         }
         pieDataSet.setColors(colors);
 
+
         //grouping the data set from entry to chart
         PieData pieData = new PieData(pieDataSet);
         //showing the value of the entries, default true if not set
         pieData.setDrawValues(false);
+
+        // 퍼센트 textview에 보이기
+        int[] percentage = new int[6];
+        for(int i = 0; i<6; i++)
+            percentage[i] = (int)(count[i] / pieData.getYValueSum()*100);
+        for(int i = 0; i<6; i++)
+            if(percentage[i] == 0)
+                if(i==5)
+                    findViewById(R.id.remind_pie_six).setVisibility(View.GONE);
+                else
+                    keywordPercentage[i].setVisibility(View.GONE);
+            else
+                switch (i){
+                    case 0:
+                        keywordPercentage[i].setText("기쁨 "+percentage[i]+"%"); break;
+                    case 1:
+                        keywordPercentage[i].setText("평화 "+percentage[i]+"%"); break;
+                    case 2:
+                        keywordPercentage[i].setText("힘찬 "+percentage[i]+"%"); break;
+                    case 3:
+                        keywordPercentage[i].setText("슬픔 "+percentage[i]+"%"); break;
+                    case 4:
+                        keywordPercentage[i].setText("분노 "+percentage[i]+"%"); break;
+                    case 5:
+                        keywordPercentage[i].setText(percentage[i]+"%"); break;
+                }
+
+
 
         // description, legend 안보이게 설정
         piechart.getDescription().setEnabled(false);
         piechart.setDrawHoleEnabled(false);
         Legend legend = piechart.getLegend();
         legend.setEnabled(false);
+        piechart.setDrawEntryLabels(false); // 그래프 위에 글자 없애기
 
         piechart.setTouchEnabled(false);    // 터치 못하게
 

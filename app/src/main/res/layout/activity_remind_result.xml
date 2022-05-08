@@ -146,7 +146,7 @@
                         android:layout_marginRight="7dp"/>
 
                     <LinearLayout
-                        android:layout_weight="3"
+                        android:layout_weight="4"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
@@ -158,37 +158,50 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="기쁨"
-                            android:textSize="15dp"/>
+                            android:textSize="14dp"/>
                         <TextView
                             android:id="@+id/remind_pie_two"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="평화"
-                            android:textSize="15dp"/>
+                            android:textSize="14dp"/>
                         <TextView
                             android:id="@+id/remind_pie_three"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="힘찬"
-                            android:textSize="15dp"/>
+                            android:textSize="14dp"/>
                         <TextView
                             android:id="@+id/remind_pie_four"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="슬픔"
-                            android:textSize="15dp"/>
+                            android:textSize="14dp"/>
                         <TextView
                             android:id="@+id/remind_pie_five"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="분노"
-                            android:textSize="15dp"/>
-                        <TextView
+                            android:textSize="14dp"/>
+                        <LinearLayout
                             android:id="@+id/remind_pie_six"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="두려움"
-                            android:textSize="15dp"/>
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="두려움 "
+                                android:textSize="12dp"/>
+                            <TextView
+                                android:id="@+id/remind_pie_six_per"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="%"
+                                android:textSize="14dp"/>
+
+                        </LinearLayout>
+
 
 
                     </LinearLayout>

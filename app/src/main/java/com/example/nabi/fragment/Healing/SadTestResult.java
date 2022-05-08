@@ -2,6 +2,7 @@ package com.example.nabi.fragment.Healing;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +21,7 @@ public class SadTestResult extends AppCompatActivity {
 
     ImageButton btnCancel;
     ImageView resultIcon;
-    Button btnReTest;
+    Button btnReTest, btnQuit;
     TextView sadMention;
 
     @SuppressLint("ResourceAsColor")
@@ -34,12 +35,22 @@ public class SadTestResult extends AppCompatActivity {
 
         btnCancel = findViewById(R.id.btnCancel);
         btnReTest = findViewById(R.id.btnRetest);
+        btnQuit = findViewById(R.id.btnQuit);
 
+        // 엑스 버튼
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
 
+            }
+        });
+
+        // 마치기 버튼
+        btnQuit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
 
             }
         });
@@ -58,7 +69,9 @@ public class SadTestResult extends AppCompatActivity {
 
         if (count>=3){
             result.setText("주의! 상담권유");
-            result.setTextColor(R.color.warning);
+//            result.setTextColor(R.color.warning);
+            result.setTextColor(Color.parseColor("#FF253D63"));
+
             sadMention.setText("총 6개의 질문 중, "+count+"개의 질문에서 \"예\"를 체크하셨습니다.\n" +
                     "계절의 변화에 따른 신체 변화에 주의를 기울일 필요가 있어요.\n" +
                     "정도가 심하다면, 전문가와의 상담을 추천합니다.");
@@ -66,7 +79,8 @@ public class SadTestResult extends AppCompatActivity {
         }
         else{
             result.setText("정상");
-            result.setTextColor(R.color.good);
+//            result.setTextColor(R.color.good);
+            result.setTextColor(Color.parseColor("#FFFA8574"));
             sadMention.setText("총 6개의 질문 중, "+count+"개의 질문에서 \"예\"를 체크하셨습니다.\n" +
                     "앞으로도 나비와 함께 힐링해봐요");
             findViewById(R.id.sad_result_icon).setBackgroundResource(R.drawable.sad_good);

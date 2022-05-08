@@ -43,7 +43,9 @@ import java.util.Map;
 
 public class Healing_SadTest extends AppCompatActivity {
 
-    private int count = 0;
+
+    int countSum = 0;
+    int count[];
     RadioButton btnYes,btnNo;
     TextView tv_sad;
     LinearLayout sadLayout;
@@ -51,12 +53,16 @@ public class Healing_SadTest extends AppCompatActivity {
 
     RadioGroup rg,rg2,rg3,rg4,rg5,rg6;
 
+    boolean goToResultCount[];    // 얘가 전부 true가 되면 완료 버튼 활성화
+
     private FirebaseFirestore db;
     DatabaseReference mDBReference = null;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.healing_sad_test);
+
+        count = new int[]{0,0,0,0,0,0};
 
         ImageButton btnCancel = findViewById(R.id.btnCancel);
 
@@ -69,6 +75,8 @@ public class Healing_SadTest extends AppCompatActivity {
         tv_sad = layout.findViewById(R.id.sad_figure);
 
         btnComplete = findViewById(R.id.btnComplete);
+        btnComplete.setEnabled(false); // 처음에는 비활성화
+        goToResultCount = new boolean[]{false, false, false, false, false, false};
 
         db = FirebaseFirestore.getInstance();
 
@@ -84,9 +92,14 @@ public class Healing_SadTest extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId){
                     case R.id.btnYes:
-                        count+=1;
+                        count[0] = 1;
+                        break;
+                    case R.id.btnNo:
+                        count[0] = 0;
                         break;
                 }
+                goToResultCount[0] = true;
+                enableCompletBtn(goToResultCount);
             }
         });
         rg2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -94,9 +107,14 @@ public class Healing_SadTest extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId){
                     case R.id.btnYes2:
-                        count+=1;
+                        count[1] = 1;
+                        break;
+                    case R.id.btnNo2:
+                        count[1] = 0;
                         break;
                 }
+                goToResultCount[1] = true;
+                enableCompletBtn(goToResultCount);
             }
         });
         rg3.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -104,9 +122,14 @@ public class Healing_SadTest extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId){
                     case R.id.btnYes3:
-                        count+=1;
+                        count[2] = 1;
+                        break;
+                    case R.id.btnNo3:
+                        count[2] = 0;
                         break;
                 }
+                goToResultCount[2] = true;
+                enableCompletBtn(goToResultCount);
             }
         });
         rg4.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -114,9 +137,14 @@ public class Healing_SadTest extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId){
                     case R.id.btnYes4:
-                        count+=1;
+                        count[3] = 1;
+                        break;
+                    case R.id.btnNo4:
+                        count[3] = 0;
                         break;
                 }
+                goToResultCount[3] = true;
+                enableCompletBtn(goToResultCount);
             }
         });
         rg5.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -124,9 +152,14 @@ public class Healing_SadTest extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId){
                     case R.id.btnYes5:
-                        count+=1;
+                        count[4] = 1;
+                        break;
+                    case R.id.btnNo5:
+                        count[4] = 0;
                         break;
                 }
+                goToResultCount[4] = true;
+                enableCompletBtn(goToResultCount);
             }
         });
         rg6.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -134,11 +167,17 @@ public class Healing_SadTest extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId){
                     case R.id.btnYes6:
-                        count+=1;
+                        count[5] = 1;
+                        break;
+                    case R.id.btnNo6:
+                        count[5] = 0;
                         break;
                 }
+                goToResultCount[5] = true;
+                enableCompletBtn(goToResultCount);
             }
         });
+
 
 
         btnComplete.setOnClickListener(new View.OnClickListener() {
@@ -147,8 +186,10 @@ public class Healing_SadTest extends AppCompatActivity {
             public void onClick(View v) {
 
                 Map<String, Object> hashMap = new HashMap<>();
+                for(int i = 0; i<6; i++)
+                    countSum += count[i];
 
-                if(count>=3) {
+                if(countSum>=3) {
                     result = "주의";
                 }else{
                     result = "정상";}
@@ -192,13 +233,24 @@ public class Healing_SadTest extends AppCompatActivity {
 
     public void goToResult()
     {
-
         Intent intent = new Intent(this, SadTestResult.class);
 
-        intent.putExtra("SadTestResult", count);
+        intent.putExtra("SadTestResult", countSum);
         startActivity(intent);
         finish();
-
-
     }
+
+    // 배열이 전부 true인지 확인하고 완료버튼 활성화
+    private void enableCompletBtn(boolean[] check){
+        boolean result = true;
+        for(int i = 0; i<check.length; i++) {
+            if (!check[i])
+                result = false;
+        }
+        if(result){
+            btnComplete.setEnabled(true);
+            btnComplete.setTextColor(Color.BLACK);
+        }
+    }
+
 }
