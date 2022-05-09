@@ -166,6 +166,10 @@ public class FragHome extends Fragment {
                 t.setReorderingAllowed(false);
                 t.detach(FragHome.this).attach(FragHome.this).commitAllowingStateLoss();
 
+                getLocation();
+                day5_adapter.notifyDataSetChanged();
+                hour3_adapter.notifyDataSetChanged();
+
                 Log.d(TAG,"새로고침");
 
 

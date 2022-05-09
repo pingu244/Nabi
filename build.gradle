@@ -6,7 +6,7 @@ buildscript {
         mavenCentral()  // 페이스북 로그인
         maven { url "https://maven.google.com" } //원형 차트 그래프
         maven { url 'https://jitpack.io' }
-
+        maven { url "dl.bintray.com/riteshakya037/maven" }
 
 
     }
