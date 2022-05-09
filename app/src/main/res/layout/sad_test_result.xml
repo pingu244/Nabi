@@ -115,7 +115,7 @@
             android:layout_marginRight="7dp"/>
 
         <Button
-            android:id="@+id/btnQuit"
+            android:id="@+id/btnExit"
             android:background="@drawable/rect_btn"
             android:layout_gravity="right"
             android:layout_weight="1"

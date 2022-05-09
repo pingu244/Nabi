@@ -1,12 +1,14 @@
 package com.example.nabi.fragment.Healing.BDI;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,6 +34,7 @@ public class BdiTestResult extends Fragment {
     View view;
     TextView tv_bdiResult, tv_bdiText, tv_count1, tv_count2, tv_count3, tv_count4;
     Button btnRetest, btnExit;
+    ImageView resultIcon;
     private FirebaseFirestore db;
 
     @Override
@@ -48,6 +51,8 @@ public class BdiTestResult extends Fragment {
         tv_count2 = view.findViewById(R.id.cnt_2);
         tv_count3 = view.findViewById(R.id.cnt_3);
         tv_count4 = view.findViewById(R.id.cnt_4);
+
+        resultIcon = view.findViewById(R.id.bdi_result_icon);
 
         db = FirebaseFirestore.getInstance();
         Map<String, Object> hashMap = new HashMap<>();
@@ -69,30 +74,39 @@ public class BdiTestResult extends Fragment {
         tv_count3.setText("3번 문항 : "+cnt_3+"개");
         tv_count4.setText("4번 문항 : "+cnt_4+"개");
 
+        tv_bdiResult.setTextColor(Color.parseColor("#FF454870"));
+
         if(score<=9){
             tv_bdiResult.setText("우울하지 않은 상태");
             tv_bdiText.setText("현재 우울하지 않은 상태에요. \n" +
                     "앞으로 규칙적인 생활을 이어가보는 건 어떤가요?\n" +
                     "규칙적인 생활은 우울감을 예방하는 데 효과적이랍니다.");
-
             hashMap.put("bdi_result", "우울하지 않은 상태");
+            resultIcon.setBackgroundResource(R.drawable.bdi_r_ic_1);
+
+
         }else if (score<=15){
             tv_bdiResult.setText("가벼운 우울 상태");
             tv_bdiText.setText("현재 가벼운 우울감이 있어요.\n" +
                     "가벼운 우울증은 일상생활 속에서 자연스레 치료할 수 있어요.\n" +
                     "친구들과 많이 만나고, 여가활동을 활발하게 하는 것이 우울감 극복에 도움을 줄 수 있습니다.\n");
             hashMap.put("bdi_result", "가벼운 우울 상태");
+            resultIcon.setBackgroundResource(R.drawable.bdi_r_ic_2);
+
         }else if (score<=23){
             tv_bdiResult.setText("중한 우울 상태");
             tv_bdiText.setText("주의를 요하는 우울감이 나타나고 있어요.\n" +
                     "더 심해지기 전에 전문가와 상담을 해보는 것을 권장합니다.");
             hashMap.put("bdi_result", "중한 우울 상태");
+            resultIcon.setBackgroundResource(R.drawable.bdi_r_ic_3);
+
         }else{
             tv_bdiResult.setText("심한 우울 상태");
             tv_bdiText.setText("우울감이 일상생활에 크게 영향을 미치고 있어요.\n" +
                     "상담, 약물 치료 등 전문적인 처방을 받아야 합니다."
             );
             hashMap.put("bdi_result", "심한 우울 상태");
+            resultIcon.setBackgroundResource(R.drawable.bdi_r_ic_4);
         }
 
         db.collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid())

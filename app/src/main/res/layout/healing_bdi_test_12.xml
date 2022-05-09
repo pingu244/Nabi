@@ -9,57 +9,67 @@
     <TextView
         android:layout_gravity="center"
         android:textAlignment="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="22dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="15dp"
-        android:text="12. 지난주부터 오늘까지 자신의 상태를 \n가장 잘 나타냈다고 생각되는 항목을 \n한 가지 골라주세요."
-        android:textColor="@color/black"/>
+        android:text="지난주부터 오늘까지 자신의 상태를 \n가장 잘 나타냈다고 생각되는 항목을 \n한 가지 골라주세요."
+        android:textColor="@color/indigo_pnt"/>
 
     <View
         android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
         android:layout_gravity="center"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="2px"
-        android:background="#D5D5D5"/>
+        android:background="#E2E2E2"/>
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <RadioGroup
             android:id="@+id/bdi_12"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginHorizontal="40dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <RadioButton
                 android:id="@+id/q12_score_0"
-                android:layout_marginLeft="70dp"
-                android:text="나는 여전히 다른 사람들에게 \n관심을 가지고 있다. "
+                android:paddingLeft="10dp"
+                android:buttonTint="#454870"
+                android:textSize="15dp"
+                android:text="나는 여전히 다른 사람들에게 관심을 가지고 있다. "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <RadioButton
                 android:id="@+id/q12_score_1"
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="20dp"
-                android:text="나는 전보다 다른 사람들에게 \n관심이 줄었다."
+                android:paddingLeft="10dp"
+                android:buttonTint="#454870"
+                android:textSize="15dp"
+                android:layout_marginTop="40dp"
+                android:text="나는 전보다 다른 사람들에게 관심이 줄었다."
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <RadioButton
                 android:id="@+id/q12_score_2"
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="20dp"
-                android:text="나는 다른 사람들에게 관심이 \n거의 없어졌다."
+                android:paddingLeft="10dp"
+                android:buttonTint="#454870"
+                android:textSize="15dp"
+                android:layout_marginTop="40dp"
+                android:text="나는 다른 사람들에게 관심이 거의 없어졌다."
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <RadioButton
                 android:id="@+id/q12_score_3"
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="20dp"
-                android:text="나는 다른 사람들에게 관심이 \n완전히 없어졌다."
+                android:paddingLeft="10dp"
+                android:buttonTint="#454870"
+                android:textSize="15dp"
+                android:layout_marginTop="40dp"
+                android:text="나는 다른 사람들에게 관심이 완전히 없어졌다."
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RadioGroup>
@@ -79,7 +89,7 @@
         android:gravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp">
+        android:layout_gravity="bottom">
 
         <TextView
             android:layout_gravity="center"
@@ -87,7 +97,7 @@
             android:layout_height="wrap_content"
             android:textSize="14dp"
             android:text="12/21"
-            android:textColor="@color/black" />
+            android:textColor="@color/indigo_pnt" />
         <Button
             android:id="@+id/twelfth_next"
             android:layout_gravity="right"

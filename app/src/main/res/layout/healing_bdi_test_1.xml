@@ -12,7 +12,7 @@
         android:layout_marginTop="22dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14dp"
+        android:textSize="15dp"
         android:text="지난주부터 오늘까지 자신의 상태를 \n가장 잘 나타냈다고 생각되는 항목을 \n한 가지 골라주세요."
         android:textColor="@color/indigo_pnt"/>
 
@@ -22,7 +22,7 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="2px"
-        android:background="#D5D5D5"/>
+        android:background="#E2E2E2"/>
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -31,41 +31,52 @@
 
         <RadioGroup
             android:id="@+id/bdi_1"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
             android:layout_marginHorizontal="40dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <RadioButton
                 android:id="@+id/score_0"
+                android:paddingLeft="10dp"
+                android:buttonTint="#454870"
                 android:text="나는 슬픔을 느끼지 않는다. "
-                android:textSize="18dp"
+                android:textSize="15dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                />
 
             <RadioButton
                 android:id="@+id/score_1"
                 android:layout_marginTop="40dp"
+                android:paddingLeft="10dp"
+                android:buttonTint="#454870"
                 android:text="나는 슬픔을 느낀다."
-                android:textSize="18dp"
+                android:textSize="15dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                />
 
             <RadioButton
                 android:id="@+id/score_2"
                 android:layout_marginTop="40dp"
+                android:paddingLeft="10dp"
                 android:text="나는 항상 슬프고 기운을 낼 수 없다. "
-                android:textSize="18dp"
+                android:textSize="15dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:buttonTint="#454870"/>
 
             <RadioButton
                 android:id="@+id/score_3"
                 android:layout_marginTop="40dp"
-                android:text="나는 너무나 슬프고 불행해서 \n도저히 견딜 수 없다."
-                android:textSize="18dp"
+                android:paddingLeft="10dp"
+                android:text="나는 너무나 슬프고 불행해서 도저히 견딜 수 없다."
+                android:textSize="15dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:buttonTint="#454870"
+                android:gravity="start"/>
         </RadioGroup>
 
 
@@ -80,7 +91,6 @@
 
 
     <FrameLayout
-        android:layout_gravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -88,18 +98,15 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
             android:textSize="14dp"
             android:text="1/21"
-            android:textColor="@color/black" />
+            android:textColor="@color/indigo_pnt" />
 
         <Button
             android:id="@+id/first_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_gravity="center|right"
+            android:layout_gravity="right"
             android:background="#00ff0000"
             android:text="다음 >"
             android:textSize="14dp" />

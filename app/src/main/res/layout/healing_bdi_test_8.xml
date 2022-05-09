@@ -9,57 +9,67 @@
     <TextView
         android:layout_gravity="center"
         android:textAlignment="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="22dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="15dp"
-        android:text="8. 지난주부터 오늘까지 자신의 상태를 \n가장 잘 나타냈다고 생각되는 항목을 \n한 가지 골라주세요."
-        android:textColor="@color/black"/>
+        android:text="지난주부터 오늘까지 자신의 상태를 \n가장 잘 나타냈다고 생각되는 항목을 \n한 가지 골라주세요."
+        android:textColor="@color/indigo_pnt"/>
 
     <View
         android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
         android:layout_gravity="center"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="2px"
-        android:background="#D5D5D5"/>
+        android:background="#E2E2E2"/>
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <RadioGroup
             android:id="@+id/bdi_8"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginHorizontal="40dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <RadioButton
                 android:id="@+id/q8_score_0"
-                android:layout_marginLeft="70dp"
-                android:text="나는 내가 다른 사람보다 못하다고 \n느끼지 않는다."
+                android:paddingLeft="10dp"
+                android:buttonTint="#454870"
+                android:textSize="15dp"
+                android:text="나는 내가 다른 사람보다 못하다고 느끼지 않는다."
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <RadioButton
                 android:id="@+id/q8_score_1"
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="20dp"
-                android:text="나는 내 약점이나 실수에 대해 \n자신을 탓하는 편이다"
+                android:paddingLeft="10dp"
+                android:buttonTint="#454870"
+                android:textSize="15dp"
+                android:layout_marginTop="40dp"
+                android:text="나는 내 약점이나 실수에 대해 자신을 탓하는 편이다"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <RadioButton
                 android:id="@+id/q8_score_2"
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="20dp"
-                android:text="나는 내가 한 일이 잘못되었을 때\n항상 자신을 탓한다."
+                android:paddingLeft="10dp"
+                android:buttonTint="#454870"
+                android:textSize="15dp"
+                android:layout_marginTop="40dp"
+                android:text="나는 내가 한 일이 잘못되었을 때 항상 자신을 탓한다."
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
             <RadioButton
                 android:id="@+id/q8_score_3"
-                android:layout_marginLeft="70dp"
-                android:layout_marginTop="20dp"
-                android:text="나는 주위에서 일어나는\n모든 잘못된 일에 대해
+                android:paddingLeft="10dp"
+                android:buttonTint="#454870"
+                android:textSize="15dp"
+                android:layout_marginTop="40dp"
+                android:text="나는 주위에서 일어나는 모든 잘못된 일에 대해
 자신을 탓한다"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -80,7 +90,7 @@
         android:gravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp">
+        android:layout_gravity="bottom">
 
         <TextView
             android:layout_gravity="center"
@@ -88,7 +98,7 @@
             android:layout_height="wrap_content"
             android:textSize="14dp"
             android:text="8/21"
-            android:textColor="@color/black" />
+            android:textColor="@color/indigo_pnt" />
         <Button
             android:id="@+id/eighth_next"
             android:layout_gravity="right"

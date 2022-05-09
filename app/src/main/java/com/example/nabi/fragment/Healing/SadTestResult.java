@@ -30,7 +30,7 @@ public class SadTestResult extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sad_test_result);
 
-        TextView result = findViewById(R.id.sad_result);
+                TextView result = findViewById(R.id.sad_result);
         sadMention = findViewById(R.id.sad_mention);
 
         btnCancel = findViewById(R.id.btnCancel);
