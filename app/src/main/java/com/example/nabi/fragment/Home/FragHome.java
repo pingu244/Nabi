@@ -162,9 +162,9 @@ public class FragHome extends Fragment {
 //                ft.detach(FragHome.this).attach(FragHome.this);
 //                ft.commit();
 
-                FragmentTransaction t = getActivity().getSupportFragmentManager().beginTransaction();
-                t.setReorderingAllowed(false);
-                t.detach(FragHome.this).attach(FragHome.this).commitAllowingStateLoss();
+//                FragmentTransaction t = getActivity().getSupportFragmentManager().beginTransaction();
+//                t.setReorderingAllowed(false);
+//                t.detach(FragHome.this).attach(FragHome.this).commitAllowingStateLoss();
 
                 getLocation();
                 day5_adapter.notifyDataSetChanged();
@@ -488,6 +488,12 @@ public class FragHome extends Fragment {
                 public void onClick(DialogInterface dialog, int which) {
                     ActivityCompat.requestPermissions((Activity) getContext(),
                             new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_GPS_CODE);
+
+
+                    // 새로고침
+                    getLocation();
+                    day5_adapter.notifyDataSetChanged();
+                    hour3_adapter.notifyDataSetChanged();
                 }
             });
             builder.show();

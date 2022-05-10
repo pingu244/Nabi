@@ -46,7 +46,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>{
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"클릭",Toast.LENGTH_SHORT);
+//                Toast.makeText(getApplicationContext(),"클릭",Toast.LENGTH_SHORT);
                 Intent intent = new Intent(context, MusicPlayActivity.class);
 
                 //String name = list.get(getAdapterPosition()).getMusicTitle();

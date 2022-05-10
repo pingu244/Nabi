@@ -1,7 +1,9 @@
 package com.example.nabi.fragment.Healing;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Parcelable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nabi.MusicItemActivity;
@@ -26,6 +29,7 @@ public class MeditationAdapter extends RecyclerView.Adapter<MeditationAdapter.Vi
         this.list=list;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @NonNull
     @Override
     public MeditationAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -93,12 +97,18 @@ public class MeditationAdapter extends RecyclerView.Adapter<MeditationAdapter.Vi
         TextView tv_title, tv_playTime;
         ImageView img_main;
         Intent intent;
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tv_title = itemView.findViewById(R.id.me_title);
+            tv_title.setSingleLine(true);    // 한줄로 표시하기
+            tv_title.setEllipsize(TextUtils.TruncateAt.MARQUEE); // 흐르게 만들기
+            tv_title.setSelected(true);      // 선택하기
+            
             tv_playTime = itemView.findViewById(R.id.me_playTime);
             img_main = itemView.findViewById(R.id.me_item_image);
+            img_main.setClipToOutline(true);    // 모서리 둥글 효과 가능하게 함
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -110,7 +120,7 @@ public class MeditationAdapter extends RecyclerView.Adapter<MeditationAdapter.Vi
                     intent.putExtra("title", title);
                     view.getContext().startActivity(intent);
 
-                    Toast.makeText(view.getContext(), "클릭 되었습니다.", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(view.getContext(), "클릭 되었습니다.", Toast.LENGTH_SHORT).show();
                 }
             });
         }
