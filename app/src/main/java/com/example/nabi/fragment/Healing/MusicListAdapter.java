@@ -1,6 +1,7 @@
 package com.example.nabi.fragment.Healing;
 
 import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nabi.MusicItemActivity;
@@ -25,6 +27,7 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
         this.list=list;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @NonNull
     @Override
     public MusicListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -90,11 +93,13 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
         TextView tv_name;
         ImageView img_main;
         Intent intent;
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tv_name = itemView.findViewById(R.id.music_item_text);
             img_main = itemView.findViewById(R.id.music_item_image);
+            img_main.setClipToOutline(true);    // 모서리 둥글 효과 가능하게 함
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -104,7 +109,7 @@ public class MusicListAdapter extends RecyclerView.Adapter<MusicListAdapter.View
                     intent.putExtra("number", pos);
                     view.getContext().startActivity(intent);
 
-                    Toast.makeText(view.getContext(), "클릭 되었습니다.", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(view.getContext(), "클릭 되었습니다.", Toast.LENGTH_SHORT).show();
                 }
             });
         }

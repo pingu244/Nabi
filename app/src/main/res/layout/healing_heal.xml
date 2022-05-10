@@ -5,13 +5,12 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:paddingBottom="10dp"
+        android:padding="10dp"
         android:clipToPadding="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="35dp"
-        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="25dp"
         android:gravity="center">
 
         <LinearLayout
@@ -122,16 +121,13 @@
     </LinearLayout>
 
     <LinearLayout
-        android:paddingBottom="10dp"
+        android:padding="10dp"
         android:clipToPadding="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="15dp"
-        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="5dp"
         android:gravity="center">
-
-
 
         <LinearLayout
             android:id="@+id/sad_def"
@@ -155,13 +151,12 @@
     </LinearLayout>
 
     <LinearLayout
-        android:paddingBottom="10dp"
+        android:padding="10dp"
         android:clipToPadding="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="15dp"
-        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="5dp"
         android:gravity="center">
 
         <LinearLayout
@@ -174,14 +169,21 @@
             android:elevation="5dp"
             android:layout_marginRight="20dp">
 
+            <ImageView
+                android:id="@+id/sad_info_1_img"
+                android:src="@drawable/sad_info_img_1"
+                android:scaleType="centerCrop"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:background="@drawable/img_back"/>
 
             <TextView
-                android:layout_marginTop="130dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="계절성 정서장애\n관련정보"
+                android:text="우울감 해소에 좋은 운동"
                 android:textSize="20dp"
                 android:textColor="#454870"/>
 
@@ -198,13 +200,21 @@
             android:layout_weight="1"
             android:elevation="5dp">
 
+            <ImageView
+                android:id="@+id/sad_info_2_img"
+                android:src="@drawable/sad_info_img_2"
+                android:scaleType="centerCrop"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:background="@drawable/img_back"/>
+
             <TextView
-                android:layout_marginTop="130dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="계절성 정서장애\n관련 정보"
+                android:text="우울감을 줄여주는 음식"
                 android:textSize="20dp"
                 android:textColor="#454870" />
 

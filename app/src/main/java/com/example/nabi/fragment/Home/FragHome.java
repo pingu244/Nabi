@@ -128,10 +128,6 @@ public class FragHome extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
-
-
-
         view = inflater.inflate(R.layout.frag_home, container, false);
 
         queue= Volley.newRequestQueue(getContext());
@@ -162,16 +158,13 @@ public class FragHome extends Fragment {
 //                ft.detach(FragHome.this).attach(FragHome.this);
 //                ft.commit();
 
-                FragmentTransaction t = getActivity().getSupportFragmentManager().beginTransaction();
-                t.setReorderingAllowed(false);
-                t.detach(FragHome.this).attach(FragHome.this).commitAllowingStateLoss();
+//                FragmentTransaction t = getActivity().getSupportFragmentManager().beginTransaction();
+//                t.setReorderingAllowed(false);
+//                t.detach(FragHome.this).attach(FragHome.this).commitAllowingStateLoss();
 
                 getLocation();
                 day5_adapter.notifyDataSetChanged();
                 hour3_adapter.notifyDataSetChanged();
-
-                Log.d(TAG,"새로고침");
-
 
                 //새로고침 종료
                 background.setRefreshing(false);
@@ -268,9 +261,6 @@ public class FragHome extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat("MM월 dd일"); // 날짜 포맷
         today_date.setText(sdf.format(date));
 
-        cc1 = false; cc2 = false;
-        getLocation(); //현재 위치 불러오는 함수
-        new HomeAsync().execute(); // 로딩화면
 
 
 
@@ -298,8 +288,21 @@ public class FragHome extends Fragment {
         day5_recyclerView.setAdapter(day5_adapter);
 
 
+//        cc1 = false; cc2 = false;
+//        getLocation(); //현재 위치 불러오는 함수
+//        new HomeAsync().execute(); // 로딩화면
+
         return view;
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        getLocation();
+        day5_adapter.notifyDataSetChanged();
+        hour3_adapter.notifyDataSetChanged();
     }
 
     public Location getLocation() {
@@ -488,6 +491,12 @@ public class FragHome extends Fragment {
                 public void onClick(DialogInterface dialog, int which) {
                     ActivityCompat.requestPermissions((Activity) getContext(),
                             new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_GPS_CODE);
+
+
+                    // 새로고침
+                    getLocation();
+                    day5_adapter.notifyDataSetChanged();
+                    hour3_adapter.notifyDataSetChanged();
                 }
             });
             builder.show();

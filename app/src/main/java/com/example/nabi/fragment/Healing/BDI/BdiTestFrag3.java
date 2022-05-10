@@ -25,6 +25,7 @@ public class BdiTestFrag3 extends Fragment {
         return new BdiTestFrag3();
     }
 
+    Integer selected;
     RadioGroup bdi_3;
     RadioButton button1,button2,button3,button4;
     @Override
@@ -32,6 +33,8 @@ public class BdiTestFrag3 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Button third_next = getActivity().findViewById(R.id.third_next);
+        Button third_previous = getActivity().findViewById(R.id.third_previous);
+
         third_next.setEnabled(false);
 
         bdi_3 = view.findViewById(R.id.bdi_3);
@@ -84,22 +87,29 @@ public class BdiTestFrag3 extends Fragment {
                     case R.id.q3_score_0:
                         score+=0;
                         cnt_1++;
+                        selected = 0;
                         break;
 
                     case R.id.q3_score_1:
                         score+=1;
                         cnt_2++;
+                        selected = 1;
                         break;
 
                     case R.id.q3_score_2:
                         score+=2;
                         cnt_3++;
+                        selected = 2;
                         break;
 
                     case R.id.q3_score_3:
                         score+=3;
                         cnt_4++;
+                        selected = 3;
                         break;
+
+                    default:
+                        selected = 4;
                 }
             }
         });
@@ -122,6 +132,14 @@ public class BdiTestFrag3 extends Fragment {
                 transaction.commit();
             }
         });
+
+//        third_previous.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ((Healing_BdiTest)getActivity()).replaceFragment("page2",BdiTestFrag2.newInstance());
+//
+//            }
+//        });
     }
 
     @Override

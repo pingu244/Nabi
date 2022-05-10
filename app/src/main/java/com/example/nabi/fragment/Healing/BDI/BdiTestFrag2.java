@@ -15,6 +15,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.nabi.R;
+import com.example.nabi.fragment.Diary.WritingDiary;
+import com.example.nabi.fragment.Diary.WritingFrag1;
+import com.example.nabi.fragment.Diary.WritingFrag2;
+import com.example.nabi.fragment.Healing.Healing_BdiTest;
 
 public class BdiTestFrag2 extends Fragment {
 
@@ -32,6 +36,7 @@ public class BdiTestFrag2 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Button second_next = getActivity().findViewById(R.id.second_next);
+        Button second_previous = getActivity().findViewById(R.id.second_previous);
         second_next.setEnabled(false);
 
         bdi_2 = view.findViewById(R.id.bdi_2);
@@ -47,6 +52,7 @@ public class BdiTestFrag2 extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (button1.isChecked()){
                     second_next.setEnabled(true);
+
                 }
             }
         });
@@ -56,6 +62,7 @@ public class BdiTestFrag2 extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (button2.isChecked()){
                     second_next.setEnabled(true);
+
                 }
             }
         });
@@ -65,6 +72,7 @@ public class BdiTestFrag2 extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (button3.isChecked()){
                     second_next.setEnabled(true);
+
                 }
             }
         });
@@ -74,6 +82,7 @@ public class BdiTestFrag2 extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (button4.isChecked()){
                     second_next.setEnabled(true);
+
                 }
             }
         });
@@ -87,21 +96,25 @@ public class BdiTestFrag2 extends Fragment {
                     case R.id.q2_score_0:
                         score+=0;
                         cnt_1++;
+
                         break;
 
                     case R.id.q2_score_1:
                         score+=1;
                         cnt_2++;
+
                         break;
 
-                    case R.id. q2_score_2:
+                    case R.id.q2_score_2:
                         score+=2;
                         cnt_3++;
+
                         break;
 
-                    case R.id. q2_score_3:
+                    case R.id.q2_score_3:
                         score+=3;
                         cnt_4++;
+
                         break;
                 }
             }
@@ -125,6 +138,14 @@ public class BdiTestFrag2 extends Fragment {
                 transaction.commit();
             }
         });
+
+//        second_previous.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ((Healing_BdiTest)getActivity()).replaceFragment("page1",BdiTestFrag1.newInstance());
+//
+//            }
+//        });
     }
 
 
@@ -139,6 +160,7 @@ public class BdiTestFrag2 extends Fragment {
             cnt_2 = getArguments().getInt("cnt_2");
             cnt_3 = getArguments().getInt("cnt_3");
             cnt_4 = getArguments().getInt("cnt_4");
+
         }
 
         return inflater.inflate(R.layout.healing_bdi_test_2, container, false);

@@ -1,16 +1,19 @@
 package com.example.nabi.fragment.Healing;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.example.nabi.R;
@@ -31,12 +34,14 @@ public class Healing_heal extends Fragment {
     TextView tv_sadTest, tv_result,tv_bdiTest, tv_bdiFigure;
     LinearLayout sad_def, sad_info_1, sad_info_2;
     String result, bdiResult;
+    ImageView sadinfo1Img, sadinfo2Img;
 
     public static Healing_heal newInstance() {
         return new Healing_heal();
     }
     private FirebaseFirestore db;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
@@ -51,6 +56,11 @@ public class Healing_heal extends Fragment {
         sad_def = view.findViewById(R.id.sad_def);
         sad_info_1 = view.findViewById(R.id.sad_info_1);
         sad_info_2 = view.findViewById(R.id.sad_info_2);
+
+        sadinfo1Img = view.findViewById(R.id.sad_info_1_img);
+        sadinfo1Img.setClipToOutline(true);    // 모서리 둥글 효과 가능하게 함
+        sadinfo2Img = view.findViewById(R.id.sad_info_2_img);
+        sadinfo2Img.setClipToOutline(true);    // 모서리 둥글 효과 가능하게 함
 
         //검사 하러가기 클릭 시 SAD 테스트 화면
         tv_sadTest.setOnClickListener(new View.OnClickListener() {

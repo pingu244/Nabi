@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.nabi.R;
@@ -31,6 +32,7 @@ public class BdiTestFrag1 extends Fragment {
     RadioGroup bdi_1;
     RadioButton button1,button2,button3,button4;
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -39,6 +41,7 @@ public class BdiTestFrag1 extends Fragment {
         first_next.setEnabled(false);
 
         bdi_1 = view.findViewById(R.id.bdi_1);
+
 
         button1 = view.findViewById(R.id.score_0);
         button2 = view.findViewById(R.id.score_1);
@@ -51,6 +54,7 @@ public class BdiTestFrag1 extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (button1.isChecked()){
                     first_next.setEnabled(true);
+                    //button1.setChecked(true);
                 }
             }
         });
@@ -60,6 +64,7 @@ public class BdiTestFrag1 extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (button2.isChecked()){
                     first_next.setEnabled(true);
+                    //button2.setChecked(true);
                 }
             }
         });
@@ -69,6 +74,7 @@ public class BdiTestFrag1 extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (button3.isChecked()){
                     first_next.setEnabled(true);
+                    //button3.setChecked(true);
                 }
             }
         });
@@ -78,6 +84,7 @@ public class BdiTestFrag1 extends Fragment {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (button4.isChecked()){
                     first_next.setEnabled(true);
+                    //button4.setChecked(true);
                 }
             }
         });
@@ -91,21 +98,25 @@ public class BdiTestFrag1 extends Fragment {
                     case R.id.score_0:
                         score+=0;
                         cnt_1++;
+                        //button1.setChecked(true);
                         break;
 
                     case R.id.score_1:
                         score+=1;
                         cnt_2++;
+                        //button2.setChecked(true);
                         break;
 
                     case R.id.score_2:
                         score+=2;
                         cnt_3++;
+                        //button3.setChecked(true);
                         break;
 
                     case R.id.score_3:
                         score+=3;
                         cnt_4++;
+                        //button4.setChecked(true);
                         break;
                 }
             }

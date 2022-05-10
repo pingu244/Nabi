@@ -17,6 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nabi"
+        android:largeHeap="true"
         android:usesCleartextTraffic="true">
         <activity android:name=".fragment.Healing.BDI.BdiTestResult_Activity"></activity>
         <activity android:name=".fragment.Home.Mypage" />

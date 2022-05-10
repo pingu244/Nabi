@@ -21,8 +21,8 @@ public class BdiTestFrag19 extends Fragment {
 
     private Integer score, cnt_1, cnt_2, cnt_3, cnt_4;
     // 프래그먼트간의 이동 위한 인스턴스 생성
-    public static BdiTestFrag8 newInstance() {
-        return new BdiTestFrag8();
+    public static BdiTestFrag19 newInstance() {
+        return new BdiTestFrag19();
     }
 
     RadioGroup bdi_19;
@@ -33,6 +33,8 @@ public class BdiTestFrag19 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Button nineteenth_next = getActivity().findViewById(R.id.nineteenth_next);
+        Button nineteenth_previous = getActivity().findViewById(R.id.nineteenth_previous);
+
         nineteenth_next.setEnabled(false);
 
         bdi_19 = view.findViewById(R.id.bdi_19);
@@ -125,6 +127,13 @@ public class BdiTestFrag19 extends Fragment {
                 transaction.commit();
             }
         });
+
+//        nineteenth_previous.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ((Healing_BdiTest)getActivity()).replaceFragment("page18",BdiTestFrag18.newInstance());
+//            }
+//        });
     }
 
     @Override
