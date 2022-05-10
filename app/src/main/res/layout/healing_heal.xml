@@ -85,6 +85,7 @@
                 android:textColor="@color/white"/>
 
 
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -183,8 +184,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="우울감 해소에 좋은 운동"
-                android:textSize="20dp"
+                android:text="스트레스 완화를 위한\n스트레칭"
+                android:textSize="18dp"
                 android:textColor="#454870"/>
 
 
@@ -214,8 +215,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="우울감을 줄여주는 음식"
-                android:textSize="20dp"
+                android:text="우울감을 줄여주는\n음식"
+                android:textSize="18dp"
                 android:textColor="#454870" />
 
 
