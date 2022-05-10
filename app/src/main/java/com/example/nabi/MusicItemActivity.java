@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 
 public class MusicItemActivity extends AppCompatActivity {
 
-    TextView tv_previous;
+    ImageButton tv_previous;
     Intent intent;
     Integer number;
     String title;

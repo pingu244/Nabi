@@ -482,6 +482,7 @@ public class MusicPlayActivity extends AppCompatActivity {
                 if(progressBar.getProgress()==progressBar.getProgressMax()){
                     mediaPlayer.stop();
                     isPlaying = false;
+                    btnPlay.setImageResource(R.drawable.mcv_action_next);
                 }
             }
         }

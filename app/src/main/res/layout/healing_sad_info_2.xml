@@ -1,10 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="계절성 정서장애 관련 정보2"/>
+        android:padding="20dp">
+
+        <ImageButton
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/sadInfo2_btnPrevious"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/mypage_back"
+            android:background="#00000000"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="우울감을 줄여주는 음식"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginBottom="70dp"
+        android:layout_gravity="center"
+        android:background="@drawable/roundrectangle"
+        android:elevation="3dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="15dp">
+
+            <ImageView
+                android:background="@color/black"
+                android:id="@+id/sadInfo2_img"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="우울증에 도움이 되는 것을 생각하면 흔히 산책과 명상을 생각하실 겁니다.\n
+음식들 중에도 우울증에 도움이 되는 것과 우울증을 악화시키는 게 있다고 합니다.\n
+먼저 우울증에 도움이 되는 음식에는 비타민D가 풍부한 달걀노른자, 생선, 유제품 등이 있습니다.\n
+또한 시금치, 케일, 상추와 같은 녹색 잎채소에는 엽산과 비타민이 들어있어 뇌 기능 유지와 면역력 강화에 도움이 됩니다.\n
+호두는 오메가3 지방산이 많아 혈압을 낮추고 뇌 건강에 좋습니다.\n
+반면에 술, 설탕, 패스트푸드, 카페인은 신체적 건강뿐만 아니라 정신적 건강에도 영향을 끼치니 주의하시기 바랍니다."
+                android:textSize="18dp"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
 </LinearLayout>

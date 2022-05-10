@@ -5,6 +5,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Parcelable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -106,7 +107,6 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>{
         public int imageView;
         public int category;
 
-
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -118,6 +118,10 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>{
             super(itemView);
 
             tv_name = itemView.findViewById(R.id.music_title);
+            tv_name.setSingleLine(true);    // 한줄로 표시하기
+            tv_name.setEllipsize(TextUtils.TruncateAt.MARQUEE); // 흐르게 만들기
+            tv_name.setSelected(true);      // 선택하기
+
             img_main = itemView.findViewById(R.id.music_image);
 
             itemView.setOnClickListener(new View.OnClickListener() {
