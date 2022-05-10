@@ -4,8 +4,34 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/drawable/dot_indicator.xml" value="0.38229166666666664" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/activity_bdi_test_result_.xml" value="0.36614583333333334" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/activity_writing_diary.xml" value="0.17980072463768115" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/bdi_test_back.xml" value="0.17806484295845998" />
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/frag_home.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/fragment_writing_frag1.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/fragment_writing_frag2.xml" value="0.17806484295845998" />
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_result.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_1.xml" value="0.5" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_10.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_11.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_12.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_13.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_14.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_15.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_16.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_17.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_18.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_19.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_2.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_20.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_21.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_3.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_4.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_5.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_6.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_7.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_8.xml" value="0.17806484295845998" />
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_bdi_test_9.xml" value="0.17806484295845998" />
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/healing_music_play.xml" value="0.17806484295845998" />
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/onboarding.xml" value="0.36614583333333334" />
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/onboarding_adapter.xml" value="0.36614583333333334" />
@@ -17,7 +43,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="13" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_13" default="true" project-jdk-name="13" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -20,8 +20,8 @@ import com.example.nabi.fragment.Healing.Healing_BdiTest;
 public class BdiTestFrag4 extends Fragment {
 
 
-    public static BdiTestFrag1 newInstance() {
-        return new BdiTestFrag1();
+    public static BdiTestFrag4 newInstance() {
+        return new BdiTestFrag4();
     }
 
     RadioGroup bdi_4;
@@ -32,6 +32,8 @@ public class BdiTestFrag4 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Button fourth_next = getActivity().findViewById(R.id.fourth_next);
+        Button fourth_previous = getActivity().findViewById(R.id.fourth_previous);
+
         fourth_next.setEnabled(false);
 
         bdi_4 = view.findViewById(R.id.bdi_4);
@@ -123,6 +125,13 @@ public class BdiTestFrag4 extends Fragment {
                 transaction.commit();
             }
         });
+
+//        fourth_previous.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ((Healing_BdiTest)getActivity()).replaceFragment("page3",BdiTestFrag3.newInstance());
+//            }
+//        });
     }
 
 

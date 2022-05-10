@@ -33,6 +33,8 @@ public class BdiTestFrag5 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Button fifth_next = getActivity().findViewById(R.id.fifth_next);
+        Button fifth_previous = getActivity().findViewById(R.id.fifth_previous);
+
         fifth_next.setEnabled(false);
 
         bdi_5 = view.findViewById(R.id.bdi_5);
@@ -125,6 +127,13 @@ public class BdiTestFrag5 extends Fragment {
                 transaction.commit();
             }
         });
+
+//        fifth_previous.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ((Healing_BdiTest)getActivity()).replaceFragment("page4",BdiTestFrag4.newInstance());
+//            }
+//        });
     }
 
     @Override

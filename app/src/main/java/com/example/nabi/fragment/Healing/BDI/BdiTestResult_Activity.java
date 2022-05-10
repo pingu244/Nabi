@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.nabi.R;
@@ -27,10 +28,11 @@ import java.util.Map;
 
 public class BdiTestResult_Activity extends AppCompatActivity {
     Integer score, cnt_1, cnt_2, cnt_3, cnt_4;
-    TextView tv_bdiResult, tv_bdiText, tv_count1, tv_count2, tv_count3, tv_count4;
+    TextView tv_bdiResult, tv_bdiText, tv_count1, tv_count2, tv_count3, tv_count4, tv_score;
     Button btnRetest, btnExit;
     ImageView resultIcon,bdiResult_btnCancel;
     private FirebaseFirestore db;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,8 @@ public class BdiTestResult_Activity extends AppCompatActivity {
         tv_count2 = findViewById(R.id.cnt_2);
         tv_count3 = findViewById(R.id.cnt_3);
         tv_count4 = findViewById(R.id.cnt_4);
+        tv_score = findViewById(R.id.bdi_score);
+        progressBar = findViewById(R.id.bdi_progress);
 
         resultIcon = findViewById(R.id.bdi_result_icon);
         bdiResult_btnCancel = findViewById(R.id.bdiResult_btnCancel);
@@ -62,12 +66,13 @@ public class BdiTestResult_Activity extends AppCompatActivity {
         cnt_4 = receive_intent.getIntExtra("Bdi_cnt_4", 0);
 
 
-
         tv_count1.setText("1번 문항 : "+cnt_1+"개");
         tv_count2.setText("2번 문항 : "+cnt_2+"개");
         tv_count3.setText("3번 문항 : "+cnt_3+"개");
         tv_count4.setText("4번 문항 : "+cnt_4+"개");
+        tv_score.setText(String.valueOf(score));
 
+        progressBar.setProgress(score);
         tv_bdiResult.setTextColor(Color.parseColor("#FF454870"));
 
         if(score<=9){

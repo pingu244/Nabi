@@ -33,6 +33,8 @@ public class BdiTestFrag8 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Button eighth_next = getActivity().findViewById(R.id.eighth_next);
+        Button eighth_previous = getActivity().findViewById(R.id.eighth_previous);
+
         eighth_next.setEnabled(false);
 
         bdi_8 = view.findViewById(R.id.bdi_8);
@@ -125,6 +127,13 @@ public class BdiTestFrag8 extends Fragment {
                 transaction.commit();
             }
         });
+
+//        eighth_previous.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ((Healing_BdiTest)getActivity()).replaceFragment("page7",BdiTestFrag7.newInstance());
+//            }
+//        });
     }
 
     @Override
