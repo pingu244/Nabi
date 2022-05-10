@@ -26,12 +26,12 @@
             android:layout_marginRight="10dp">
 
             <TextView
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="22dp"
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="산책"
-                android:textColor="@color/indigo_pnt"
+                android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
 
@@ -75,7 +75,7 @@
                             android:layout_height="wrap_content"
                             android:text="/목표수"
                             android:textSize="12dp"
-                            android:textColor="#E7E7E7"/>
+                            android:textColor="#E2E2E2"/>
                     </LinearLayout>
 
                 </FrameLayout>
@@ -91,13 +91,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="17dp"
-                        android:textColor="#454870"/>
+                        android:textColor="@color/indigo_pnt"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="kcal"
                         android:textSize="12dp"
-                        android:textColor="#E7E7E7"/>
+                        android:textColor="#E2E2E2"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -112,37 +112,25 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="17dp"
-                        android:textColor="#454870"/>
+                        android:textColor="@color/indigo_pnt"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="km"
                         android:textSize="12dp"
-                        android:textColor="#E7E7E7"/>
+                        android:textColor="#E2E2E2"/>
                 </LinearLayout>
-
             </FrameLayout>
-
-
-
-
-
-
         </LinearLayout>
-
-
-
     </LinearLayout>
-
-
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="22dp"
         android:layout_marginTop="20dp"
         android:text="음악"
-        android:textSize="15dp"
+        android:textSize="20dp"
         android:textStyle="bold"
         android:textColor="@color/black"/>
 
@@ -150,17 +138,17 @@
         android:id="@+id/recycler_music"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="25dp"
         android:text="명상"
-        android:textSize="15dp"
+        android:textSize="20dp"
         android:textStyle="bold"
         android:textColor="@color/black"/>
 
@@ -168,8 +156,8 @@
         android:id="@+id/recycler_meditation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal"/>
 
 

@@ -75,8 +75,8 @@ public class Healing_therapy extends Fragment {
         music_recycler.setAdapter(musicListAdapter);
 
         //음악 카테고리 목록
-        music_itemData.add(new MusicListAdapter.MusicCategory("감각적인",  R.drawable.ic_baseline_ac_unit_24));
-        music_itemData.add(new MusicListAdapter.MusicCategory("밝은", R.drawable.ic_baseline_ac_unit_24));
+        music_itemData.add(new MusicListAdapter.MusicCategory("감각적인",  R.drawable.mpic_asmr));
+        music_itemData.add(new MusicListAdapter.MusicCategory("밝은", R.drawable.mpic_bright));
         music_itemData.add(new MusicListAdapter.MusicCategory("새벽 감성", R.drawable.ic_baseline_ac_unit_24));
         music_itemData.add(new MusicListAdapter.MusicCategory("수면", R.drawable.ic_baseline_ac_unit_24));
         music_itemData.add(new MusicListAdapter.MusicCategory("신나는", R.drawable.ic_baseline_ac_unit_24));
@@ -95,11 +95,11 @@ public class Healing_therapy extends Fragment {
 
 
         //명상 음악 목록
-        meditationItems.add(new MeditationAdapter.MeditationItem("Monumental Journey","7:45",R.drawable.ic_baseline_opacity_24));
-        meditationItems.add(new MeditationAdapter.MeditationItem("Spenta Mainyu","2:49",R.drawable.ic_baseline_opacity_24));
-        meditationItems.add(new MeditationAdapter.MeditationItem("Spirit of Fire","10:08",R.drawable.ic_baseline_opacity_24));
-        meditationItems.add(new MeditationAdapter.MeditationItem("The Sleeping Prophet","7:43",R.drawable.ic_baseline_opacity_24));
-        meditationItems.add(new MeditationAdapter.MeditationItem("Venkatesananda","10:10",R.drawable.ic_baseline_opacity_24));
+        meditationItems.add(new MeditationAdapter.MeditationItem("Monumental Journey","7:45",R.drawable.mdpic_1));
+        meditationItems.add(new MeditationAdapter.MeditationItem("Spenta Mainyu","2:49",R.drawable.mdpic_2));
+        meditationItems.add(new MeditationAdapter.MeditationItem("Spirit of Fire","10:08",R.drawable.mdpic_3));
+        meditationItems.add(new MeditationAdapter.MeditationItem("The Sleeping Prophet","7:43",R.drawable.mdpic_4));
+        meditationItems.add(new MeditationAdapter.MeditationItem("Venkatesananda","10:10",R.drawable.mdpic_5));
 
         // BDI 결과값 가져오기
         DocumentReference documentBDI = db.collection("users")
