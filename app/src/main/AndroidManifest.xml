@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 인터넷 권한 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/> <!--만보기-->
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
 
     <application
         android:name=".fragment.PushNotification.InitApplication"
@@ -18,10 +18,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Nabi"
         android:usesCleartextTraffic="true">
-        <activity android:name=".fragment.Home.Mypage"></activity>
+        <activity android:name=".fragment.Healing.BDI.BdiTestResult_Activity"></activity>
+        <activity android:name=".fragment.Home.Mypage" />
         <activity android:name=".MainActivity" />
         <activity android:name=".JoinActivity" />
-        <activity android:name=".OnBoardingActivity"/>
+        <activity android:name=".OnBoardingActivity" />
         <activity android:name=".fragment.Diary.DiaryResult" />
         <activity android:name=".fragment.Diary.WritingDiary" />
         <activity android:name=".fragment.Healing.Healing_SadTest" />
@@ -30,12 +31,11 @@
         <activity android:name=".fragment.Healing.Healing_SadDef" />
         <activity android:name=".fragment.Healing.Healing_SadInfo1" />
         <activity android:name=".fragment.Healing.Healing_SadInfo2" />
-        <activity android:name=".MusicItemActivity"/>
-        <activity android:name=".fragment.Remind.Remind_result"/>
-        <activity android:name=".fragment.Healing.MusicPlayActivity"/>
-        <activity android:name=".fragment.Healing.Healing_Meditation"/>
+        <activity android:name=".MusicItemActivity" />
+        <activity android:name=".fragment.Remind.Remind_result" />
+        <activity android:name=".fragment.Healing.MusicPlayActivity" />
+        <activity android:name=".fragment.Healing.Healing_Meditation" />
         <activity android:name=".LoginActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

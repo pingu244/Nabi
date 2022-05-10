@@ -85,5 +85,9 @@ dependencies {
     // https://github.com/lopspower/CircularImageView
     implementation 'com.mikhaellopez:circularimageview:4.3.0' // 원형 이미지뷰
 
+    // https://github.com/oneHamidreza/MeowBottomNavigation
+    // 바텀 네비게이션 바
+    implementation 'com.etebarian:meow-bottom-navigation-java:1.2.0'
+
 
 }
