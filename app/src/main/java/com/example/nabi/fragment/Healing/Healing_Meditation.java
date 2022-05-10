@@ -89,8 +89,10 @@ public class Healing_Meditation extends AppCompatActivity {
                 isPlaying = false;
                 mediaPlayer.stop();
                 mediaPlayer.release();
-                finish();
 
+                pushMeditateTime();   // 나갈때 명상시간 파베에
+
+                finish();
             }
         });
 
@@ -108,6 +110,37 @@ public class Healing_Meditation extends AppCompatActivity {
 
                     mediaPlayer.start();
                     new meditationThread().start();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            int i = 0;
+                            while(isPlaying){  // 음악이 실행중일때 계속 멘트에 변화
+
+                                int finalI = i;
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        tv_mention1.setText(meditation_mention[finalI]);
+                                        if(finalI == meditation_mention.length-1)
+                                            tv_mention2.setText(meditation_mention[0]);
+                                        else
+                                            tv_mention2.setText(meditation_mention[finalI + 1]);
+                                    }
+                                });
+                                if (i == meditation_mention.length - 1) {
+                                    i = 0;
+                                } else {
+                                    i++;
+                                }
+                                try{
+                                    Thread.sleep(20000);    // 20초
+
+                                }catch (InterruptedException e){
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    }).start();
 
                 }
 

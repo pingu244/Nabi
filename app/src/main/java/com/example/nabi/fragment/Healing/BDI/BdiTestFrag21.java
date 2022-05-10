@@ -1,5 +1,6 @@
 package com.example.nabi.fragment.Healing.BDI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.nabi.R;
 import com.example.nabi.fragment.Healing.Healing_BdiTest;
+import com.example.nabi.fragment.Healing.SadTestResult;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -114,18 +116,29 @@ public class BdiTestFrag21 extends Fragment {
 
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle(); // 번들을 통해 값 전달
-                bundle.putInt("score",score);//번들에 넘길 값 저장
-                bundle.putInt("cnt_1",cnt_1);
-                bundle.putInt("cnt_2",cnt_2);
-                bundle.putInt("cnt_3",cnt_3);
-                bundle.putInt("cnt_4",cnt_4);
+//                Bundle bundle = new Bundle(); // 번들을 통해 값 전달
+//                bundle.putInt("score",score);//번들에 넘길 값 저장
+//                bundle.putInt("cnt_1",cnt_1);
+//                bundle.putInt("cnt_2",cnt_2);
+//                bundle.putInt("cnt_3",cnt_3);
+//                bundle.putInt("cnt_4",cnt_4);
 
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                BdiTestResult frag_result = new BdiTestResult();//프래그먼트2 선언
-                frag_result.setArguments(bundle);//번들을 프래그먼트2로 보낼 준비
-                transaction.replace(R.id.bdi_test_frag, frag_result);
-                transaction.commit();
+                Intent intent = new Intent(getActivity(), BdiTestResult_Activity.class);
+
+//                intent.putExtra("BdiTestResult", bundle);
+                intent.putExtra("Bdi_score",score);//번들에 넘길 값 저장
+                intent.putExtra("Bdi_cnt_1",cnt_1);
+                intent.putExtra("Bdi_cnt_2",cnt_2);
+                intent.putExtra("Bdi_cnt_3",cnt_3);
+                intent.putExtra("Bdi_cnt_4",cnt_4);
+                startActivity(intent);
+                getActivity().finish();
+
+//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                BdiTestResult frag_result = new BdiTestResult();//프래그먼트2 선언
+//                frag_result.setArguments(bundle);//번들을 프래그먼트2로 보낼 준비
+//                transaction.replace(R.id.bdi_test_frag, frag_result);
+//                transaction.commit();
 
 
             }

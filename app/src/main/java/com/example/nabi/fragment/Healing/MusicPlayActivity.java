@@ -162,8 +162,31 @@ public class MusicPlayActivity extends AppCompatActivity {
                     //저장한 위치에서 다시 시작
 //                    mediaPlayer.seekTo(currentPos);
                     mediaPlayer.start();
-                    new musicThread().start();
+//                    new musicThread().start();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            while(isPlaying){  // 음악이 실행중일때 계속 돌아가게 함
 
+                                int time = mediaPlayer.getCurrentPosition();
+                                progressBar.setProgress(time);
+                                SimpleDateFormat sdf = new SimpleDateFormat("m:ss");
+                                Date timeInDate = new Date(time);
+                                String timeInFormat = sdf.format(timeInDate);
+
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        tv_playingTime.setText(timeInFormat);
+                                    }
+                                });
+                                if(progressBar.getProgress()==progressBar.getProgressMax()){
+                                    mediaPlayer.stop();
+                                    isPlaying = false;
+                                }
+                            }
+                        }
+                    }).start();
                 }
             }
         });
@@ -401,7 +424,31 @@ public class MusicPlayActivity extends AppCompatActivity {
     public void musicStart() {
         isPlaying = true;
         btnPlay.setImageResource(R.drawable.ic_baseline_pause_24);
-        new musicThread().start();
+//        new musicThread().start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(isPlaying){  // 음악이 실행중일때 계속 돌아가게 함
+
+                    int time = mediaPlayer.getCurrentPosition();
+                    progressBar.setProgress(time);
+                    SimpleDateFormat sdf = new SimpleDateFormat("m:ss");
+                    Date timeInDate = new Date(time);
+                    String timeInFormat = sdf.format(timeInDate);
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            tv_playingTime.setText(timeInFormat);
+                        }
+                    });
+                    if(progressBar.getProgress()==progressBar.getProgressMax()){
+                        mediaPlayer.stop();
+                        isPlaying = false;
+                    }
+                }
+            }
+        }).start();
         mediaPlayer.start();
         progressBar.setProgress(0);
         progressBar.setProgressMax(mediaPlayer.getDuration());
