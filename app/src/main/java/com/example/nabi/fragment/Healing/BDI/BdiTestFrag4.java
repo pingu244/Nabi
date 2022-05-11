@@ -85,23 +85,31 @@ public class BdiTestFrag4 extends Fragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId){
                     case R.id.q4_score_0:
-                        score+=0;
-                        cnt_1++;
+//                        score+=0;
+                        ((Healing_BdiTest)getActivity()).score[3] = 0;
+//                        cnt_1++;
+                        ((Healing_BdiTest)getActivity()).cnt[3] = 1;
                         break;
 
                     case R.id.q4_score_1:
-                        score+=1;
-                        cnt_2++;
+//                        score+=1;
+                        ((Healing_BdiTest)getActivity()).score[3] = 1;
+//                        cnt_2++;
+                        ((Healing_BdiTest)getActivity()).cnt[3] = 2;
                         break;
 
                     case R.id.q4_score_2:
-                        score+=2;
-                        cnt_3++;
+//                        score+=2;
+                        ((Healing_BdiTest)getActivity()).score[3] = 2;
+//                        cnt_3++;
+                        ((Healing_BdiTest)getActivity()).cnt[3] = 3;
                         break;
 
                     case R.id.q4_score_3:
-                        score+=3;
-                        cnt_4++;
+//                        score+=3;
+                        ((Healing_BdiTest)getActivity()).score[3] = 3;
+//                        cnt_4++;
+                        ((Healing_BdiTest)getActivity()).cnt[3] = 4;
                         break;
                 }
             }
@@ -111,27 +119,28 @@ public class BdiTestFrag4 extends Fragment {
 
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle(); // 번들을 통해 값 전달
-                bundle.putInt("score",score);//번들에 넘길 값 저장
-                bundle.putInt("cnt_1",cnt_1);
-                bundle.putInt("cnt_2",cnt_2);
-                bundle.putInt("cnt_3",cnt_3);
-                bundle.putInt("cnt_4",cnt_4);
-
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                BdiTestFrag5 fragment5 = new BdiTestFrag5();//프래그먼트2 선언
-                fragment5.setArguments(bundle);//번들을 프래그먼트2로 보낼 준비
-                transaction.replace(R.id.bdi_test_frag, fragment5);
-                transaction.commit();
+//                Bundle bundle = new Bundle(); // 번들을 통해 값 전달
+//                bundle.putInt("score",score);//번들에 넘길 값 저장
+//                bundle.putInt("cnt_1",cnt_1);
+//                bundle.putInt("cnt_2",cnt_2);
+//                bundle.putInt("cnt_3",cnt_3);
+//                bundle.putInt("cnt_4",cnt_4);
+//
+//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                BdiTestFrag5 fragment5 = new BdiTestFrag5();//프래그먼트2 선언
+//                fragment5.setArguments(bundle);//번들을 프래그먼트2로 보낼 준비
+//                transaction.replace(R.id.bdi_test_frag, fragment5);
+                ((Healing_BdiTest)getActivity()).replaceFragment("page5",BdiTestFrag5.newInstance());
+//                transaction.commit();
             }
         });
 
-//        fourth_previous.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                ((Healing_BdiTest)getActivity()).replaceFragment("page3",BdiTestFrag3.newInstance());
-//            }
-//        });
+        fourth_previous.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((Healing_BdiTest)getActivity()).replaceFragment("page3",BdiTestFrag3.newInstance());
+            }
+        });
     }
 
 
@@ -140,15 +149,15 @@ public class BdiTestFrag4 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        if (getArguments() != null)
-        {
-            score = getArguments().getInt("score"); // 프래그먼트1에서 받아온 값 넣기
-            cnt_1 = getArguments().getInt("cnt_1");
-            cnt_2 = getArguments().getInt("cnt_2");
-            cnt_3 = getArguments().getInt("cnt_3");
-            cnt_4 = getArguments().getInt("cnt_4");
-
-        }
+//        if (getArguments() != null)
+//        {
+//            score = getArguments().getInt("score"); // 프래그먼트1에서 받아온 값 넣기
+//            cnt_1 = getArguments().getInt("cnt_1");
+//            cnt_2 = getArguments().getInt("cnt_2");
+//            cnt_3 = getArguments().getInt("cnt_3");
+//            cnt_4 = getArguments().getInt("cnt_4");
+//
+//        }
 
         return inflater.inflate(R.layout.healing_bdi_test_4, container, false);
     }

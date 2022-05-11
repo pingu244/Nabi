@@ -38,6 +38,8 @@ public class Healing_BdiTest extends AppCompatActivity {
     FragmentManager fragmentManager = getSupportFragmentManager();
     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
+    public Integer score[], cnt[];
+
 
     BdiTestFrag1 bdi1 = new BdiTestFrag1();
     BdiTestFrag2 bdi2 = new BdiTestFrag2();
@@ -68,6 +70,9 @@ public class Healing_BdiTest extends AppCompatActivity {
         setContentView(R.layout.bdi_test_back);
 
         ImageButton btnCancel = findViewById(R.id.btnCancel);
+
+        score = new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        cnt = new Integer[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,47 +114,45 @@ public class Healing_BdiTest extends AppCompatActivity {
 
         if(TAG1 != null)
             fragmentTransaction.hide(TAG1);
-        else if(TAG2 != null)
+        if(TAG2 != null)
             fragmentTransaction.hide(TAG2);
-        else if(TAG3 != null)
+        if(TAG3 != null)
             fragmentTransaction.hide(TAG3);
-        else if(TAG4 != null)
+        if(TAG4 != null)
             fragmentTransaction.hide(TAG4);
-        else if(TAG5 != null)
+        if(TAG5 != null)
             fragmentTransaction.hide(TAG5);
-        else if(TAG6 != null)
+        if(TAG6 != null)
             fragmentTransaction.hide(TAG6);
-        else if(TAG7 != null)
+        if(TAG7 != null)
             fragmentTransaction.hide(TAG7);
-        else if(TAG8 != null)
+        if(TAG8 != null)
             fragmentTransaction.hide(TAG8);
-        else if(TAG9 != null)
+        if(TAG9 != null)
             fragmentTransaction.hide(TAG9);
-        else if(TAG10 != null)
+        if(TAG10 != null)
             fragmentTransaction.hide(TAG10);
-        else if(TAG11 != null)
+        if(TAG11 != null)
             fragmentTransaction.hide(TAG11);
-        else if(TAG12 != null)
+        if(TAG12 != null)
             fragmentTransaction.hide(TAG12);
-
-        else if(TAG13 != null)
+        if(TAG13 != null)
             fragmentTransaction.hide(TAG13);
-
-        else if(TAG14 != null)
+        if(TAG14 != null)
             fragmentTransaction.hide(TAG14);
-        else if(TAG15 != null)
+        if(TAG15 != null)
             fragmentTransaction.hide(TAG15);
-        else if(TAG16 != null)
+        if(TAG16 != null)
             fragmentTransaction.hide(TAG16);
-        else if(TAG17 != null)
+        if(TAG17 != null)
             fragmentTransaction.hide(TAG17);
-        else if(TAG18 != null)
+        if(TAG18 != null)
             fragmentTransaction.hide(TAG18);
-        else if(TAG19 != null)
+        if(TAG19 != null)
             fragmentTransaction.hide(TAG19);
-        else if(TAG20 != null)
+        if(TAG20 != null)
             fragmentTransaction.hide(TAG20);
-        else if(TAG21 != null)
+        if(TAG21 != null)
             fragmentTransaction.hide(TAG21);
 
 
@@ -158,101 +161,101 @@ public class Healing_BdiTest extends AppCompatActivity {
         {
             case "page1":
                 if(TAG1 == null)
-                    fragmentTransaction.replace(R.id.bdi_test_frag, bdi1, tag);
+                    fragmentTransaction.add(R.id.bdi_test_frag, bdi1, tag);
                 else fragmentTransaction.show(TAG1);    break;
 
             case "page2":
                 if(TAG2 == null)
-                    fragmentTransaction.replace(R.id.bdi_test_frag, bdi2, tag);
+                    fragmentTransaction.add(R.id.bdi_test_frag, bdi2, tag);
                 else fragmentTransaction.show(TAG2);    break;
 
             case "page3":
-                if(TAG2 == null)
-                    fragmentTransaction.replace(R.id.bdi_test_frag, bdi3, tag);
+                if(TAG3 == null)
+                    fragmentTransaction.add(R.id.bdi_test_frag, bdi3, tag);
                 else fragmentTransaction.show(TAG3);    break;
             case "page4":
                 if(TAG4 == null)
-                    fragmentTransaction.replace(R.id.bdi_test_frag, bdi4, tag);
+                    fragmentTransaction.add(R.id.bdi_test_frag, bdi4, tag);
                 else fragmentTransaction.show(TAG4);    break;
 
             case "page5":
                 if(TAG5 == null)
-                    fragmentTransaction.replace(R.id.bdi_test_frag, bdi5, tag);
+                    fragmentTransaction.add(R.id.bdi_test_frag, bdi5, tag);
                 else fragmentTransaction.show(TAG5);    break;
 
             case "page6":
                 if(TAG6 == null)
-                    fragmentTransaction.replace(R.id.bdi_test_frag, bdi6, tag);
+                    fragmentTransaction.add(R.id.bdi_test_frag, bdi6, tag);
                 else fragmentTransaction.show(TAG6);    break;
             case "page7":
                 if(TAG7 == null)
-                    fragmentTransaction.replace(R.id.bdi_test_frag, bdi7, tag);
+                    fragmentTransaction.add(R.id.bdi_test_frag, bdi7, tag);
                 else fragmentTransaction.show(TAG7);    break;
 
             case "page8":
                 if(TAG8 == null)
-                    fragmentTransaction.replace(R.id.bdi_test_frag, bdi8, tag);
+                    fragmentTransaction.add(R.id.bdi_test_frag, bdi8, tag);
                 else fragmentTransaction.show(TAG8);    break;
 
             case "page9":
                 if(TAG9 == null)
-                    fragmentTransaction.replace(R.id.bdi_test_frag, bdi9, tag);
+                    fragmentTransaction.add(R.id.bdi_test_frag, bdi9, tag);
                 else fragmentTransaction.show(TAG9);    break;
             case "page10":
                 if(TAG10 == null)
-                    fragmentTransaction.replace(R.id.bdi_test_frag, bdi10, tag);
+                    fragmentTransaction.add(R.id.bdi_test_frag, bdi10, tag);
                 else fragmentTransaction.show(TAG10);    break;
 
             case "page11":
                 if(TAG11 == null)
-                    fragmentTransaction.replace(R.id.bdi_test_frag, bdi11, tag);
+                    fragmentTransaction.add(R.id.bdi_test_frag, bdi11, tag);
                 else fragmentTransaction.show(TAG11);    break;
 
             case "page12":
                 if(TAG12 == null)
-                    fragmentTransaction.replace(R.id.bdi_test_frag, bdi12, tag);
+                    fragmentTransaction.add(R.id.bdi_test_frag, bdi12, tag);
                 else fragmentTransaction.show(TAG12);    break;
             case "page13":
                 if(TAG13 == null)
-                    fragmentTransaction.replace(R.id.bdi_test_frag, bdi13, tag);
+                    fragmentTransaction.add(R.id.bdi_test_frag, bdi13, tag);
                 else fragmentTransaction.show(TAG13);    break;
 
             case "page14":
                 if(TAG14 == null)
-                    fragmentTransaction.replace(R.id.bdi_test_frag, bdi14, tag);
+                    fragmentTransaction.add(R.id.bdi_test_frag, bdi14, tag);
                 else fragmentTransaction.show(TAG14);    break;
 
             case "page15":
                 if(TAG15 == null)
-                    fragmentTransaction.replace(R.id.bdi_test_frag, bdi15, tag);
+                    fragmentTransaction.add(R.id.bdi_test_frag, bdi15, tag);
                 else fragmentTransaction.show(TAG15);    break;
             case "page16":
                 if(TAG16 == null)
-                    fragmentTransaction.replace(R.id.bdi_test_frag, bdi16, tag);
+                    fragmentTransaction.add(R.id.bdi_test_frag, bdi16, tag);
                 else fragmentTransaction.show(TAG16);    break;
 
             case "page17":
                 if(TAG17 == null)
-                    fragmentTransaction.replace(R.id.bdi_test_frag, bdi17, tag);
+                    fragmentTransaction.add(R.id.bdi_test_frag, bdi17, tag);
                 else fragmentTransaction.show(TAG17);    break;
 
             case "page18":
                 if(TAG18 == null)
-                    fragmentTransaction.replace(R.id.bdi_test_frag, bdi18, tag);
+                    fragmentTransaction.add(R.id.bdi_test_frag, bdi18, tag);
                 else fragmentTransaction.show(TAG18);    break;
             case "page19":
                 if(TAG19 == null)
-                    fragmentTransaction.replace(R.id.bdi_test_frag, bdi19, tag);
+                    fragmentTransaction.add(R.id.bdi_test_frag, bdi19, tag);
                 else fragmentTransaction.show(TAG19);    break;
 
             case "page20":
                 if(TAG20 == null)
-                    fragmentTransaction.replace(R.id.bdi_test_frag, bdi20, tag);
+                    fragmentTransaction.add(R.id.bdi_test_frag, bdi20, tag);
                 else fragmentTransaction.show(TAG20);    break;
 
             case "page21":
                 if(TAG21 == null)
-                    fragmentTransaction.replace(R.id.bdi_test_frag, bdi21, tag);
+                    fragmentTransaction.add(R.id.bdi_test_frag, bdi21, tag);
                 else fragmentTransaction.show(TAG21);    break;
         }
 

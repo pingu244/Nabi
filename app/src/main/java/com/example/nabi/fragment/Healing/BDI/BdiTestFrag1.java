@@ -16,6 +16,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.nabi.R;
+import com.example.nabi.fragment.Healing.Healing_BdiTest;
+
 public class BdiTestFrag1 extends Fragment {
 
 
@@ -96,26 +98,35 @@ public class BdiTestFrag1 extends Fragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId){
                     case R.id.score_0:
-                        score+=0;
-                        cnt_1++;
+//                        score+=0;
+                        ((Healing_BdiTest)getActivity()).score[0] = 0;
+//                        cnt_1++;
+                        ((Healing_BdiTest)getActivity()).cnt[0] = 1;
                         //button1.setChecked(true);
                         break;
 
                     case R.id.score_1:
-                        score+=1;
-                        cnt_2++;
+//                        score+=1;
+                        ((Healing_BdiTest)getActivity()).score[0] = 1;
+//                        cnt_2++;
+                        ((Healing_BdiTest)getActivity()).cnt[0] = 2;
                         //button2.setChecked(true);
                         break;
 
                     case R.id.score_2:
-                        score+=2;
-                        cnt_3++;
+//                        score+=2;
+                        ((Healing_BdiTest)getActivity()).score[0] = 2;
+//                        cnt_3++;
+
+                        ((Healing_BdiTest)getActivity()).cnt[0] = 3;
                         //button3.setChecked(true);
                         break;
 
                     case R.id.score_3:
-                        score+=3;
-                        cnt_4++;
+//                        score+=3;
+                        ((Healing_BdiTest)getActivity()).score[0] = 3;
+//                        cnt_4++;
+                        ((Healing_BdiTest)getActivity()).cnt[0] = 4;
                         //button4.setChecked(true);
                         break;
                 }
@@ -126,18 +137,20 @@ public class BdiTestFrag1 extends Fragment {
 
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle(); // 번들을 통해 값 전달
-                bundle.putInt("score",score);//번들에 넘길 값 저장
-                bundle.putInt("cnt_1",cnt_1);
-                bundle.putInt("cnt_2",cnt_2);
-                bundle.putInt("cnt_3",cnt_3);
-                bundle.putInt("cnt_4",cnt_4);
+//                Bundle bundle = new Bundle(); // 번들을 통해 값 전달
+//                bundle.putInt("score",score);//번들에 넘길 값 저장
+//                bundle.putInt("cnt_1",cnt_1);
+//                bundle.putInt("cnt_2",cnt_2);
+//                bundle.putInt("cnt_3",cnt_3);
+//                bundle.putInt("cnt_4",cnt_4);
 
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                BdiTestFrag2 fragment2 = new BdiTestFrag2();//프래그먼트2 선언
-                fragment2.setArguments(bundle);//번들을 프래그먼트2로 보낼 준비
-                transaction.replace(R.id.bdi_test_frag, fragment2);
-                transaction.commit();
+//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                BdiTestFrag2 fragment2 = new BdiTestFrag2();//프래그먼트2 선언
+//                fragment2.setArguments(bundle);//번들을 프래그먼트2로 보낼 준비
+//                transaction.replace(R.id.bdi_test_frag, fragment2);
+
+                ((Healing_BdiTest)getActivity()).replaceFragment("page2", BdiTestFrag2.newInstance());
+//                transaction.commit();
             }
         });
     }
