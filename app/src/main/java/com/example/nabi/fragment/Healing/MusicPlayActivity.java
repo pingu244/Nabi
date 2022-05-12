@@ -84,7 +84,7 @@ public class MusicPlayActivity extends AppCompatActivity {
         if (category==0){ //감각적인
                 mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_sensitive[pos[0]]);
                 tv_title.setText(title);
-                tv_category.setText("감각적ww인");
+                tv_category.setText("감각적인");
 
         }
         else if(category==1){//행복한

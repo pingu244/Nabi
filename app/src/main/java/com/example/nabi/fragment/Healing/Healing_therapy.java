@@ -75,14 +75,14 @@ public class Healing_therapy extends Fragment {
         music_recycler.setAdapter(musicListAdapter);
 
         //음악 카테고리 목록
-        music_itemData.add(new MusicListAdapter.MusicCategory("감각적인",  R.drawable.mpic_asmr));
+        music_itemData.add(new MusicListAdapter.MusicCategory("감각적인",  R.drawable.mpic_sensitive));
         music_itemData.add(new MusicListAdapter.MusicCategory("밝은", R.drawable.mpic_bright));
-        music_itemData.add(new MusicListAdapter.MusicCategory("새벽 감성", R.drawable.ic_baseline_ac_unit_24));
-        music_itemData.add(new MusicListAdapter.MusicCategory("수면", R.drawable.ic_baseline_ac_unit_24));
-        music_itemData.add(new MusicListAdapter.MusicCategory("신나는", R.drawable.ic_baseline_ac_unit_24));
-        music_itemData.add(new MusicListAdapter.MusicCategory("잔잔한 피아노", R.drawable.ic_baseline_ac_unit_24));
-        music_itemData.add(new MusicListAdapter.MusicCategory("편안한", R.drawable.ic_baseline_ac_unit_24));
-        music_itemData.add(new MusicListAdapter.MusicCategory("ASMR", R.drawable.ic_baseline_ac_unit_24));
+        music_itemData.add(new MusicListAdapter.MusicCategory("새벽 감성", R.drawable.mpic_dawn));
+        music_itemData.add(new MusicListAdapter.MusicCategory("수면", R.drawable.mpic_sleep));
+        music_itemData.add(new MusicListAdapter.MusicCategory("신나는", R.drawable.mpic_exciting));
+        music_itemData.add(new MusicListAdapter.MusicCategory("잔잔한 피아노", R.drawable.mpic_piano));
+        music_itemData.add(new MusicListAdapter.MusicCategory("편안한", R.drawable.mpic_comfort));
+        music_itemData.add(new MusicListAdapter.MusicCategory("ASMR", R.drawable.mpic_asmr));
 
 
         //명상 어댑터 연결
