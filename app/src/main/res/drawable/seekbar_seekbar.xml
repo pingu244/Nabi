@@ -11,14 +11,17 @@
     </item>
 
     <!-- 시크바 프로그래스-->
-    <item android:id="@android:id/progress" >
-        <clip>
-            <shape android:shape="rectangle">
-                <size android:height="13dp" android:width="150dp"/>
-                <solid android:color="#FFA6A6" />
-                <corners android:radius="25dp" />
+    <item android:id="@android:id/progress"
+        android:top="0.5dp"
+        android:bottom="0.5dp"
+        android:left="0.5dp"
+        android:right="0.5dp">
+        <scale android:scaleWidth="100%">
+            <shape>
+                <corners android:radius="8dp"/>
+                <solid android:color="#FFA6A6"/>
             </shape>
-        </clip>
+        </scale>
     </item>
 
 </layer-list>

@@ -4,6 +4,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -14,8 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.nabi.MusicItemActivity;
 import com.example.nabi.R;
 
@@ -29,6 +32,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>{
         this.list=list;
     }
     Context context;
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @NonNull
     @Override
     public MusicAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -42,7 +46,8 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>{
 
         MusicAdapter.MusicItem vo = list.get(position);
         holder.tv_name.setText(vo.musicTitle);
-        holder.img_main.setImageResource(vo.imageView);
+//        holder.img_main.setImageResource(vo.imageView);
+        Glide.with(getApplicationContext()).load(vo.imageView).into(holder.img_main);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +119,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>{
         TextView tv_name;
         ImageView img_main;
 
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -123,6 +129,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder>{
             tv_name.setSelected(true);      // 선택하기
 
             img_main = itemView.findViewById(R.id.music_image);
+            img_main.setClipToOutline(true);    // 둥글 효과 가능하게 함
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 int pos = getAdapterPosition();

@@ -32,7 +32,8 @@
             android:max="5"
             android:progress="3"
             android:progressDrawable="@drawable/seekbar_seekbar"
-            android:thumb="@drawable/seekbar_thumb"/>
+            android:thumb="@drawable/seekbar_thumb"
+            android:splitTrack="false"/>
 
         <TextView
             android:id="@+id/seekbar_percent"

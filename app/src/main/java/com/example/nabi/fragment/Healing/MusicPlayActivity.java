@@ -14,7 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.nabi.R;
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import java.text.SimpleDateFormat;
@@ -24,10 +26,12 @@ public class MusicPlayActivity extends AppCompatActivity {
 
 
     CircularProgressBar progressBar;
+    CircularImageView musicPlay_img;
     TextView tv_title, tv_playingTime, tv_playTime, tv_category;
     ImageButton btnPlay, btnPlayNext, btnPlayPre, btnPrevious;
     int[] songs_sensitive, songs_happy, songs_dawn, songs_sleep, songs_exciting, songs_piano, songs_comfort, songs_asmr;
     String [] title_sensitive, title_happy, title_dawn, title_sleep, title_exciting, title_piano, title_comfort, title_asmr;
+    Integer[] imgs_sensitive, imgs_happy, imgs_dawn, imgs_sleep, imgs_exciting, imgs_piano, imgs_comfort, imgs_asmr;
 
     MediaPlayer mediaPlayer;
     int currentPos, category;
@@ -46,6 +50,7 @@ public class MusicPlayActivity extends AppCompatActivity {
         btnPlay = findViewById(R.id.btn_music_play);
         btnPlayNext = findViewById(R.id.btn_music_next);
         btnPlayPre = findViewById(R.id.btn_music_pre);
+        musicPlay_img = findViewById(R.id.musicPlay_img);
 
         tv_title = findViewById(R.id.music_name);
         tv_title.setSingleLine(true);    // 한줄로 표시하기
@@ -80,53 +85,70 @@ public class MusicPlayActivity extends AppCompatActivity {
         title_comfort = new String[]{"A_Quiet_Thought", "Almost Winter", "dawn", "Rainbow_Forest", "wedding", "Sweet_as_Honey", "Snack_Time"};
         title_asmr = new String[]{"FIRE SOUNDS", "RAIN_SHOWER", "RAIN_SOUNDS_1HR", "RAIN_SHORT", "WATERSTREAM"};
 
+        imgs_sensitive = new Integer[]{R.drawable.sens_drum, R.drawable.sens_cycle, R.drawable.sens_gravity, R.drawable.sens_lude, R.drawable.sens_ride, R.drawable.sens_you};
+        imgs_happy = new Integer[]{R.drawable.cheer_new, R.drawable.cheer_sax, R.drawable.cheer_photo, R.drawable.cheerful_birds};
+        imgs_dawn = new Integer[]{R.drawable.dawn_awake, R.drawable.dawn_longwalks, R.drawable.dawn_journey, R.drawable.dawn_neither, R.drawable.dawn_rain, R.drawable.dawn_sea, R.drawable.dawn_star, R.drawable.dawn_walk};
+        imgs_sleep = new Integer[]{R.drawable.sleep_blue, R.drawable.sleep_meet, R.drawable.sleep_sky, R.drawable.sleep_serenity, R.drawable.sleep_water, R.drawable.sleep_waterfall};
+        imgs_exciting = new Integer[]{R.drawable.exciting_passion, R.drawable.exciting_rainbow};
+        imgs_piano = new Integer[]{R.drawable.piano_lullaby, R.drawable.piano_heaven, R.drawable.piano_dream, R.drawable.piano_express, R.drawable.piano_sonata, R.drawable.piano_river};
+        imgs_comfort = new Integer[]{R.drawable.comfort_quiet, R.drawable.comfort_winter, R.drawable.comfort_dawn, R.drawable.comfort_rainbow, R.drawable.comfort_wedding, R.drawable.comfort_sweet, R.drawable.comfort_snack};
+        imgs_asmr = new Integer[]{R.drawable.asmr_fire, R.drawable.asmr_rainshower, R.drawable.asmr_rainsound,  R.drawable.asmr_rain, R.drawable.asmr_water};
+
         //mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.ambientdrumandbassmusic);// new를 쓰는 것이 아니라 플레이어 생성
         if (category==0){ //감각적인
-                mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_sensitive[pos[0]]);
-                tv_title.setText(title);
-                tv_category.setText("감각적인");
+            mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_sensitive[pos[0]]);
+            tv_title.setText(title);
+            tv_category.setText("감각적인");
+            Glide.with(this).load(imgs_sensitive[pos[0]]).into(musicPlay_img);
 
         }
         else if(category==1){//행복한
-                mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_happy[pos[0]]);
-                tv_title.setText(title);
-                tv_category.setText("밝은");
+            mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_happy[pos[0]]);
+            tv_title.setText(title);
+            tv_category.setText("밝은");
+            Glide.with(this).load(imgs_happy[pos[0]]).into(musicPlay_img);
 
         }
         else if(category==2){//새벽감성
-                mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_dawn[pos[0]]);
-                tv_title.setText(title);
-                tv_category.setText("새벽감성");
+            mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_dawn[pos[0]]);
+            tv_title.setText(title);
+            tv_category.setText("새벽감성");
+            Glide.with(this).load(imgs_dawn[pos[0]]).into(musicPlay_img);
 
         }
         else if(category==3){//수면
-                mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_sleep[pos[0]]);
-                tv_title.setText(title);
-                tv_category.setText("수면");
+            mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_sleep[pos[0]]);
+            tv_title.setText(title);
+            tv_category.setText("수면");
+            Glide.with(this).load(imgs_sleep[pos[0]]).into(musicPlay_img);
 
         }
         else if(category==4){//신나는
-                mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_exciting[pos[0]]);
-                tv_title.setText(title);
-                tv_category.setText("신나는");
+            mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_exciting[pos[0]]);
+            tv_title.setText(title);
+            tv_category.setText("신나는");
+            Glide.with(this).load(imgs_exciting[pos[0]]).into(musicPlay_img);
 
         }
         else if(category==5){//피아노
-                mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_piano[pos[0]]);
-                tv_title.setText(title);
-                tv_category.setText("잔잔한");
+            mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_piano[pos[0]]);
+            tv_title.setText(title);
+            tv_category.setText("잔잔한");
+            Glide.with(this).load(imgs_piano[pos[0]]).into(musicPlay_img);
 
         }
         else if(category==6){//편안한
-                mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_comfort[pos[0]]);
-                tv_title.setText(title);
-                tv_category.setText("편안한");
+            mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_comfort[pos[0]]);
+            tv_title.setText(title);
+            tv_category.setText("편안한");
+            Glide.with(this).load(imgs_comfort[pos[0]]).into(musicPlay_img);
 
         }
         else if(category==7){//ASMR
-                mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_asmr[pos[0]]);
-                tv_title.setText(title);
-                tv_category.setText("ASMR");
+            mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_asmr[pos[0]]);
+            tv_title.setText(title);
+            tv_category.setText("ASMR");
+            Glide.with(this).load(imgs_asmr[pos[0]]).into(musicPlay_img);
 
         }
 
@@ -196,106 +218,153 @@ public class MusicPlayActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                if (isPlaying) {
-                    mediaPlayer.stop();
-                    isPlaying = false;
-                    mediaPlayer.release();
-
-                }
-
-                if (category==0){ //감각적인
-                    pos[0]--;
-
-                    if(pos[0]<0){
-                        pos[0]=songs_sensitive.length-1;
-                    }
-                    mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_sensitive[pos[0]]);
-                    tv_title.setText(title_sensitive[pos[0]]);
-                    tv_category.setText("감각적인");
-
+                // 1초 전 상태에서 이전 버튼 누르면 앞 음악으로,
+                // 1초 지나고 이전 버튼 누르면 맨 처음으로
+                if(mediaPlayer.getCurrentPosition() > 1000){
                     isPlaying = true;
-                    musicStart();
+                    btnPlay.setImageResource(R.drawable.ic_baseline_pause_24);
+                    mediaPlayer.pause();
+                    mediaPlayer.seekTo(0);
+                    mediaPlayer.start();
 
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            while(isPlaying){  // 음악이 실행중일때 계속 돌아가게 함
 
-                }else if(category==1){//행복한
-                    pos[0]--;
+                                int time = mediaPlayer.getCurrentPosition();
+                                progressBar.setProgress(time);
+                                SimpleDateFormat sdf = new SimpleDateFormat("m:ss");
+                                Date timeInDate = new Date(time);
+                                String timeInFormat = sdf.format(timeInDate);
 
-                    if(pos[0]<0){
-                        pos[0]=songs_happy.length-1;
-                    }
-                    mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_happy[pos[0]]);
-                    tv_title.setText(title_happy[pos[0]]);
-                    tv_category.setText("밝은");
-                    musicStart();
-                }
-                else if(category==2){//새벽감성
-                    pos[0]--;
-
-                    if(pos[0]<0){
-                        pos[0]=songs_dawn.length-1;
-                    }
-                    mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_dawn[pos[0]]);
-                    tv_title.setText(title_dawn[pos[0]]);
-                    tv_category.setText("새벽감성");
-                    musicStart();
-
-                }else if(category==3){//수면
-
-                    pos[0]--;
-
-                    if(pos[0]<0){
-                        pos[0]=songs_sleep.length-1;
-                    }
-                    mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_sleep[pos[0]]);
-                    tv_title.setText(title_sleep[pos[0]]);
-                    tv_category.setText("수면");
-                    musicStart();
-
-                }else if(category==4){//신나는
-                    pos[0]--;
-
-                    if(pos[0]<0){
-                        pos[0]=songs_exciting.length-1;
-                    }
-                    mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_exciting[pos[0]]);
-                    tv_title.setText(title_exciting[pos[0]]);
-                    tv_category.setText("신나는");
-                    musicStart();
-
-                }else if(category==5){//피아노
-                    pos[0]--;
-
-                    if(pos[0]<0){
-                        pos[0]=songs_piano.length-1;
-                    }
-                    mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_piano[pos[0]]);
-                    tv_title.setText(title_piano[pos[0]]);
-                    tv_category.setText("잔잔한");
-                    musicStart();
-                }else if(category==6) {//편안한
-                    pos[0]--;
-
-                    if (pos[0]<0) {
-                        pos[0] = songs_comfort.length-1;
-                    }
-                    mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_comfort[pos[0]]);
-                    tv_title.setText(title_comfort[pos[0]]);
-                    tv_category.setText("편안한");
-                    musicStart();
-
-                }else if(category==7){//ASMR
-                    pos[0]--;
-
-                    if(pos[0]<0){
-                        pos[0]=songs_asmr.length-1;
-                    }
-                    mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_asmr[pos[0]]);
-                    tv_title.setText(title_asmr[pos[0]]);
-                    tv_category.setText("ASMR");
-                    musicStart();
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        tv_playingTime.setText(timeInFormat);
+                                    }
+                                });
+                                if(progressBar.getProgress()==progressBar.getProgressMax()){
+                                    mediaPlayer.stop();
+                                    isPlaying = false;
+                                }
+                            }
+                        }
+                    }).start();
 
                 }
+                else{
+                    if (isPlaying) {
+                        mediaPlayer.stop();
+                        isPlaying = false;
+                        mediaPlayer.release();
+                    }
+                    if (category==0){ //감각적인
+                        pos[0]--;
 
+                        if(pos[0]<0){
+                            pos[0]=songs_sensitive.length-1;
+                        }
+                        mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_sensitive[pos[0]]);
+                        tv_title.setText(title_sensitive[pos[0]]);
+                        tv_category.setText("감각적인");
+                        Glide.with(getApplicationContext()).load(imgs_sensitive[pos[0]]).into(musicPlay_img);
+
+                        musicStart();
+
+
+                    }
+                    else if(category==1){//행복한
+                        pos[0]--;
+
+                        if(pos[0]<0){
+                            pos[0]=songs_happy.length-1;
+                        }
+                        mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_happy[pos[0]]);
+                        tv_title.setText(title_happy[pos[0]]);
+                        tv_category.setText("밝은");
+                        Glide.with(getApplicationContext()).load(imgs_happy[pos[0]]).into(musicPlay_img);
+                        musicStart();
+                    }
+                    else if(category==2){//새벽감성
+                        pos[0]--;
+
+                        if(pos[0]<0){
+                            pos[0]=songs_dawn.length-1;
+                        }
+                        mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_dawn[pos[0]]);
+                        tv_title.setText(title_dawn[pos[0]]);
+                        tv_category.setText("새벽감성");
+                        Glide.with(getApplicationContext()).load(imgs_dawn[pos[0]]).into(musicPlay_img);
+                        musicStart();
+
+                    }
+                    else if(category==3){//수면
+
+                        pos[0]--;
+
+                        if(pos[0]<0){
+                            pos[0]=songs_sleep.length-1;
+                        }
+                        mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_sleep[pos[0]]);
+                        tv_title.setText(title_sleep[pos[0]]);
+                        tv_category.setText("수면");
+                        Glide.with(getApplicationContext()).load(imgs_sleep[pos[0]]).into(musicPlay_img);
+                        musicStart();
+
+                    }
+                    else if(category==4){//신나는
+                        pos[0]--;
+
+                        if(pos[0]<0){
+                            pos[0]=songs_exciting.length-1;
+                        }
+                        mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_exciting[pos[0]]);
+                        tv_title.setText(title_exciting[pos[0]]);
+                        tv_category.setText("신나는");
+                        Glide.with(getApplicationContext()).load(imgs_exciting[pos[0]]).into(musicPlay_img);
+                        musicStart();
+
+                    }
+                    else if(category==5){//피아노
+                        pos[0]--;
+
+                        if(pos[0]<0){
+                            pos[0]=songs_piano.length-1;
+                        }
+                        mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_piano[pos[0]]);
+                        tv_title.setText(title_piano[pos[0]]);
+                        tv_category.setText("잔잔한");
+                        Glide.with(getApplicationContext()).load(imgs_piano[pos[0]]).into(musicPlay_img);
+                        musicStart();
+                    }
+                    else if(category==6) {//편안한
+                        pos[0]--;
+
+                        if (pos[0]<0) {
+                            pos[0] = songs_comfort.length-1;
+                        }
+                        mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_comfort[pos[0]]);
+                        tv_title.setText(title_comfort[pos[0]]);
+                        tv_category.setText("편안한");
+                        Glide.with(getApplicationContext()).load(imgs_comfort[pos[0]]).into(musicPlay_img);
+                        musicStart();
+
+                    }
+                    else if(category==7){//ASMR
+                        pos[0]--;
+
+                        if(pos[0]<0){
+                            pos[0]=songs_asmr.length-1;
+                        }
+                        mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_asmr[pos[0]]);
+                        tv_title.setText(title_asmr[pos[0]]);
+                        tv_category.setText("ASMR");
+                        Glide.with(getApplicationContext()).load(imgs_asmr[pos[0]]).into(musicPlay_img);
+                        musicStart();
+
+                    }
+                }
 
             }
         });
@@ -320,8 +389,8 @@ public class MusicPlayActivity extends AppCompatActivity {
                     mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_sensitive[pos[0]]);
                     tv_title.setText(title_sensitive[pos[0]]);
                     tv_category.setText("감각적인");
+                    Glide.with(getApplicationContext()).load(imgs_sensitive[pos[0]]).into(musicPlay_img);
 
-                    isPlaying = true;
                     musicStart();
 
 
@@ -334,6 +403,7 @@ public class MusicPlayActivity extends AppCompatActivity {
                     mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_happy[pos[0]]);
                     tv_title.setText(title_happy[pos[0]]);
                     tv_category.setText("밝은");
+                    Glide.with(getApplicationContext()).load(imgs_happy[pos[0]]).into(musicPlay_img);
                     musicStart();
                 }
                 else if(category==2){//새벽감성
@@ -345,6 +415,7 @@ public class MusicPlayActivity extends AppCompatActivity {
                     mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_dawn[pos[0]]);
                     tv_title.setText(title_dawn[pos[0]]);
                     tv_category.setText("새벽감성");
+                    Glide.with(getApplicationContext()).load(imgs_dawn[pos[0]]).into(musicPlay_img);
                     musicStart();
 
                 }else if(category==3){//수면
@@ -357,6 +428,7 @@ public class MusicPlayActivity extends AppCompatActivity {
                     mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_sleep[pos[0]]);
                     tv_title.setText(title_sleep[pos[0]]);
                     tv_category.setText("수면");
+                    Glide.with(getApplicationContext()).load(imgs_sleep[pos[0]]).into(musicPlay_img);
                     musicStart();
 
                 }else if(category==4){//신나는
@@ -368,6 +440,7 @@ public class MusicPlayActivity extends AppCompatActivity {
                     mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_exciting[pos[0]]);
                     tv_title.setText(title_exciting[pos[0]]);
                     tv_category.setText("신나는");
+                    Glide.with(getApplicationContext()).load(imgs_exciting[pos[0]]).into(musicPlay_img);
                     musicStart();
 
                 }else if(category==5){//피아노
@@ -379,6 +452,7 @@ public class MusicPlayActivity extends AppCompatActivity {
                     mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_piano[pos[0]]);
                     tv_title.setText(title_piano[pos[0]]);
                     tv_category.setText("잔잔한");
+                    Glide.with(getApplicationContext()).load(imgs_piano[pos[0]]).into(musicPlay_img);
                     musicStart();
                 }else if(category==6) {//편안한
                     pos[0]++;
@@ -389,6 +463,7 @@ public class MusicPlayActivity extends AppCompatActivity {
                     mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_comfort[pos[0]]);
                     tv_title.setText(title_comfort[pos[0]]);
                     tv_category.setText("편안한");
+                    Glide.with(getApplicationContext()).load(imgs_comfort[pos[0]]).into(musicPlay_img);
                     musicStart();
 
                 }else if(category==7){//ASMR
@@ -400,6 +475,7 @@ public class MusicPlayActivity extends AppCompatActivity {
                     mediaPlayer = MediaPlayer.create(getApplicationContext(), songs_asmr[pos[0]]);
                     tv_title.setText(title_asmr[pos[0]]);
                     tv_category.setText("ASMR");
+                    Glide.with(getApplicationContext()).load(imgs_asmr[pos[0]]).into(musicPlay_img);
                     musicStart();
 
                 }
@@ -424,6 +500,7 @@ public class MusicPlayActivity extends AppCompatActivity {
     public void musicStart() {
         isPlaying = true;
         btnPlay.setImageResource(R.drawable.ic_baseline_pause_24);
+
 //        new musicThread().start();
         new Thread(new Runnable() {
             @Override
@@ -449,6 +526,7 @@ public class MusicPlayActivity extends AppCompatActivity {
                 }
             }
         }).start();
+
         mediaPlayer.start();
         progressBar.setProgress(0);
         progressBar.setProgressMax(mediaPlayer.getDuration());

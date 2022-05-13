@@ -454,9 +454,14 @@ public class Remind_result extends AppCompatActivity {
                                         } catch (Exception e){ steps = 0; meditate = 0;}
 
                                     }
-                                    seven_moods[finalIndex] = Integer.parseInt(mymap.get("q1_mood").toString());
+                                    try{
 
-                                    Log.v("remind___dateTest4242", (finalIndex)+"번째 기분은: " + mymap.get("q1_mood").toString()+"입니다");
+                                        seven_moods[finalIndex] = Integer.parseInt(mymap.get("q1_mood").toString());
+                                    }catch (Exception e) {
+                                        Log.v("erorrororo", finalIndex + "");
+                                    }
+
+//                                    Log.v("remind___dateTest4242", (finalIndex)+"번째 기분은: " + mymap.get("q1_mood").toString()+"입니다");
 
                                 }
 

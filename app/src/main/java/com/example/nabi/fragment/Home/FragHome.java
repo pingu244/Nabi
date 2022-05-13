@@ -162,7 +162,10 @@ public class FragHome extends Fragment {
 //                t.setReorderingAllowed(false);
 //                t.detach(FragHome.this).attach(FragHome.this).commitAllowingStateLoss();
 
-                getLocation();
+
+                cc1 = false; cc2 = false;
+                getLocation(); //현재 위치 불러오는 함수
+                new HomeAsync().execute(); // 로딩화면
                 day5_adapter.notifyDataSetChanged();
                 hour3_adapter.notifyDataSetChanged();
 
@@ -288,21 +291,14 @@ public class FragHome extends Fragment {
         day5_recyclerView.setAdapter(day5_adapter);
 
 
-//        cc1 = false; cc2 = false;
-//        getLocation(); //현재 위치 불러오는 함수
-//        new HomeAsync().execute(); // 로딩화면
+        cc1 = false; cc2 = false;
+        getLocation(); //현재 위치 불러오는 함수
+        new HomeAsync().execute(); // 로딩화면
+        day5_adapter.notifyDataSetChanged();
+        hour3_adapter.notifyDataSetChanged();
 
         return view;
 
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        getLocation();
-        day5_adapter.notifyDataSetChanged();
-        hour3_adapter.notifyDataSetChanged();
     }
 
     public Location getLocation() {

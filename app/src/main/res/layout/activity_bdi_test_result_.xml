@@ -36,7 +36,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="520dp"
+        android:layout_height="570dp"
         android:layout_marginHorizontal="25dp"
         android:layout_marginBottom="20dp"
         android:orientation="vertical"
@@ -52,6 +52,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -96,7 +97,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:layout_marginBottom="10dp"
                     android:layout_marginHorizontal="20dp"
                     android:gravity="center"
                     android:textSize="20dp"
@@ -106,27 +106,32 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="10dp"
+                    android:gravity="center">
 
                     <ProgressBar
                         android:id="@+id/bdi_progress"
-                        android:layout_width="260dp"
+                        android:layout_width="240dp"
                         android:layout_height="wrap_content"
                         android:max="63"
                         android:layout_marginHorizontal="20dp"
-                        style="?android:attr/progressBarStyleHorizontal"/>
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:progressDrawable="@drawable/bdi_result_progressbar"/>
 
                     <TextView
                         android:id="@+id/bdi_score"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:text="점수"/>
+                        android:textColor="#253D63"
+                        android:text="63 /"
+                        android:textSize="20dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=" / 63"/>
+                        android:text=" 63"
+                        android:textSize="15dp"/>
                 </LinearLayout>
 
 

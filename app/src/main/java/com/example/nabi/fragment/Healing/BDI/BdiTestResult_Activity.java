@@ -70,9 +70,12 @@ public class BdiTestResult_Activity extends AppCompatActivity {
         tv_count2.setText("2번 문항 : "+cnt_2+"개");
         tv_count3.setText("3번 문항 : "+cnt_3+"개");
         tv_count4.setText("4번 문항 : "+cnt_4+"개");
-        tv_score.setText(String.valueOf(score));
+        tv_score.setText(score+" /");
 
         progressBar.setProgress(score);
+        if(score>15)
+            progressBar.setProgressDrawable(getResources().getDrawable(R.drawable.bdi_result_progressbar2));
+
         tv_bdiResult.setTextColor(Color.parseColor("#FF454870"));
 
         if(score<=9){
