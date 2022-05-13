@@ -117,8 +117,8 @@
                         android:max="63"
                         android:layout_marginHorizontal="20dp"
                         style="?android:attr/progressBarStyleHorizontal"
-                        android:progressDrawable="@drawable/bdi_result_progressbar"/>
-
+                        />
+<!--                    android:progressDrawable="@drawable/bdi_result_progressbar-->
                     <TextView
                         android:id="@+id/bdi_score"
                         android:layout_width="wrap_content"
