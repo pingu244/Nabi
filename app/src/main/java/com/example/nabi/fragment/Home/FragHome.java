@@ -324,13 +324,13 @@ public class FragHome extends Fragment {
                 //네트워크 정보로부터 위치값 가져오기
                 if (isNetworkEnabled) {
 
-                    stop = true;
+
 
                     if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         //인터넷 권한, 위치 정보 접근 권한 설정 안 된 경우
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-
+                        stop = true;
                         builder.setTitle("권한이 필요한 이유");
                         builder.setMessage("현재 날씨 정보를 얻기 위해서는 인터넷 권한을 필요로 합니다.");
                         builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {

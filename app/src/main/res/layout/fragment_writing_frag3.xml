@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15dp"
-        android:text="왜 그런 감정이 들었을까요?"
+        android:text="4. 왜 그런 감정이 들었을까요?"
         android:textColor="@color/black"/>
 
     <LinearLayout

@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15dp"
-        android:text="그때 느낀 감정을 선택해볼까요?"
+        android:text="3. 그때 느낀 감정을 선택해볼까요?"
         android:textColor="@color/black"/>
 
 

@@ -17,7 +17,10 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.nabi.LoginActivity;
 import com.example.nabi.R;
+import com.example.nabi.fragment.PushNotification.PreferenceHelper;
 import com.google.firebase.auth.FirebaseAuth;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class Mypage_logoutFragment extends DialogFragment implements View.OnClickListener {
 
@@ -46,6 +49,9 @@ public class Mypage_logoutFragment extends DialogFragment implements View.OnClic
         switch (view.getId())
         {
             case R.id.mypage_logoutBtn:
+                PreferenceHelper.setStep(getApplicationContext(), 0);
+                PreferenceHelper.setMeditate(getApplicationContext(), 0);
+
                 firebaseAuth =  FirebaseAuth.getInstance();
                 firebaseAuth.signOut();
                 dismiss();  // fragment창 사라짐

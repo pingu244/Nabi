@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:textSize="15dp"
         android:textColor="@color/black"
-        android:text="오늘 하루를 다시 살아본다면, 어떨 것 같나요?" />
+        android:text="5. 오늘 하루를 다시 살아본다면, 어떨 것 같나요?" />
 
     <LinearLayout
         android:layout_width="match_parent"

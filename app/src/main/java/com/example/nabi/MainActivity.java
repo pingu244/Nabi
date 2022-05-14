@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 //        });
 //        bottomNavigation.show(ID_HOME, true);
 
-//        pushWalkDataPush();
+        pushWalkDataPush();
 
         // 산책 걸음수 측정
         // 활동 퍼미션 체크
