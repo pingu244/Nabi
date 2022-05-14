@@ -36,6 +36,7 @@ import com.example.nabi.R;
 import com.example.nabi.fragment.Remind.RemindAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.internal.ForegroundLinearLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -110,9 +111,42 @@ public class FragDiary_cal extends Fragment {
 //        materialCalendarView.setDateSelected(CalendarDay.today(), true);    // 오늘 선택되어있게
 
         materialCalendarView.addDecorators(
+                new EveryDayDecorator1(),
+                new EveryDayDecorator2(),
+                new EveryDayDecorator3(),
+                new EveryDayDecorator4(),
+                new EveryDayDecorator5(),
+                new EveryDayDecorator6(),
+                new EveryDayDecorator7(),
+                new EveryDayDecorator8(),
+                new EveryDayDecorator9(),
+                new EveryDayDecorator10(),
+                new EveryDayDecorator11(),
+                new EveryDayDecorator12(),
+                new EveryDayDecorator13(),
+                new EveryDayDecorator14(),
+                new EveryDayDecorator15(),
+                new EveryDayDecorator16(),
+                new EveryDayDecorator17(),
+                new EveryDayDecorator18(),
+                new EveryDayDecorator19(),
+                new EveryDayDecorator20(),
+                new EveryDayDecorator21(),
+                new EveryDayDecorator22(),
+                new EveryDayDecorator23(),
+                new EveryDayDecorator24(),
+                new EveryDayDecorator25(),
+                new EveryDayDecorator26(),
+                new EveryDayDecorator27(),
+                new EveryDayDecorator28(),
+                new EveryDayDecorator29(),
+                new EveryDayDecorator30(),
+                new EveryDayDecorator31(),
                 new FragDiary_cal.MySelectorDecorator(this),  // 선택된 애 어떻게 꾸밀지
-                new FragDiary_cal.OneDayDecorator()                // 오늘꺼 어떻게 꾸밀지
+                new FragDiary_cal.OneDayDecorator(),                // 오늘꺼 어떻게 꾸밀지
+                new EveryDayDecorator()
         );
+
 
         // 날짜 클릭할때 작동하는 함수
         materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
@@ -174,6 +208,7 @@ public class FragDiary_cal extends Fragment {
         return view;
     }
 
+    // 새로고침
     @Override
     public void onStart() {
         super.onStart();
@@ -248,6 +283,19 @@ public class FragDiary_cal extends Fragment {
     }
 
 
+    public class EveryDayDecorator implements DayViewDecorator{
+
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            return true;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+        }
+    }
+
 
     // 오늘 표시 어떻게 할지
     public class OneDayDecorator implements DayViewDecorator {
@@ -265,10 +313,12 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new StyleSpan(Typeface.BOLD));
-            view.addSpan(new RelativeSizeSpan(1.2f));
-            view.addSpan(new ForegroundColorSpan(Color.WHITE));
-            view.addSpan(new BackgroundColorSpan(Color.rgb(250,133,116)));
+//            view.addSpan(new StyleSpan(Typeface.BOLD));
+//            view.addSpan(new RelativeSizeSpan(1.2f));
+//            view.addSpan(new ForegroundColorSpan(Color.WHITE));
+//            view.addSpan(new BackgroundColorSpan(Color.rgb(250,133,116)));
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),date.getDay(),true));
             //view.setBackgroundDrawable(drawable);
             //view.setSelectionDrawable(drawable); //선택했을때 백그라운드 드로어블(선택 취소하면 나타났다사라짐)
         }
@@ -301,15 +351,7 @@ public class FragDiary_cal extends Fragment {
     }
 
     // 무드트래커
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public class MoodDecorator implements DayViewDecorator{
-        private Drawable drawable;
-        Drawable drawable0 = getResources().getDrawable(R.drawable.mood_circle2);
-        Drawable drawable1 = getResources().getDrawable(R.drawable.btnrain);
-        Drawable drawable2 = getResources().getDrawable(R.drawable.btncloudy);
-        Drawable drawable3 = getResources().getDrawable(R.drawable.btnlittlecloud);
-        Drawable drawable4 = getResources().getDrawable(R.drawable.btnclear);
-        Drawable drawable5 = getResources().getDrawable(R.drawable.mood_circle);
 
         ArrayList<String> deco_dates;
         boolean checkMood = false;
@@ -318,23 +360,6 @@ public class FragDiary_cal extends Fragment {
         public MoodDecorator(ArrayList<String> deco_dates, int mood){
             this.deco_dates = deco_dates;
             this.moodValue = mood;
-
-            switch (moodValue)
-            {
-                case 0:
-                    drawable = drawable0; break;
-                case 1:
-                    drawable = drawable1; break;
-                case 2:
-                    drawable = drawable2; break;
-                case 3:
-                    drawable = drawable3; break;
-                case 4:
-                    drawable = drawable4; break;
-                case 5:
-                    drawable = drawable5; break;
-            }
-            drawable.setBounds(0, 0, 80, 80);
         }
 
 
@@ -356,10 +381,7 @@ public class FragDiary_cal extends Fragment {
         @Override
         public void decorate(DayViewFacade view) {
 
-            view.addSpan(new ForegroundColorSpan(Color.BLACK));
-//            view.setBackgroundDrawable(drawable);
-            ImageSpan span = new ImageSpan(drawable,ImageSpan.ALIGN_BASELINE);
-            view.addSpan(span);
+            view.addSpan(new CustomSpan(getContext(),0, false, moodValue));
         }
     }
 
@@ -444,6 +466,484 @@ public class FragDiary_cal extends Fragment {
             );
         }
 
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    // 찐 광기 보여주마
+    public class EveryDayDecorator1 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 1)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),1,false));
+        }
+    }
+    public class EveryDayDecorator2 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 2)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),2,false));
+        }
+    }
+    public class EveryDayDecorator3 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 3)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),3,false));
+        }
+    }
+    public class EveryDayDecorator4 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 4)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),4,false));
+        }
+    }
+    public class EveryDayDecorator5 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 5)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),5,false));
+        }
+    }
+    public class EveryDayDecorator6 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 6)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),6,false));
+        }
+    }
+    public class EveryDayDecorator7 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 7)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),7,false));
+        }
+    }
+    public class EveryDayDecorator8 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 8)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),8,false));
+        }
+    }
+    public class EveryDayDecorator9 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 9)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),9,false));
+        }
+    }
+    public class EveryDayDecorator10 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 10)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),10,false));
+        }
+    }
+    public class EveryDayDecorator11 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 11)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),11,false));
+        }
+    }
+    public class EveryDayDecorator12 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 12)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),12,false));
+        }
+    }
+    public class EveryDayDecorator13 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 13)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),13,false));
+        }
+    }
+    public class EveryDayDecorator14 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 14)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),14,false));
+        }
+    }
+    public class EveryDayDecorator15 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 15)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),15,false));
+        }
+    }
+    public class EveryDayDecorator16 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 16)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),16,false));
+        }
+    }
+    public class EveryDayDecorator17 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 17)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),17,false));
+        }
+    }
+    public class EveryDayDecorator18 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 18)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),18,false));
+        }
+    }
+    public class EveryDayDecorator19 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 19)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),19,false));
+        }
+    }
+    public class EveryDayDecorator20 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 20)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),20,false));
+        }
+    }
+    public class EveryDayDecorator21 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 21)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),21,false));
+        }
+    }
+    public class EveryDayDecorator22 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 22)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),22,false));
+        }
+    }
+    public class EveryDayDecorator23 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 23)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),23,false));
+        }
+    }
+    public class EveryDayDecorator24 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 24)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),24,false));
+        }
+    }
+    public class EveryDayDecorator25 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 25)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),25,false));
+        }
+    }
+    public class EveryDayDecorator26 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 26)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),26,false));
+        }
+    }
+    public class EveryDayDecorator27 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 27)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),27,false));
+        }
+    }
+    public class EveryDayDecorator28 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 28)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),28,false));
+        }
+    }
+    public class EveryDayDecorator29 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 29)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),29,false));
+        }
+    }
+    public class EveryDayDecorator30 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 30)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),30,false));
+        }
+    }
+    public class EveryDayDecorator31 implements DayViewDecorator{
+        @Override
+        public boolean shouldDecorate(CalendarDay day) {
+            if(day.getDay() == 31)
+                return true;
+            else
+                return false;
+        }
+
+        @Override
+        public void decorate(DayViewFacade view) {
+            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
+            view.addSpan(new EveryDaySpan(getContext(),31,false));
+        }
     }
 
 
