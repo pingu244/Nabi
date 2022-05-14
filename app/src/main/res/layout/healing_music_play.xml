@@ -61,7 +61,7 @@
             android:id="@+id/musicPlay_img"
             android:layout_width="320dp"
             android:layout_height="320dp"
-            android:src="@drawable/asmr_water"
+            android:src="@drawable/dawn_awake"
             app:civ_border="false"
             app:civ_shadow="true"
             app:civ_shadow_radius="5dp"

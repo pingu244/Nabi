@@ -74,7 +74,7 @@ public class BdiTestResult_Activity extends AppCompatActivity {
 
         progressBar.setProgress(score);
         if(score>15)
-            //progressBar.setProgressDrawable(getResources().getDrawable(R.drawable.bdi_result_progressbar2));
+            progressBar.setProgressDrawable(getResources().getDrawable(R.drawable.bdi_result_progressbar2));
 
         tv_bdiResult.setTextColor(Color.parseColor("#FF454870"));
 
