@@ -108,9 +108,9 @@ public class FragDiary_cal extends Fragment {
         // 월 헤더 글자크기, 색 설정
         materialCalendarView.setHeaderTextAppearance(R.style.CalendarWidgetHeader);
 
-//        materialCalendarView.setDateSelected(CalendarDay.today(), true);    // 오늘 선택되어있게
 
         materialCalendarView.addDecorators(
+                new FragDiary_cal.MySelectorDecorator(this),  // 선택된 애 어떻게 꾸밀지
                 new EveryDayDecorator1(),
                 new EveryDayDecorator2(),
                 new EveryDayDecorator3(),
@@ -142,8 +142,8 @@ public class FragDiary_cal extends Fragment {
                 new EveryDayDecorator29(),
                 new EveryDayDecorator30(),
                 new EveryDayDecorator31(),
-                new FragDiary_cal.MySelectorDecorator(this),  // 선택된 애 어떻게 꾸밀지
                 new FragDiary_cal.OneDayDecorator(),                // 오늘꺼 어떻게 꾸밀지
+
                 new EveryDayDecorator()
         );
 
@@ -157,7 +157,6 @@ public class FragDiary_cal extends Fragment {
                 int Day = date.getDay();
                 String select = Year + "/" + Month + "/" + Day;
 
-                Log.i("Year test", select);
                 search(select);
             }
         });
@@ -170,17 +169,6 @@ public class FragDiary_cal extends Fragment {
                 new MoodAsyncTask(date.getMonth() + 1).execute();
             }
         });
-
-//        // 처음 떴을때 오늘날짜 일기있는지 보여주기
-//        Calendar cal = Calendar.getInstance();
-//        int cYEAR = cal.get(Calendar.YEAR);
-//        int cMonth = cal.get(Calendar.MONTH)+1;
-//        int cDay = cal.get(Calendar.DATE);
-//        String YMD = (cYEAR+"/"+cMonth+"/"+cDay);
-//        search(YMD);
-
-//        // 처음 떴을때 이번 달 무드트래커 띄우기
-//        new MoodAsyncTask(cMonth).execute();
 
     }
 
@@ -208,6 +196,8 @@ public class FragDiary_cal extends Fragment {
         return view;
     }
 
+
+
     // 새로고침
     @Override
     public void onStart() {
@@ -224,6 +214,9 @@ public class FragDiary_cal extends Fragment {
         // 처음 떴을때 이번 달 무드트래커 띄우기
         new MoodAsyncTask(cMonth).execute();
     }
+
+
+
 
     // 클릭한 날짜 일기있는지 파악해서 FragDiary_cal_bottomItem을 통해 리사이클뷰 띄우기
     private void search(String date)
@@ -313,14 +306,8 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-//            view.addSpan(new StyleSpan(Typeface.BOLD));
-//            view.addSpan(new RelativeSizeSpan(1.2f));
-//            view.addSpan(new ForegroundColorSpan(Color.WHITE));
-//            view.addSpan(new BackgroundColorSpan(Color.rgb(250,133,116)));
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),date.getDay(),true));
-            //view.setBackgroundDrawable(drawable);
-            //view.setSelectionDrawable(drawable); //선택했을때 백그라운드 드로어블(선택 취소하면 나타났다사라짐)
+            view.setBackgroundDrawable(drawable);
         }
 
         public void setDate(Date date) {

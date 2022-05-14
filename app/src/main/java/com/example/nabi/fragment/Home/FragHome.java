@@ -240,11 +240,9 @@ public class FragHome extends Fragment {
                                     nickname = (String) mymap.get("name");
                                     try {
                                         gloomyWeather = Integer.parseInt(mymap.get("gloomyWeather").toString());
+                                        Toast.makeText(getActivity(), nickname+"님 환영합니다!", Toast.LENGTH_SHORT).show();
                                     } catch (Exception e){}
 
-
-
-                                    Toast.makeText(getActivity(), nickname+"님 환영합니다!", Toast.LENGTH_SHORT).show();
                                     ((MainActivity)getActivity()).LoginSuccess = false;
 
 
