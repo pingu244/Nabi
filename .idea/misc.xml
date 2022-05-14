@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/drawable/circle_img.xml" value="0.22083333333333333" />
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/drawable/circle_progressbar.xml" value="0.22083333333333333" />
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/drawable/dot_indicator.xml" value="0.38229166666666664" />
         <entry key="..\:/AndroidStudioProjects/Nabi/app/src/main/res/layout/activity_bdi_test_result_.xml" value="0.36614583333333334" />

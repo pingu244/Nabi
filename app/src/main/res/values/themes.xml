@@ -13,7 +13,7 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
 
         <item name="android:textViewStyle">@style/customTextViewFontStyle</item>
-        <item name="android:buttonStyle">@style/customTextViewFontStyle</item>
+
         <item name="android:editTextStyle">@style/customTextViewFontStyle</item>
 
 
@@ -29,6 +29,7 @@
         <item name="android:unfocusedMonthDateColor">@android:color/transparent</item>
         <item name="android:weekDayTextAppearance">@style/TextAppearance.AppCompat.Medium</item>
         <item name="android:dateTextAppearance">@style/TextAppearance.AppCompat.Medium</item>
+
     </style>
 
     <!-- 달력에 사용하는 스타일 -->
