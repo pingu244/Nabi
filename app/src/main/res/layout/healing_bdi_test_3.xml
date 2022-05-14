@@ -40,6 +40,7 @@
                 android:buttonTint="#454870"
                 android:textSize="15dp"
                 android:text="나는 실패자라고 느끼지 않는다. "
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -50,6 +51,7 @@
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
                 android:text="나는 다른 사람들보다 더 많이 실패했다고 느낀다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -60,6 +62,7 @@
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
                 android:text="나의 살아온 과거를 되돌아보면 실패투성이라고 느낀다"
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -70,6 +73,7 @@
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
                 android:text="나는 인간으로서 완전히 실패했다고 느낀다"
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RadioGroup>

@@ -40,6 +40,7 @@
                 android:buttonTint="#454870"
                 android:textSize="15dp"
                 android:text="나는 전보다 더 피곤하지 않다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -50,6 +51,7 @@
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
                 android:text="나는 전보다 더 쉽게 피곤해진다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -60,6 +62,7 @@
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
                 android:text="나는 무슨 일을 하든 곧 피곤해진다. "
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -70,6 +73,7 @@
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
                 android:text="나는 너무나 피곤해서 아무 일도 할 수가 없다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RadioGroup>

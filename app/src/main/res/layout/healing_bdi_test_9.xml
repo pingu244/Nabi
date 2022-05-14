@@ -40,6 +40,7 @@
                 android:paddingLeft="10dp"
                 android:buttonTint="#454870"
                 android:textSize="15dp"
+                style="@style/customTextViewFontStyle"
                 android:text="나는 자살 같은 것은 생각하지 않는다."
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -50,6 +51,7 @@
                 android:buttonTint="#454870"
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
+                style="@style/customTextViewFontStyle"
                 android:text="나는 자살할 생각을 가끔 하지만 실행하지는 않을 것이다"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -60,6 +62,7 @@
                 android:buttonTint="#454870"
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
+                style="@style/customTextViewFontStyle"
                 android:text="나는 자살하고 싶은 생각이 자주 든다."
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -70,6 +73,7 @@
                 android:buttonTint="#454870"
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
+                style="@style/customTextViewFontStyle"
                 android:text="나는 기회가 있으면 자살하겠다."
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

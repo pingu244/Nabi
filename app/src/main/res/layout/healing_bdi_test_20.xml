@@ -40,6 +40,7 @@
                 android:buttonTint="#454870"
                 android:textSize="15dp"
                 android:text="나는 전보다 건강에 대해 더 염려하지는 않는다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -49,6 +50,7 @@
                 android:buttonTint="#454870"
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
+                style="@style/customTextViewFontStyle"
                 android:text="나는 통증, 소화불량, 변비 등의 \n신체적 문제로 걱정하고 있다"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -59,6 +61,7 @@
                 android:buttonTint="#454870"
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
+                style="@style/customTextViewFontStyle"
                 android:text="나는 건강이 너무 걱정되어 \n다른 일을 생각하기 힘들다"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -69,6 +72,7 @@
                 android:buttonTint="#454870"
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
+                style="@style/customTextViewFontStyle"
                 android:text="나는 건강이 너무 걱정되어 \n다른 일을 아무것도 생각할 수가 없다."
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

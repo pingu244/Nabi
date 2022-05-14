@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+   >
 
     <TextView
         android:layout_gravity="center"
@@ -42,6 +43,7 @@
                 android:buttonTint="#454870"
                 android:text="나는 슬픔을 느끼지 않는다. "
                 android:textSize="15dp"
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
@@ -53,6 +55,7 @@
                 android:buttonTint="#454870"
                 android:text="나는 슬픔을 느낀다."
                 android:textSize="15dp"
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
@@ -63,6 +66,7 @@
                 android:paddingLeft="10dp"
                 android:text="나는 항상 슬프고 기운을 낼 수 없다. "
                 android:textSize="15dp"
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:buttonTint="#454870"/>
@@ -73,6 +77,7 @@
                 android:paddingLeft="10dp"
                 android:text="나는 너무나 슬프고 불행해서 도저히 견딜 수 없다."
                 android:textSize="15dp"
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:buttonTint="#454870"

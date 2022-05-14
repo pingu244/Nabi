@@ -41,6 +41,7 @@
                 android:buttonTint="#454870"
                 android:textSize="15dp"
                 android:text="나는 전보다 몸무게가 줄지 않았다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -51,6 +52,7 @@
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
                 android:text="나는 전보다 몸무게가 2Kg 가량 줄었다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -61,6 +63,7 @@
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
                 android:text="나는 전보다 몸무게가 5Kg 가량 줄었다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -71,6 +74,7 @@
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
                 android:text="나는 전보다 몸무게가 7Kg 가량 줄었다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RadioGroup>

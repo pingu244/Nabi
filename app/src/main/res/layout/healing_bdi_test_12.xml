@@ -41,6 +41,7 @@
                 android:textSize="15dp"
                 android:text="나는 여전히 다른 사람들에게 관심을 가지고 있다. "
                 android:layout_width="wrap_content"
+                style="@style/customTextViewFontStyle"
                 android:layout_height="wrap_content"/>
 
             <RadioButton
@@ -51,6 +52,7 @@
                 android:layout_marginTop="40dp"
                 android:text="나는 전보다 다른 사람들에게 관심이 줄었다."
                 android:layout_width="wrap_content"
+                style="@style/customTextViewFontStyle"
                 android:layout_height="wrap_content"/>
 
             <RadioButton
@@ -60,6 +62,7 @@
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
                 android:text="나는 다른 사람들에게 관심이 거의 없어졌다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -70,6 +73,7 @@
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
                 android:text="나는 다른 사람들에게 관심이 완전히 없어졌다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RadioGroup>

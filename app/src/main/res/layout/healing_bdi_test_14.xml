@@ -40,6 +40,7 @@
                 android:buttonTint="#454870"
                 android:textSize="15dp"
                 android:text="나는 전보다 내 모습이 더 나빠졌다고 느끼지 않는다. "
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -51,6 +52,7 @@
                 android:layout_marginTop="40dp"
                 android:text=" 나는 나이들어 보이거나 매력없어 보일까봐 걱정한다."
                 android:layout_width="wrap_content"
+                style="@style/customTextViewFontStyle"
                 android:layout_height="wrap_content"/>
 
             <RadioButton
@@ -60,6 +62,7 @@
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
                 android:text="나는 내가 매력이 없어졌다고 느낀다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -70,6 +73,7 @@
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
                 android:text="나는 내가 추해 보인다고 느낀다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RadioGroup>

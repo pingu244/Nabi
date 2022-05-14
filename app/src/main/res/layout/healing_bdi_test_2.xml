@@ -41,6 +41,7 @@
                 android:buttonTint="#454870"
                 android:textSize="15dp"
                 android:text="나는 앞날에 대해 별로 낙담하지 않는다"
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -51,6 +52,7 @@
                 android:layout_marginTop="40dp"
                 android:textSize="15dp"
                 android:text="나는 앞날에 대해 용기가 나지 않는다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -61,6 +63,7 @@
                 android:paddingLeft="10dp"
                 android:buttonTint="#454870"
                 android:text="나는 앞날에 대해 기대할 것이 아무것도 없다고 느낀다"
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -71,6 +74,7 @@
                 android:paddingLeft="10dp"
                 android:buttonTint="#454870"
                 android:text="나의 앞날은 아주 절망적이고 나아질 가망이 없다고 느낀다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RadioGroup>

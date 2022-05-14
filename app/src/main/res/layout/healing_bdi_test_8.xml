@@ -40,6 +40,7 @@
                 android:buttonTint="#454870"
                 android:textSize="15dp"
                 android:text="나는 내가 다른 사람보다 못하다고 느끼지 않는다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -49,7 +50,8 @@
                 android:buttonTint="#454870"
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
-                android:text="나는 내 약점이나 실수에 대해 자신을 탓하는 편이다"
+                android:text="나는 내 약점이나 실수에 대해 자신을 탓하는 편이다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -60,6 +62,7 @@
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
                 android:text="나는 내가 한 일이 잘못되었을 때 항상 자신을 탓한다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -69,6 +72,7 @@
                 android:buttonTint="#454870"
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
+                style="@style/customTextViewFontStyle"
                 android:text="나는 주위에서 일어나는 모든 잘못된 일에 대해
 자신을 탓한다"
                 android:layout_width="wrap_content"

@@ -41,6 +41,7 @@
                 android:buttonTint="#454870"
                 android:textSize="15dp"
                 android:text="나는 전보다 더 짜증을 내지는 않는다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -51,6 +52,7 @@
                 android:layout_marginTop="40dp"
                 android:textSize="15dp"
                 android:text="나는 전보다 더 쉽게 짜증이 나고 귀찮아진다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -61,6 +63,7 @@
                 android:layout_marginTop="40dp"
                 android:textSize="15dp"
                 android:text="나는 요즘 항상 짜증이 난다. "
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -72,6 +75,7 @@
                 android:textSize="15dp"
                 android:text="전에는 짜증나던 일에 요즘은 너무 지쳐서 짜증조차 나지 않는다."
                 android:layout_width="wrap_content"
+                style="@style/customTextViewFontStyle"
                 android:layout_height="wrap_content"/>
         </RadioGroup>
 

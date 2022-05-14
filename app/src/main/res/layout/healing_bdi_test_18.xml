@@ -39,7 +39,8 @@
                 android:paddingLeft="10dp"
                 android:buttonTint="#454870"
                 android:textSize="15dp"
-                android:text="내 식욕은 전과 다름없다"
+                android:text="내 식욕은 전과 다름없다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -50,6 +51,7 @@
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
                 android:text="내 식욕이 전보다 좋지 않다. "
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -59,7 +61,8 @@
                 android:buttonTint="#454870"
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
-                android:text="내 식욕이 전보다 매우 줄었다"
+                android:text="내 식욕이 전보다 매우 줄었다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -70,6 +73,7 @@
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
                 android:text="요즘에는 전혀 식욕이 없다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RadioGroup>

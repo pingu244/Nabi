@@ -40,6 +40,7 @@
                 android:buttonTint="#454870"
                 android:textSize="15dp"
                 android:text="나는 전보다 더 울지는 않는다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -50,6 +51,7 @@
                 android:layout_marginTop="40dp"
                 android:textSize="15dp"
                 android:text=" 나는 전보다 더 많이 운다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -60,6 +62,7 @@
                 android:layout_marginTop="40dp"
                 android:textSize="15dp"
                 android:text="나는 요즘 항상 운다. "
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -69,6 +72,7 @@
                 android:buttonTint="#454870"
                 android:layout_marginTop="40dp"
                 android:textSize="15dp"
+                style="@style/customTextViewFontStyle"
                 android:text="나는 전에는 울고 싶을 때 울 수 있었지만 요즘은 울래야 울 기력조차 없다."
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

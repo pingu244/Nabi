@@ -40,6 +40,7 @@
                 android:buttonTint="#454870"
                 android:textSize="15dp"
                 android:text="나는 전과 다름없이 일을 할 수 있다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -50,6 +51,7 @@
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
                 android:text="나는 어떤 일을 시작하는데 전보다 더 많은 노력이 든다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -61,6 +63,7 @@
                 android:layout_marginTop="40dp"
                 android:text="나는 무슨 일이든 하려면 자신을 매우 심하게 채찍질해야만 한다."
                 android:layout_width="wrap_content"
+                style="@style/customTextViewFontStyle"
                 android:layout_height="wrap_content"/>
 
             <RadioButton
@@ -70,6 +73,7 @@
                 android:textSize="15dp"
                 android:layout_marginTop="40dp"
                 android:text="나는 아무런 일도 할 수가 없다."
+                style="@style/customTextViewFontStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RadioGroup>
