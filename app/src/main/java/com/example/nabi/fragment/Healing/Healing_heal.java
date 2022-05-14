@@ -107,6 +107,65 @@ public class Healing_heal extends Fragment {
             }
         });
 
+//        // sad 결과값 가져오기
+//        DocumentReference docRef = db.collection("users")
+//                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                .collection("healing").document("SAD Result");
+//
+//        // BDI 결과값 가져오기
+//        DocumentReference documentBDI = db.collection("users")
+//                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                .collection("healing").document("BDI Result");
+//
+//        // document가져오는 리스너
+//        Task<DocumentSnapshot> documentSnapshotTask = docRef.get()
+//                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            if (document.exists()) {
+//                                Log.d("dataOutput", "DocumentSnapshot data: " + document.getData());
+//                                Map<String, Object> mymap = document.getData();
+//                                result = (String) mymap.get("sad_result");
+//                                tv_result.setText(result);
+//                            }
+//
+//
+//                        }
+//
+//
+//                    }
+//                });
+//
+//
+//        // document가져오는 리스너
+//        Task<DocumentSnapshot> documentSnapshotTask2 = documentBDI.get()
+//                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            if (document.exists()) {
+//                                Log.d("dataOutput", "DocumentSnapshot data: " + document.getData());
+//                                Map<String, Object> mymap = document.getData();
+//                                bdiResult = (String) mymap.get("bdi_result");
+//                                tv_bdiFigure.setText(bdiResult);
+//                            }
+//
+//
+//                        }
+//
+//
+//                    }
+//                });
+        return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
         // sad 결과값 가져오기
         DocumentReference docRef = db.collection("users")
                 .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -159,6 +218,5 @@ public class Healing_heal extends Fragment {
 
                     }
                 });
-        return view;
     }
 }

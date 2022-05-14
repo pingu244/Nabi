@@ -107,7 +107,7 @@ public class FragDiary_cal extends Fragment {
         // 월 헤더 글자크기, 색 설정
         materialCalendarView.setHeaderTextAppearance(R.style.CalendarWidgetHeader);
 
-        materialCalendarView.setDateSelected(CalendarDay.today(), true);    // 오늘 선택되어있게
+//        materialCalendarView.setDateSelected(CalendarDay.today(), true);    // 오늘 선택되어있게
 
         materialCalendarView.addDecorators(
                 new FragDiary_cal.MySelectorDecorator(this),  // 선택된 애 어떻게 꾸밀지
@@ -137,16 +137,16 @@ public class FragDiary_cal extends Fragment {
             }
         });
 
-        // 처음 떴을때 오늘날짜 일기있는지 보여주기
-        Calendar cal = Calendar.getInstance();
-        int cYEAR = cal.get(Calendar.YEAR);
-        int cMonth = cal.get(Calendar.MONTH)+1;
-        int cDay = cal.get(Calendar.DATE);
-        String YMD = (cYEAR+"/"+cMonth+"/"+cDay);
-        search(YMD);
+//        // 처음 떴을때 오늘날짜 일기있는지 보여주기
+//        Calendar cal = Calendar.getInstance();
+//        int cYEAR = cal.get(Calendar.YEAR);
+//        int cMonth = cal.get(Calendar.MONTH)+1;
+//        int cDay = cal.get(Calendar.DATE);
+//        String YMD = (cYEAR+"/"+cMonth+"/"+cDay);
+//        search(YMD);
 
-        // 처음 떴을때 이번 달 무드트래커 띄우기
-        new MoodAsyncTask(cMonth).execute();
+//        // 처음 떴을때 이번 달 무드트래커 띄우기
+//        new MoodAsyncTask(cMonth).execute();
 
     }
 
@@ -174,6 +174,21 @@ public class FragDiary_cal extends Fragment {
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        materialCalendarView.setDateSelected(CalendarDay.today(), true);    // 오늘 선택되어있게
+        // 처음 떴을때 오늘날짜 일기있는지 보여주기
+        Calendar cal = Calendar.getInstance();
+        int cYEAR = cal.get(Calendar.YEAR);
+        int cMonth = cal.get(Calendar.MONTH)+1;
+        int cDay = cal.get(Calendar.DATE);
+        String YMD = (cYEAR+"/"+cMonth+"/"+cDay);
+        search(YMD);
+
+        // 처음 떴을때 이번 달 무드트래커 띄우기
+        new MoodAsyncTask(cMonth).execute();
+    }
 
     // 클릭한 날짜 일기있는지 파악해서 FragDiary_cal_bottomItem을 통해 리사이클뷰 띄우기
     private void search(String date)
@@ -341,7 +356,7 @@ public class FragDiary_cal extends Fragment {
         @Override
         public void decorate(DayViewFacade view) {
 
-//            view.addSpan(new ForegroundColorSpan(Color.BLACK));
+            view.addSpan(new ForegroundColorSpan(Color.BLACK));
 //            view.setBackgroundDrawable(drawable);
             ImageSpan span = new ImageSpan(drawable,ImageSpan.ALIGN_BASELINE);
             view.addSpan(span);

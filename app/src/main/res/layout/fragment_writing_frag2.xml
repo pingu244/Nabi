@@ -783,7 +783,9 @@
     <FrameLayout
         android:id="@+id/page2_pagechangeview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="15dp"
+        android:layout_marginHorizontal="15dp">
 
         <Button
             android:id="@+id/second_prior"

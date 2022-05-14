@@ -79,7 +79,7 @@ public class FragHome extends Fragment {
 
     //AVD로 실행 시 구글 본사 위치
 
-    boolean cc1, cc2;
+    boolean cc1, cc2, stop=false;
     ProgressDialog mDialog;
     @Nullable
     View view;
@@ -238,7 +238,10 @@ public class FragHome extends Fragment {
                                 if (document.exists()) {
                                     Map<String, Object> mymap = document.getData();
                                     nickname = (String) mymap.get("name");
-                                    gloomyWeather = Integer.parseInt(mymap.get("gloomyWeather").toString());
+                                    try {
+                                        gloomyWeather = Integer.parseInt(mymap.get("gloomyWeather").toString());
+                                    } catch (Exception e){}
+
 
 
                                     Toast.makeText(getActivity(), nickname+"님 환영합니다!", Toast.LENGTH_SHORT).show();
@@ -321,6 +324,8 @@ public class FragHome extends Fragment {
                 //네트워크 정보로부터 위치값 가져오기
                 if (isNetworkEnabled) {
 
+                    stop = true;
+
                     if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         //인터넷 권한, 위치 정보 접근 권한 설정 안 된 경우
 
@@ -332,6 +337,11 @@ public class FragHome extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.INTERNET}, REQUEST_WEATHER_CODE);
+
+                                // 새로고침
+                                getLocation();
+                                day5_adapter.notifyDataSetChanged();
+                                hour3_adapter.notifyDataSetChanged();
                             }
                         });
 
@@ -487,12 +497,6 @@ public class FragHome extends Fragment {
                 public void onClick(DialogInterface dialog, int which) {
                     ActivityCompat.requestPermissions((Activity) getContext(),
                             new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_GPS_CODE);
-
-
-                    // 새로고침
-                    getLocation();
-                    day5_adapter.notifyDataSetChanged();
-                    hour3_adapter.notifyDataSetChanged();
                 }
             });
             builder.show();
@@ -855,6 +859,7 @@ public class FragHome extends Fragment {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                if(stop) break;
             }
             return null;
         }

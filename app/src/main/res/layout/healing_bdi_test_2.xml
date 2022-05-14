@@ -94,7 +94,9 @@
         android:gravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom">
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="15dp"
+        android:layout_marginHorizontal="17dp">
         <Button
             android:id="@+id/second_previous"
             android:layout_width="wrap_content"
