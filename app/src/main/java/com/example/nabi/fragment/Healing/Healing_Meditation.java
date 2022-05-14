@@ -36,6 +36,7 @@ public class Healing_Meditation extends AppCompatActivity {
     ImageView imageView, btnPrevious;
     int[] meditation_music;
     String[] meditation_mention;
+    int[] meditation_img;
 
     MediaPlayer mediaPlayer;
     boolean isPlaying = false;
@@ -71,12 +72,14 @@ public class Healing_Meditation extends AppCompatActivity {
         "입가엔 미소를 가슴엔 평화를 담고서 이렇게 되뇌입니다.", "나는 하나 밖에 없는 귀한 나에게 자비의 마음을 보냅니다."};
 
 
+        meditation_img = new int[] {R.drawable.mdpic_1, R.drawable.mdpic_2, R.drawable.mdpic_3, R.drawable.mdpic_4, R.drawable.mdpic_5};
 
         Intent intent = getIntent(); /*데이터 수신*/
         Integer pos = intent.getExtras().getInt("number");
         String title = intent.getExtras().getString("title");
         tv_title.setText(title);
         mediaPlayer = MediaPlayer.create(getApplicationContext(), meditation_music[pos]);
+        imageView.setImageResource(meditation_img[pos]);
 
         musicStart();
 
