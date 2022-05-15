@@ -11,4 +11,5 @@
     <color name="transparent">#00000000</color>
     <color name="warning">#FF253D63</color>
     <color name="good">#FFFA8574</color>
+    <color name="navi">#FF9B9B</color>
 </resources>

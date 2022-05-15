@@ -22,12 +22,14 @@
         android:layout_height="wrap_content"
         android:background="#E1E1E1"
 
+        app:menu="@menu/menu_bottom"
         app:labelVisibilityMode="labeled"
-        app:itemTextColor="@color/black"
+        app:itemIconTint="@color/bottom_menu_iconcolor"
+        app:itemTextColor="@color/bottom_menu_textcolor"
+        app:itemPaddingTop="11dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_bottom"/>
+        app:layout_constraintStart_toStartOf="parent"/>
 
 <!--    <com.etebarian.meowbottomnavigation.MeowBottomNavigation-->
 <!--        android:id="@+id/bottomNavigationView"-->

@@ -1,34 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
         android:id="@+id/home"
         android:enabled="true"
-        android:icon="@drawable/ic_launcher_foreground"
-        android:title="Home"
-        android:iconTint="@color/material_on_surface_stroke"
-        app:showAsAction="ifRoom"/>
+        android:icon="@drawable/home_icon"
+        android:title="Home"/>
 
     <item
         android:id="@+id/healing"
         android:enabled="true"
-        android:icon="@drawable/ic_launcher_foreground"
-        android:title="Healing"
-        app:showAsAction="ifRoom"/>
+        android:icon="@drawable/healing_icon"
+        android:title="Healing"/>
 
     <item
         android:id="@+id/diary"
         android:enabled="true"
-        android:icon="@drawable/ic_launcher_foreground"
-        android:title="Diary"
-        app:showAsAction="ifRoom"/>
+        android:icon="@drawable/diary_icon"
+        android:title="Diary"/>
 
     <item
         android:id="@+id/remind"
         android:enabled="true"
-        android:icon="@drawable/ic_launcher_foreground"
-        android:title="Remind"
-        app:showAsAction="ifRoom"/>
+        android:icon="@drawable/remind_icon"
+        android:title="Remind"/>
 
 </menu>

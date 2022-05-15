@@ -52,7 +52,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:20.0.4'
 
 
-    implementation 'com.google.android.material:material:1.5.0' // 하단 탭
+    // 하단탭
+    //noinspection GradleCompatible
+    implementation 'com.android.support:design:29.0.0'
+    implementation 'com.google.android.material:material:1.2.0'
+
     implementation 'com.prolificinteractive:material-calendarview:1.4.3'    // 캘린더
     implementation platform('com.google.firebase:firebase-bom:29.0.0')  // 구글 로그인
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'    // 페이스북 로그인
