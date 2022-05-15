@@ -96,7 +96,7 @@ public class FragHome extends Fragment {
     SwipeRefreshLayout swipeRefreshLayout;
     SwipeRefreshLayout background;
     TextView tv_weather,today_date,current_location,temp_now,tv_humidity,tv_uv,tv_rainPer,tv_feelWeather,home_weatherMessage,
-            fineDust, ultra_fineDust, fineDustGrade, ultra_fineDustGrade;
+            fineDust, ultra_fineDust, fineDustGrade, ultra_fineDustGrade, warn;
     ImageView weatherImg;
 
     //최소 GPS 정보 업데이트 거리 1000미터
@@ -149,6 +149,7 @@ public class FragHome extends Fragment {
         ultra_fineDust = view.findViewById(R.id.tv_ultrafine_dust);
         fineDustGrade = view.findViewById(R.id.tv_fine_dust_grade);
         ultra_fineDustGrade = view.findViewById(R.id.tv_ultrafine_dust_grade);
+        warn = view.findViewById(R.id.gloomyWarn);
 
 
         background.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -723,8 +724,7 @@ public class FragHome extends Fragment {
             // preferences로 내일 날씨 저장
             try {
                 PreferenceHelper.setTomorrowWeather(getContext(), tomorrowWeather);
-                Log.v("tomorrowWeather", "tomorrowWeather: "+ tomorrowWeather);
-            } catch (Exception e){e.printStackTrace();Log.v("tomorrowWeather", "ERROR");}
+            } catch (Exception e){e.printStackTrace();}
 
             cc1 = true;
 
@@ -799,30 +799,50 @@ public class FragHome extends Fragment {
                 weatherImg.setImageResource(R.drawable.ic_mainweather_clear);
                 background.setBackgroundColor(Color.parseColor("#BAD3A5"));
                 home_weatherMessage.setText(weather_message[0].get(randomValue));   // 랜덤 멘트
+                if(PreferenceHelper.getGloomy(getContext()) != 0)   // 오늘 우울한 날 아니면 우울 경고 지우기
+                    warn.setVisibility(View.GONE);
+                else
+                    warn.setText("우울해지기 쉬운 날이에요.");
             }
             else if (description.equals("Mist")||description.equals("Smoke")||description.equals("Haze")||description.equals("Dust")){//안개,구름 조금
                 tv_weather.setText("조금 흐림 "+minTemp+"/"+maxTemp);
                 weatherImg.setImageResource(R.drawable.ic_mainweather_mist);
                 background.setBackgroundColor(Color.parseColor("#F6C97B"));
                 home_weatherMessage.setText(weather_message[1].get(randomValue));   // 랜덤 멘트
+                if(PreferenceHelper.getGloomy(getContext()) != 1)   // 오늘 우울한 날 아니면 우울 경고 지우기
+                    warn.setVisibility(View.GONE);
+                else
+                    warn.setText("우울해지기 쉬운 날이에요.");
             }
             else if (description.equals("Thunderstorm") ||description.equals("Clouds")||description.equals("Fog") ||description.equals("Sand")||description.equals("Ash")||description.equals("Squall")||description.equals("Tornado")){//천둥번개, 구름
                 tv_weather.setText("흐림 "+minTemp+"/"+maxTemp);
                 weatherImg.setImageResource(R.drawable.ic_mainweather_cloud);
                 background.setBackgroundColor(Color.parseColor("#97ACE5"));
                 home_weatherMessage.setText(weather_message[2].get(randomValue));   // 랜덤 멘트
+                if(PreferenceHelper.getGloomy(getContext()) != 2)   // 오늘 우울한 날 아니면 우울 경고 지우기
+                    warn.setVisibility(View.GONE);
+                else
+                    warn.setText("우울해지기 쉬운 날이에요.");
             }
             else if (description.equals("Rain")||description.equals("Drizzle")){//비, 이슬비
                 tv_weather.setText("비 "+minTemp+"/"+maxTemp);
                 weatherImg.setImageResource(R.drawable.ic_mainweather_rain);
                 background.setBackgroundColor(Color.parseColor("#8DC0D3"));
                 home_weatherMessage.setText(weather_message[3].get(randomValue));   // 랜덤 멘트
+                if(PreferenceHelper.getGloomy(getContext()) != 3)   // 오늘 우울한 날 아니면 우울 경고 지우기
+                    warn.setVisibility(View.GONE);
+                else
+                    warn.setText("우울해지기 쉬운 날이에요.");
             }
             else if (description.equals("Snow")){//눈
                 tv_weather.setText("눈 "+minTemp+"/"+maxTemp);
                 weatherImg.setImageResource(R.drawable.ic_mainweather_snow);
                 background.setBackgroundColor(Color.parseColor("#B19ED8"));
                 home_weatherMessage.setText(weather_message[4].get(randomValue));   // 랜덤 멘트
+                if(PreferenceHelper.getGloomy(getContext()) != 4)   // 오늘 우울한 날 아니면 우울 경고 지우기
+                    warn.setVisibility(View.GONE);
+                else
+                    warn.setText("우울해지기 쉬운 날이에요.");
             }else{
                 tv_weather.setText(description);
                 //weatherImg.setImageResource(R.drawable.ic_baseline_ac_unit_24);

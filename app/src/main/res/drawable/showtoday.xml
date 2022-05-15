@@ -8,7 +8,7 @@
     <item android:state_pressed="true"
         android:drawable="@drawable/transparent_calendar_element_stroke"/>
 
-    <item android:drawable="@drawable/transparent_calendar_element_stroke" />
+    <item android:drawable="@drawable/transparent_calendar_element" />
 
 </selector>
 
