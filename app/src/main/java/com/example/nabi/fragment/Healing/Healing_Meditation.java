@@ -4,6 +4,7 @@ import static android.icu.text.UnicodeSet.CASE;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.nabi.R;
@@ -50,6 +52,7 @@ public class Healing_Meditation extends AppCompatActivity {
     String YMD = (cYEAR+"/"+(cMonth+1)+"/"+cDay);
     Integer meditation_timeBefore;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +63,8 @@ public class Healing_Meditation extends AppCompatActivity {
         tv_mention2 = findViewById(R.id.tv_mention2);
 
         imageView = findViewById(R.id.img_meditation);
+        imageView.setClipToOutline(true);    // 모서리 둥글 효과 가능하게 함
+
         meditation_btn = findViewById(R.id.meditation_btn);
         btnPrevious = findViewById(R.id.btnPrevious);
         tv_playingTime = findViewById(R.id.tv_playingTime);

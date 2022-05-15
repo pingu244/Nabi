@@ -39,7 +39,7 @@
             app:mcv_leftArrowMask="@drawable/cal_leftarrow"
             app:mcv_arrowColor="@color/indigo_pnt"
             app:mcv_rightArrowMask="@drawable/cal_rightarrow"
-
+            app:mcv_selectionColor="@color/white"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
