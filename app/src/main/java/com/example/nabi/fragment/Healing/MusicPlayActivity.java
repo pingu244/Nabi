@@ -151,9 +151,9 @@ public class MusicPlayActivity extends AppCompatActivity {
             Glide.with(this).load(imgs_asmr[pos[0]]).into(musicPlay_img);
 
         }
-
+        btnPlay.setImageResource(R.drawable.btn_pause);
         musicStart();
-        btnPlay.setImageResource(R.drawable.ic_baseline_pause_24);
+
 
         btnPrevious.setOnClickListener(new View.OnClickListener() { //나가기
             @Override
@@ -171,19 +171,20 @@ public class MusicPlayActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(isPlaying){
                     isPlaying = false;
-                    btnPlay.setImageResource(R.drawable.mcv_action_next);
-                    mediaPlayer.pause();
 
+                    mediaPlayer.pause();
+                    btnPlay.setImageResource(R.drawable.btn_play);
                     //현재 상태 저장
 //                    currentPos = mediaPlayer.getCurrentPosition();
 
                 }else{
                     isPlaying = true;
-                    btnPlay.setImageResource(R.drawable.ic_baseline_pause_24);
+
 
                     //저장한 위치에서 다시 시작
 //                    mediaPlayer.seekTo(currentPos);
                     mediaPlayer.start();
+                    btnPlay.setImageResource(R.drawable.btn_pause);
 //                    new musicThread().start();
                     new Thread(new Runnable() {
                         @Override
@@ -222,7 +223,7 @@ public class MusicPlayActivity extends AppCompatActivity {
                 // 1초 지나고 이전 버튼 누르면 맨 처음으로
                 if(mediaPlayer.getCurrentPosition() > 1000){
                     isPlaying = true;
-                    btnPlay.setImageResource(R.drawable.ic_baseline_pause_24);
+                    btnPlay.setImageResource(R.drawable.btn_pause);
                     mediaPlayer.pause();
                     mediaPlayer.seekTo(0);
                     mediaPlayer.start();
@@ -499,7 +500,7 @@ public class MusicPlayActivity extends AppCompatActivity {
 
     public void musicStart() {
         isPlaying = true;
-        btnPlay.setImageResource(R.drawable.ic_baseline_pause_24);
+        btnPlay.setImageResource(R.drawable.btn_pause);
 
 //        new musicThread().start();
         new Thread(new Runnable() {
@@ -560,7 +561,7 @@ public class MusicPlayActivity extends AppCompatActivity {
                 if(progressBar.getProgress()==progressBar.getProgressMax()){
                     mediaPlayer.stop();
                     isPlaying = false;
-                    btnPlay.setImageResource(R.drawable.mcv_action_next);
+                    btnPlay.setImageResource(R.drawable.btn_play);
                 }
             }
         }

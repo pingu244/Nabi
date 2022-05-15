@@ -81,6 +81,7 @@ public class Healing_Meditation extends AppCompatActivity {
         mediaPlayer = MediaPlayer.create(getApplicationContext(), meditation_music[pos]);
         imageView.setImageResource(meditation_img[pos]);
 
+        meditation_btn.setImageResource(R.drawable.btn_pause);
         musicStart();
 
 
@@ -105,11 +106,11 @@ public class Healing_Meditation extends AppCompatActivity {
 
                 if(isPlaying){
                     isPlaying = false;
-                    meditation_btn.setImageResource(R.drawable.mcv_action_next);
+                    meditation_btn.setImageResource(R.drawable.btn_play);
                     mediaPlayer.pause();
                 }else{
                     isPlaying = true;
-                    meditation_btn.setImageResource(R.drawable.ic_baseline_pause_24);
+                    meditation_btn.setImageResource(R.drawable.btn_pause);
 
                     mediaPlayer.start();
                     new meditationThread().start();
