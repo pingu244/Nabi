@@ -5,10 +5,13 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -48,8 +52,8 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity {
 
     EditText emailText, passwordText;
-    Button loginBtn, googleBtn, facebooktestBtn;
-
+    ImageButton googleBtn, facebooktestBtn;
+    Button loginBtn;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore db;
 
@@ -57,13 +61,14 @@ public class LoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 9001;
 
     CallbackManager mCallbackManager;
+    ImageView imageView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        firebaseAuth =  FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         mCallbackManager = CallbackManager.Factory.create();
 
@@ -72,10 +77,24 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginBtn);
         googleBtn = findViewById(R.id.googleLogin);
 
+        imageView = findViewById(R.id.img_logo);
+
+        Glide.with(this).load(R.drawable.login_logo).into(imageView);
+
+        Handler handler = new Handler();
+
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        }, 3000); //3초간 보여주기
+
         // 이미 로그인되어있으면 로그인창 생략하는 코드
         if (firebaseAuth.getCurrentUser() != null) {
             updateUI(firebaseAuth.getCurrentUser());
         }
+
 
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
