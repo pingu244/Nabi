@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/remind_bg">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,7 +29,7 @@
             android:text="우울감을 줄여주는 음식"
             android:textColor="@color/black"
             android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:fontFamily="@font/scdream5"/>
     </RelativeLayout>
 
     <ScrollView
@@ -36,6 +37,7 @@
         android:layout_height="match_parent"
         android:layout_marginHorizontal="25dp"
         android:layout_marginBottom="70dp"
+        android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:background="@drawable/roundrectangle"
         android:elevation="3dp">
@@ -48,7 +50,6 @@
             android:paddingVertical="15dp">
 
             <ImageView
-                android:background="@color/black"
                 android:id="@+id/sadInfo2_img"
                 android:layout_gravity="center"
                 android:layout_width="match_parent"

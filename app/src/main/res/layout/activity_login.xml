@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/img_logo"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="80dp"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:background="@drawable/login_logo"/>
@@ -18,62 +18,67 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="안녕하세요!"
-        android:textStyle="bold"
-        android:textSize="20dp"
+        android:textSize="25dp"
         android:layout_gravity="center"
-        android:textColor="@color/indigo_pnt"/>
+        android:textColor="@color/indigo_pnt"
+        android:fontFamily="@font/scdream5"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp">
+        android:paddingHorizontal="50dp"
+        android:paddingTop="50dp">
 
         <com.google.android.material.textfield.TextInputLayout
-
-            android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
             android:background="@drawable/roundrectangle"
             app:boxBackgroundColor="@color/white"
-            android:layout_height="40dp">
+            android:layout_height="wrap_content"
+            app:hintEnabled="false">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="55dp"
                 android:background="@color/transparent"
                 android:id="@+id/loginEmail"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
                 android:layout_marginLeft="20dp"
                 style="@style/customEditTextFontStyle"
+                android:textColor="@color/black"
                 android:gravity="center_vertical"
-                android:hint="아이디 입력"/>
+                android:hint="아이디 입력"
+                android:textSize="17dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginVertical="12dp"
             app:passwordToggleEnabled="true"
             android:background="@drawable/roundrectangle"
             app:boxBackgroundColor="@color/white"
             android:layout_width="match_parent"
             android:gravity="center_vertical"
-            android:layout_height="40dp">
+            android:layout_height="wrap_content"
+            app:hintEnabled="false">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="55dp"
                 android:id="@+id/loginPassword"
                 android:background="@color/transparent"
                 android:hint="비밀번호 입력"
                 style="@style/customEditTextFontStyle"
+                android:textColor="@color/black"
                 android:layout_marginLeft="20dp"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:textSize="17dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:id="@+id/loginBtn"
             android:textColor="@color/white"
-            android:backgroundTint="@color/com_facebook_blue"
+            android:backgroundTint="#607DAA"
             android:background="@drawable/roundrectangle"
             style="@style/customEditTextFontStyle"
             android:gravity="center"
@@ -85,25 +90,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:gravity="center">
         <TextView
             android:id="@+id/pwdReset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:text="비밀번호 재설정"/>
+            android:text="비밀번호 재설정"
+            android:textSize="13dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:text="   |   "/>
+            android:text="|"
+            android:layout_marginHorizontal="20dp"/>
         <TextView
             android:id="@+id/goJoin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:text="회원가입"/>
+            android:text="회원가입"
+            android:textSize="13dp"/>
     </LinearLayout>
 
     <TextView
@@ -112,7 +120,8 @@
         android:textColor="@color/black"
         android:layout_marginTop="80dp"
         android:layout_gravity="center"
-        android:text="간편로그인 하기"/>
+        android:text="간편로그인 하기"
+        android:textSize="13dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"

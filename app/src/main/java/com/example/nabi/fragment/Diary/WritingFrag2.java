@@ -202,7 +202,6 @@ public class WritingFrag2 extends Fragment {
 
                     for(int i = 0; i<selectbtn.size(); i++)
                     {
-                        Button mButton = new Button(getActivity()); //버튼을 선언
                         TextView txt = new TextView(getActivity());
                         TextView temp = getActivity().findViewById(selectbtn.get(i));
 
@@ -211,7 +210,10 @@ public class WritingFrag2 extends Fragment {
 
                         DisplayMetrics dm = getResources().getDisplayMetrics(); // 단위를 dp로 맞춰주기 위함
                         pm.setMargins(Math.round(5*dm.density),Math.round(5*dm.density),0,Math.round(5*dm.density));
-                        txt.setPadding(Math.round(12*dm.density),Math.round(6*dm.density),Math.round(12*dm.density),Math.round(6*dm.density));
+                        if(temp.getText().length()>=5)
+                            txt.setPadding(Math.round(9*dm.density),Math.round(6*dm.density),Math.round(9*dm.density),Math.round(6*dm.density));
+                        else
+                            txt.setPadding(Math.round(12*dm.density),Math.round(6*dm.density),Math.round(12*dm.density),Math.round(6*dm.density));
 
                         txt.setText(temp.getText()); //버튼에 들어갈 텍스트를 지정(String)
                         txt.setTextSize(15);
@@ -271,7 +273,10 @@ public class WritingFrag2 extends Fragment {
 
         DisplayMetrics dm = getResources().getDisplayMetrics(); // 단위를 dp로 맞춰주기 위함
         pm.setMargins(Math.round(5*dm.density),Math.round(5*dm.density),0,Math.round(5*dm.density));
-        txt.setPadding(Math.round(12*dm.density),Math.round(6*dm.density),Math.round(12*dm.density),Math.round(6*dm.density));
+        if(text.length()>=5)
+            txt.setPadding(Math.round(9*dm.density),Math.round(6*dm.density),Math.round(9*dm.density),Math.round(6*dm.density));
+        else
+            txt.setPadding(Math.round(12*dm.density),Math.round(6*dm.density),Math.round(12*dm.density),Math.round(6*dm.density));
 
         txt.setText(text); //버튼에 들어갈 텍스트를 지정(String)
         txt.setTextSize(15);

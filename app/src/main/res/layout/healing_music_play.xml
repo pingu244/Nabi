@@ -31,7 +31,7 @@
             android:text="음악 종류"
             android:textColor="@color/black"
             android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:fontFamily="@font/scdream5"/>
     </RelativeLayout>
 
 

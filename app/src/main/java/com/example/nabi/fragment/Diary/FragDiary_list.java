@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,9 +36,9 @@ public class FragDiary_list extends Fragment {
     DiaryList_Snow snowDiary;
     public Integer diaryList_bg = 0;
 
-    int selectMonth = 1;
-    int weather;
     RecyclerView diaryListView;
+
+    SwipeRefreshLayout refresh;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -64,6 +65,34 @@ public class FragDiary_list extends Fragment {
         btnClear = view.findViewById(R.id.btnClear);
         btnRain = view.findViewById(R.id.btnRain);
         btnSnow = view.findViewById(R.id.btnSnow);
+        refresh = view.findViewById(R.id.diaryList_refresh);
+
+        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                switch (diaryList_bg)
+                {
+                    case 0:
+                        getChildFragmentManager().beginTransaction().replace(R.id.list_container, new DiaryList_Clear()).commitAllowingStateLoss();
+                        break;
+                    case 1:
+                        getChildFragmentManager().beginTransaction().replace(R.id.list_container, new DiaryList_LittleCloud()).commitAllowingStateLoss();
+                        break;
+                    case 2:
+                        getChildFragmentManager().beginTransaction().replace(R.id.list_container, new DiaryList_Cloud()).commitAllowingStateLoss();
+                        break;
+                    case 3:
+                        getChildFragmentManager().beginTransaction().replace(R.id.list_container, new DiaryList_Rain()).commitAllowingStateLoss();
+                        break;
+                    case 4:
+                        getChildFragmentManager().beginTransaction().replace(R.id.list_container, new DiaryList_Snow()).commitAllowingStateLoss();
+                        break;
+                }
+
+                //새로고침 종료
+                refresh.setRefreshing(false);
+            }
+        });
 
         // 처음에는 맑음 선택되어 있음
         getChildFragmentManager().beginTransaction().replace(R.id.list_container, new DiaryList_Clear()).commitAllowingStateLoss();

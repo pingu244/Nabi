@@ -27,7 +27,8 @@
         android:layout_height="wrap_content"
         android:textSize="30dp"
         android:textColor="@color/black"
-        android:text="0000년 00월 00일"/>
+        android:text="0000년 00월 00일"
+        android:fontFamily="@font/scdream5"/>
 
 
     <LinearLayout

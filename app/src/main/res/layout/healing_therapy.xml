@@ -32,7 +32,7 @@
                 android:text="산책"
                 android:textColor="@color/black"
                 android:textSize="20dp"
-                android:textStyle="bold"/>
+                android:fontFamily="@font/scdream5"/>
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -130,7 +130,7 @@
         android:layout_marginTop="15dp"
         android:text="음악"
         android:textSize="20dp"
-        android:textStyle="bold"
+        android:fontFamily="@font/scdream5"
         android:textColor="@color/black"/>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -148,7 +148,7 @@
         android:layout_marginTop="20dp"
         android:text="명상"
         android:textSize="20dp"
-        android:textStyle="bold"
+        android:fontFamily="@font/scdream5"
         android:textColor="@color/black"/>
 
     <androidx.recyclerview.widget.RecyclerView

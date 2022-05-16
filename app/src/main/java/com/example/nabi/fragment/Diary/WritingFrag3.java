@@ -103,7 +103,10 @@ public class WritingFrag3 extends Fragment {
 
             DisplayMetrics dm = getResources().getDisplayMetrics(); // 단위를 dp로 맞춰주기 위함
             pm.setMargins(Math.round(5*dm.density),Math.round(5*dm.density),0,Math.round(5*dm.density));
-            txt.setPadding(Math.round(12*dm.density),Math.round(6*dm.density),Math.round(12*dm.density),Math.round(6*dm.density));
+            if(temp.getText().length()>=5)
+                txt.setPadding(Math.round(9*dm.density),Math.round(6*dm.density),Math.round(9*dm.density),Math.round(6*dm.density));
+            else
+                txt.setPadding(Math.round(12*dm.density),Math.round(6*dm.density),Math.round(12*dm.density),Math.round(6*dm.density));
 
 
             txt.setText(temp.getText()); //버튼에 들어갈 텍스트를 지정(String)

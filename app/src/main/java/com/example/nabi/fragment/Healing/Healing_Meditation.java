@@ -73,8 +73,8 @@ public class Healing_Meditation extends AppCompatActivity {
         meditation_music = new int[] {R.raw.monumental_journey,R.raw.spenta_mainyu, R.raw.spirit_of_fire, R.raw.the_sleeping_prophet, R.raw.venkatesananda };
 
         meditation_mention = new String[]{"숨을 깊이 들이쉬고 내쉽니다.", "호흡을 깊이 하면서",
-                "몸과 마음을 편하게 하고 긴장을 푸세요.", "사랑과 자비로 가득찬 자신의 모습을 떠올립니다.",
-        "입가엔 미소를 가슴엔 평화를 담고서 이렇게 되뇌입니다.", "나는 하나 밖에 없는 귀한 나에게 자비의 마음을 보냅니다."};
+                "몸과 마음을 편하게 하고 긴장을 푸세요.", "사랑과 자비로 가득찬\n자신의 모습을 떠올립니다.",
+        "입가엔 미소를 가슴엔 평화를 담고서\n이렇게 되뇌입니다.", "나는 하나밖에 없는 귀한 나에게\n자비의 마음을 보냅니다."};
 
 
         meditation_img = new int[] {R.drawable.mdpic_1, R.drawable.mdpic_2, R.drawable.mdpic_3, R.drawable.mdpic_4, R.drawable.mdpic_5};
@@ -86,7 +86,7 @@ public class Healing_Meditation extends AppCompatActivity {
         mediaPlayer = MediaPlayer.create(getApplicationContext(), meditation_music[pos]);
         imageView.setImageResource(meditation_img[pos]);
 
-        meditation_btn.setImageResource(R.drawable.btn_pause);
+        meditation_btn.setBackgroundResource(R.drawable.btn_pause);
         musicStart();
 
 
@@ -111,11 +111,11 @@ public class Healing_Meditation extends AppCompatActivity {
 
                 if(isPlaying){
                     isPlaying = false;
-                    meditation_btn.setImageResource(R.drawable.btn_play);
+                    meditation_btn.setBackgroundResource(R.drawable.btn_play);
                     mediaPlayer.pause();
                 }else{
                     isPlaying = true;
-                    meditation_btn.setImageResource(R.drawable.btn_pause);
+                    meditation_btn.setBackgroundResource(R.drawable.btn_pause);
 
                     mediaPlayer.start();
                     new meditationThread().start();

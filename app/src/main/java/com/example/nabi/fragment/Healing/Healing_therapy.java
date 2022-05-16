@@ -95,10 +95,10 @@ public class Healing_therapy extends Fragment {
 
 
         //명상 음악 목록
-        meditationItems.add(new MeditationAdapter.MeditationItem("Monumental Journey","7:45",R.drawable.mdpic_1));
-        meditationItems.add(new MeditationAdapter.MeditationItem("Spenta Mainyu","2:49",R.drawable.mdpic_2));
+        meditationItems.add(new MeditationAdapter.MeditationItem("Monumental Journey","7:45",R.drawable.mdpic_1_1));
+        meditationItems.add(new MeditationAdapter.MeditationItem("Spenta Mainyu","2:49",R.drawable.mdpic_2_2));
         meditationItems.add(new MeditationAdapter.MeditationItem("Spirit of Fire","10:08",R.drawable.mdpic_3));
-        meditationItems.add(new MeditationAdapter.MeditationItem("The Sleeping Prophet","7:43",R.drawable.mdpic_4));
+        meditationItems.add(new MeditationAdapter.MeditationItem("The Sleeping Prophet","7:43",R.drawable.mdpic_4_4));
         meditationItems.add(new MeditationAdapter.MeditationItem("Venkatesananda","10:10",R.drawable.mdpic_5));
 
         // BDI 결과값 가져오기

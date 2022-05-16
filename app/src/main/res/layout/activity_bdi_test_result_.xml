@@ -30,6 +30,7 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
             android:text="BDI 검사"
+            android:fontFamily="@font/scdream5"
             android:textColor="@color/indigo_pnt"
             android:textSize="20dp" />
     </FrameLayout>
@@ -72,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textSize="32dp"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/scdream5"
                     android:textColor="@color/black"
                     android:text=""/>
 
@@ -104,15 +105,16 @@
                     android:text="멘트"/>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginVertical="10dp"
+                    android:paddingRight="20dp"
                     android:gravity="center">
 
                     <ProgressBar
                         android:id="@+id/bdi_progress"
-                        android:layout_width="240dp"
+                        android:layout_width="220dp"
                         android:layout_height="wrap_content"
                         android:max="63"
                         android:layout_marginHorizontal="20dp"
@@ -130,6 +132,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:text=" 63"
                         android:textSize="15dp"/>
                 </LinearLayout>

@@ -26,7 +26,8 @@
         android:layout_height="wrap_content"
         android:textSize="30dp"
         android:text="0000년 00월 00일"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:fontFamily="@font/scdream5"/>
 
     <FrameLayout
         android:layout_marginRight="25dp"

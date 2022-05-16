@@ -30,6 +30,7 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
             android:text="SAD 테스트"
+            android:fontFamily="@font/scdream5"
             android:textColor="@color/indigo_pnt"
             android:textSize="20dp" />
     </FrameLayout>
@@ -67,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textStyle="bold"
+                android:fontFamily="@font/scdream5"
                 android:textSize="32dp"/>
 
             <!--아이콘-->
@@ -109,6 +110,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="다시 검사하기"
+            style="@style/customButtonFontStyle"
             android:textSize="12dp"
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
@@ -122,6 +124,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="마치기"
+            style="@style/customButtonFontStyle"
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"

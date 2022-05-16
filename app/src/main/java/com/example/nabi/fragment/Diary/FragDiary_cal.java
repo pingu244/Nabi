@@ -170,7 +170,7 @@ public class FragDiary_cal extends Fragment {
             public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
                 // 선택한 달의 무드트래커 띄우기
                 new MoodAsyncTask(date.getMonth() + 1).execute();
-                }
+            }
 
         });
 
@@ -206,15 +206,17 @@ public class FragDiary_cal extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        materialCalendarView.setDateSelected(CalendarDay.today(), true);    // 오늘 선택되어있게
 
-        // 처음 떴을때 오늘날짜 일기있는지 보여주기
+        // 오늘 선택되어있으면 새로고침 아니면 냅두기
         Calendar cal = Calendar.getInstance();
         int cYEAR = cal.get(Calendar.YEAR);
         int cMonth = cal.get(Calendar.MONTH)+1;
         int cDay = cal.get(Calendar.DATE);
         String YMD = (cYEAR+"/"+cMonth+"/"+cDay);
-        search(YMD);
+        if(materialCalendarView.getSelectedDate().getYear()==cYEAR &&
+                materialCalendarView.getSelectedDate().getMonth()==cMonth-1 &&
+                materialCalendarView.getSelectedDate().getDay()==cDay)
+            search(YMD);
 
         // 처음 떴을때 이번 달 무드트래커 띄우기
         new MoodAsyncTask(cMonth).execute();

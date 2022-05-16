@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
 
                     case R.id.diary:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, frag_diary).commitAllowingStateLoss();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, new FragDiary()).commitAllowingStateLoss();
                         return true;
 
 

@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:text="SAD 지수를\n알아보세요"
                 android:textSize="20dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/scdream5"
                 android:textColor="@color/white"/>
 
 
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:text="우울증 정도를\n알아보세요"
                 android:textSize="20dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/scdream5"
                 android:textColor="@color/white"/>
 
 
@@ -184,7 +184,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="스트레스 완화를 위한\n스트레칭"
+                android:text="우울감 해소에 좋은\n운동"
                 android:textSize="18dp"
                 android:textColor="#454870"/>
 
