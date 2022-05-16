@@ -85,6 +85,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:layout_gravity="center"
+                    android:gravity="center"
                     android:shadowDy="15"
                     android:shadowRadius="15"
                     android:shadowColor="#1A000000"/>
@@ -94,7 +95,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:gravity="center" />
 
                 <TextView
                     android:id="@+id/temp_now"
@@ -104,6 +106,7 @@
                     android:textStyle="bold"
                     android:textColor="@color/white"
                     android:layout_gravity="center"
+                    android:gravity="center"
                     android:shadowDy="15"
                     android:shadowRadius="15"
                     android:shadowColor="#1A000000"

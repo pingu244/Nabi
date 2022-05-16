@@ -5,10 +5,10 @@
     <item android:state_checked="true"
         android:drawable="@drawable/transparent_calendar_element" />
 
-    <item android:state_pressed="true"
+    <item android:state_checked="false"
         android:drawable="@drawable/transparent_calendar_element_stroke"/>
 
-    <item android:drawable="@drawable/transparent_calendar_element" />
+<!--    <item android:drawable="@drawable/transparent_calendar_element_stroke" />-->
 
 </selector>
 

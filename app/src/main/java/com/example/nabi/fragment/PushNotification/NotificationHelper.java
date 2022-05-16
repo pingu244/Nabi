@@ -169,7 +169,7 @@ public class NotificationHelper {
             NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
             // Notificatoin을 이루는 공통 부분 정의
             NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(mContext, NOTIFICATION_CHANNEL_ID);
-            notificationBuilder.setSmallIcon(R.drawable.btnclear) // 기본 제공되는 이미지
+            notificationBuilder.setSmallIcon(R.mipmap.ic_nabi_round) // 기본 제공되는 이미지
                     .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE)
                     .setContentIntent(pendingIntent)
                     .setAutoCancel(true); // 클릭 시 Notification 제거
@@ -242,7 +242,7 @@ public class NotificationHelper {
             PendingIntent pendingIntent = PendingIntent.getActivity(mContext, WORK_B_NOTIFICATION_CODE, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
             NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(mContext, NOTIFICATION_CHANNEL_ID);
-            notificationBuilder.setSmallIcon(R.drawable.btnclear) // 기본 제공되는 이미지
+            notificationBuilder.setSmallIcon(R.mipmap.ic_nabi_round) // 기본 제공되는 이미지
                     .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE)
                     .setContentIntent(pendingIntent)
                     .setAutoCancel(true); // 클릭 시 Notification 제거

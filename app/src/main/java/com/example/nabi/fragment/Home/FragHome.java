@@ -797,7 +797,7 @@ public class FragHome extends Fragment {
             Context context = getApplicationContext();
 
             if (description.equals("Clear")){//맑음
-                tv_weather.setText("맑음 "+minTemp+"/"+maxTemp);
+                tv_weather.setText("맑음 "+minTemp+" / "+maxTemp);
                 weatherImg.setImageResource(R.drawable.ic_mainweather_clear);
                 background.setBackgroundColor(Color.parseColor("#BAD3A5"));
                 home_weatherMessage.setText(weather_message[0].get(randomValue));   // 랜덤 멘트

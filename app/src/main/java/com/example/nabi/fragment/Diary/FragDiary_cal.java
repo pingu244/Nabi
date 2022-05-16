@@ -108,9 +108,10 @@ public class FragDiary_cal extends Fragment {
         // 월 헤더 글자크기, 색 설정
         materialCalendarView.setHeaderTextAppearance(R.style.CalendarWidgetHeader);
 
+        materialCalendarView.setDateSelected(CalendarDay.today(), true);    // 오늘 선택되어있게
 
         materialCalendarView.addDecorators(
-                new FragDiary_cal.MySelectorDecorator(this),  // 선택된 애 어떻게 꾸밀지
+                new FragDiary_cal.MySelectorDecorator(this),
                 new EveryDayDecorator1(),
                 new EveryDayDecorator2(),
                 new EveryDayDecorator3(),
@@ -142,8 +143,8 @@ public class FragDiary_cal extends Fragment {
                 new EveryDayDecorator29(),
                 new EveryDayDecorator30(),
                 new EveryDayDecorator31(),
-                new FragDiary_cal.OneDayDecorator(),                // 오늘꺼 어떻게 꾸밀지
-
+                // 오늘꺼 어떻게 꾸밀지
+                new FragDiary_cal.OneDayDecorator(),
                 new EveryDayDecorator()
         );
 
@@ -161,13 +162,16 @@ public class FragDiary_cal extends Fragment {
             }
         });
 
+
+        Calendar cal = Calendar.getInstance();
         // 월 바꿀 때 작동하는 함수
         materialCalendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
             @Override
             public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
                 // 선택한 달의 무드트래커 띄우기
                 new MoodAsyncTask(date.getMonth() + 1).execute();
-            }
+                }
+
         });
 
     }
@@ -203,6 +207,7 @@ public class FragDiary_cal extends Fragment {
     public void onStart() {
         super.onStart();
         materialCalendarView.setDateSelected(CalendarDay.today(), true);    // 오늘 선택되어있게
+
         // 처음 떴을때 오늘날짜 일기있는지 보여주기
         Calendar cal = Calendar.getInstance();
         int cYEAR = cal.get(Calendar.YEAR);
@@ -478,7 +483,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),1,false));
         }
     }
@@ -493,7 +497,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),2,false));
         }
     }
@@ -508,7 +511,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),3,false));
         }
     }
@@ -523,7 +525,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),4,false));
         }
     }
@@ -538,7 +539,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),5,false));
         }
     }
@@ -553,7 +553,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),6,false));
         }
     }
@@ -568,7 +567,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),7,false));
         }
     }
@@ -583,7 +581,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),8,false));
         }
     }
@@ -598,7 +595,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),9,false));
         }
     }
@@ -613,7 +609,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),10,false));
         }
     }
@@ -628,7 +623,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),11,false));
         }
     }
@@ -643,7 +637,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),12,false));
         }
     }
@@ -658,7 +651,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),13,false));
         }
     }
@@ -673,7 +665,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),14,false));
         }
     }
@@ -688,7 +679,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),15,false));
         }
     }
@@ -703,7 +693,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),16,false));
         }
     }
@@ -718,7 +707,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),17,false));
         }
     }
@@ -733,7 +721,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),18,false));
         }
     }
@@ -748,7 +735,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),19,false));
         }
     }
@@ -763,7 +749,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),20,false));
         }
     }
@@ -778,7 +763,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),21,false));
         }
     }
@@ -793,7 +777,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),22,false));
         }
     }
@@ -808,7 +791,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),23,false));
         }
     }
@@ -823,7 +805,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),24,false));
         }
     }
@@ -838,7 +819,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),25,false));
         }
     }
@@ -853,7 +833,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),26,false));
         }
     }
@@ -868,7 +847,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),27,false));
         }
     }
@@ -883,7 +861,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),28,false));
         }
     }
@@ -898,7 +875,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),29,false));
         }
     }
@@ -913,7 +889,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),30,false));
         }
     }
@@ -928,7 +903,6 @@ public class FragDiary_cal extends Fragment {
 
         @Override
         public void decorate(DayViewFacade view) {
-            view.addSpan(new ForegroundColorSpan(Color.TRANSPARENT));
             view.addSpan(new EveryDaySpan(getContext(),31,false));
         }
     }

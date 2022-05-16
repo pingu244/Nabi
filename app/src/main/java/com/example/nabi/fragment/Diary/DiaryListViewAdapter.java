@@ -118,7 +118,12 @@ public class DiaryListViewAdapter extends RecyclerView.Adapter<DiaryListViewAdap
                         (FlexboxLayout.LayoutParams.WRAP_CONTENT, FlexboxLayout.LayoutParams.WRAP_CONTENT);
                 pm.setMargins(5,5,5,5);
 
-                txt.setPadding(20,9,20,9);
+
+                if(array[i].length() >=5)
+                    txt.setPadding(17,9,17,9);
+                else
+                    txt.setPadding(20,9,20,9);
+
                 txt.setGravity(View.TEXT_ALIGNMENT_CENTER);
 
                 txt.setText(array[i]); //view에 들어갈 텍스트를 지정(String)
