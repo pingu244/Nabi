@@ -7,7 +7,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.Diary.DiaryResult"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/diary_sunny_background">
 
     <ImageButton
         android:layout_marginTop="30dp"
@@ -73,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="15dp"
                     android:textColor="@color/black"
-                    android:text="오늘의 기분만큼 색칠해 주세요."/>
+                    android:text="현재 기분이 좋은 만큼 드래그 해주세요."/>
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -122,7 +123,8 @@
                     android:layout_height="wrap_content"
                     android:text="여기에 일기내용1"
                     android:textColor="@color/black"
-                    android:textSize="13dp"
+                    android:textSize="15dp"
+                    android:lineSpacingExtra="10dp"
                     android:background="@drawable/edittext_rounded_corner_rectangle"/>
 
                 <TextView
@@ -170,7 +172,8 @@
                     android:layout_height="wrap_content"
                     android:text="여기에 일기내용2"
                     android:textColor="@color/black"
-                    android:textSize="13dp"
+                    android:textSize="15dp"
+                    android:lineSpacingExtra="10dp"
                     android:background="@drawable/edittext_rounded_corner_rectangle"/>
 
                 <TextView
@@ -188,7 +191,8 @@
                     android:layout_height="wrap_content"
                     android:text="여기에 일기내용3"
                     android:textColor="@color/black"
-                    android:textSize="13dp"
+                    android:textSize="15dp"
+                    android:lineSpacingExtra="10dp"
                     android:background="@drawable/edittext_rounded_corner_rectangle"/>
 
 

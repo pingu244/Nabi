@@ -783,11 +783,10 @@
     <FrameLayout
         android:id="@+id/page2_pagechangeview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="15dp"
-        android:layout_marginHorizontal="15dp">
+        android:layout_height="wrap_content">
 
         <Button
+            style="@style/customButtonFontStyle"
             android:id="@+id/second_prior"
             android:layout_gravity="left"
             android:layout_width="wrap_content"
@@ -795,6 +794,7 @@
             android:background="#00ff0000"
             android:text="&lt; 이전"/>
         <TextView
+            style="@style/customTextViewFontStyle"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -802,6 +802,7 @@
             android:text="2/4"
             android:textColor="@color/black"/>
         <Button
+            style="@style/customButtonFontStyle"
             android:id="@+id/second_next"
             android:layout_gravity="right"
             android:layout_width="wrap_content"

@@ -93,11 +93,10 @@
         android:gravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="15dp"
-        android:layout_marginHorizontal="17dp">
+        android:layout_gravity="bottom">
 
         <Button
+            style="@style/customButtonFontStyle"
             android:id="@+id/twelfth_previous"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -106,6 +105,7 @@
             android:text="&lt; 이전"
             android:textSize="14dp" />
         <TextView
+            style="@style/customTextViewFontStyle"
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -113,6 +113,7 @@
             android:text="12/21"
             android:textColor="@color/indigo_pnt" />
         <Button
+            style="@style/customButtonFontStyle"
             android:id="@+id/twelfth_next"
             android:layout_gravity="right"
             android:layout_width="wrap_content"

@@ -1,6 +1,7 @@
 package com.example.nabi.fragment.Home;
 
 import static android.content.ContentValues.TAG;
+import static com.facebook.FacebookSdk.getApplicationContext;
 import static java.lang.Thread.sleep;
 
 import android.Manifest;
@@ -793,13 +794,14 @@ public class FragHome extends Fragment {
             Random random = new Random();
             int randomValue = random.nextInt(4);    // 랜덤값 줘서 멘트 랜덤으로
 
+            Context context = getApplicationContext();
 
             if (description.equals("Clear")){//맑음
                 tv_weather.setText("맑음 "+minTemp+"/"+maxTemp);
                 weatherImg.setImageResource(R.drawable.ic_mainweather_clear);
                 background.setBackgroundColor(Color.parseColor("#BAD3A5"));
                 home_weatherMessage.setText(weather_message[0].get(randomValue));   // 랜덤 멘트
-                if(PreferenceHelper.getGloomy(getContext()) != 0)   // 오늘 우울한 날 아니면 우울 경고 지우기
+                if(PreferenceHelper.getGloomy(context) != 0)   // 오늘 우울한 날 아니면 우울 경고 지우기
                     warn.setVisibility(View.GONE);
                 else
                     warn.setText("우울해지기 쉬운 날이에요.");
@@ -809,7 +811,7 @@ public class FragHome extends Fragment {
                 weatherImg.setImageResource(R.drawable.ic_mainweather_mist);
                 background.setBackgroundColor(Color.parseColor("#F6C97B"));
                 home_weatherMessage.setText(weather_message[1].get(randomValue));   // 랜덤 멘트
-                if(PreferenceHelper.getGloomy(getContext()) != 1)   // 오늘 우울한 날 아니면 우울 경고 지우기
+                if(PreferenceHelper.getGloomy(context) != 1)   // 오늘 우울한 날 아니면 우울 경고 지우기
                     warn.setVisibility(View.GONE);
                 else
                     warn.setText("우울해지기 쉬운 날이에요.");
@@ -819,7 +821,7 @@ public class FragHome extends Fragment {
                 weatherImg.setImageResource(R.drawable.ic_mainweather_cloud);
                 background.setBackgroundColor(Color.parseColor("#97ACE5"));
                 home_weatherMessage.setText(weather_message[2].get(randomValue));   // 랜덤 멘트
-                if(PreferenceHelper.getGloomy(getContext()) != 2)   // 오늘 우울한 날 아니면 우울 경고 지우기
+                if(PreferenceHelper.getGloomy(context) != 2)   // 오늘 우울한 날 아니면 우울 경고 지우기
                     warn.setVisibility(View.GONE);
                 else
                     warn.setText("우울해지기 쉬운 날이에요.");
@@ -829,7 +831,7 @@ public class FragHome extends Fragment {
                 weatherImg.setImageResource(R.drawable.ic_mainweather_rain);
                 background.setBackgroundColor(Color.parseColor("#8DC0D3"));
                 home_weatherMessage.setText(weather_message[3].get(randomValue));   // 랜덤 멘트
-                if(PreferenceHelper.getGloomy(getContext()) != 3)   // 오늘 우울한 날 아니면 우울 경고 지우기
+                if(PreferenceHelper.getGloomy(context) != 3)   // 오늘 우울한 날 아니면 우울 경고 지우기
                     warn.setVisibility(View.GONE);
                 else
                     warn.setText("우울해지기 쉬운 날이에요.");
@@ -839,7 +841,7 @@ public class FragHome extends Fragment {
                 weatherImg.setImageResource(R.drawable.ic_mainweather_snow);
                 background.setBackgroundColor(Color.parseColor("#B19ED8"));
                 home_weatherMessage.setText(weather_message[4].get(randomValue));   // 랜덤 멘트
-                if(PreferenceHelper.getGloomy(getContext()) != 4)   // 오늘 우울한 날 아니면 우울 경고 지우기
+                if(PreferenceHelper.getGloomy(context) != 4)   // 오늘 우울한 날 아니면 우울 경고 지우기
                     warn.setVisibility(View.GONE);
                 else
                     warn.setText("우울해지기 쉬운 날이에요.");

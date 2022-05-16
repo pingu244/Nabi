@@ -160,13 +160,14 @@
         </GridLayout>
 
         <Button
+            style="@style/customButtonFontStyle"
             android:id="@+id/gloomy_start"
             android:layout_gravity="right|bottom"
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#00000000"
-            android:text="확인>"/>
+            android:text="확인 >"/>
     </LinearLayout>
 
 

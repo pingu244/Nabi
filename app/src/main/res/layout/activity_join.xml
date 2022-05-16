@@ -5,95 +5,164 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <ImageView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/teal_200"/>
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/join_bg"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/logo_type"
+            android:layout_gravity="center"/>
+
+    </FrameLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="40dp">
+        android:paddingBottom="30dp"
+        android:paddingTop="50dp"
+        android:paddingHorizontal="50dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="20dp"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="15dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="2dp"
+                android:text="이름"
+                android:textColor="@color/black"
+                android:textSize="15dp"/>
+
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/joinName"
-                android:hint="이름"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:singleLine="true"
+                style="@style/customEditTextFontStyle"
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_marginBottom="20dp"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="2dp"
+                android:text="이메일"
+                android:textColor="@color/black"
+                android:textSize="15dp"/>
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/joinEmail"
-                android:hint="이메일"/>
-        </com.google.android.material.textfield.TextInputLayout>
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                style="@style/customEditTextFontStyle"
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_marginBottom="20dp"
-            app:passwordToggleEnabled="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/joinPassword"
-                android:hint="비밀번호"
-                android:inputType="textPassword"/>
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            app:passwordToggleEnabled="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/joinPasswordCheck"
-                android:hint="비밀번호 확인"
-                android:inputType="textPassword"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:layout_marginTop="30dp"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/joinBtn"
-            android:text="완료"/>
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="비밀번호"
+                android:textColor="@color/black"
+                android:textSize="15dp"/>
+            <com.google.android.material.textfield.TextInputLayout
+                app:passwordToggleEnabled="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/joinPassword"
+                    android:inputType="textPassword"
+                    style="@style/customEditTextFontStyle"
+                    android:textColor="@color/black"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="비밀번호 확인"
+                android:textColor="@color/black"
+                android:textSize="15dp"/>
+            <com.google.android.material.textfield.TextInputLayout
+                app:passwordToggleEnabled="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/joinPasswordCheck"
+                    android:inputType="textPassword"
+                    style="@style/customEditTextFontStyle"
+                    android:textColor="@color/black"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
     </LinearLayout>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="65dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:id="@+id/joinBtn"
+        android:backgroundTint="#FFCDCD"
+        android:background="@drawable/tab_indicator"
+        android:text="완료"
+        android:textSize="17dp"
+        android:textColor="@color/black"
+        style="@style/customButtonFontStyle" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="30dp">
+        android:gravity="center">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="이미 계정이 있다면?\t\t"/>
+            android:text="이미 계정이 있다면?\t"
+            android:textSize="12dp"/>
         <TextView
             android:id="@+id/backtoLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="로그인하기"/>
+            android:textColor="#454870"
+            android:text="로그인하기"
+            android:textSize="12dp"/>
     </LinearLayout>
-
-
-
 
 
 </LinearLayout>

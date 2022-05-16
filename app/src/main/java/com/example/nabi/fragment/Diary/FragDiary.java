@@ -49,12 +49,6 @@ public class FragDiary extends Fragment {
         super.onStart();
         start = true;
 
-//        FragmentTransaction t = getActivity().getSupportFragmentManager().beginTransaction();
-//        t.setReorderingAllowed(false);
-//        t.detach(this).attach(this).commitAllowingStateLoss();
-
-//        getFragmentManager().beginTransaction().detach(this).commit();
-//        getFragmentManager().beginTransaction().attach(this).commit();
     }
 
     @Override

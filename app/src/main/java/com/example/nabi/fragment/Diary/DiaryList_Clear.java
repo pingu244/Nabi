@@ -160,8 +160,8 @@ public class DiaryList_Clear extends Fragment {
                                                         }
                                                     }
 
-                                                    }
-                                                });
+                                                }
+                                            });
 
 
                                 }

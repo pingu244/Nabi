@@ -32,6 +32,10 @@
             android:background="@drawable/edittext_rounded_corner_rectangle">
 
             <EditText
+                style="@style/customEditTextFontStyle"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:lineSpacingExtra="10dp"
                 android:gravity="top"
                 android:id="@+id/diary_content_4"
                 android:layout_width="match_parent"
@@ -44,11 +48,10 @@
         <!--이전/다음버튼과 페이지 보여주는 부분-->
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="15dp"
-            android:layout_marginHorizontal="15dp">
+            android:layout_height="wrap_content">
 
             <Button
+                style="@style/customButtonFontStyle"
                 android:id="@+id/fourth_prior"
                 android:layout_gravity="left"
                 android:layout_width="wrap_content"
@@ -56,6 +59,7 @@
                 android:background="#00ff0000"
                 android:text="&lt; 이전"/>
             <TextView
+                style="@style/customTextViewFontStyle"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -63,6 +67,7 @@
                 android:text="4/4"
                 android:textColor="@color/black"/>
             <Button
+                style="@style/customButtonFontStyle"
                 android:id="@+id/fourth_complete"
                 android:layout_gravity="right"
                 android:layout_width="wrap_content"

@@ -64,8 +64,8 @@
     <!-- 월 표시하는 헤더 -->
     <style name="CalendarWidgetHeader">
         <item name="android:textSize">24dp</item>
-        <item name="android:textStyle">bold</item>
         <item name="android:textColor">#454870</item>
+        <item name="android:fontFamily">@font/scdream6</item>
     </style>
 
     <!-- 폰트 -->

@@ -59,13 +59,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:lineSpacingExtra="10dp"
                 android:text="우울증에 도움이 되는 것을 생각하면 흔히 산책과 명상을 생각하실 겁니다.\n
 음식들 중에도 우울증에 도움이 되는 것과 우울증을 악화시키는 게 있다고 합니다.\n
 먼저 우울증에 도움이 되는 음식에는 비타민D가 풍부한 달걀노른자, 생선, 유제품 등이 있습니다.\n
 또한 시금치, 케일, 상추와 같은 녹색 잎채소에는 엽산과 비타민이 들어있어 뇌 기능 유지와 면역력 강화에 도움이 됩니다.\n
 호두는 오메가3 지방산이 많아 혈압을 낮추고 뇌 건강에 좋습니다.\n
 반면에 술, 설탕, 패스트푸드, 카페인은 신체적 건강뿐만 아니라 정신적 건강에도 영향을 끼치니 주의하시기 바랍니다."
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:textColor="@color/black"/>
 
         </LinearLayout>

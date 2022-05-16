@@ -55,7 +55,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="35dp"
                 android:orientation="vertical"
-                android:paddingBottom="50dp">
+                android:paddingBottom="40dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -335,8 +335,10 @@
                         tools:ignore="DuplicateIds" />
                 </RadioGroup>
                 <Button
+                    style="@style/customButtonFontStyle"
                     android:id="@+id/btnComplete"
                     android:layout_gravity="right"
+                    android:gravity="right|center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#00ff0000"
