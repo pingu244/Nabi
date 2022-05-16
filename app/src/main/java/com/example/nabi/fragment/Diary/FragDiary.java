@@ -85,7 +85,7 @@ public class FragDiary extends Fragment {
                     if(position==0)
                         getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.diarybg);
                     else
-                        getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_clear);
+                        getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.diary_list_clear_bg);
                     start = false;
                 }
 
@@ -102,19 +102,19 @@ public class FragDiary extends Fragment {
                         switch (fragDiary_list.diaryList_bg)
                         {
                             case 0:
-                                getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_clear);
+                                getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.diary_list_clear_bg);
                                 break;
                             case 1:
-                                getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_littlecloud);
+                                getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.diary_list_littlecloud_bg);
                                 break;
                             case 2:
-                                getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_cloud);
+                                getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.diary_list_cloud_bg);
                                 break;
                             case 3:
-                                getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_rain);
+                                getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.diary_list_rain_bg);
                                 break;
                             case 4:
-                                getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_snow);
+                                getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.diary_list_snow_bg);
                                 break;
                         }
                         break;

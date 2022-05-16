@@ -48,7 +48,7 @@ public class DiaryList_LittleCloud extends Fragment {
 
         view = inflater.inflate(R.layout.diarylist_adapter, container,false);
         initUI(view);
-        getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_littlecloud);
+        getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.diary_list_littlecloud_bg);
         getActivity().findViewById(R.id.diarylist_littlecloudbg).setBackgroundResource(R.drawable.diarylist_icbg);
 
         tvWeather = getActivity().findViewById(R.id.tvWeather);

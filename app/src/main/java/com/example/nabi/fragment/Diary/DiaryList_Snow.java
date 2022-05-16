@@ -48,7 +48,7 @@ public class DiaryList_Snow extends Fragment {
 
         view = inflater.inflate(R.layout.diarylist_adapter, container,false);
         initUI(view);
-        getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.bg_snow);
+        getActivity().findViewById(R.id.diaryBg).setBackgroundResource(R.drawable.diary_list_snow_bg);
         getActivity().findViewById(R.id.diarylist_snowbg).setBackgroundResource(R.drawable.diarylist_icbg);
 
         tvWeather = getActivity().findViewById(R.id.tvWeather);
