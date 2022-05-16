@@ -74,12 +74,16 @@
             android:layout_gravity="center"
             android:elevation="5dp"
 
-            app:cpb_background_progressbar_color="#33FFFFFF"
+            app:cpb_background_progressbar_color="#44ffffff"
             app:cpb_background_progressbar_width="20dp"
             app:cpb_progress_direction="to_right"
-            app:cpb_progressbar_color="#CC32345C"
+            app:cpb_progressbar_color="@color/indigo_pnt"
             app:cpb_progressbar_width="22dp"
-            app:cpb_round_border="true" />
+            app:cpb_round_border="true"
+            android:background="@drawable/music_back">
+
+        </com.mikhaellopez.circularprogressbar.CircularProgressBar>
+
 
         <LinearLayout
             android:layout_width="wrap_content"
