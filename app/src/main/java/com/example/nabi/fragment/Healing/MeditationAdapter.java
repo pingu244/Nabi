@@ -114,10 +114,10 @@ public class MeditationAdapter extends RecyclerView.Adapter<MeditationAdapter.Vi
                 @Override
                 public void onClick(View view) {
                     int pos = getAdapterPosition();
-                    String title = (String) tv_title.getText();
+//                    String title = (String) tv_title.getText();
                     intent = new Intent(view.getContext(), Healing_Meditation.class);
                     intent.putExtra("number", pos);
-                    intent.putExtra("title", title);
+//                    intent.putExtra("title", title);
                     view.getContext().startActivity(intent);
 
 //                    Toast.makeText(view.getContext(), "클릭 되었습니다.", Toast.LENGTH_SHORT).show();

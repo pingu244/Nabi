@@ -45,13 +45,24 @@
         android:layout_marginBottom="5dp"
         android:elevation="2dp"/>
 
+    <ProgressBar
+        android:id="@+id/meditation_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="70dp"
+        android:layout_marginTop="20dp"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:progress="5"
+        android:progressTint="@color/black"
+        android:layout_gravity="center"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:orientation="vertical"
         android:layout_marginVertical="30dp"
         android:layout_marginHorizontal="30dp"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:layout_gravity="center">
 
         <TextView
@@ -59,7 +70,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="명상멘트1"
+            android:text="입가엔 미소를 가슴엔 평화를 담고서\n
+이렇게 되뇌입니다."
             android:lineSpacingExtra="5dp"
             android:textSize="20dp"
             android:textColor="@color/black"
@@ -72,16 +84,17 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginTop="15dp"
-            android:text="명상멘트2"
+            android:text="나는 하나밖에 없는 귀한 나에게\n
+자비의 마음을 보냅니다."
             android:src="@drawable/mcv_action_previous"/>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginVertical="10dp"
         android:layout_width="wrap_content"
         android:orientation="horizontal"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
         android:gravity="center"
         android:layout_gravity="center">
 
@@ -107,28 +120,36 @@
             android:gravity="center"/>
     </LinearLayout>
 
-    <FrameLayout
-        android:layout_marginTop="10dp"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
-
-        <ImageView
-            android:layout_gravity="center"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@drawable/mood_circle"
-            android:backgroundTint="#99FFFFFF"/>
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center">
 
         <ImageButton
-            android:id="@+id/meditation_btn"
+            android:id="@+id/meditation_pre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_play_pre"
+            android:backgroundTint="@color/black"/>
+
+        <ImageButton
+            android:id="@+id/meditation_play"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginHorizontal="70dp"
             android:background="@drawable/btn_play"
             android:backgroundTint="@color/black"/>
 
-    </FrameLayout>
+        <ImageButton
+            android:id="@+id/meditation_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_play_next"
+            android:backgroundTint="@color/black"/>
+    </LinearLayout>
 
 
 </LinearLayout>

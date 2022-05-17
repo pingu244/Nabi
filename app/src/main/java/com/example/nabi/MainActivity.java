@@ -52,6 +52,8 @@ import java.util.Map;
 import kotlin.Unit;
 import kotlin.reflect.KFunction;
 
+import static java.lang.Thread.sleep;
+
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
     private final int ID_HOME = 1;
@@ -111,6 +113,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         Intent receive_intent = getIntent();
         LoginSuccess = receive_intent.getBooleanExtra("LoginSuccess", false);
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
