@@ -285,36 +285,7 @@ public class LoginActivity extends AppCompatActivity {
     //....페이스북 로그인 필요한 코드들 끝
 
     // ~님 환영합니다!
-    String nickname;
-    Integer gloomyWeather = -1;
     private void updateUI(FirebaseUser user) { //update ui code here
-//        FirebaseFirestore db = FirebaseFirestore.getInstance();
-//        DocumentReference docRef = db.collection("users")
-//                .document(FirebaseAuth.getInstance().getCurrentUser().getUid());
-//        Task<DocumentSnapshot> documentSnapshotTask = docRef.get()
-//                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            DocumentSnapshot document = task.getResult();
-//                            if (document.exists()) {
-//                                Map<String, Object> mymap = document.getData();
-//                                nickname = (String) mymap.get("name");
-////                                gloomyWeather = Integer.parseInt(mymap.get("gloomyWeather").toString());
-//                                Toast.makeText(LoginActivity.this, nickname+"님 환영합니다!", Toast.LENGTH_SHORT).show();
-//                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//                                intent.putExtra("LoginSuccess", true);
-//                                startActivity(intent);
-//                                finish();
-////                                if(gloomyWeather == -1)
-////                                {
-////                                    GloomyWeatherFrag g = new GloomyWeatherFrag();
-////                                    g.show(getSupportFragmentManager(),"setGloomyWeather");
-////                                }
-//                            }
-//                        }
-//                    }
-//                });
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         intent.putExtra("LoginSuccess", true);
         startActivity(intent);

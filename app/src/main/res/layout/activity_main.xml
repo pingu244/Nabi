@@ -31,19 +31,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-<!--    <com.etebarian.meowbottomnavigation.MeowBottomNavigation-->
-<!--        android:id="@+id/bottomNavigationView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="bottom"-->
-
-<!--        app:mbn_shadowColor="#E1E1E1"-->
-<!--        app:mbn_backgroundBottomColor="#E1E1E1"-->
-<!--        app:mbn_circleColor="#FDCBD4"-->
-<!--        app:mbn_defaultIconColor="#636363"-->
-<!--        app:mbn_selectedIconColor="#ffffff"-->
-<!--        android:background="#E1E1E1"/>-->
-
-
-
 </LinearLayout>

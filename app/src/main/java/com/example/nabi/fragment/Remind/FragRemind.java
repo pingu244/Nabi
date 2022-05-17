@@ -138,15 +138,15 @@ public class FragRemind extends Fragment {
                                 }
 
 
-//                                // 오늘 날짜면 리스트에 안올리기
-//                                java.util.Calendar cal = java.util.Calendar.getInstance();
-//                                int cYEAR = cal.get(java.util.Calendar.YEAR);
-//                                int cMonth = cal.get(java.util.Calendar.MONTH);
-//                                int cDay = cal.get(java.util.Calendar.DATE);
-//                                String YMD = (cYEAR+"/"+(cMonth+1)+"/"+cDay);
-//                                String today = "2022/"+selectMonth+"/"+document.getId();
-//                                if(today.equals(YMD))
-//                                    drawable = null;
+                                // 오늘 날짜면 리스트에 안올리기
+                                java.util.Calendar cal = java.util.Calendar.getInstance();
+                                int cYEAR = cal.get(java.util.Calendar.YEAR);
+                                int cMonth = cal.get(java.util.Calendar.MONTH);
+                                int cDay = cal.get(java.util.Calendar.DATE);
+                                String YMD = (cYEAR+"/"+(cMonth+1)+"/"+cDay);
+                                String today = "2022/"+selectMonth+"/"+document.getId();
+                                if(today.equals(YMD))
+                                    drawable = null;
 
 
                                 if(drawable != null)

@@ -56,11 +56,6 @@ import static java.lang.Thread.sleep;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
-    private final int ID_HOME = 1;
-    private final int ID_HEALING = 2;
-    private final int ID_DIARY = 3;
-    private final int ID_REMIND = 4;
-
     // 산책 걸음수 측정 변수
     SensorManager sm;
     Sensor sensor_step_detector;
@@ -86,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public boolean LoginSuccess;
 
     BottomNavigationView bottomNavigation;
-//    MeowBottomNavigation bottomNavigation;
 
 
     private long mBackWait = 0;
@@ -98,10 +92,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         setContentView(R.layout.activity_main);
 
         bottomNavigation = findViewById(R.id.bottomNavigationView);
-//        bottomNavigation.add(new MeowBottomNavigation.Model(ID_HOME, R.drawable.ic_baseline_cloud_24));
-//        bottomNavigation.add(new MeowBottomNavigation.Model(ID_HEALING, R.drawable.ic_baseline_pause_24));
-//        bottomNavigation.add(new MeowBottomNavigation.Model(ID_DIARY, R.drawable.ic_baseline_wb_sunny_24));
-//        bottomNavigation.add(new MeowBottomNavigation.Model(ID_REMIND, R.drawable.ic_baseline_opacity_24));
 
         frag_home = new FragHome();
         frag_healing = new FragHealing();
@@ -112,12 +102,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         getSupportFragmentManager().beginTransaction().replace(R.id.container, frag_home).commitAllowingStateLoss();
 
         Intent receive_intent = getIntent();
-        LoginSuccess = receive_intent.getBooleanExtra("LoginSuccess", false);
-        try {
-            sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        LoginSuccess = receive_intent.getBooleanExtra("LoginSuccess", true);
+//        try {
+//            sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -144,51 +134,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 return true;
             }
         });
-
-//        bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
-//            @Override
-//            public void onClickItem(MeowBottomNavigation.Model item) {
-//                Toast.makeText(MainActivity.this, "click item: " + item.getId(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        bottomNavigation.setOnReselectListener(new MeowBottomNavigation.ReselectListener() {
-//            @Override
-//            public void onReselectItem(MeowBottomNavigation.Model item) {
-//                Toast.makeText(MainActivity.this, "reselect item: " + item.getId(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//
-//
-//        bottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
-//            @Override
-//            public void onShowItem(MeowBottomNavigation.Model item) {
-//                Fragment fragment;
-//                switch (item.getId()){
-//                    case ID_HOME:
-//                        fragment = frag_home;
-//                        break;
-//
-//                    case ID_HEALING:
-//                        fragment = frag_healing;
-//                        break;
-//
-//
-//                    case ID_DIARY:
-//                        fragment = frag_diary;
-//                        break;
-//
-//
-//                    case ID_REMIND:
-//                        fragment = frag_remind;
-//                        break;
-//                    default:
-//                        throw new IllegalStateException("Unexpected value: " + item.getId());
-//                }
-//                loadFragment(fragment);
-//            }
-//        });
-//        bottomNavigation.show(ID_HOME, true);
 
         pushWalkDataPush();
 
