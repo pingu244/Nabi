@@ -2,6 +2,8 @@ package com.example.nabi;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -20,7 +22,6 @@ class OnBoardingAdapter extends PagerAdapter {
     LayoutInflater layoutInflater;
 
 
-
     public OnBoardingAdapter(LayoutInflater layoutInflater) {
         this.layoutInflater = layoutInflater;
     }
@@ -28,14 +29,10 @@ class OnBoardingAdapter extends PagerAdapter {
     @Override
 
     public int getCount() {
-
         return 4; //이미지 개수 리턴
-
     }
 
-
     public Object instantiateItem(ViewGroup container, int position) {
-
 
         View view = null;
 
@@ -46,38 +43,32 @@ class OnBoardingAdapter extends PagerAdapter {
         view = layoutInflater.inflate(R.layout.onboarding_adapter, null);
 
         imageView = view.findViewById(R.id.imgView);
-        tv_next = view.findViewById(R.id.tv_next);
-        tv_pass = view.findViewById(R.id.tv_pass);
         tv_onBoarding = view.findViewById(R.id.tv_onBoarding);
         onBoardingLayout = view.findViewById(R.id.onBoardingLayout);
 
-        if (position == 0) {
-            imageView.setImageResource(R.drawable.img_onboarding_1);
-            tv_onBoarding.setText("우울한 날씨를 확인하세요");
-            onBoardingLayout.setBackgroundColor(Color.parseColor("#C2E2E8")); //색깔 바꿔줘요
 
+        switch (position){
+            case 0:
+                imageView.setImageResource(R.drawable.img_onboarding_1);
+                tv_onBoarding.setText("우울한 날씨를 확인하세요");
+                onBoardingLayout.setBackgroundColor(Color.parseColor("#C2E2E8")); //색깔 바꿔줘요
+                break;
+            case 1:
+                imageView.setImageResource(R.drawable.img_onboarding_2);
+                tv_onBoarding.setText("힐링 컨텐츠로 힐링해 보아요");
+                onBoardingLayout.setBackgroundColor(Color.parseColor("#FFD8D8"));
+                break;
+            case 2:
+                imageView.setImageResource(R.drawable.img_onboarding_3);
+                tv_onBoarding.setText("나의 하루를 기록해 보아요");
+                onBoardingLayout.setBackgroundColor(Color.parseColor("#98C593"));
+                break;
+            case 3:
+                imageView.setImageResource(R.drawable.img_onboarding_4);
+                tv_onBoarding.setText("감정 보고서를 열람해 보세요");
+                onBoardingLayout.setBackgroundColor(Color.parseColor("#D6C7ED"));
+                break;
         }
-        else if(position ==1){
-            imageView.setImageResource(R.drawable.img_onboarding_2);
-            tv_onBoarding.setText("힐링 컨텐츠로 힐링해 보아요");
-            onBoardingLayout.setBackgroundColor(Color.parseColor("#FFD8D8"));
-
-        }
-        else if(position==2){
-            imageView.setImageResource(R.drawable.img_onboarding_3);
-            tv_onBoarding.setText("나의 하루를 기록해 보아요");
-            onBoardingLayout.setBackgroundColor(Color.parseColor("#98C593"));
-
-        }
-        else if(position==3){
-            imageView.setImageResource(R.drawable.img_onboarding_4);
-            tv_onBoarding.setText("감정 보고서를 열람해 보세요");
-            onBoardingLayout.setBackgroundColor(Color.parseColor("#D6C7ED"));
-
-        }
-
-
-
 
 
         container.addView(view);
@@ -91,7 +82,6 @@ class OnBoardingAdapter extends PagerAdapter {
     public void destroyItem(ViewGroup container, int position, Object object) {
 
         container.removeView((View) object);
-
 
     }
 

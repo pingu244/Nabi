@@ -62,6 +62,7 @@
             android:layout_width="320dp"
             android:layout_height="320dp"
             android:src="@drawable/dawn_awake"
+            android:scaleType="centerCrop"
             app:civ_border="false"
             app:civ_shadow="true"
             app:civ_shadow_radius="5dp"

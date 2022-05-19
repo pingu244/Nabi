@@ -2,6 +2,7 @@ package com.example.nabi;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,19 +23,11 @@ import com.rd.PageIndicatorView;
 
 public class OnBoardingActivity extends AppCompatActivity {
 
-    TextView tv_pass, tv_next, tv_onBoarding;
+    TextView tv_pass, tv_next;
     ImageView imageView;
     ViewPager viewPager;
-    LayoutInflater layoutInflater;
     TabLayout  tabLayout;
     LinearLayout onBoardingLayout;
-
-    public OnBoardingActivity(int position) {
-    }
-
-    public OnBoardingActivity(){
-
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,7 +61,6 @@ public class OnBoardingActivity extends AppCompatActivity {
             }
         });
 
-
         tv_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,17 +71,37 @@ public class OnBoardingActivity extends AppCompatActivity {
                     viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
                 }else if(viewPager.getCurrentItem()==2){
                     viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
-                    tv_next.setText("완료");
-                    tv_pass.setVisibility(View.INVISIBLE);
-                }else if(viewPager.getCurrentItem()==3){
-                    viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
-                    finish();
                 }
             }
         });
-    }
 
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if(position==3)
+                {
+                    tv_next.setText("완료");
+                    tv_pass.setVisibility(View.INVISIBLE);
+                    tv_next.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                }
+            }
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+    }
 
 }

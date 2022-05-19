@@ -225,7 +225,7 @@
                     android:textSize="15dp"
                     android:layout_marginBottom="5dp"/>
 
-                <LinearLayout
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="7dp"
@@ -234,11 +234,11 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_marginLeft="5dp"
-                        android:layout_width="wrap_content"
+                        android:layout_width="75dp"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:layout_gravity="center_horizontal|left">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -291,23 +291,22 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="걸음"
-                            android:textSize="15dp"
+                            android:textSize="13dp"
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
                     <!--                    구분선-->
                     <LinearLayout
-                        android:layout_marginHorizontal="7dp"
-                        android:layout_width="30dp"
+                        android:layout_width="25dp"
                         android:layout_height="1dp"
                         android:layout_gravity="center"
                         android:background="#CACDDF"/>
 
                     <LinearLayout
-                        android:layout_marginRight="5dp"
-                        android:layout_width="wrap_content"
+                        android:layout_width="75dp"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
+                        android:layout_gravity="right"
                         android:gravity="center">
 
                         <TextView
@@ -361,10 +360,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="분"
-                            android:textSize="15dp"
+                            android:textSize="13dp"
                             android:layout_gravity="center"/>
                     </LinearLayout>
-                </LinearLayout>
+                </FrameLayout>
             </LinearLayout>
         </LinearLayout>
 
