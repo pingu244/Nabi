@@ -4,8 +4,7 @@
 - 프로젝트명 : 나비
 - 프로젝트 기간 : 2021.09 ~ 2022.06
 - 프로젝트 팀원 : 박다영, 서이진, 안희애, 최정인
-- 프로젝트 소개 : [[소개영상]](https://www.youtube.com/watch?v=sEftLimg538&t=5s) /
-[[온라인전시]](http://www.swudmgraduate.com/2022/project/detail/30)\
+- 프로젝트 소개 : [[소개영상]](https://www.youtube.com/watch?v=sEftLimg538&t=5s)
 날씨에 따라 기분이 변화하는 사람들을 위하여 ,\
 우울감 해소는 자신의 감정을 인지하는 것으로부터 시작됩니다.\
 나비는 감정일기를 통한 계절성 정서장애 증상 완화 어플로서 여러분의 우울함을 완화시켜줍니다.\
@@ -34,6 +33,10 @@
 - 개발 플랫폼 : 안드로이드 스튜디오
 - 개발 언어 : Java
 - 파이어베이스 구조
+<img src="https://user-images.githubusercontent.com/69796976/185778058-55b44d25-691a-4b39-84d2-b2a20da2ed24.png" width="700" height="600">
+
+## 전시 포스터
+<img src="https://user-images.githubusercontent.com/69796976/185778331-ccbb9195-93b4-4050-8b2f-fcf2f375d769.jpg">
 
 
 
